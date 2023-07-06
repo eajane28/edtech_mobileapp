@@ -37,7 +37,7 @@ class _IntroPageState extends State<IntroPage> {
             'Quarantine is the perfect time to spend your day learning something new, from anywhere!',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Color(0xFF3B3936),
+              color: Color(0xFF78746D),
               fontSize: 14,
             ),
           ),
@@ -69,7 +69,7 @@ class _IntroPageState extends State<IntroPage> {
             'Quarantine is the perfect time to spend your day learning something new, from anywhere!',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Color(0xFF3B3936),
+              color: Color(0xFF78746D),
               fontSize: 14,
             ),
           ),
@@ -101,7 +101,7 @@ class _IntroPageState extends State<IntroPage> {
             'Quarantine is the perfect time to spend your day learning something new, from anywhere!',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Color(0xFF3B3936),
+              color: Color(0xFF78746D),
               fontSize: 14,
             ),
           ),
@@ -134,7 +134,11 @@ class _IntroPageState extends State<IntroPage> {
         backgroundColor: Colors.transparent,
         actions: const [
           Padding(padding: EdgeInsets.only(right: 16),
-          child: Text('Skip'),)
+          child: Text('Skip',
+          style: TextStyle(
+            color: Color(0xFF78746D)
+          ),
+          ),)
         ],
       ),
       body: Onboarding(
