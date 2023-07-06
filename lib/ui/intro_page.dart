@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:onboarding/onboarding.dart';
 
+// class IntroPage extends StatefulWidget {
+//   const IntroPage({Key? key}) : super(key: key);
+
+//   @override
+//   State<IntroPage> createState() => _IntroPageState();
+// }
 class IntroPage extends StatefulWidget {
-  const IntroPage({Key? key}) : super(key: key);
+  const IntroPage({super.key});
 
   @override
   State<IntroPage> createState() => _IntroPageState();
@@ -176,16 +182,17 @@ class _IntroPageState extends State<IntroPage> {
       ),
     );
   }
-}
 
 _skipButton({required void Function(int index) setIndex}) {
   GestureDetector(
     onTap: () {
-      const Text('Sign in');
+      _goButton();
+      // int index=2;
+      // const Text('Sign in');
       setIndex(2);
     },
   );
-  return Padding(
+   return Padding(
     padding: const EdgeInsets.all(45.0),
     child: Container(
       width: 311,
@@ -202,6 +209,35 @@ _skipButton({required void Function(int index) setIndex}) {
     ),
   );
 }
+
+// int _nextButton(newIndex) {
+
+//  GestureDetector(
+//     onTap: () {
+//       int index=0;
+//       int newIndex=index++;
+//       // ignore: void_checks
+//       return newIndex;
+//     },
+//   );
+//   Padding(
+//     padding: const EdgeInsets.all(45.0),
+//     child: Container(
+//       width: 311,
+//       height: 56,
+//       decoration: BoxDecoration(
+//         color: Colors.orange,
+//         borderRadius: BorderRadius.circular(16),
+//       ),
+//       alignment: Alignment.center,
+//       child: const Text(
+//         style: TextStyle(color: Colors.white),
+//         'Next',
+//       ),
+//     ),
+//   );
+// }
+
 
 _goButton() {
  
@@ -221,4 +257,5 @@ _goButton() {
       ),
     ),
   );
+}
 }
