@@ -161,7 +161,7 @@ class _IntroPageState extends State<IntroPage> {
               ),
               index == pagesLength - 1
                   ? _goButton()
-                  : _nextButton(setIndex: setIndex)
+                  : _nextButton(setIndex: setIndex),
             ],
           );
         },
@@ -169,74 +169,55 @@ class _IntroPageState extends State<IntroPage> {
     );
   }
 
-_nextButton({required void Function(int index) setIndex}) {
-  return Padding(
-    padding: const EdgeInsets.all(45.0),
-    child: GestureDetector(
-      onTap: () {
-        PageModel? nextPage = skipPage();
-        if (nextPage != null && setIndex != null) {
-          setIndex(index + 1);
-        }
-      },
-      child: Container(
-        width: 311,
-        height: 56,
-        decoration: BoxDecoration(
-          color: Colors.orange,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        alignment: Alignment.center,
-        child: const Text(
-          'Next',
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
-    ),
-  );
-}
-
-_goButton() {
-  return Padding(
-    padding: const EdgeInsets.all(45.0),
-    child: GestureDetector(
-      onTap: () {
-        // Handle the "Let's Start" button click
-      },
-      child: Container(
-        width: 311,
-        height: 56,
-        decoration: BoxDecoration(
-          color: Colors.orange,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        alignment: Alignment.center,
-        child: const Text(
-          'Let\'s Start',
-          style: TextStyle(color: Colors.white),
+  _nextButton({required void Function(int index) setIndex}) {
+    return Padding(
+      padding: const EdgeInsets.all(45.0),
+      child: GestureDetector(
+        onTap: () {
+          if (index + 1 < onboardingPagesList.length) {
+            setState(() {
+              setIndex(index + 1);
+            });
+          }
+        },
+        child: Container(
+          width: 311,
+          height: 56,
+          decoration: BoxDecoration(
+            color: Colors.orange,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          alignment: Alignment.center,
+          child: const Text(
+            'Next',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ),
-    ),
-  );
-}
-
-
-  PageModel? skipPage() {
-    int nextIndex = index + 1;
-    if (nextIndex < onboardingPagesList.length-1) {
-      return onboardingPagesList[nextIndex];//only 2nd page is able to display
-    } else {
-      return null; // No next page, return null
-    }
+    );
   }
 
-    PageModel? escPage() {
-    int nextIndex = index + 1;
-    if (nextIndex < onboardingPagesList.length-1) {
-      index++;
-      return onboardingPagesList[index];
-    } else {
-      return null; // to be used for skip
-    }
+  _goButton() {
+    return Padding(
+      padding: const EdgeInsets.all(45.0),
+      child: GestureDetector(
+        onTap: () {
+          // Handle the "Let's Start" button click
+        },
+        child: Container(
+          width: 311,
+          height: 56,
+          decoration: BoxDecoration(
+            color: Colors.orange,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          alignment: Alignment.center,
+          child: const Text(
+            'Let\'s Start',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      ),
+    );
   }
 }
