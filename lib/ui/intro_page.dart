@@ -122,15 +122,6 @@ class _IntroPageState extends State<IntroPage> {
     index = 0;
   }
 
-  // PageModel? skipPage() {
-  //   int nextIndex = index + 1;
-  //   if (nextIndex < onboardingPagesList.length) {
-  //     return onboardingPagesList[nextIndex];
-  //   } else {
-  //     return null; // No next page, return null
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,12 +130,13 @@ class _IntroPageState extends State<IntroPage> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: const [
-          Padding(padding: EdgeInsets.only(right: 16),
-          child: Text('Skip',
-          style: TextStyle(
-            color: Color(0xFF78746D)
-          ),
-          ),)
+          Padding(
+            padding: EdgeInsets.only(right: 16),
+            child: Text(
+              'Skip',
+              style: TextStyle(color: Color(0xFF78746D)),
+            ),
+          )
         ],
       ),
       body: Onboarding(
@@ -175,7 +167,7 @@ class _IntroPageState extends State<IntroPage> {
               ),
               index == pagesLength - 1
                   ? _goButton()
-                  : _skipButton(setIndex: setIndex)
+                  : _nextButton(setIndex: setIndex)
             ],
           );
         },
@@ -183,79 +175,60 @@ class _IntroPageState extends State<IntroPage> {
     );
   }
 
-_skipButton({required void Function(int index) setIndex}) {
-  GestureDetector(
-    onTap: () {
-      _goButton();
-      // int index=2;
-      // const Text('Sign in');
-      setIndex(2);
-    },
-  );
-   return Padding(
-    padding: const EdgeInsets.all(45.0),
-    child: Container(
-      width: 311,
-      height: 56,
-      decoration: BoxDecoration(
-        color: Colors.orange,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      alignment: Alignment.center,
-      child: const Text(
-        style: TextStyle(color: Colors.white),
-        'Next',
-      ),
-    ),
-  );
-}
+  PageModel? skipPage() {
+    int nextIndex = index + 1;
+    if (nextIndex < onboardingPagesList.length) {
+      return onboardingPagesList[nextIndex];
+    } else {
+      return null; // No next page, return null
+    }
+  }
 
-// int _nextButton(newIndex) {
-
-//  GestureDetector(
-//     onTap: () {
-//       int index=0;
-//       int newIndex=index++;
-//       // ignore: void_checks
-//       return newIndex;
-//     },
-//   );
-//   Padding(
-//     padding: const EdgeInsets.all(45.0),
-//     child: Container(
-//       width: 311,
-//       height: 56,
-//       decoration: BoxDecoration(
-//         color: Colors.orange,
-//         borderRadius: BorderRadius.circular(16),
-//       ),
-//       alignment: Alignment.center,
-//       child: const Text(
-//         style: TextStyle(color: Colors.white),
-//         'Next',
-//       ),
-//     ),
-//   );
-// }
-
-
-_goButton() {
- 
-  return Padding(
-    padding: const EdgeInsets.all(45.0),
-    child: Container(
-      width: 311,
-      height: 56,
-      decoration: BoxDecoration(
-        color: Colors.orange,
-        borderRadius: BorderRadius.circular(16),
+  _nextButton({required void Function(int index) setIndex}) {
+    GestureDetector(
+      onTap: () {
+        skipPage();
+        // //_goButton();--for the skip button
+        // if (setIndex != null) {
+        //       index = 2;
+        //       setIndex(2);
+        //     }
+      },
+    );
+    return Padding(
+      padding: const EdgeInsets.all(45.0),
+      child: Container(
+        width: 311,
+        height: 56,
+        decoration: BoxDecoration(
+          color: Colors.orange,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        alignment: Alignment.center,
+        child: const Text(
+          style: TextStyle(color: Colors.white),
+          'Next',
+        ),
       ),
-      alignment: Alignment.center,
-      child: const Text(
-        style: TextStyle(color: Colors.white),
-        'Let\'s Start',
+    );
+  }
+
+  _goButton() {
+    return Padding(
+      padding: const EdgeInsets.all(45.0),
+      child: Container(
+        width: 311,
+        height: 56,
+        decoration: BoxDecoration(
+          color: Colors.orange,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        alignment: Alignment.center,
+        child: const Text(
+          style: TextStyle(color: Colors.white),
+          'Let\'s Start',
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 }
