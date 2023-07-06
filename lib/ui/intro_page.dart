@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:onboarding/onboarding.dart';
 
-// class IntroPage extends StatefulWidget {
-//   const IntroPage({Key? key}) : super(key: key);
-
-//   @override
-//   State<IntroPage> createState() => _IntroPageState();
-// }
 class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
 
@@ -175,60 +169,74 @@ class _IntroPageState extends State<IntroPage> {
     );
   }
 
+_nextButton({required void Function(int index) setIndex}) {
+  return Padding(
+    padding: const EdgeInsets.all(45.0),
+    child: GestureDetector(
+      onTap: () {
+        PageModel? nextPage = skipPage();
+        if (nextPage != null && setIndex != null) {
+          setIndex(index + 1);
+        }
+      },
+      child: Container(
+        width: 311,
+        height: 56,
+        decoration: BoxDecoration(
+          color: Colors.orange,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        alignment: Alignment.center,
+        child: const Text(
+          'Next',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    ),
+  );
+}
+
+_goButton() {
+  return Padding(
+    padding: const EdgeInsets.all(45.0),
+    child: GestureDetector(
+      onTap: () {
+        // Handle the "Let's Start" button click
+      },
+      child: Container(
+        width: 311,
+        height: 56,
+        decoration: BoxDecoration(
+          color: Colors.orange,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        alignment: Alignment.center,
+        child: const Text(
+          'Let\'s Start',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    ),
+  );
+}
+
+
   PageModel? skipPage() {
     int nextIndex = index + 1;
-    if (nextIndex < onboardingPagesList.length) {
-      return onboardingPagesList[nextIndex];
+    if (nextIndex < onboardingPagesList.length-1) {
+      return onboardingPagesList[nextIndex];//only 2nd page is able to display
     } else {
       return null; // No next page, return null
     }
   }
 
-  _nextButton({required void Function(int index) setIndex}) {
-    GestureDetector(
-      onTap: () {
-        skipPage();
-        // //_goButton();--for the skip button
-        // if (setIndex != null) {
-        //       index = 2;
-        //       setIndex(2);
-        //     }
-      },
-    );
-    return Padding(
-      padding: const EdgeInsets.all(45.0),
-      child: Container(
-        width: 311,
-        height: 56,
-        decoration: BoxDecoration(
-          color: Colors.orange,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        alignment: Alignment.center,
-        child: const Text(
-          style: TextStyle(color: Colors.white),
-          'Next',
-        ),
-      ),
-    );
-  }
-
-  _goButton() {
-    return Padding(
-      padding: const EdgeInsets.all(45.0),
-      child: Container(
-        width: 311,
-        height: 56,
-        decoration: BoxDecoration(
-          color: Colors.orange,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        alignment: Alignment.center,
-        child: const Text(
-          style: TextStyle(color: Colors.white),
-          'Let\'s Start',
-        ),
-      ),
-    );
+    PageModel? escPage() {
+    int nextIndex = index + 1;
+    if (nextIndex < onboardingPagesList.length-1) {
+      index++;
+      return onboardingPagesList[index];
+    } else {
+      return null; // to be used for skip
+    }
   }
 }
