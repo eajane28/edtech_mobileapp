@@ -22,21 +22,46 @@ class HomeView extends StackedView<HomeViewModel> {
                 width: 375,
                 height: 264,
               )),
-          const Text(
-            'Learn anytime and anywhere',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(0xFF3B3936),
-              fontSize: 24,
-              fontWeight: FontWeight.w500,
+          const SizedBox(
+            width: 341,
+            height: 72,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: SizedBox(),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Text(
+                    'Learn anytime and anywhere',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFF3B3936),
+                      fontSize: 24,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: SizedBox(),
+                ),
+              ],
             ),
           ),
-          const Text(
-            'Quarantine is the perfect time to spend your day learning something new, from anywhere!',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(0xFF78746D),
-              fontSize: 14,
+          Container(
+            margin: const EdgeInsets.only(right: 25.0, left: 25.0),
+            child: const Padding(
+              padding: EdgeInsets.fromLTRB(40.0, 0.0, 40.0, 0.0),
+              child: Text(
+                'Quarantine is the perfect time to spend your day learning something new, from anywhere!',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xFF78746D),
+                  fontSize: 14,
+                ),
+              ),
             ),
           ),
         ],
@@ -48,27 +73,53 @@ class HomeView extends StackedView<HomeViewModel> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Align(
-              alignment: Alignment.center,
-              child: Image.asset(
-                'assets/Cool Kids Staying Home.png',
-                width: 375,
-                height: 264,
-              )),
-          const Text(
-            'Find a course for you',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(0xFF3B3936),
-              fontSize: 24,
-              fontWeight: FontWeight.w500,
+            alignment: Alignment.center,
+            child: Image.asset(
+              'assets/Cool Kids Staying Home.png',
+              width: 375,
+              height: 264,
             ),
           ),
-          const Text(
-            'Quarantine is the perfect time to spend your day learning something new, from anywhere!',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(0xFF78746D),
-              fontSize: 14,
+          const SizedBox(
+            width: 341,
+            height: 72,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: SizedBox(),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Text(
+                    'Find a course for you',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFF3B3936),
+                      fontSize: 24,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: SizedBox(),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(right: 25.0, left: 25.0),
+            child: const Padding(
+              padding: EdgeInsets.fromLTRB(40.0, 0.0, 40.0, 0.0),
+              child: Text(
+                'Quarantine is the perfect time to spend your day learning something new, from anywhere!',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xFF78746D),
+                  fontSize: 14,
+                ),
+              ),
             ),
           ),
         ],
@@ -85,7 +136,11 @@ class HomeView extends StackedView<HomeViewModel> {
                 'assets/Cool Kids High Tech.png',
                 width: 375,
                 height: 264,
-              )),
+              ),
+              ),
+              const SizedBox(
+                height: 40.0,
+              ),
           const Text(
             'Improve your skills',
             textAlign: TextAlign.center,
@@ -95,12 +150,18 @@ class HomeView extends StackedView<HomeViewModel> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          const Text(
-            'Quarantine is the perfect time to spend your day learning something new, from anywhere!',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(0xFF78746D),
-              fontSize: 14,
+          Container(
+            margin: const EdgeInsets.only(right: 25.0, left: 25.0),
+            child: const Padding(
+              padding: EdgeInsets.fromLTRB(40.0, 0.0, 40.0, 0.0),
+              child: Text(
+                'Quarantine is the perfect time to spend your day learning something new, from anywhere!',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xFF78746D),
+                  fontSize: 14,
+                ),
+              ),
             ),
           ),
         ],
