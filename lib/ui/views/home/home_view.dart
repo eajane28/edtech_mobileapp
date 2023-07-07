@@ -6,7 +6,6 @@ import 'package:stacked/stacked.dart';
 // import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 // import 'package:onboarding/onboarding.dart';
 
-
 import 'home_viewmodel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
@@ -18,8 +17,7 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
-    return const Scaffold(
-    );
+    return const Scaffold();
   }
 
   @override

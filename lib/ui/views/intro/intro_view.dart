@@ -19,12 +19,15 @@ class IntroView extends StackedView<IntroViewModel> {
         automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: Colors.transparent,
-        actions: const [
+        actions: [
           Padding(
-            padding: EdgeInsets.only(right: 16),
-            child: Text(
-              'Skip',
-              style: TextStyle(color: Color(0xFF78746D)),
+            padding: const EdgeInsets.only(right: 16),
+            child: GestureDetector(
+              onTap: viewModel.skip,
+              child: const Text(
+                'Skip',
+                style: TextStyle(color: Color(0xFF78746D)),
+              ),
             ),
           )
         ],
