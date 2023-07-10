@@ -7,6 +7,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:edtech_mobile/ui/views/intro/intro_view.dart';
 import 'package:edtech_mobile/ui/views/login/login_view.dart';
 import 'package:edtech_mobile/ui/views/signup/signup_view.dart';
+import 'package:edtech_mobile/ui/views/profile/profile_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -16,6 +17,7 @@ import 'package:edtech_mobile/ui/views/signup/signup_view.dart';
     MaterialRoute(page: IntroView),
     MaterialRoute(page: LoginView),
     MaterialRoute(page: SignupView),
+    MaterialRoute(page: ProfileView),
 // @stacked-route
   ],
   dependencies: [

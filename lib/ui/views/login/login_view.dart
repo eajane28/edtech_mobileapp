@@ -110,7 +110,7 @@ class LoginView extends StackedView<LoginViewModel> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16)),
                   color: const Color(0xFFE3562A),
-                  onPressed: () {},
+                  onPressed: viewModel.profile,
                   child: const Padding(
                     padding: EdgeInsets.symmetric(vertical: 16.0),
                     child: Text('Log in',

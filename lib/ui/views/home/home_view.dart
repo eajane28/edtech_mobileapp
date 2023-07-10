@@ -1,5 +1,6 @@
 // import 'package:edtech_mobile/model/intro_data.dart';
 
+// import 'package:edtech_mobile/ui/common/back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 // import 'package:edtech_mobile/ui/common/app_colors.dart';
@@ -17,7 +18,8 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
-    return const Scaffold();
+    return const Scaffold(
+    );
   }
 
   @override

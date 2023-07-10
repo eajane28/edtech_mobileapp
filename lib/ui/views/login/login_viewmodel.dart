@@ -5,7 +5,6 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class LoginViewModel extends BaseViewModel {
-
   final _navigationService = locator<NavigationService>();
 
   // Place anything here that needs to happen before we get into the application
@@ -24,14 +23,17 @@ class LoginViewModel extends BaseViewModel {
 
   bool isObscure = true;
 
-  void changeIcon(){
+  void changeIcon() {
     isObscure = !isObscure;
     rebuildUi();
   }
 
-  void signUp()
-  {
+  void signUp() {
     _navigationService.replaceWithSignupView();
   }
 
+  void profile() //dummy
+  {
+    _navigationService.replaceWithProfileView();
+  }
 }

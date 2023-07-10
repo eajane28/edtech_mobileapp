@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
 
 Widget backButton() {
-  return SafeArea(
-    child: Container(
-      margin: const EdgeInsets.only(left: 15.0),
-      padding: const EdgeInsets.only(top: 16),
-      child: Container(
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+      const SizedBox(width: 8),
+      Container(
+        width: 48,
+        height: 48,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-         border: Border.all(
-          color: const Color(0xFFBEBAB3)
-         ),
+          border: Border.all(color: const Color(0xFFBEBAB3)),
         ),
-        child: Stack(
-          children: <Widget>[
-            Center(
-              child: IconButton(
-                icon: const Icon(Icons.arrow_back_ios),
-                onPressed: () {},
-              ),
-            ),
-          ],
+        child: Center(
+          child: IconButton(
+            icon: const Icon(Icons.chevron_left),
+            onPressed: () {},
+          ),
         ),
       ),
-    ),
+    ],
   );
 }
