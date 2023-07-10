@@ -7,4 +7,11 @@ class LoginViewModel extends BaseViewModel {
     IconsData(iconsPage: 'assets/Social Networks Icons (1).png'),
     IconsData(iconsPage: 'assets/Social Networks Icons (2).png'),
   ];
+
+  bool isObscure = true;
+
+  void changeIcon(){
+    isObscure = !isObscure;
+    rebuildUi();
+  }
 }

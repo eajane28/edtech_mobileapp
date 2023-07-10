@@ -1,6 +1,6 @@
+import 'package:edtech_mobile/ui/views/widgets/container_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-// import '../widgets/container_icons.dart';
 
 import 'login_viewmodel.dart';
 
@@ -53,63 +53,11 @@ class LoginView extends StackedView<LoginViewModel> {
               ),
               const SizedBox(height: 8.0),
               Row(
-                //can be reduced by making the widget for icons but assets in a made class:
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // buildIcon(iconsData),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: const Color(0xFF65AAEA),
-                    ),
-                    child: Stack(
-                      children: <Widget>[
-                        Center(
-                          child:
-                              Image.asset('assets/Social Networks Icons.png'),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: const Color(0xFF65AAEA),
-                    ),
-                    child: Stack(
-                      children: <Widget>[
-                        Center(
-                          child: Image.asset(
-                              'assets/Social Networks Icons (1).png'),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: const Color(0xFF65AAEA),
-                    ),
-                    child: Stack(
-                      children: <Widget>[
-                        Center(
-                          child: Image.asset(
-                              'assets/Social Networks Icons (2).png'),
-                        ),
-                      ],
-                    ),
-                  )
+                  for (var icon in viewModel.iconList) buildIcon(icon),
                 ],
               ),
-              //can be reduced still creating a widget for text field except the hint text to find solution
               const SizedBox(height: 16.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -126,7 +74,13 @@ class LoginView extends StackedView<LoginViewModel> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: TextField(
+                  obscureText: viewModel.isObscure,
                   decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                        onPressed: viewModel.changeIcon,
+                        icon: Icon(viewModel.isObscure == true
+                            ? Icons.remove_red_eye
+                            : Icons.visibility_off)),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -146,40 +100,25 @@ class LoginView extends StackedView<LoginViewModel> {
                 ),
               ),
               const SizedBox(height: 16.0),
-              // MaterialButton(
-              //   shape:
-              //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-              //   color: const Color(0xFFE3562A),
-              //   onPressed: print('1'),
-              //   child: const Padding(
-              //     padding: EdgeInsets.symmetric(vertical: 16.0),
-              //     child: Text(
-              //       'Log in',
-              //       style: TextStyle(
-              //         fontSize: 16,
-              //         fontWeight: FontWeight.w500,
-              //         color: Color(0xFFFFFFFF),
-              //       )
-              //   ),
-              //   ),
-              // ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFE3562A),
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Log in',
-                      style: TextStyle(
-                        color: Color(0xFFFFFFFF),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: MaterialButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
+                  color: const Color(0xFFE3562A),
+                  onPressed: () {},
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16.0),
+                    child: Text('Log in',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFFFFFFFF),
+                        )),
                   ),
                 ),
               ),
