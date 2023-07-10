@@ -71,7 +71,7 @@ class IntroViewModel extends BaseViewModel {
     }
   }
 
-  void skip(){
-     _navigationService.replaceWithLoginView();
+  void skip() {
+    _navigationService.replaceWithLoginView();
   }
 }

@@ -15,8 +15,6 @@ class IntroItemView extends StatelessWidget {
             alignment: Alignment.center,
             child: Image.asset(
               introData.imagePage,
-              width: 375,
-              height: 264,
             )),
         SizedBox(
           width: 341,
