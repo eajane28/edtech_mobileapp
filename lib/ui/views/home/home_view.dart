@@ -2,6 +2,7 @@
 
 // import 'package:edtech_mobile/ui/common/back_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
 // import 'package:edtech_mobile/ui/common/app_colors.dart';
 // import 'package:edtech_mobile/ui/common/ui_helpers.dart';
@@ -18,7 +19,29 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
-    return const Scaffold(
+    return Scaffold(
+      body: SafeArea(
+          child: PageView(children: viewModel.pages.map((e) => e).toList())),
+      bottomNavigationBar: BottomNavigationBar(
+          iconSize: 20.0,
+          // type: BottomNavigationBarType.shifting,
+          currentIndex: 0,
+          onTap: (val) {},
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              label: "Courses",
+              icon: SvgPicture.asset('assets/icons/courses.svg', width: 20),
+            ),
+            BottomNavigationBarItem(
+              label: "Profile",
+              icon: SvgPicture.asset('assets/icons/profile.svg', width: 20),
+            ),
+            BottomNavigationBarItem(
+              label: "Settings",
+              icon: SvgPicture.asset('assets/icons/wheel.svg', width: 20),
+            ),
+          ]),
+          
     );
   }
 

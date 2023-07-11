@@ -2,35 +2,32 @@
 // import 'package:edtech_mobile/app/app.dialogs.dart';
 // import 'package:edtech_mobile/app/app.locator.dart';
 // import 'package:edtech_mobile/ui/common/app_strings.dart';
+import 'package:edtech_mobile/ui/views/profile/profile_view.dart';
+import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 // import 'package:stacked_services/stacked_services.dart';
 
 class HomeViewModel extends BaseViewModel {
-  // final _dialogService = locator<DialogService>();
-  // final _bottomSheetService = locator<BottomSheetService>();
+  var pageController = PageController();
+  int _selectedIndex = 0;
+  final pages = [
+    const Placeholder(),
+    const ProfileView(),
+    const Placeholder(),
 
-  // String get counterLabel => 'Counter is: $_counter';
 
-  // int _counter = 0;
+  ];
+// void onPageChanged(int value) {
+//     // print('onPageChanged $value');
 
-  // void incrementCounter() {
-  //   _counter++;
-  //   rebuildUi();
-  // }
+//     _selectedIndex = value;
 
-  // void showDialog() {
-  //   _dialogService.showCustomDialog(
-  //     variant: DialogType.infoAlert,
-  //     title: 'Stacked Rocks!',
-  //     description: 'Give stacked $_counter stars on Github',
-  //   );
-  // }
+//     rebuildUi();
+//   }
 
-  // void showBottomSheet() {
-  //   _bottomSheetService.showCustomSheet(
-  //     variant: BottomSheetType.notice,
-  //     title: ksHomeBottomSheetTitle,
-  //     description: ksHomeBottomSheetDescription,
-  //   );
-  // }
+  void onItemTapped (int index)
+  {
+    _selectedIndex = index;
+    rebuildUi();
+  }
 }
