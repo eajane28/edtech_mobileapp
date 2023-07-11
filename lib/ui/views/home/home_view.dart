@@ -23,6 +23,7 @@ class HomeView extends StackedView<HomeViewModel> {
       body: SafeArea(
           child: PageView(children: viewModel.pages.map((e) => e).toList())),
       bottomNavigationBar: BottomNavigationBar(
+        elevation: 16,
           iconSize: 20.0,
           // type: BottomNavigationBarType.shifting,
           currentIndex: 0,

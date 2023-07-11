@@ -59,7 +59,10 @@ class SettingsView extends StackedView<SettingsViewModel> {
                       height: 32,
                       decoration: const BoxDecoration(
                           color: Color(0xFF65AAEA), shape: BoxShape.circle),
-                      child: const Icon(Icons.notifications_rounded, color: Colors.white,),
+                      child: const Icon(
+                        Icons.notifications_rounded,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   const Expanded(

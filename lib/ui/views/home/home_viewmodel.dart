@@ -2,6 +2,7 @@
 // import 'package:edtech_mobile/app/app.dialogs.dart';
 // import 'package:edtech_mobile/app/app.locator.dart';
 // import 'package:edtech_mobile/ui/common/app_strings.dart';
+import 'package:edtech_mobile/ui/views/courses/courses_view.dart';
 import 'package:edtech_mobile/ui/views/profile/profile_view.dart';
 import 'package:edtech_mobile/ui/views/settings/settings_view.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ class HomeViewModel extends BaseViewModel {
   var pageController = PageController();
   int _selectedIndex = 0;
   final pages = [
-    const Placeholder(),
+    const CoursesView(),
     const ProfileView(),
     const SettingsView(),
   ];

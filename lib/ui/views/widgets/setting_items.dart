@@ -18,7 +18,7 @@ Widget settingsInfo(settingsData) {
               height: 32,
               decoration: const BoxDecoration(
                   color: Color(0xFF65AAEA), shape: BoxShape.circle),
-                  child: Image.asset(settingsData.iconPath),
+              child: Image.asset(settingsData.iconPath),
             ),
           ),
           SizedBox(
@@ -40,18 +40,16 @@ Widget settingsInfo(settingsData) {
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color : Color(0xFF78746D),
+                    color: Color(0xFF78746D),
                   ),
                 ),
               ],
             ),
           ),
           Expanded(
-            flex: 1,
-            child: IconButton(
-              onPressed: () {}, 
-              icon: const Icon(Icons.chevron_right))
-              )
+              flex: 1,
+              child: IconButton(
+                  onPressed: () {}, icon: const Icon(Icons.chevron_right)))
         ],
       ),
     ),
