@@ -41,7 +41,6 @@ class HomeView extends StackedView<HomeViewModel> {
               icon: SvgPicture.asset('assets/icons/wheel.svg', width: 20),
             ),
           ]),
-          
     );
   }
 

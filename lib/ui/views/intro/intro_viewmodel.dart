@@ -12,7 +12,6 @@ class IntroViewModel extends BaseViewModel {
 
   Future runStartupLogic() async {
     await Future.delayed(const Duration(seconds: 3));
-
   }
 
   final introList = [

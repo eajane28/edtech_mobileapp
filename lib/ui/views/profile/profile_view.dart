@@ -17,15 +17,10 @@ class ProfileView extends StackedView<ProfileViewModel> {
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // TODO put app bar here
             Row(
-              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  flex: 1,
-                  child: backButton()),
+                Expanded(flex: 1, child: backButton()),
                 const Expanded(
                   flex: 2,
                   child: Padding(
