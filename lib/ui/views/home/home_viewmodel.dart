@@ -9,9 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 // import 'package:stacked_services/stacked_services.dart';
 
-class HomeViewModel extends BaseViewModel {
+class HomeViewModel extends IndexTrackingViewModel {
   var pageController = PageController();
-  int _selectedIndex = 0;
+  int selectedIndex = 0;
   final pages = [
     const CoursesView(),
     const ProfileView(),
@@ -25,8 +25,17 @@ class HomeViewModel extends BaseViewModel {
 //     rebuildUi();
 //   }
 
-  void onItemTapped(int index) {
-    _selectedIndex = index;
+  void onItemTapped(int value) {
+    
+    // print ('onItemTapped $value');
+    selectedIndex = value;
     rebuildUi();
   }
+
+  void onNexPage() {
+    if (selectedIndex < 2) {
+      pageController.nextPage(
+          curve: Curves.linear, duration: const Duration(milliseconds: 300));
+    }
+}
 }

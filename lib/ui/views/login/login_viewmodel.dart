@@ -34,6 +34,6 @@ class LoginViewModel extends BaseViewModel {
 
   void profile() //dummy
   {
-    _navigationService.replaceWithHomeView();
+    _navigationService.navigateToHomeView();
   }
 }
