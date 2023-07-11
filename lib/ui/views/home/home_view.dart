@@ -27,24 +27,11 @@ class HomeView extends StatelessWidget {
               getInfo(model.currentIndex),
             //   PageView(
             //   physics: const BouncingScrollPhysics(),
-            //   // controller: PageController.nextPage(curve: Curves.linear, duration: ),
             //   onPageChanged: model.setIndex,
             //   children: model.pages.map((e) => e).toList(),
-            //   //   pageChanged (index);
-            //   // },
-            // ),
             ],
                   ),
           )),
-        // SafeArea(
-        //   child: PageView(
-        //     physics: const BouncingScrollPhysics(),
-        //     // controller: PageController.nextPage(curve: Curves.linear, duration: ),
-        //     // onPageChanged: viewModel.onItemTapped,
-        //     //   pageChanged (index);
-        //     // },
-        //   ),
-        // ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: model.currentIndex,
           onTap: model.setIndex,
