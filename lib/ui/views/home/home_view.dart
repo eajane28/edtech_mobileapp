@@ -5,7 +5,7 @@ import 'package:edtech_mobile/ui/views/courses/courses_view.dart';
 import 'package:edtech_mobile/ui/views/profile/profile_view.dart';
 import 'package:edtech_mobile/ui/views/settings/settings_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
 // import 'package:edtech_mobile/ui/common/app_colors.dart';
 // import 'package:edtech_mobile/ui/common/ui_helpers.dart';
@@ -32,29 +32,35 @@ class HomeView extends StatelessWidget {
             ],
                   ),
           )),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: model.currentIndex,
-          onTap: model.setIndex,
-          selectedItemColor: Colors.red,
-          elevation: 16,
-          iconSize: 20.0,
-          // type: BottomNavigationBarType.shifting,
-
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              label: "Courses",
-              icon: SvgPicture.asset('assets/icons/courses.svg', width: 20),
-            ),
-            BottomNavigationBarItem(
-              label: "Profile",
-              icon: SvgPicture.asset('assets/icons/profile.svg', width: 20),
-            ),
-            BottomNavigationBarItem(
-              label: "Settings",
-              icon: SvgPicture.asset('assets/icons/wheel.svg', width: 20),
-            ),
-          ],
-          // onTap: (index) => viewModel.onItemTapped,
+        bottomNavigationBar: SizedBox(
+          height: 98,
+          child: BottomNavigationBar(
+            currentIndex: model.currentIndex,
+            onTap: model.setIndex,
+            selectedItemColor: Colors.red,
+            elevation: 16,
+            iconSize: 25.0,
+            // type: BottomNavigationBarType.shifting,
+        
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                label: "Courses",
+                icon: Icon(Icons.collections_bookmark)
+                // SvgPicture.asset('assets/icons/courses.svg', width: 20),
+              ),
+              BottomNavigationBarItem(
+                label: "Profile",
+                icon: Icon(Icons.person)
+                // SvgPicture.asset('assets/icons/profile.svg', width: 20),
+              ),
+              BottomNavigationBarItem(
+                label: "Settings",
+                icon: Icon(Icons.settings_sharp)
+                // SvgPicture.asset('assets/icons/wheel.svg', width: 20),
+              ),
+            ],
+            // onTap: (index) => viewModel.onItemTapped,
+          ),
         ),
       ),
       viewModelBuilder: () => HomeViewModel(),
