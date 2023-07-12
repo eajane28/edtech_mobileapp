@@ -1,4 +1,4 @@
-class CoursesData{
+class CoursesData {
   final String name;
 
   CoursesData({required this.name});

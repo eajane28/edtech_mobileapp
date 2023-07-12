@@ -60,13 +60,16 @@ class ProfileView extends StackedView<ProfileViewModel> {
                     width: 1.0,
                     color: const Color(0xFFBEBAB3),
                   )),
-              child: MaterialButton(
-                onPressed: () {},
-                child: const Text(
-                  'Your Courses',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
+              child: GestureDetector(
+                onTap: viewModel.goto,
+                child: const Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Your Courses',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),
