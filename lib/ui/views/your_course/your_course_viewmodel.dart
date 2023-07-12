@@ -2,7 +2,6 @@ import 'package:edtech_mobile/model/card_data.dart';
 import 'package:stacked/stacked.dart';
 
 class YourCourseViewModel extends BaseViewModel {
-
   final yourCourseList = [
     CardData(
         cardImage: 'assets/Cool Kids Alone.png',
@@ -16,5 +15,5 @@ class YourCourseViewModel extends BaseViewModel {
         duration: 'Left 1 h 20 min ',
         title: 'Scrum',
         description: 'Advanced project organization course'),
-  ]; 
+  ];
 }

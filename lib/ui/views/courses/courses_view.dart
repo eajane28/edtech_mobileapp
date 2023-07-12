@@ -60,7 +60,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   hintText: 'Search Course',
-                ),
+                ), //lacking Search Icon
               ),
             ),
             Row(
