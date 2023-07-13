@@ -19,13 +19,17 @@ Widget settingsInfo(settingsData) {
             padding: const EdgeInsets.all(8),
             decoration: const BoxDecoration(
                 color: Color(0xFF65AAEA), shape: BoxShape.circle),
-            child: SvgPicture.asset(settingsData.iconPath, colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),),
+            child: SvgPicture.asset(
+              settingsData.iconPath,
+              colorFilter:
+                  const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+            ),
           ),
         ),
         Expanded(
           flex: 5,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal:12.0),
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: SizedBox(
               height: 82,
               width: 235,

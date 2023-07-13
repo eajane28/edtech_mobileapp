@@ -2,7 +2,6 @@ import 'package:edtech_mobile/model/card_data.dart';
 import 'package:stacked/stacked.dart';
 
 class YourCourseViewModel extends BaseViewModel {
-
   final yourCourseList = [
     CardData(
         cardImage: 'assets/Cool Kids Alone.png',

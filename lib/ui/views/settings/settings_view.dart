@@ -40,12 +40,11 @@ class SettingsView extends StackedView<SettingsViewModel> {
                     Expanded(
                       flex: 1,
                       child: Container(
-                        height: 32,
-                        padding: const EdgeInsets.all(8),
-                        decoration: const BoxDecoration(
-                            color: Color(0xFF65AAEA), shape: BoxShape.circle),
-                        child: SvgPicture.asset(SvgIcons.notification)
-                      ),
+                          height: 32,
+                          padding: const EdgeInsets.all(8),
+                          decoration: const BoxDecoration(
+                              color: Color(0xFF65AAEA), shape: BoxShape.circle),
+                          child: SvgPicture.asset(SvgIcons.notification)),
                     ),
                     const Expanded(
                       flex: 4,

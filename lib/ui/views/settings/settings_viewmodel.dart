@@ -10,9 +10,7 @@ class SettingsViewModel extends BaseViewModel {
     SettingsData(
         iconPath: SvgIcons.profile, title: 'Name', text: 'Juana Antonieta'),
     SettingsData(
-        iconPath: SvgIcons.email,
-        title: 'Email',
-        text: 'juanita123@gmail.com'),
+        iconPath: SvgIcons.email, title: 'Email', text: 'juanita123@gmail.com'),
     SettingsData(
         iconPath: SvgIcons.password,
         title: 'Password',

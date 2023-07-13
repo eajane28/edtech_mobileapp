@@ -16,15 +16,13 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
-    
     return Scaffold(
       body: SafeArea(
         child: PageView(
           physics: const BouncingScrollPhysics(),
           controller: viewModel.pageController,
           onPageChanged: viewModel.onPageChange,
-          children:
-              viewModel.pages.map((e) => e).toList(),
+          children: viewModel.pages.map((e) => e).toList(),
         ),
       ),
       bottomNavigationBar: SizedBox(
@@ -39,13 +37,29 @@ class HomeView extends StackedView<HomeViewModel> {
 
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                label: "Courses", icon: SvgPicture.asset(SvgIcons.courses, colorFilter: ColorFilter.mode(viewModel.selectedIndex == 0 ? Colors.red : Colors.grey, BlendMode.srcIn)  , width: 20),
-                ),
-            BottomNavigationBarItem(label: "Profile", icon: SvgPicture.asset(SvgIcons.profile, colorFilter: ColorFilter.mode(viewModel.selectedIndex == 1 ? Colors.red : Colors.grey, BlendMode.srcIn) , width: 20),
-                ),
+              label: "Courses",
+              icon: SvgPicture.asset(SvgIcons.courses,
+                  colorFilter: ColorFilter.mode(
+                      viewModel.selectedIndex == 0 ? Colors.red : Colors.grey,
+                      BlendMode.srcIn),
+                  width: 20),
+            ),
             BottomNavigationBarItem(
-                label: "Settings", icon: SvgPicture.asset(SvgIcons.wheel, colorFilter: ColorFilter.mode(viewModel.selectedIndex == 2 ? Colors.red : Colors.grey, BlendMode.srcIn) ,width: 20),
-                ),
+              label: "Profile",
+              icon: SvgPicture.asset(SvgIcons.profile,
+                  colorFilter: ColorFilter.mode(
+                      viewModel.selectedIndex == 1 ? Colors.red : Colors.grey,
+                      BlendMode.srcIn),
+                  width: 20),
+            ),
+            BottomNavigationBarItem(
+              label: "Settings",
+              icon: SvgPicture.asset(SvgIcons.wheel,
+                  colorFilter: ColorFilter.mode(
+                      viewModel.selectedIndex == 2 ? Colors.red : Colors.grey,
+                      BlendMode.srcIn),
+                  width: 20),
+            ),
           ],
         ),
       ),
