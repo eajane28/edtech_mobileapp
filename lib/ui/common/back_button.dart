@@ -8,11 +8,8 @@ Widget backButton() {
       shape: BoxShape.circle,
       border: Border.all(color: const Color(0xFFBEBAB3)),
     ),
-    child: Center(
-      child: IconButton(
-        icon: const Icon(Icons.chevron_left),
-        onPressed: () {},
-      ),
+    child: const Center(
+      child: Icon(Icons.chevron_left),
     ),
   );
 
