@@ -6,4 +6,6 @@ class SvgIcons {
   static const String profile = "${_rootPath}profile.svg";
   static const String wheel = "${_rootPath}wheel.svg";
   static const String password = "${_rootPath}password.svg";
+  static const String notification = "${_rootPath}notification.svg";
+  static const String email = "${_rootPath}email.svg";
 }

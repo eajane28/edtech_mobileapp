@@ -1,4 +1,4 @@
-import 'package:edtech_mobile/ui/common/back_button.dart';
+import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -20,26 +20,7 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 50),
-                  child: Row(
-                    children: [
-                      Container(child: backButton()),
-                      const Expanded(
-                        flex: 2,
-                        child: Center(
-                          child: Text(
-                            'HTML',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                appBar('HTML', onTap: null),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: Column(
@@ -79,6 +60,7 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                     Text(
                       "You can launch a new career in web development today by learning HTML & CSS. You don't need a computer science degree or expensive software. All you need is a computer, a bit of time, a lot of determination, and a teacher you trust.",
                       style: TextStyle(
+                        height: 1.7,
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: Color(0xFF3C3A36),

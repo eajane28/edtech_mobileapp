@@ -20,11 +20,14 @@ class SignupView extends StackedView<SignupViewModel> {
             height: MediaQuery.sizeOf(context).height,
             child: Column(
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    backButton(),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8.0, 0, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      backButton(),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 40.0,

@@ -1,7 +1,8 @@
-import 'package:edtech_mobile/ui/common/back_button.dart';
+import 'package:edtech_mobile/ui/common/svg_icons.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/setting_items.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
 
 import 'settings_viewmodel.dart';
@@ -40,12 +41,10 @@ class SettingsView extends StackedView<SettingsViewModel> {
                       flex: 1,
                       child: Container(
                         height: 32,
+                        padding: const EdgeInsets.all(8),
                         decoration: const BoxDecoration(
                             color: Color(0xFF65AAEA), shape: BoxShape.circle),
-                        child: const Icon(
-                          Icons.notifications_rounded,
-                          color: Colors.white,
-                        ),
+                        child: SvgPicture.asset(SvgIcons.notification)
                       ),
                     ),
                     const Expanded(

@@ -1,4 +1,5 @@
 import 'package:edtech_mobile/model/settings_data.dart';
+import 'package:edtech_mobile/ui/common/svg_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -7,13 +8,13 @@ class SettingsViewModel extends BaseViewModel {
 
   final settingsInfoList = [
     SettingsData(
-        iconPath: 'assets/profile.png', title: 'Name', text: 'Juana Antonieta'),
+        iconPath: SvgIcons.profile, title: 'Name', text: 'Juana Antonieta'),
     SettingsData(
-        iconPath: 'assets/email.png',
+        iconPath: SvgIcons.email,
         title: 'Email',
         text: 'juanita123@gmail.com'),
     SettingsData(
-        iconPath: 'assets/password.png',
+        iconPath: SvgIcons.password,
         title: 'Password',
         text: 'changed 2 weeks ago')
   ];
