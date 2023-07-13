@@ -49,10 +49,7 @@ class SearchView extends StackedView<SearchViewModel> {
                 alignment: Alignment.topLeft,
                 child: Text(
                   ' 2 Results',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500
-                  ),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
                 ),
               ),
               for (var carditem in viewModel.searchList) card(carditem),

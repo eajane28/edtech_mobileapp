@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 Widget backButton() {
   return Container(
-        width: 48,
-        height: 48,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: const Color(0xFFBEBAB3)),
-        ),
-        child: Center(
-          child: IconButton(
-            icon: const Icon(Icons.chevron_left),
-            onPressed: () {},
-          ),
-        ),
-      );
-  
+    width: 48,
+    height: 48,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      border: Border.all(color: const Color(0xFFBEBAB3)),
+    ),
+    child: Center(
+      child: IconButton(
+        icon: const Icon(Icons.chevron_left),
+        onPressed: () {},
+      ),
+    ),
+  );
+
   // Row(
   //   mainAxisAlignment: MainAxisAlignment.start,
   //   children: [

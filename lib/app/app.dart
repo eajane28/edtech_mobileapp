@@ -12,6 +12,7 @@ import 'package:edtech_mobile/ui/views/settings/settings_view.dart';
 import 'package:edtech_mobile/ui/views/courses/courses_view.dart';
 import 'package:edtech_mobile/ui/views/your_course/your_course_view.dart';
 import 'package:edtech_mobile/ui/views/search/search_view.dart';
+import 'package:edtech_mobile/ui/views/product_detail/product_detail_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -26,6 +27,7 @@ import 'package:edtech_mobile/ui/views/search/search_view.dart';
     MaterialRoute(page: CoursesView),
     MaterialRoute(page: YourCourseView),
     MaterialRoute(page: SearchView),
+    MaterialRoute(page: ProductDetailView),
 // @stacked-route
   ],
   dependencies: [
