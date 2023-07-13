@@ -1,5 +1,6 @@
+import 'package:edtech_mobile/ui/common/svg_icons.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
 // import 'package:edtech_mobile/ui/common/app_colors.dart';
 // import 'package:edtech_mobile/ui/common/ui_helpers.dart';
@@ -36,17 +37,14 @@ class HomeView extends StackedView<HomeViewModel> {
           iconSize: 25.0,
           // type: BottomNavigationBarType.shifting,
 
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-                label: "Courses", icon: Icon(Icons.collections_bookmark)
-                // SvgPicture.asset('assets/icons/courses.svg', width: 20),
+                label: "Courses", icon: SvgPicture.asset(SvgIcons.courses, colorFilter: ColorFilter.mode(viewModel.selectedIndex == 0 ? Colors.red : Colors.grey, BlendMode.srcIn)  , width: 20),
                 ),
-            BottomNavigationBarItem(label: "Profile", icon: Icon(Icons.person)
-                // SvgPicture.asset('assets/icons/profile.svg', width: 20),
+            BottomNavigationBarItem(label: "Profile", icon: SvgPicture.asset(SvgIcons.profile, colorFilter: ColorFilter.mode(viewModel.selectedIndex == 1 ? Colors.red : Colors.grey, BlendMode.srcIn) , width: 20),
                 ),
             BottomNavigationBarItem(
-                label: "Settings", icon: Icon(Icons.settings_sharp)
-                // SvgPicture.asset('assets/icons/wheel.svg', width: 20),
+                label: "Settings", icon: SvgPicture.asset(SvgIcons.wheel, colorFilter: ColorFilter.mode(viewModel.selectedIndex == 2 ? Colors.red : Colors.grey, BlendMode.srcIn) ,width: 20),
                 ),
           ],
         ),
