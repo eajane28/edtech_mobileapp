@@ -20,6 +20,7 @@ import 'package:edtech_mobile/ui/views/product_detail/product_detail_view.dart'
     as _i12;
 import 'package:edtech_mobile/ui/views/profile/profile_view.dart' as _i7;
 import 'package:edtech_mobile/ui/views/result/result_view.dart' as _i17;
+import 'package:edtech_mobile/ui/views/saved/saved_view.dart' as _i20;
 import 'package:edtech_mobile/ui/views/search/search_view.dart' as _i11;
 import 'package:edtech_mobile/ui/views/settings/settings_view.dart' as _i8;
 import 'package:edtech_mobile/ui/views/signup/signup_view.dart' as _i6;
@@ -28,10 +29,10 @@ import 'package:edtech_mobile/ui/views/test_question/test_question_view.dart'
     as _i16;
 import 'package:edtech_mobile/ui/views/your_course/your_course_view.dart'
     as _i10;
-import 'package:flutter/material.dart' as _i20;
+import 'package:flutter/material.dart' as _i21;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i21;
+import 'package:stacked_services/stacked_services.dart' as _i22;
 
 class Routes {
   static const homeView = '/home-view';
@@ -70,6 +71,8 @@ class Routes {
 
   static const noPaymentView = '/no-payment-view';
 
+  static const savedView = '/saved-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -89,6 +92,7 @@ class Routes {
     resultView,
     notSavedView,
     noPaymentView,
+    savedView,
   };
 }
 
@@ -166,114 +170,124 @@ class StackedRouter extends _i1.RouterBase {
       Routes.noPaymentView,
       page: _i19.NoPaymentView,
     ),
+    _i1.RouteDef(
+      Routes.savedView,
+      page: _i20.SavedView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
       );
     },
     _i3.StartupView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
       );
     },
     _i4.IntroView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.IntroView(),
         settings: data,
       );
     },
     _i5.LoginView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.LoginView(),
         settings: data,
       );
     },
     _i6.SignupView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.SignupView(),
         settings: data,
       );
     },
     _i7.ProfileView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.ProfileView(),
         settings: data,
       );
     },
     _i8.SettingsView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.SettingsView(),
         settings: data,
       );
     },
     _i9.CoursesView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.CoursesView(),
         settings: data,
       );
     },
     _i10.YourCourseView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.YourCourseView(),
         settings: data,
       );
     },
     _i11.SearchView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i11.SearchView(),
         settings: data,
       );
     },
     _i12.ProductDetailView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i12.ProductDetailView(),
         settings: data,
       );
     },
     _i13.ChooseLessonView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i13.ChooseLessonView(),
         settings: data,
       );
     },
     _i14.LessonView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i14.LessonView(),
         settings: data,
       );
     },
     _i15.CourseTestView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i15.CourseTestView(),
         settings: data,
       );
     },
     _i16.TestQuestionView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i16.TestQuestionView(),
         settings: data,
       );
     },
     _i17.ResultView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i17.ResultView(),
         settings: data,
       );
     },
     _i18.NotSavedView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i18.NotSavedView(),
         settings: data,
       );
     },
     _i19.NoPaymentView: (data) {
-      return _i20.MaterialPageRoute<dynamic>(
+      return _i21.MaterialPageRoute<dynamic>(
         builder: (context) => const _i19.NoPaymentView(),
+        settings: data,
+      );
+    },
+    _i20.SavedView: (data) {
+      return _i21.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i20.SavedView(),
         settings: data,
       );
     },
@@ -285,7 +299,7 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i21.NavigationService {
+extension NavigatorStateExtension on _i22.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -538,6 +552,20 @@ extension NavigatorStateExtension on _i21.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToSavedView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.savedView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -784,6 +812,20 @@ extension NavigatorStateExtension on _i21.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.noPaymentView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithSavedView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.savedView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
