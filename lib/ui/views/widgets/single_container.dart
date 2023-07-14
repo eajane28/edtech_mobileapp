@@ -7,7 +7,10 @@ Widget container(String path, String head, String subtitle) {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(path, width: double.infinity, height: double.infinity,),
+          Image.asset(
+            path,
+            width: double.infinity,
+          ),
           const SizedBox(
             height: 32,
           ),

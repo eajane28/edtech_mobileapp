@@ -4,15 +4,15 @@ import 'package:edtech_mobile/ui/views/widgets/single_container.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import 'not_saved_viewmodel.dart';
+import 'no_payment_viewmodel.dart';
 
-class NotSavedView extends StackedView<NotSavedViewModel> {
-  const NotSavedView({Key? key}) : super(key: key);
+class NoPaymentView extends StackedView<NoPaymentViewModel> {
+  const NoPaymentView({Key? key}) : super(key: key);
 
   @override
   Widget builder(
     BuildContext context,
-    NotSavedViewModel viewModel,
+    NoPaymentViewModel viewModel,
     Widget? child,
   ) {
     return Scaffold(
@@ -21,9 +21,9 @@ class NotSavedView extends StackedView<NotSavedViewModel> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-              appBar('Saved', onTap: null),
-              container('assets/Cool Kids Alone.png', ' Course not saved',
-                  'Try saving the course again in a few minutes'),
+              appBar('Payment', onTap: null),
+              container('assets/Cool Kids Alone.png', 'No Payment Method',
+                  'You don\'t have any payment method'),
               Padding(
                 padding: const EdgeInsets.only(bottom: 146.0),
                 child: button('Continue', onTap: null),
@@ -36,8 +36,8 @@ class NotSavedView extends StackedView<NotSavedViewModel> {
   }
 
   @override
-  NotSavedViewModel viewModelBuilder(
+  NoPaymentViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      NotSavedViewModel();
+      NoPaymentViewModel();
 }
