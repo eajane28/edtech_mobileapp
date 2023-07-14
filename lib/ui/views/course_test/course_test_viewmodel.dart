@@ -5,8 +5,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class CourseTestViewModel extends BaseViewModel {
-
- final _navigationService = locator<NavigationService>();
+  final _navigationService = locator<NavigationService>();
 
   final quizList = [
     QuizData(
@@ -23,7 +22,7 @@ class CourseTestViewModel extends BaseViewModel {
             'Let\'s put your memory on this topic test. Solve tasks and check knowledge.')
   ];
 
-  void begin () {
+  void begin() {
     _navigationService.replaceWithTestQuestionView();
   }
 }

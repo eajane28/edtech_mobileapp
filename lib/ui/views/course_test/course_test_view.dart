@@ -24,7 +24,8 @@ class CourseTestView extends StackedView<CourseTestViewModel> {
             children: [
               appBar('HTML', onTap: null),
               header(),
-              for (var quiz in viewModel.quizList) quizCard(quiz, onTap: viewModel.begin)
+              for (var quiz in viewModel.quizList)
+                quizCard(quiz, onTap: viewModel.begin)
             ],
           ),
         ),
@@ -100,7 +101,7 @@ Widget quizCard(QuizData quiz, {void Function()? onTap}) {
               child: const Padding(
                 padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
                 child: Text('Begin',
-                textAlign: TextAlign.center,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
