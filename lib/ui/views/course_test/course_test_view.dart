@@ -24,7 +24,7 @@ class CourseTestView extends StackedView<CourseTestViewModel> {
             children: [
               appBar('HTML', onTap: null),
               header(),
-              for (var quiz in viewModel.quizList) quizCard(quiz)
+              for (var quiz in viewModel.quizList) quizCard(quiz, onTap: viewModel.begin)
             ],
           ),
         ),
@@ -39,14 +39,17 @@ class CourseTestView extends StackedView<CourseTestViewModel> {
       CourseTestViewModel();
 }
 
-Widget quizCard(QuizData quiz) {
+Widget quizCard(QuizData quiz, {void Function()? onTap}) {
   return Card(
     margin: const EdgeInsets.symmetric(vertical: 8),
     child: Padding(
       padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
       child: Column(
         children: [
-          Image.asset(quiz.image, width: double.infinity,),
+          Image.asset(
+            quiz.image,
+            width: double.infinity,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: Column(
@@ -87,22 +90,17 @@ Widget quizCard(QuizData quiz) {
               ],
             ),
           ),
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 1,
-                color: const Color(0xFFE3562A)
-              ),
-              borderRadius: BorderRadius.circular(16)
-            ),
-            child: MaterialButton(
-              onPressed: () {},
-              // shape:
-              //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          GestureDetector(
+            onTap: onTap,
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  border: Border.all(width: 1, color: const Color(0xFFE3562A)),
+                  borderRadius: BorderRadius.circular(16)),
               child: const Padding(
                 padding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
                 child: Text('Begin',
+                textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
