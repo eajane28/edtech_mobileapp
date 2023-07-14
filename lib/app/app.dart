@@ -24,6 +24,7 @@ import 'package:edtech_mobile/ui/views/saved/saved_view.dart';
 import 'package:edtech_mobile/ui/views/payment_added/payment_added_view.dart';
 import 'package:edtech_mobile/ui/views/course_notfound/course_notfound_view.dart';
 import 'package:edtech_mobile/ui/views/payment_method/payment_method_view.dart';
+import 'package:edtech_mobile/ui/views/checkout/checkout_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -50,6 +51,7 @@ import 'package:edtech_mobile/ui/views/payment_method/payment_method_view.dart';
     MaterialRoute(page: PaymentAddedView),
     MaterialRoute(page: CourseNotfoundView),
     MaterialRoute(page: PaymentMethodView),
+    MaterialRoute(page: CheckoutView),
 // @stacked-route
   ],
   dependencies: [
