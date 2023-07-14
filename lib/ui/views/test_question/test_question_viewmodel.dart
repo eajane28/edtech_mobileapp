@@ -5,8 +5,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class TestQuestionViewModel extends BaseViewModel {
-
-final _navigationService = locator<NavigationService>();
+  final _navigationService = locator<NavigationService>();
 
   final choices = [
     Choices(choice: 'A.', description: '<h5>'),
@@ -15,6 +14,6 @@ final _navigationService = locator<NavigationService>();
   ];
 
   void proceed() {
-     _navigationService.replaceWithResultView();
+    _navigationService.replaceWithResultView();
   }
 }

@@ -22,7 +22,8 @@ class ResultView extends StackedView<ResultViewModel> {
           child: Column(
             children: [
               appBar('Results', onTap: null),
-              container('assets/Cool Kids Xmas Morning.png', 'Congratulations', 'Congratulations for getting all the answers correct!'),
+              container('assets/Cool Kids Xmas Morning.png', 'Congratulations',
+                  'Congratulations for getting all the answers correct!'),
               Padding(
                 padding: const EdgeInsets.only(bottom: 40.0),
                 child: Row(
