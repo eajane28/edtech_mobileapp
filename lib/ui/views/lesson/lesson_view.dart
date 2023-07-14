@@ -83,5 +83,3 @@ class LessonView extends StackedView<LessonViewModel> {
   ) =>
       LessonViewModel();
 }
-
-
