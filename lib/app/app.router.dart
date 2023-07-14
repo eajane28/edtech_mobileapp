@@ -7,6 +7,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:edtech_mobile/ui/views/choose_lesson/choose_lesson_view.dart'
     as _i13;
+import 'package:edtech_mobile/ui/views/course_notfound/course_notfound_view.dart'
+    as _i22;
 import 'package:edtech_mobile/ui/views/course_test/course_test_view.dart'
     as _i15;
 import 'package:edtech_mobile/ui/views/courses/courses_view.dart' as _i9;
@@ -31,10 +33,10 @@ import 'package:edtech_mobile/ui/views/test_question/test_question_view.dart'
     as _i16;
 import 'package:edtech_mobile/ui/views/your_course/your_course_view.dart'
     as _i10;
-import 'package:flutter/material.dart' as _i22;
+import 'package:flutter/material.dart' as _i23;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i23;
+import 'package:stacked_services/stacked_services.dart' as _i24;
 
 class Routes {
   static const homeView = '/home-view';
@@ -77,6 +79,8 @@ class Routes {
 
   static const paymentAddedView = '/payment-added-view';
 
+  static const courseNotfoundView = '/course-notfound-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -98,6 +102,7 @@ class Routes {
     noPaymentView,
     savedView,
     paymentAddedView,
+    courseNotfoundView,
   };
 }
 
@@ -183,126 +188,136 @@ class StackedRouter extends _i1.RouterBase {
       Routes.paymentAddedView,
       page: _i21.PaymentAddedView,
     ),
+    _i1.RouteDef(
+      Routes.courseNotfoundView,
+      page: _i22.CourseNotfoundView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
       );
     },
     _i3.StartupView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
       );
     },
     _i4.IntroView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.IntroView(),
         settings: data,
       );
     },
     _i5.LoginView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i5.LoginView(),
         settings: data,
       );
     },
     _i6.SignupView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i6.SignupView(),
         settings: data,
       );
     },
     _i7.ProfileView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.ProfileView(),
         settings: data,
       );
     },
     _i8.SettingsView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.SettingsView(),
         settings: data,
       );
     },
     _i9.CoursesView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.CoursesView(),
         settings: data,
       );
     },
     _i10.YourCourseView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.YourCourseView(),
         settings: data,
       );
     },
     _i11.SearchView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i11.SearchView(),
         settings: data,
       );
     },
     _i12.ProductDetailView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i12.ProductDetailView(),
         settings: data,
       );
     },
     _i13.ChooseLessonView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i13.ChooseLessonView(),
         settings: data,
       );
     },
     _i14.LessonView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i14.LessonView(),
         settings: data,
       );
     },
     _i15.CourseTestView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i15.CourseTestView(),
         settings: data,
       );
     },
     _i16.TestQuestionView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i16.TestQuestionView(),
         settings: data,
       );
     },
     _i17.ResultView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i17.ResultView(),
         settings: data,
       );
     },
     _i18.NotSavedView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i18.NotSavedView(),
         settings: data,
       );
     },
     _i19.NoPaymentView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i19.NoPaymentView(),
         settings: data,
       );
     },
     _i20.SavedView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i20.SavedView(),
         settings: data,
       );
     },
     _i21.PaymentAddedView: (data) {
-      return _i22.MaterialPageRoute<dynamic>(
+      return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => const _i21.PaymentAddedView(),
+        settings: data,
+      );
+    },
+    _i22.CourseNotfoundView: (data) {
+      return _i23.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i22.CourseNotfoundView(),
         settings: data,
       );
     },
@@ -314,7 +329,7 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i23.NavigationService {
+extension NavigatorStateExtension on _i24.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -595,6 +610,20 @@ extension NavigatorStateExtension on _i23.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToCourseNotfoundView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.courseNotfoundView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -869,6 +898,20 @@ extension NavigatorStateExtension on _i23.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.paymentAddedView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithCourseNotfoundView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.courseNotfoundView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
