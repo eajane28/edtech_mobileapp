@@ -1,4 +1,5 @@
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
+import 'package:edtech_mobile/ui/views/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -31,7 +32,7 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                         alignment: Alignment.bottomRight,
                         child: Chip(
                           label: Text(
-                            '50',
+                            '\$50',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -99,28 +100,7 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                   ),
                 ),
                 const SizedBox(height: 200),
-                Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: MaterialButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
-                      color: const Color(0xFFE3562A),
-                      onPressed: () {},
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 16.0, horizontal: 32.0),
-                        child: Text('Add to cart',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFFFFFFFF),
-                            )),
-                      ),
-                    )),
+                button('Add to cart', onTap: viewModel.addToCart),
               ],
             ),
           ),

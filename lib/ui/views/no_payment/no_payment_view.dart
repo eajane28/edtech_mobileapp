@@ -22,11 +22,13 @@ class NoPaymentView extends StackedView<NoPaymentViewModel> {
           child: Column(
             children: [
               appBar('Payment', onTap: null),
-              container('assets/Cool Kids Alone.png', 'No Payment Method',
-                  'You don\'t have any payment method'),
+              Expanded(
+                child: container('assets/Cool Kids Alone.png', 'No Payment Method',
+                    'You don\'t have any payment method'),
+              ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 146.0),
-                child: button('Continue', onTap: null),
+                child: button('Continue', onTap: viewModel.proceed),
               )
             ],
           ),

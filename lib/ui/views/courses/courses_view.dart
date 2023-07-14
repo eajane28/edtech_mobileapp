@@ -1,4 +1,5 @@
 import 'package:edtech_mobile/ui/views/widgets/card_courses.dart';
+import 'package:edtech_mobile/ui/views/widgets/search__widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -54,14 +55,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  hintText: 'Search Course',
-                ), //lacking Search Icon
-              ),
+              child: searchBox(),
             ),
             Row(
               children: [

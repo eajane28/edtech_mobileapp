@@ -1,7 +1,13 @@
+import 'package:edtech_mobile/app/app.locator.dart';
+import 'package:edtech_mobile/app/app.router.dart';
 import 'package:edtech_mobile/model/payment_data.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class PaymentMethodViewModel extends BaseViewModel {
+
+final _navigationService = locator<NavigationService>();
+
   final paymentList = [
     PaymentData(
         image: 'assets/Mastercard.png',
@@ -15,4 +21,9 @@ class PaymentMethodViewModel extends BaseViewModel {
     // 'assets/Google Pay.png',
     // 'assets/Apple Pay.png',
   ];
+
+  void proceed() {
+    _navigationService.replaceWithAddCreditCardView();
+  }
+
 }

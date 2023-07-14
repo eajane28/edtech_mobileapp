@@ -10,9 +10,12 @@ Widget searchBox() {
         fontWeight: FontWeight.w400,
         color: Color(0xFF78746D),
       ),
-      suffixIcon: const Icon(
-        Icons.search,
-        color: Color(0xFF78746D),
+      suffixIcon: GestureDetector(
+        onTap: null,
+        child: const Icon(
+          Icons.search,
+          color: Color(0xFF78746D),
+        ),
       ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),

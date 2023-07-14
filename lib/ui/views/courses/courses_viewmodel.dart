@@ -13,13 +13,13 @@ class CoursesViewModel extends BaseViewModel {
   final cardList = [
     CardData(
         cardImage: 'assets/Cool Kids Discussion.png',
-        price: '50',
+        price: '\$50',
         duration: '3 h 30 min',
         title: 'UI',
         description: 'Advanced mobile interface design'),
     CardData(
         cardImage: 'assets/Cool Kids Alone Time.png',
-        price: '20',
+        price: '\$20',
         duration: '2 h',
         title: 'UI Advanced',
         description: ''),

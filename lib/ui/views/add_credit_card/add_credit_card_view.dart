@@ -114,7 +114,7 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: button('Save', onTap: null),
+                child: button('Save', onTap: viewModel.save),
               )
             ],
           ),

@@ -1,7 +1,13 @@
+import 'package:edtech_mobile/app/app.locator.dart';
+import 'package:edtech_mobile/app/app.router.dart';
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class YourCourseViewModel extends BaseViewModel {
+
+final _navigationService = locator<NavigationService>();
+
   final yourCourseList = [
     CardData(
         cardImage: 'assets/Cool Kids Alone.png',
@@ -16,4 +22,8 @@ class YourCourseViewModel extends BaseViewModel {
         title: 'Scrum',
         description: 'Advanced project organization course'),
   ];
+
+  void back() {
+    _navigationService.navigateToProfileView();
+  }
 }

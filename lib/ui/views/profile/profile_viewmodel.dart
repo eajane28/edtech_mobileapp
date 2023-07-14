@@ -11,4 +11,8 @@ class ProfileViewModel extends BaseViewModel {
   void goto() async {
     await _navigationService.navigateToYourCourseView();
   }
+
+  // void back() {
+  //   _navigationService.back();
+  // }
 }
