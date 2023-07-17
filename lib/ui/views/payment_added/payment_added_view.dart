@@ -23,12 +23,16 @@ class PaymentAddedView extends StackedView<PaymentAddedViewModel> {
             children: [
               appBar('Payment', onTap: null),
               Expanded(
-                child: container('assets/Cool Kids Sitting.png', 'Payment Method added',
+                child: container(
+                    'assets/Cool Kids Sitting.png',
+                    'Payment Method added',
                     'You can buy the course now. Continue to payment.'),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 146.0),
-                child: button('Continue', onTap: viewModel.next),
+                child: Container(
+                    margin: const EdgeInsets.all(16.0),
+                    child: button('Continue', onTap: viewModel.next)),
               )
             ],
           ),

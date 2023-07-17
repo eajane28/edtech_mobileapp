@@ -1,4 +1,5 @@
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
+import 'package:edtech_mobile/ui/views/widgets/profile_options.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -35,72 +36,10 @@ class ProfileView extends StackedView<ProfileViewModel> {
                   backgroundColor: Color(0xFFF8F2EE),
                 ),
               ),
-              GestureDetector(
-                onTap: viewModel.goto,
-                child: Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.symmetric(vertical: 8.0),
-                  padding: const EdgeInsets.symmetric(vertical: 24.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16.0),
-                      border: Border.all(
-                        width: 1.0,
-                        color: const Color(0xFFBEBAB3),
-                      )),
-                  child: const Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Your Courses',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                margin: const EdgeInsets.symmetric(vertical: 8.0),
-                padding: const EdgeInsets.symmetric(vertical: 24.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.0),
-                    border: Border.all(
-                      width: 1.0,
-                      color: const Color(0xFFBEBAB3),
-                    )),
-                child: MaterialButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Saved',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                margin: const EdgeInsets.symmetric(vertical: 8.0),
-                padding: const EdgeInsets.symmetric(vertical: 24.0),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.0),
-                    border: Border.all(
-                      width: 1.0,
-                      color: const Color(0xFFBEBAB3),
-                    )),
-                child: MaterialButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Payment',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
+              const SizedBox(height: 8.0),
+              profileTabs('Your Courses', onTap: viewModel.goto),
+              profileTabs('Saved', onTap: null),
+              profileTabs('Payment', onTap: null),
               Center(
                 child: GestureDetector(
                   onTap: () {},

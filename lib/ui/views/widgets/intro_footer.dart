@@ -1,4 +1,3 @@
-// import 'package:edtech_mobile/model/intro_data.dart';
 import 'package:edtech_mobile/ui/views/intro/intro_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';

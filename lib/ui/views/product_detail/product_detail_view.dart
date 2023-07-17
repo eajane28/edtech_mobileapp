@@ -100,7 +100,9 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                   ),
                 ),
                 const SizedBox(height: 200),
-                button('Add to cart', onTap: viewModel.addToCart),
+                Container(
+                  margin: const EdgeInsets.all(16.0),
+                  child: button('Add to cart', onTap: viewModel.addToCart)),
               ],
             ),
           ),

@@ -26,7 +26,9 @@ class NotSavedView extends StackedView<NotSavedViewModel> {
                   'Try saving the course again in a few minutes'),
               Padding(
                 padding: const EdgeInsets.only(bottom: 146.0),
-                child: button('Continue', onTap: null),
+                child: Container(
+                    margin: const EdgeInsets.all(16.0),
+                    child: button('Continue', onTap: null)),
               )
             ],
           ),

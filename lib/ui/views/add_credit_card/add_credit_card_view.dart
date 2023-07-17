@@ -1,5 +1,6 @@
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
+import 'package:edtech_mobile/ui/views/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -16,111 +17,81 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> {
   ) {
     return Scaffold(
       body: SafeArea(
-          child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            children: [
-              appBar('Payment', onTap: null),
-              const Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16.0),
-                  child: Text(
-                    'Add credit card',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-                  ),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
-                      borderSide: BorderSide(color: Color(0xFFBEBAB3)),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              children: [
+                appBar('Payment', onTap: null),
+                const Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16.0),
+                    child: Text(
+                      'Add credit card',
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
                     ),
-                    labelText: 'Name',
                   ),
                 ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
-                      borderSide: BorderSide(color: Color(0xFFBEBAB3)),
-                    ),
-                    labelText: 'Credit card number',
-                  ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: textfield('Name'),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Expires',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        Container(
-                          width: 155.5,
-                          child: const TextField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
-                                borderSide: BorderSide(color: Color(0xFFBEBAB3)),
-                              ),
-                              labelText: 'MM/YY',
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: textfield('Credit card number'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Expires',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'CVV',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
+                          Container(
+                            width: 155.5,
+                            child: textfield('MM/YY')
                           ),
-                        ),
-                        Container(
-                          width: 155.5,
-                          child: const TextField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
-                                borderSide: BorderSide(color: Color(0xFFBEBAB3)),
-                              ),
-                              labelText: '***',
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'CVV',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                          Container(
+                            width: 155.5,
+                            child: textfield('***')
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: button('Save', onTap: viewModel.save),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: Container(
+                      margin: const EdgeInsets.all(16.0),
+                      child: button('Save', onTap: viewModel.save)),
+                )
+              ],
+            ),
           ),
         ),
-      
-      ),
       ),
     );
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Widget button(String title, {void Function()? onTap}) {
   return Container(
-    margin: const EdgeInsets.all(32.0),
+    // margin: const EdgeInsets.all(32.0),
     width: double.infinity,
     decoration: BoxDecoration(
       color: const Color(0xFFE3562A),

@@ -120,7 +120,9 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 300.0),
-                child: button('Confirm Payment \$50.00'),
+                child: Container(
+                    margin: const EdgeInsets.all(16.0),
+                    child: button('Confirm Payment \$50.00')),
               )
             ],
           ),

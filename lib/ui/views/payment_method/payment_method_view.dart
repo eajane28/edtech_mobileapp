@@ -46,7 +46,9 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
               ),
               // for (var card in viewModel.paymentList) PaymentItem(card: card),
               const SizedBox(height: 361),
-              button('Continue', onTap: viewModel.proceed)
+              Container(
+                  margin: const EdgeInsets.all(16.0),
+                  child: button('Continue', onTap: viewModel.proceed))
             ],
           ),
         ),

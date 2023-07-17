@@ -24,6 +24,6 @@ final _navigationService = locator<NavigationService>();
   ];
 
   void back() {
-    _navigationService.navigateToProfileView();
+    _navigationService.navigateToHomeView();
   }
 }
