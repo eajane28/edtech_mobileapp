@@ -23,6 +23,6 @@ class CourseTestViewModel extends BaseViewModel {
   ];
 
   void begin() {
-    _navigationService.replaceWithTestQuestionView();
+    _navigationService.navigateToTestQuestionView();
   }
 }

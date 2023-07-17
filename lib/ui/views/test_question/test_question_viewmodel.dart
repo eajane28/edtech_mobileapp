@@ -14,6 +14,6 @@ class TestQuestionViewModel extends BaseViewModel {
   ];
 
   void proceed() {
-    _navigationService.replaceWithResultView();
+    _navigationService.navigateToResultView();
   }
 }

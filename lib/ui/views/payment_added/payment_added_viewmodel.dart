@@ -8,6 +8,6 @@ class PaymentAddedViewModel extends BaseViewModel {
 
 
 void next() {
-    _navigationService.replaceWithYourCourseView();
+    _navigationService.navigateToYourCourseView();
   }
 }

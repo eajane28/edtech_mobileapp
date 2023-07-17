@@ -29,7 +29,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   void signUp() {
-    _navigationService.replaceWithSignupView();
+    _navigationService.navigateToSignupView();
   }
 
   void login() //dummy

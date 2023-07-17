@@ -7,6 +7,6 @@ class NoPaymentViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
   void proceed() {
-    _navigationService.replaceWithPaymentMethodView();
+    _navigationService.navigateToPaymentMethodView();
   }
 }

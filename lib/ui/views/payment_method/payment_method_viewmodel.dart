@@ -23,7 +23,7 @@ final _navigationService = locator<NavigationService>();
   ];
 
   void proceed() {
-    _navigationService.replaceWithAddCreditCardView();
+    _navigationService.navigateToAddCreditCardView();
   }
 
 }

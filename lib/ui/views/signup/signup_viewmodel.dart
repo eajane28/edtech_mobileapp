@@ -18,6 +18,6 @@ class SignupViewModel extends BaseViewModel {
   }
 
   void logIn() {
-    _navigationService.replaceWithLoginView();
+    _navigationService.navigateToLoginView();
   }
 }

@@ -27,7 +27,7 @@ flutter:
   assets:
     - assets/
     - assets/icons/
-
   # fonts:
-  #   fonts:
-  #   - asset: fonts/Rubik-Regular.ttf
+  #   - family: Rubik
+  #     fonts: 
+  #     - asset: fonts/Rubik-Regular.ttf

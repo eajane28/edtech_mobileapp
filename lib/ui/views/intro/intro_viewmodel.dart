@@ -63,11 +63,11 @@ class IntroViewModel extends BaseViewModel {
 
   void startPage() {
     if (buttonText == "Let's Start" && selectedPosition == 2) {
-      _navigationService.replaceWithLoginView();
+      _navigationService.navigateToLoginView();
     }
   }
 
   void skip() {
-    _navigationService.replaceWithLoginView();
+    _navigationService.navigateToLoginView();
   }
 }
