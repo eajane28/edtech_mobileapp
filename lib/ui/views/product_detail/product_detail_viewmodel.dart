@@ -8,6 +8,6 @@ class ProductDetailViewModel extends BaseViewModel {
 
 
   void addToCart() {
-    _navigationService.navigateToNoPaymentView();
+    _navigationService.navigateToPaymentAddedView();
   }
 }

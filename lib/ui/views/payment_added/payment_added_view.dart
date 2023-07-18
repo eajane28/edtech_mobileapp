@@ -21,7 +21,7 @@ class PaymentAddedView extends StackedView<PaymentAddedViewModel> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-               MyAppBar(title: 'Payment', onTap: null),
+               MyAppBar(title: 'Payment', onTap: viewModel.back),
                const Expanded(
                  child: Display(
                      image: 'assets/Cool Kids Sitting.png',

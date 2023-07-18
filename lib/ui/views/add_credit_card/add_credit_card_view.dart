@@ -22,7 +22,7 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               children: [
-                MyAppBar(title: 'Payment', onTap: null),
+                MyAppBar(title: 'Payment', onTap: viewModel.back),
                 const Align(
                   alignment: Alignment.topLeft,
                   child: Padding(

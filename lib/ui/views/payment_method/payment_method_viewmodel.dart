@@ -17,13 +17,14 @@ final _navigationService = locator<NavigationService>();
         image: 'assets/Visa.png',
         title: '**** **** **** 8897',
         subtitle: 'Expires 09/29'),
-    // 'assets/Paypal.png',
-    // 'assets/Google Pay.png',
-    // 'assets/Apple Pay.png',
   ];
 
   void proceed() {
-    _navigationService.navigateToAddCreditCardView();
+    _navigationService.navigateToCheckoutView();
+  }
+
+  void back() {
+    _navigationService.back();
   }
 
 }

@@ -9,4 +9,9 @@ class NoPaymentViewModel extends BaseViewModel {
   void proceed() {
     _navigationService.navigateToPaymentMethodView();
   }
+
+  void back() {
+    _navigationService.back();
+  }
+
 }

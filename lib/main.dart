@@ -1,3 +1,5 @@
+import 'package:edtech_mobile/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:edtech_mobile/app/app.bottomsheets.dart';
 import 'package:edtech_mobile/app/app.dialogs.dart';
@@ -7,6 +9,10 @@ import 'package:stacked_services/stacked_services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   await setupLocator();
   setupDialogUi();
   setupBottomSheetUi();

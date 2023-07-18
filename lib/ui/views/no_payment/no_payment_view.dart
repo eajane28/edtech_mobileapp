@@ -1,7 +1,6 @@
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
 import 'package:edtech_mobile/ui/views/widgets/display.dart';
-// import 'package:edtech_mobile/ui/views/widgets/single_container.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -22,20 +21,17 @@ class NoPaymentView extends StackedView<NoPaymentViewModel> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-               MyAppBar(title: 'Payment', onTap: null),
-              // appBar('Payment', onTap: null),
+              MyAppBar(title: 'Payment', onTap: viewModel.back),
               const Expanded(
-                child: Display(image: 'assets/Cool Kids Alone.png',
-                    title: 'No Payment Method', subtitle: 'You don\'t have any payment method'),
+                child: Display(
+                    image: 'assets/Cool Kids Alone.png',
+                    title: 'No Payment Method',
+                    subtitle: 'You don\'t have any payment method'),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 146.0),
                 child: Container(
-                    margin: const EdgeInsets.all(16.0),
-                    child: MyButton(title: 'Continue', onTap: viewModel.proceed)
-                    
-                    // button('Continue', onTap: viewModel.proceed)
-                    ),
+                    margin: const EdgeInsets.all(16.0), child: MyButton(title: 'Continue', onTap: viewModel.proceed)),
               )
             ],
           ),
