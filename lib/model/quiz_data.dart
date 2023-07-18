@@ -11,9 +11,9 @@ class QuizData {
       required this.subtitle});
 }
 
-class Choices {
-  final String choice;
-  final String description;
+// class Choices {
+//   final String choice;
+//   final String description;
 
-  Choices({required this.choice, required this.description});
-}
+//   Choices({required this.choice, required this.description});
+// }

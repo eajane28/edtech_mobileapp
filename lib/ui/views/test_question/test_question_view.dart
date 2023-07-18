@@ -1,5 +1,6 @@
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
+import 'package:edtech_mobile/ui/views/widgets/options.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -22,7 +23,6 @@ class TestQuestionView extends StackedView<TestQuestionViewModel> {
             child: Column(
               children: [
                  MyAppBar(title: '', onTap: null),
-                // appBar('', onTap: null),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 8, horizontal: 70.0),
                   child: Center(
@@ -50,17 +50,20 @@ class TestQuestionView extends StackedView<TestQuestionViewModel> {
                     ),
                   ),
                 ),
-                Container(
-                  width: double.infinity,
-                  decoration: const BoxDecoration(color: Color(0xFFBEBAB3)),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Image.asset('assets/Cool Kids Brainstorming.png'),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Container(
+                    width: double.infinity,
+                    decoration: const BoxDecoration(color: Color(0xFFBEBAB3)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Image.asset('assets/Cool Kids Brainstorming.png'),
+                    ),
                   ),
                 ),
-                for (var choices in viewModel.choices) option(choices),
+                for (var choices in viewModel.choices) Options(choices: choices),
                 Padding(
-                  padding: const EdgeInsets.only(top: 180.0),
+                  padding: const EdgeInsets.fromLTRB(16.0, 180.0, 16.0, 0),
                   child: MyButton(title: 'Continue', onTap: viewModel.proceed),
                 )
               ],
@@ -76,34 +79,4 @@ class TestQuestionView extends StackedView<TestQuestionViewModel> {
     BuildContext context,
   ) =>
       TestQuestionViewModel();
-}
-
-Widget option(choices) {
-  return Container(
-    decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xFFBEBAB3)),
-        borderRadius: BorderRadius.circular(8)),
-    margin: const EdgeInsets.symmetric(vertical: 8.0),
-    child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-        child: Row(
-          children: [
-            Text(
-              choices.choice,
-              style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xFF3C3A36)),
-            ),
-            const SizedBox(width: 16),
-            Text(
-              choices.description,
-              style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xFF3C3A36)),
-            ),
-          ],
-        )),
-  );
 }

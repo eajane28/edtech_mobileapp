@@ -11,7 +11,9 @@ class Display extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: Column(children: [
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+         children: [
         Image.asset(
           image,
           width: double.infinity,

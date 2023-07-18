@@ -1,3 +1,4 @@
+import 'package:edtech_mobile/ui/views/widgets/back_button.dart';
 import 'package:flutter/material.dart';
 
 class MyAppBar extends StatelessWidget {
@@ -11,20 +12,21 @@ class MyAppBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          GestureDetector(
-            onTap: onTap,
-            child: Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: const Color(0xFFBEBAB3)),
-              ),
-              child: const Center(
-                child: Icon(Icons.chevron_left),
-              ),
-            ),
-          ),
+           MyBackButton(onTap: onTap),
+          // GestureDetector(
+          //   onTap: onTap,
+          //   child: Container(
+          //     width: 48,
+          //     height: 48,
+          //     decoration: BoxDecoration(
+          //       shape: BoxShape.circle,
+          //       border: Border.all(color: const Color(0xFFBEBAB3)),
+          //     ),
+          //     child: const Center(
+          //       child: Icon(Icons.chevron_left),
+          //     ),
+          //   ),
+          // ),
           Expanded(
             child: Center(
               child: Text(

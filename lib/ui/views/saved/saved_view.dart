@@ -23,9 +23,10 @@ class SavedView extends StackedView<SavedViewModel> {
           child: Column(
             children: [
                MyAppBar(title: 'Payment', onTap: null),
-              // appBar('Payment', onTap: null),
-              const Display(image: 'assets/Cool Kids On Bike.png', title: 'Course was saved',
-                  subtitle: 'You can find this course in your profile'),
+              const Expanded(
+                child: Display(image: 'assets/Cool Kids On Bike.png', title: 'Course was saved',
+                    subtitle: 'You can find this course in your profile'),
+              ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 146.0),
                 child: Container(

@@ -45,7 +45,7 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                           height: 8,
                         ),
                         Text(
-                          '\$ 50.00',
+                          '\$50.00',
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.w500,

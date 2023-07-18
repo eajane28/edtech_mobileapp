@@ -31,7 +31,6 @@ class Header extends StatelessWidget {
         height: 42,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
         child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
               child: Container(
@@ -100,30 +99,8 @@ class Header extends StatelessWidget {
           ],
         ),
       ),
+      const SizedBox(height: 24),
     ],
   );
   }
-}
-
-Widget selectionTab() {
-  return Expanded(
-    child: Container(
-      decoration: const BoxDecoration(
-          color: Color(0xFFF8F2EE),
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(16), bottomLeft: Radius.circular(16))),
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 22.0),
-      child: const Align(
-        alignment: Alignment.center,
-        child: Text(
-          'Lessons',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-            color: Color(0xFF3C3A36),
-          ),
-        ),
-      ),
-    ),
-  );
 }

@@ -1,4 +1,5 @@
 import 'package:edtech_mobile/ui/views/widgets/card_courses.dart';
+import 'package:edtech_mobile/ui/views/widgets/chip.dart';
 import 'package:edtech_mobile/ui/views/widgets/search__widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -73,7 +74,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
                 ),
                 Row(
                   children: [
-                    for (var item in viewModel.coursesList) chip(item),
+                    for (var item in viewModel.coursesList) CustomChip(chip:item),
                   ],
                 ),
               ],
@@ -81,22 +82,6 @@ class CoursesView extends StackedView<CoursesViewModel> {
             for (var carditem in viewModel.cardList) CourseCard(card:carditem),
           ],
         ),
-      ),
-    );
-  }
-
-  // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
-  Container chip(CoursesData) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8),
-      child: Chip(
-        label: Text(
-          CoursesData.name,
-          style: const TextStyle(
-            color: Color(0xFFF2F2F2),
-          ),
-        ),
-        backgroundColor: const Color(0xFF65AAEA),
       ),
     );
   }

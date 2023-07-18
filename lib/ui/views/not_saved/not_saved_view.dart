@@ -23,9 +23,10 @@ class NotSavedView extends StackedView<NotSavedViewModel> {
           child: Column(
             children: [
                MyAppBar(title: 'Saved', onTap: null),
-              // appBar('Saved', onTap: null),
-              const Display(image: 'assets/Cool Kids Alone.png', title: ' Course not saved',
-                  subtitle: 'Try saving the course again in a few minutes'),
+              const Expanded(
+                child: Display(image: 'assets/Cool Kids Alone.png', title: ' Course not saved',
+                    subtitle: 'Try saving the course again in a few minutes'),
+              ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 146.0),
                 child: Container(

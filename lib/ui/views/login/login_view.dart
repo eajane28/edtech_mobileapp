@@ -40,7 +40,7 @@ class LoginView extends StackedView<LoginViewModel> {
                     for (var icon in viewModel.iconList) BuildIcon(iconsData: icon),
                   ],
                 ),
-                const MyTextField(hintText:'Email'),
+                const MyTextField(hintText: 'Email'),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextField(

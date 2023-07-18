@@ -23,7 +23,6 @@ class CourseTestView extends StackedView<CourseTestViewModel> {
           child: Column(
             children: [
                MyAppBar(title: 'HTML', onTap: null),
-              // appBar('HTML', onTap: null),
               const Header(),
               for (var quiz in viewModel.quizList)
                 quizCard(quiz, onTap: viewModel.begin)

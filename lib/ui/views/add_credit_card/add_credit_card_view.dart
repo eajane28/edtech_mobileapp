@@ -87,7 +87,6 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> {
                   child: Container(
                       margin: const EdgeInsets.all(16.0),
                       child: MyButton(title: 'Save', onTap: viewModel.save)),
-                      // button('Save', onTap: viewModel.save)
                       ),
               ],
             ),
