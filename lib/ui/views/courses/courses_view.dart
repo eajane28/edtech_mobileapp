@@ -6,7 +6,9 @@ import 'package:stacked/stacked.dart';
 import 'courses_viewmodel.dart';
 
 class CoursesView extends StackedView<CoursesViewModel> {
-  const CoursesView({Key? key}) : super(key: key);
+  const CoursesView({Key? key, required this.onBackPressed}) : super(key: key);
+
+  final void Function() onBackPressed;
 
   @override
   Widget builder(
@@ -37,25 +39,31 @@ class CoursesView extends StackedView<CoursesViewModel> {
                     ),
                   ],
                 ),
-                const SizedBox(width: 100),
-                Container(
-                    height: 48,
-                    width: 48,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: const Color(0xFFBEBAB3),
-                      ),
+                Expanded(
+                  child: SizedBox(
+                    child: Align(
+                      alignment: Alignment. topRight,
+                      child: Container(
+                          height: 48,
+                          width: 48,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: const Color(0xFFBEBAB3),
+                            ),
+                          ),
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: Image.asset('assets/Notification.png'),
+                          )),
                     ),
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Image.asset('assets/Notification.png'),
-                    )),
+                  ),
+                ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: searchBox(),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.0),
+              child: SearchBox(),
             ),
             Row(
               children: [
@@ -70,7 +78,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
                 ),
               ],
             ),
-            for (var carditem in viewModel.cardList) card(carditem),
+            for (var carditem in viewModel.cardList) CourseCard(card:carditem),
           ],
         ),
       ),

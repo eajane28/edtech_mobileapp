@@ -1,30 +1,44 @@
-import 'package:edtech_mobile/ui/common/back_button.dart';
 import 'package:flutter/material.dart';
 
-Widget appBar(String title, {void Function()? onTap}) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 8.0),
-    child: Row(
-      children: [
-        GestureDetector(
-          onTap: onTap,
-          child: Container(
-            child: backButton(),
-          ),
-        ),
-        Expanded(
-          child: Center(
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
+class MyAppBar extends StatelessWidget {
+  final String title;
+  void Function()? onTap;
+  MyAppBar({super.key, required this.title, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        children: [
+          GestureDetector(
+            onTap: onTap,
+            child: Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: const Color(0xFFBEBAB3)),
+              ),
+              child: const Center(
+                child: Icon(Icons.chevron_left),
               ),
             ),
           ),
-        ),
-        const SizedBox(width: 48)
-      ],
-    ),
-  );
+          Expanded(
+            child: Center(
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 48)
+        ],
+      ),
+    );
+  }
 }

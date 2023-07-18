@@ -19,7 +19,8 @@ class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           children: [
-            appBar('HTML', onTap: null),
+             MyAppBar(title: 'HTML', onTap: null),
+            // appBar('HTML', onTap: null),
             Card(
               child: Column(
                 children: [

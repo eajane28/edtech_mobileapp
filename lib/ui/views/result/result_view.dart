@@ -1,6 +1,7 @@
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/container_icons.dart';
-import 'package:edtech_mobile/ui/views/widgets/single_container.dart';
+import 'package:edtech_mobile/ui/views/widgets/display.dart';
+// import 'package:edtech_mobile/ui/views/widgets/single_container.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -21,15 +22,18 @@ class ResultView extends StackedView<ResultViewModel> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-              appBar('Results', onTap: null),
-              container('assets/Cool Kids Xmas Morning.png', 'Congratulations',
-                  'Congratulations for getting all the answers correct!'),
+              MyAppBar(title: 'Results', onTap: null),
+              // appBar('Results', onTap: null),
+              const Display(
+                  image: 'assets/Cool Kids Xmas Morning.png',
+                  title: 'Congratulations',
+                  subtitle: 'Congratulations for getting all the answers correct!'),
               Padding(
                 padding: const EdgeInsets.only(bottom: 40.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (var icon in viewModel.iconList) buildIcon(icon),
+                    for (var icon in viewModel.iconList) BuildIcon(iconsData: icon),
                   ],
                 ),
               ),

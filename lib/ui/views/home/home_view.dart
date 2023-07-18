@@ -1,4 +1,7 @@
 import 'package:edtech_mobile/ui/common/svg_icons.dart';
+import 'package:edtech_mobile/ui/views/courses/courses_view.dart';
+import 'package:edtech_mobile/ui/views/profile/profile_view.dart';
+import 'package:edtech_mobile/ui/views/settings/settings_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
@@ -21,8 +24,15 @@ class HomeView extends StackedView<HomeViewModel> {
         child: PageView(
           physics: const BouncingScrollPhysics(),
           controller: viewModel.pageController,
-          onPageChanged: viewModel.onPageChange,
-          children: viewModel.pages.map((e) => e).toList(),
+          onPageChanged:(index) => viewModel.onPageChange(index),
+          // children: viewModel.pages.map((e) => e).toList(),
+          children: [
+             CoursesView(onBackPressed: viewModel.animateToPage),
+             ProfileView(onBackPressed: viewModel.animateToPage,),
+             SettingsView(
+              onBackPressed: viewModel.animateToPage,
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: SizedBox(
@@ -39,25 +49,22 @@ class HomeView extends StackedView<HomeViewModel> {
             BottomNavigationBarItem(
               label: "Courses",
               icon: SvgPicture.asset(SvgIcons.courses,
-                  colorFilter: ColorFilter.mode(
-                      viewModel.selectedIndex == 0 ? Colors.red : Colors.grey,
-                      BlendMode.srcIn),
+                  colorFilter:
+                      ColorFilter.mode(viewModel.selectedIndex == 0 ? Colors.red : Colors.grey, BlendMode.srcIn),
                   width: 20),
             ),
             BottomNavigationBarItem(
               label: "Profile",
               icon: SvgPicture.asset(SvgIcons.profile,
-                  colorFilter: ColorFilter.mode(
-                      viewModel.selectedIndex == 1 ? Colors.red : Colors.grey,
-                      BlendMode.srcIn),
+                  colorFilter:
+                      ColorFilter.mode(viewModel.selectedIndex == 1 ? Colors.red : Colors.grey, BlendMode.srcIn),
                   width: 20),
             ),
             BottomNavigationBarItem(
               label: "Settings",
               icon: SvgPicture.asset(SvgIcons.wheel,
-                  colorFilter: ColorFilter.mode(
-                      viewModel.selectedIndex == 2 ? Colors.red : Colors.grey,
-                      BlendMode.srcIn),
+                  colorFilter:
+                      ColorFilter.mode(viewModel.selectedIndex == 2 ? Colors.red : Colors.grey, BlendMode.srcIn),
                   width: 20),
             ),
           ],

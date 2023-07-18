@@ -252,20 +252,26 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i7.ProfileView: (data) {
+      final args = data.getArgs<ProfileViewArguments>(nullOk: false);
       return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i7.ProfileView(),
+        builder: (context) =>
+            _i7.ProfileView(key: args.key, onBackPressed: args.onBackPressed),
         settings: data,
       );
     },
     _i8.SettingsView: (data) {
+      final args = data.getArgs<SettingsViewArguments>(nullOk: false);
       return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i8.SettingsView(),
+        builder: (context) =>
+            _i8.SettingsView(key: args.key, onBackPressed: args.onBackPressed),
         settings: data,
       );
     },
     _i9.CoursesView: (data) {
+      final args = data.getArgs<CoursesViewArguments>(nullOk: false);
       return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i9.CoursesView(),
+        builder: (context) =>
+            _i9.CoursesView(key: args.key, onBackPressed: args.onBackPressed),
         settings: data,
       );
     },
@@ -373,6 +379,87 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
+class ProfileViewArguments {
+  const ProfileViewArguments({
+    this.key,
+    required this.onBackPressed,
+  });
+
+  final _i26.Key? key;
+
+  final dynamic Function() onBackPressed;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "onBackPressed": "$onBackPressed"}';
+  }
+
+  @override
+  bool operator ==(covariant ProfileViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.onBackPressed == onBackPressed;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ onBackPressed.hashCode;
+  }
+}
+
+class SettingsViewArguments {
+  const SettingsViewArguments({
+    this.key,
+    required this.onBackPressed,
+  });
+
+  final _i26.Key? key;
+
+  final dynamic Function() onBackPressed;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "onBackPressed": "$onBackPressed"}';
+  }
+
+  @override
+  bool operator ==(covariant SettingsViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.onBackPressed == onBackPressed;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ onBackPressed.hashCode;
+  }
+}
+
+class CoursesViewArguments {
+  const CoursesViewArguments({
+    this.key,
+    required this.onBackPressed,
+  });
+
+  final _i26.Key? key;
+
+  final void Function() onBackPressed;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "onBackPressed": "$onBackPressed"}';
+  }
+
+  @override
+  bool operator ==(covariant CoursesViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.onBackPressed == onBackPressed;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ onBackPressed.hashCode;
+  }
+}
+
 extension NavigatorStateExtension on _i27.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
@@ -444,42 +531,52 @@ extension NavigatorStateExtension on _i27.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToProfileView([
+  Future<dynamic> navigateToProfileView({
+    _i26.Key? key,
+    required dynamic Function() onBackPressed,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.profileView,
+        arguments: ProfileViewArguments(key: key, onBackPressed: onBackPressed),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
         transition: transition);
   }
 
-  Future<dynamic> navigateToSettingsView([
+  Future<dynamic> navigateToSettingsView({
+    _i26.Key? key,
+    required dynamic Function() onBackPressed,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.settingsView,
+        arguments:
+            SettingsViewArguments(key: key, onBackPressed: onBackPressed),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
         transition: transition);
   }
 
-  Future<dynamic> navigateToCoursesView([
+  Future<dynamic> navigateToCoursesView({
+    _i26.Key? key,
+    required void Function() onBackPressed,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.coursesView,
+        arguments: CoursesViewArguments(key: key, onBackPressed: onBackPressed),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -780,42 +877,52 @@ extension NavigatorStateExtension on _i27.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithProfileView([
+  Future<dynamic> replaceWithProfileView({
+    _i26.Key? key,
+    required dynamic Function() onBackPressed,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.profileView,
+        arguments: ProfileViewArguments(key: key, onBackPressed: onBackPressed),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
         transition: transition);
   }
 
-  Future<dynamic> replaceWithSettingsView([
+  Future<dynamic> replaceWithSettingsView({
+    _i26.Key? key,
+    required dynamic Function() onBackPressed,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.settingsView,
+        arguments:
+            SettingsViewArguments(key: key, onBackPressed: onBackPressed),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
         transition: transition);
   }
 
-  Future<dynamic> replaceWithCoursesView([
+  Future<dynamic> replaceWithCoursesView({
+    _i26.Key? key,
+    required void Function() onBackPressed,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.coursesView,
+        arguments: CoursesViewArguments(key: key, onBackPressed: onBackPressed),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

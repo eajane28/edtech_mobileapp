@@ -1,9 +1,14 @@
+import 'package:edtech_mobile/app/app.locator.dart';
+import 'package:edtech_mobile/app/app.router.dart';
 import 'package:edtech_mobile/model/settings_data.dart';
 import 'package:edtech_mobile/ui/common/svg_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class SettingsViewModel extends BaseViewModel {
+  final _navigationService = locator<NavigationService>();
+
   bool light = true;
 
   final settingsInfoList = [
@@ -27,4 +32,9 @@ class SettingsViewModel extends BaseViewModel {
       },
     );
   }
+
+  void back() {
+    _navigationService.navigateToHomeView();
+  }
+
 }

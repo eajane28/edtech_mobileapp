@@ -26,21 +26,21 @@ class LoginView extends StackedView<LoginViewModel> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Center(
+                const Center(
                     child: Column(
                   children: [
-                    display('assets/Cool Kids Sitting.png', 'Log in',
-                        'Login with social networks'),
+                    Display(
+                        image: 'assets/Cool Kids Sitting.png', title: 'Log in', subtitle: 'Login with social networks'),
                   ],
                 )),
                 const SizedBox(height: 8.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (var icon in viewModel.iconList) buildIcon(icon),
+                    for (var icon in viewModel.iconList) BuildIcon(iconsData: icon),
                   ],
                 ),
-                textfield('Email'),
+                const MyTextField(hintText:'Email'),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextField(
@@ -48,9 +48,7 @@ class LoginView extends StackedView<LoginViewModel> {
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                           onPressed: viewModel.changeIcon,
-                          icon: Icon(viewModel.isObscure == true
-                              ? Icons.remove_red_eye
-                              : Icons.visibility_off)),
+                          icon: Icon(viewModel.isObscure == true ? Icons.remove_red_eye : Icons.visibility_off)),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -70,7 +68,11 @@ class LoginView extends StackedView<LoginViewModel> {
                   ),
                 ),
                 const SizedBox(height: 16.0),
-                button('Log in', onTap: viewModel.login),
+                MyButton(
+                  title: 'Log in',
+                  onTap: viewModel.login,
+                ),
+                // button('Log in', onTap: viewModel.login),
                 const SizedBox(height: 16.0),
                 Center(
                   child: GestureDetector(

@@ -21,7 +21,8 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-              appBar('Payment', onTap: null),
+               MyAppBar(title: 'Payment', onTap: null),
+              // appBar('Payment', onTap: null),
               const SizedBox(height: 24),
               const Align(
                 alignment: Alignment.topLeft,
@@ -48,7 +49,7 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
               const SizedBox(height: 361),
               Container(
                   margin: const EdgeInsets.all(16.0),
-                  child: button('Continue', onTap: viewModel.proceed))
+                  child: MyButton(title:'Continue', onTap: viewModel.proceed))
             ],
           ),
         ),

@@ -22,8 +22,9 @@ class CourseTestView extends StackedView<CourseTestViewModel> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-              appBar('HTML', onTap: null),
-              header(),
+               MyAppBar(title: 'HTML', onTap: null),
+              // appBar('HTML', onTap: null),
+              const Header(),
               for (var quiz in viewModel.quizList)
                 quizCard(quiz, onTap: viewModel.begin)
             ],

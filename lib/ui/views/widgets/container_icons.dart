@@ -1,7 +1,14 @@
+import 'package:edtech_mobile/model/icons_data.dart';
 import 'package:flutter/material.dart';
 
-Widget buildIcon(iconsData) {
-  return Padding(
+class BuildIcon extends StatelessWidget {
+  const BuildIcon({super.key, required this.iconsData});
+
+  final IconsData iconsData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 4.0),
     child: Container(
       width: 40,
@@ -19,4 +26,5 @@ Widget buildIcon(iconsData) {
       ),
     ),
   );
+  }
 }

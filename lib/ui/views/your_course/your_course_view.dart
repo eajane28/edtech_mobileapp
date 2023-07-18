@@ -21,7 +21,7 @@ class YourCourseView extends StackedView<YourCourseViewModel> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               children: [
-                appBar('Your Courses', onTap: viewModel.back),
+                 MyAppBar(title: 'Your Courses', onTap: viewModel.back),
                 for (var carditem in viewModel.yourCourseList) card(carditem),
               ],
             ),

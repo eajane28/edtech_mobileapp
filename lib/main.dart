@@ -20,6 +20,10 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: Routes.startupView,
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
+        fontFamily: 'Rubik'
+      ),
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,
       navigatorObservers: [

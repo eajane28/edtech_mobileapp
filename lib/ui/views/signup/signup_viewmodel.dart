@@ -6,10 +6,6 @@ import 'package:stacked_services/stacked_services.dart';
 class SignupViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
-  Future runStartupLogic() async {
-    await Future.delayed(const Duration(seconds: 3));
-  }
-
   bool isObscure = true;
 
   void changeIcon() {
@@ -19,5 +15,10 @@ class SignupViewModel extends BaseViewModel {
 
   void logIn() {
     _navigationService.navigateToLoginView();
+  }
+
+
+   void back() {
+    _navigationService.back();
   }
 }

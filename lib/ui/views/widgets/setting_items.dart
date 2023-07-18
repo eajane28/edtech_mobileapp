@@ -1,8 +1,15 @@
+import 'package:edtech_mobile/model/settings_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-Widget settingsInfo(settingsData) {
-  return Container(
+class SettingsInfo extends StatelessWidget {
+  const SettingsInfo({super.key, required this.info});
+
+  final SettingsData info;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
     height: 100,
     margin: const EdgeInsets.symmetric(vertical: 8),
     padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
@@ -20,7 +27,7 @@ Widget settingsInfo(settingsData) {
             decoration: const BoxDecoration(
                 color: Color(0xFF65AAEA), shape: BoxShape.circle),
             child: SvgPicture.asset(
-              settingsData.iconPath,
+              info.iconPath,
               colorFilter:
                   const ColorFilter.mode(Colors.white, BlendMode.srcIn),
             ),
@@ -38,14 +45,14 @@ Widget settingsInfo(settingsData) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    settingsData.title,
+                    info.title,
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                   Text(
-                    settingsData.text,
+                    info.text,
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -64,4 +71,5 @@ Widget settingsInfo(settingsData) {
       ],
     ),
   );
+  }
 }

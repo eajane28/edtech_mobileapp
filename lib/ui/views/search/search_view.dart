@@ -1,4 +1,3 @@
-import 'package:edtech_mobile/ui/common/back_button.dart';
 import 'package:edtech_mobile/ui/views/widgets/card_courses.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -28,7 +27,20 @@ class SearchView extends StackedView<SearchViewModel> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        backButton(),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            width: 48,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(color: const Color(0xFFBEBAB3)),
+                            ),
+                            child: const Center(
+                              child: Icon(Icons.chevron_left),
+                            ),
+                          ),
+                        ),
                         const SizedBox(width: 8),
                         Expanded(
                           child: TextField(
@@ -52,7 +64,7 @@ class SearchView extends StackedView<SearchViewModel> {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
                 ),
               ),
-              for (var carditem in viewModel.searchList) card(carditem),
+              for (var carditem in viewModel.searchList) CourseCard(card: carditem),
             ],
           ),
         ),

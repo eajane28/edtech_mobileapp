@@ -1,7 +1,14 @@
+import 'package:edtech_mobile/model/card_data.dart';
 import 'package:flutter/material.dart';
 
-Widget card(cardData) {
-  return Card(
+class CourseCard extends StatelessWidget {
+  const CourseCard({super.key, required this.card});
+
+  final CardData card;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
     margin: const EdgeInsets.only(top: 16),
     child: Column(
       children: [
@@ -13,14 +20,14 @@ Widget card(cardData) {
           ),
           child: Column(
             children: [
-              Image.asset(cardData.cardImage),
+              Image.asset(card.cardImage),
               Stack(
                 children: [
                   Align(
                     alignment: Alignment.bottomRight,
                     child: Chip(
                       label: Text(
-                        cardData.price,
+                        card.price,
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -42,7 +49,7 @@ Widget card(cardData) {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  cardData.duration,
+                  card.duration,
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
@@ -53,7 +60,7 @@ Widget card(cardData) {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  cardData.title,
+                  card.title,
                   style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w500,
@@ -63,7 +70,7 @@ Widget card(cardData) {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  cardData.description,
+                  card.description,
                   style: const TextStyle(
                       fontSize: 14, fontWeight: FontWeight.w400),
                 ),
@@ -74,4 +81,5 @@ Widget card(cardData) {
       ],
     ),
   );
+  }
 }

@@ -21,7 +21,8 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
-                appBar('HTML', onTap: null),
+                 MyAppBar(title: 'HTML', onTap: null),
+                // appBar('HTML', onTap: null),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: Column(
@@ -102,7 +103,7 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                 const SizedBox(height: 200),
                 Container(
                   margin: const EdgeInsets.all(16.0),
-                  child: button('Add to cart', onTap: viewModel.addToCart)),
+                  child: MyButton(title: 'Add to cart', onTap: viewModel.addToCart)),
               ],
             ),
           ),

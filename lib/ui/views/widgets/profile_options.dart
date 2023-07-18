@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-Widget profileTabs(String text, {void Function()? onTap}) {
-  return GestureDetector(
+class ProfileTabs extends StatelessWidget {
+  final String text;
+   void Function()? onTap;
+   ProfileTabs({super.key, required this.text, required this.onTap});
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
     onTap: onTap,
     child: Container(
       width: double.infinity,
@@ -25,4 +32,5 @@ Widget profileTabs(String text, {void Function()? onTap}) {
       ),
     ),
   );
+  }
 }

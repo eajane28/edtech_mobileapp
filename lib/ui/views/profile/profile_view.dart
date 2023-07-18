@@ -6,7 +6,12 @@ import 'package:stacked/stacked.dart';
 import 'profile_viewmodel.dart';
 
 class ProfileView extends StackedView<ProfileViewModel> {
-  const ProfileView({Key? key}) : super(key: key);
+  const ProfileView({
+    Key? key,
+    required this.onBackPressed,
+  }) : super(key: key);
+
+  final Function() onBackPressed;
 
   @override
   Widget builder(
@@ -21,13 +26,11 @@ class ProfileView extends StackedView<ProfileViewModel> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              appBar('Profile', onTap: null),
+              MyAppBar(title: 'Profile', onTap: onBackPressed),
               const SizedBox(height: 32),
               Container(
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border:
-                        Border.all(color: const Color(0xFF65AAEA), width: 4)),
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, border: Border.all(color: const Color(0xFF65AAEA), width: 4)),
                 child: const CircleAvatar(
                   radius: 72,
                   backgroundImage: AssetImage(
@@ -37,9 +40,9 @@ class ProfileView extends StackedView<ProfileViewModel> {
                 ),
               ),
               const SizedBox(height: 8.0),
-              profileTabs('Your Courses', onTap: viewModel.goto),
-              profileTabs('Saved', onTap: null),
-              profileTabs('Payment', onTap: null),
+              ProfileTabs(text: 'Your Courses', onTap: viewModel.goto),
+              ProfileTabs(text: 'Saved', onTap: null),
+              ProfileTabs(text: 'Payment', onTap: null),
               Center(
                 child: GestureDetector(
                   onTap: () {},

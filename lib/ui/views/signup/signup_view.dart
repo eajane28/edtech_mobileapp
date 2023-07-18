@@ -23,22 +23,24 @@ class SignupView extends StackedView<SignupViewModel> {
           child: SizedBox(
             height: MediaQuery.sizeOf(context).height,
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
               child: Column(
                 children: <Widget>[
-                  appBar(''),
+                  MyAppBar(title: '', onTap: viewModel.back),
                   Center(
                     child: Column(
                       children: [
-                        display('assets/Cool Kids Standing.png', 'Sign up',
-                            'Create your account'),
+                        const Display(
+                            image: 'assets/Cool Kids Standing.png', title: 'Sign up', subtitle: 'Create your account'),
                         const SizedBox(height: 8.0),
-                        textfield('Name'),
-                        textfield('Email'),
+                        const MyTextField(hintText: 'Name'),
+                        const MyTextField(hintText: 'Email'),
                         const Password(),
                         const SizedBox(height: 8.0),
-                        button('Sign up'),
+                        MyButton(
+                          title: 'Sign up',
+                          onTap: () {},
+                        ),
                         const SizedBox(height: 16.0),
                         GestureDetector(
                           onTap: viewModel.logIn,

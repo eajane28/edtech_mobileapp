@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-Widget button(String title, {void Function()? onTap}) {
-  return Container(
-    // margin: const EdgeInsets.all(32.0),
+class MyButton extends StatelessWidget {
+  final String title;
+  final Function()? onTap;
+   MyButton({super.key, required this.onTap, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
     width: double.infinity,
     decoration: BoxDecoration(
       color: const Color(0xFFE3562A),
@@ -24,4 +29,5 @@ Widget button(String title, {void Function()? onTap}) {
       ),
     ),
   );
+  }
 }

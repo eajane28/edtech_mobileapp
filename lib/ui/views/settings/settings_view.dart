@@ -8,7 +8,9 @@ import 'package:stacked/stacked.dart';
 import 'settings_viewmodel.dart';
 
 class SettingsView extends StackedView<SettingsViewModel> {
-  const SettingsView({Key? key}) : super(key: key);
+  const SettingsView({Key? key, required this.onBackPressed, }) : super(key: key);
+
+  final Function() onBackPressed;
 
   @override
   Widget builder(
@@ -21,7 +23,7 @@ class SettingsView extends StackedView<SettingsViewModel> {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            appBar('Settings', onTap: null),
+             MyAppBar(title: 'Settings', onTap: onBackPressed),
             const SizedBox(height: 24),
             Image.asset(
               'assets/Cool Kids On Bike.png',
@@ -75,7 +77,7 @@ class SettingsView extends StackedView<SettingsViewModel> {
                 ),
               ),
             ),
-            for (var info in viewModel.settingsInfoList) settingsInfo(info),
+            for (var info in viewModel.settingsInfoList) SettingsInfo(info:info),
           ],
         ),
       ),

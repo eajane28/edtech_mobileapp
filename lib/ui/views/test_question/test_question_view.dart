@@ -21,7 +21,8 @@ class TestQuestionView extends StackedView<TestQuestionViewModel> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               children: [
-                appBar('', onTap: null),
+                 MyAppBar(title: '', onTap: null),
+                // appBar('', onTap: null),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 8, horizontal: 70.0),
                   child: Center(
@@ -60,7 +61,7 @@ class TestQuestionView extends StackedView<TestQuestionViewModel> {
                 for (var choices in viewModel.choices) option(choices),
                 Padding(
                   padding: const EdgeInsets.only(top: 180.0),
-                  child: button('Continue', onTap: viewModel.proceed),
+                  child: MyButton(title: 'Continue', onTap: viewModel.proceed),
                 )
               ],
             ),

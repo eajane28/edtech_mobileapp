@@ -1,6 +1,7 @@
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
-import 'package:edtech_mobile/ui/views/widgets/single_container.dart';
+import 'package:edtech_mobile/ui/views/widgets/display.dart';
+// import 'package:edtech_mobile/ui/views/widgets/single_container.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -21,14 +22,18 @@ class NotSavedView extends StackedView<NotSavedViewModel> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-              appBar('Saved', onTap: null),
-              container('assets/Cool Kids Alone.png', ' Course not saved',
-                  'Try saving the course again in a few minutes'),
+               MyAppBar(title: 'Saved', onTap: null),
+              // appBar('Saved', onTap: null),
+              const Display(image: 'assets/Cool Kids Alone.png', title: ' Course not saved',
+                  subtitle: 'Try saving the course again in a few minutes'),
               Padding(
                 padding: const EdgeInsets.only(bottom: 146.0),
                 child: Container(
                     margin: const EdgeInsets.all(16.0),
-                    child: button('Continue', onTap: null)),
+                    child: MyButton(title: 'Continue', onTap: () {})
+                    
+                    // button('Continue', onTap: null)
+                    ),
               )
             ],
           ),

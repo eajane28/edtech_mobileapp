@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
-Widget header() {
-  return Column(
+class Header extends StatelessWidget {
+  const Header({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
     children: [
       const SizedBox(height: 32),
       const Text(
@@ -98,6 +102,7 @@ Widget header() {
       ),
     ],
   );
+  }
 }
 
 Widget selectionTab() {

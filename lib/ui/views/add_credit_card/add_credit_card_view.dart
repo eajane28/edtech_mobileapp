@@ -22,7 +22,7 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               children: [
-                appBar('Payment', onTap: null),
+                MyAppBar(title: 'Payment', onTap: null),
                 const Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
@@ -34,48 +34,48 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: textfield('Name'),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                  child: MyTextField(hintText: 'Name'),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  child: textfield('Credit card number'),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                  child: MyTextField(hintText: 'Credit card number'),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             'Expires',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             width: 155.5,
-                            child: textfield('MM/YY')
+                            child: MyTextField(hintText:'MM/YY')
                           ),
                         ],
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             'CVV',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             width: 155.5,
-                            child: textfield('***')
+                            child: MyTextField(hintText:'***')
                           ),
                         ],
                       )
@@ -86,8 +86,9 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> {
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: Container(
                       margin: const EdgeInsets.all(16.0),
-                      child: button('Save', onTap: viewModel.save)),
-                )
+                      child: MyButton(title: 'Save', onTap: viewModel.save)),
+                      // button('Save', onTap: viewModel.save)
+                      ),
               ],
             ),
           ),

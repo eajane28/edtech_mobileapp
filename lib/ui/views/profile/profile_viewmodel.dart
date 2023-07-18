@@ -6,13 +6,12 @@ import 'package:stacked_services/stacked_services.dart';
 class ProfileViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
-  // Place anything here that needs to happen before we get into the application
-
   void goto() async {
     await _navigationService.navigateToYourCourseView();
   }
 
-  // void back() {
-  //   _navigationService.back();
-  // }
+  void back() {
+    
+    _navigationService.back();
+  }
 }

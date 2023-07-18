@@ -20,8 +20,9 @@ class LessonView extends StackedView<LessonViewModel> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-              appBar('HTML', onTap: null),
-              header(),
+               MyAppBar(title: 'HTML', onTap: null),
+              // appBar('HTML', onTap: null),
+              const Header(),
               const SizedBox(height: 16),
               Container(
                 decoration: BoxDecoration(
