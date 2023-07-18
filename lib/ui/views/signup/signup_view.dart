@@ -44,12 +44,17 @@ class SignupView extends StackedView<SignupViewModel> {
                         const SizedBox(height: 16.0),
                         GestureDetector(
                           onTap: viewModel.logIn,
-                          child: const Text(
-                            'Log in',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFF78746D),
+                          child: const SizedBox(
+                            width: double.infinity,
+                            height: 40,
+                            child: Text(
+                              'Log in',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF78746D),
+                              ),
                             ),
                           ),
                         ),

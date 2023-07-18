@@ -72,17 +72,21 @@ class LoginView extends StackedView<LoginViewModel> {
                   title: 'Log in',
                   onTap: viewModel.login,
                 ),
-                // button('Log in', onTap: viewModel.login),
                 const SizedBox(height: 16.0),
                 Center(
                   child: GestureDetector(
                     onTap: viewModel.signUp,
-                    child: const Text(
-                      'Sign up',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFF78746D),
+                    child: const SizedBox(
+                      width: double.infinity,
+                      height: 40,
+                      child: Text(
+                        'Sign up',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF78746D),
+                        ),
                       ),
                     ),
                   ),
