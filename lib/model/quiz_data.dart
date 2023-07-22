@@ -1,19 +1,17 @@
-class QuizData {
-  final String image;
-  final String quizNo;
-  final String quizTitle;
-  final String subtitle;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  QuizData(
-      {required this.image,
-      required this.quizNo,
-      required this.quizTitle,
-      required this.subtitle});
+part 'quiz_data.freezed.dart';
+
+part 'quiz_data.g.dart';
+
+@freezed
+class QuizData with _$QuizData {
+  const factory QuizData({
+    required String image,
+    required String quizNo,
+    required String quizTitle,
+    required String subtitle,
+  }) = _QuizData;
+
+  factory QuizData.fromJson(Map<String, dynamic> json) => _$QuizDataFromJson(json);
 }
-
-// class Choices {
-//   final String choice;
-//   final String description;
-
-//   Choices({required this.choice, required this.description});
-// }

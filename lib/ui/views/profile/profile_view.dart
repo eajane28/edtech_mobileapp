@@ -29,8 +29,10 @@ class ProfileView extends StackedView<ProfileViewModel> {
               MyAppBar(title: 'Profile', onTap: onBackPressed),
               const SizedBox(height: 32),
               Container(
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, border: Border.all(color: const Color(0xFF65AAEA), width: 4)),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border:
+                        Border.all(color: const Color(0xFF65AAEA), width: 4)),
                 child: const CircleAvatar(
                   radius: 72,
                   backgroundImage: AssetImage(
@@ -45,13 +47,16 @@ class ProfileView extends StackedView<ProfileViewModel> {
               ProfileTabs(text: 'Payment', onTap: null),
               Center(
                 child: GestureDetector(
-                  onTap: () {},
-                  child: const Text(
-                    'Log out',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xFF78746D),
+                  onTap: () => viewModel.logout(),
+                  child: const SizedBox(
+                    height: 40,
+                    child: Text(
+                      'Log out',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xFF78746D),
+                      ),
                     ),
                   ),
                 ),

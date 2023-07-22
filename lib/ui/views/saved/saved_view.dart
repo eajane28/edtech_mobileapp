@@ -22,16 +22,18 @@ class SavedView extends StackedView<SavedViewModel> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-               MyAppBar(title: 'Payment', onTap: null),
+              MyAppBar(title: 'Payment', onTap: null),
               const Expanded(
-                child: Display(image: 'assets/Cool Kids On Bike.png', title: 'Course was saved',
+                child: Display(
+                    image: 'assets/Cool Kids On Bike.png',
+                    title: 'Course was saved',
                     subtitle: 'You can find this course in your profile'),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 146.0),
                 child: Container(
                     margin: const EdgeInsets.all(16.0),
-                    child: MyButton(title: 'Continue', onTap: (){})),
+                    child: MyButton(title: 'Continue', onTap: () {})),
               )
             ],
           ),

@@ -6,7 +6,6 @@ import 'package:stacked_services/stacked_services.dart';
 class ProductDetailViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
-
   void addToCart() {
     _navigationService.navigateToPaymentAddedView();
   }

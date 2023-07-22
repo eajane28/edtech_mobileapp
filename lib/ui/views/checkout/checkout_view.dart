@@ -20,7 +20,7 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-               MyAppBar(title: 'Checkout', onTap: viewModel.back),
+              MyAppBar(title: 'Checkout', onTap: viewModel.back),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: Row(
@@ -121,9 +121,11 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
               Padding(
                 padding: const EdgeInsets.only(top: 300.0),
                 child: Container(
-                    margin: const EdgeInsets.all(16.0),
-                    child: MyButton(title: 'Confirm Payment \$50.00', onTap: viewModel.confirm),
-                    ),
+                  margin: const EdgeInsets.all(16.0),
+                  child: MyButton(
+                      title: 'Confirm Payment \$50.00',
+                      onTap: viewModel.confirm),
+                ),
               )
             ],
           ),

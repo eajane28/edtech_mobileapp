@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MyButton extends StatelessWidget {
   final String title;
   final Function()? onTap;
-  MyButton({super.key, required this.onTap, required this.title});
+  const MyButton({super.key, required this.onTap, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +26,30 @@ class MyButton extends StatelessWidget {
               color: Color(0xFFFFFFFF),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class MyWidgetButton extends StatelessWidget {
+  final Widget title;
+  final Function()? onTap;
+  const MyWidgetButton({super.key, required this.onTap, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: const Color(0xFFE3562A),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: title
         ),
       ),
     );

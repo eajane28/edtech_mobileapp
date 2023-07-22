@@ -1,3 +1,4 @@
+import 'package:edtech_mobile/model/user.dart';
 import 'package:edtech_mobile/ui/views/widgets/card_courses.dart';
 import 'package:edtech_mobile/ui/views/widgets/chip.dart';
 import 'package:edtech_mobile/ui/views/widgets/search__widget.dart';
@@ -7,9 +8,10 @@ import 'package:stacked/stacked.dart';
 import 'courses_viewmodel.dart';
 
 class CoursesView extends StackedView<CoursesViewModel> {
-  const CoursesView({Key? key, required this.onBackPressed}) : super(key: key);
+  const CoursesView({Key? key, required this.onBackPressed, required this.user}) : super(key: key);
 
   final void Function() onBackPressed;
+  final User user;
 
   @override
   Widget builder(
@@ -24,26 +26,24 @@ class CoursesView extends StackedView<CoursesViewModel> {
           children: [
             Row(
               children: [
-                const Column(
+                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Hello,',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                     ),
                     Text(
-                      'Juana Antonieta',
-                      style:
-                          TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
+                      user.name,
+                      style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
                     ),
                   ],
                 ),
                 Expanded(
                   child: SizedBox(
                     child: Align(
-                      alignment: Alignment. topRight,
+                      alignment: Alignment.topRight,
                       child: Container(
                           height: 48,
                           width: 48,
@@ -74,12 +74,12 @@ class CoursesView extends StackedView<CoursesViewModel> {
                 ),
                 Row(
                   children: [
-                    for (var item in viewModel.coursesList) CustomChip(chip:item),
+                    for (var item in viewModel.coursesList) CustomChip(chip: item),
                   ],
                 ),
               ],
             ),
-            for (var carditem in viewModel.cardList) CourseCard(card:carditem),
+            for (var carditem in viewModel.cardList) CourseCard(card: carditem),
           ],
         ),
       ),

@@ -5,8 +5,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class PaymentMethodViewModel extends BaseViewModel {
-
-final _navigationService = locator<NavigationService>();
+  final _navigationService = locator<NavigationService>();
 
   final paymentList = [
     PaymentData(
@@ -26,5 +25,4 @@ final _navigationService = locator<NavigationService>();
   void back() {
     _navigationService.back();
   }
-
 }

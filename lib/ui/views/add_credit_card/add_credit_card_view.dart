@@ -34,23 +34,26 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> {
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16.0),
-                  child: MyTextField(hintText: 'Name'),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: MyTextField(
+                      hintText: 'Name', controller: viewModel.nameController),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16.0),
-                  child: MyTextField(hintText: 'Credit card number'),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: MyTextField(
+                      hintText: 'Credit card number',
+                      controller: viewModel.cardNumberController),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Expires',
                             style: TextStyle(
                               fontSize: 14,
@@ -58,15 +61,16 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> {
                             ),
                           ),
                           SizedBox(
-                            width: 155.5,
-                            child: MyTextField(hintText:'MM/YY')
-                          ),
+                              width: 155.5,
+                              child: MyTextField(
+                                  hintText: 'MM/YY',
+                                  controller: viewModel.expiryDateController)),
                         ],
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'CVV',
                             style: TextStyle(
                               fontSize: 14,
@@ -74,9 +78,11 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> {
                             ),
                           ),
                           SizedBox(
-                            width: 155.5,
-                            child: MyTextField(hintText:'***')
-                          ),
+                              width: 155.5,
+                              child: MyTextField(
+                                hintText: '***',
+                                controller: viewModel.cvvController,
+                              )),
                         ],
                       )
                     ],
@@ -87,7 +93,7 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> {
                   child: Container(
                       margin: const EdgeInsets.all(16.0),
                       child: MyButton(title: 'Save', onTap: viewModel.save)),
-                      ),
+                ),
               ],
             ),
           ),

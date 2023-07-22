@@ -22,9 +22,11 @@ class NotSavedView extends StackedView<NotSavedViewModel> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-               MyAppBar(title: 'Saved', onTap: null),
+              MyAppBar(title: 'Saved', onTap: null),
               const Expanded(
-                child: Display(image: 'assets/Cool Kids Alone.png', title: ' Course not saved',
+                child: Display(
+                    image: 'assets/Cool Kids Alone.png',
+                    title: ' Course not saved',
                     subtitle: 'Try saving the course again in a few minutes'),
               ),
               Padding(
@@ -32,7 +34,7 @@ class NotSavedView extends StackedView<NotSavedViewModel> {
                 child: Container(
                     margin: const EdgeInsets.all(16.0),
                     child: MyButton(title: 'Continue', onTap: () {})
-                    
+
                     // button('Continue', onTap: null)
                     ),
               )

@@ -27,14 +27,16 @@ class ResultView extends StackedView<ResultViewModel> {
                 child: Display(
                     image: 'assets/Cool Kids Xmas Morning.png',
                     title: 'Congratulations',
-                    subtitle: 'Congratulations for getting all the answers correct!'),
+                    subtitle:
+                        'Congratulations for getting all the answers correct!'),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 40.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (var icon in viewModel.iconList) BuildIcon(iconsData: icon),
+                    for (var icon in viewModel.iconList)
+                      BuildIcon(iconsData: icon),
                   ],
                 ),
               ),

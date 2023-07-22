@@ -31,9 +31,7 @@ class SearchView extends StackedView<SearchViewModel> {
                       children: [
                         MyBackButton(onTap: () {}),
                         const SizedBox(width: 8),
-                        const Expanded(
-                          child: SearchBox()
-                        ),
+                        const Expanded(child: SearchBox()),
                       ],
                     ),
                   ],
@@ -46,7 +44,8 @@ class SearchView extends StackedView<SearchViewModel> {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
                 ),
               ),
-              for (var carditem in viewModel.searchList) CourseCard(card: carditem),
+              for (var carditem in viewModel.searchList)
+                CourseCard(card: carditem),
             ],
           ),
         ),

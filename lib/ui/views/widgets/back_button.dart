@@ -1,8 +1,10 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 class MyBackButton extends StatelessWidget {
-   MyBackButton({super.key, required this.onTap});
-    void Function()? onTap;
+  MyBackButton({super.key, required this.onTap});
+  void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {

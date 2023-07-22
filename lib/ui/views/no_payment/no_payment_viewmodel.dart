@@ -13,5 +13,4 @@ class NoPaymentViewModel extends BaseViewModel {
   void back() {
     _navigationService.back();
   }
-
 }

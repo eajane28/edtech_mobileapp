@@ -31,7 +31,9 @@ class NoPaymentView extends StackedView<NoPaymentViewModel> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 146.0),
                 child: Container(
-                    margin: const EdgeInsets.all(16.0), child: MyButton(title: 'Continue', onTap: viewModel.proceed)),
+                    margin: const EdgeInsets.all(16.0),
+                    child:
+                        MyButton(title: 'Continue', onTap: viewModel.proceed)),
               )
             ],
           ),

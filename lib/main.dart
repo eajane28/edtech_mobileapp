@@ -10,9 +10,9 @@ import 'package:stacked_services/stacked_services.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-await Firebase.initializeApp(
+  await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
   await setupLocator();
   setupDialogUi();
   setupBottomSheetUi();
@@ -25,11 +25,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: Routes.startupView,
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
-        fontFamily: 'Rubik'
-      ),
+      theme: ThemeData(primarySwatch: Colors.orange, fontFamily: 'Rubik'),
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,
       navigatorObservers: [

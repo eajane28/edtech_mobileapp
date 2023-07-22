@@ -1,4 +1,5 @@
-import 'package:edtech_mobile/ui/common/svg_icons.dart';
+import 'package:edtech_mobile/model/user.dart';
+import 'package:edtech_mobile/ui/common/svg_icons_constants.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/setting_items.dart';
 import 'package:flutter/material.dart';
@@ -8,9 +9,14 @@ import 'package:stacked/stacked.dart';
 import 'settings_viewmodel.dart';
 
 class SettingsView extends StackedView<SettingsViewModel> {
-  const SettingsView({Key? key, required this.onBackPressed, }) : super(key: key);
+  const SettingsView({
+    Key? key,
+    required this.onBackPressed,
+    required this.user, 
+  }) : super(key: key);
 
   final Function() onBackPressed;
+    final User user;
 
   @override
   Widget builder(
@@ -23,7 +29,7 @@ class SettingsView extends StackedView<SettingsViewModel> {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-             MyAppBar(title: 'Settings', onTap: onBackPressed),
+            MyAppBar(title: 'Settings', onTap: onBackPressed),
             const SizedBox(height: 24),
             Image.asset(
               'assets/Cool Kids On Bike.png',
@@ -77,7 +83,8 @@ class SettingsView extends StackedView<SettingsViewModel> {
                 ),
               ),
             ),
-            for (var info in viewModel.settingsInfoList) SettingsInfo(info:info),
+            for (var info in viewModel.settingsInfoList)
+              SettingsInfo(info: info),
           ],
         ),
       ),
@@ -88,5 +95,5 @@ class SettingsView extends StackedView<SettingsViewModel> {
   SettingsViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      SettingsViewModel();
+      SettingsViewModel(user);
 }

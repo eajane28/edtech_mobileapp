@@ -1,14 +1,18 @@
-class CardData {
-  final String cardImage;
-  final String price;
-  final String duration;
-  final String title;
-  final String description;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  CardData(
-      {required this.cardImage,
-      required this.price,
-      required this.duration,
-      required this.title,
-      required this.description});
+part 'card_data.freezed.dart';
+
+part 'card_data.g.dart';
+
+@freezed
+class CardData with _$CardData {
+  const factory CardData({
+    required String cardImage,
+    required String price,
+    required String duration,
+    required String title,
+    required String description,
+  }) = _CardData;
+
+  factory CardData.fromJson(Map<String, dynamic> json) => _$CardDataFromJson(json);
 }
