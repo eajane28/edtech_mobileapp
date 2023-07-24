@@ -1,3 +1,4 @@
+import 'package:edtech_mobile/services/auth_service_impl.dart';
 import 'package:edtech_mobile/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:edtech_mobile/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:edtech_mobile/ui/views/home/home_view.dart';
@@ -7,9 +8,9 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:edtech_mobile/ui/views/intro/intro_view.dart';
 import 'package:edtech_mobile/ui/views/login/login_view.dart';
 import 'package:edtech_mobile/ui/views/signup/signup_view.dart';
-import 'package:edtech_mobile/ui/views/profile/profile_view.dart';
-import 'package:edtech_mobile/ui/views/settings/settings_view.dart';
-import 'package:edtech_mobile/ui/views/courses/courses_view.dart';
+// import 'package:edtech_mobile/ui/views/profile/profile_view.dart';
+// import 'package:edtech_mobile/ui/views/settings/settings_view.dart';
+// import 'package:edtech_mobile/ui/views/courses/courses_view.dart';
 import 'package:edtech_mobile/ui/views/your_course/your_course_view.dart';
 import 'package:edtech_mobile/ui/views/search/search_view.dart';
 import 'package:edtech_mobile/ui/views/product_detail/product_detail_view.dart';
@@ -26,6 +27,9 @@ import 'package:edtech_mobile/ui/views/course_notfound/course_notfound_view.dart
 import 'package:edtech_mobile/ui/views/payment_method/payment_method_view.dart';
 import 'package:edtech_mobile/ui/views/checkout/checkout_view.dart';
 import 'package:edtech_mobile/ui/views/add_credit_card/add_credit_card_view.dart';
+import 'package:edtech_mobile/services/auth_service.dart';
+import 'package:edtech_mobile/services/local_storage.dart';
+import 'package:edtech_mobile/ui/views/forgot_password/forgot_password_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -33,13 +37,10 @@ import 'package:edtech_mobile/ui/views/add_credit_card/add_credit_card_view.dart
     MaterialRoute(page: SettingsView),
     MaterialRoute(page: ProfileView),
     MaterialRoute(page: HomeView),
-    MaterialRoute(page: StartupView),
+    MaterialRoute(page: StartupView, initial: true),
     MaterialRoute(page: IntroView),
     MaterialRoute(page: LoginView),
     MaterialRoute(page: SignupView),
-    MaterialRoute(page: ProfileView),
-    MaterialRoute(page: SettingsView),
-    MaterialRoute(page: CoursesView),
     MaterialRoute(page: YourCourseView),
     MaterialRoute(page: SearchView),
     MaterialRoute(page: ProductDetailView),
@@ -56,13 +57,17 @@ import 'package:edtech_mobile/ui/views/add_credit_card/add_credit_card_view.dart
     MaterialRoute(page: PaymentMethodView),
     MaterialRoute(page: CheckoutView),
     MaterialRoute(page: AddCreditCardView),
+    MaterialRoute(page: ForgotPasswordView),
 // @stacked-route
   ],
   dependencies: [
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
-    // @stacked-service
+    LazySingleton(classType: AuthServiceImpl, asType: AuthService),
+    LazySingleton(classType: LocalStorage),
+    LazySingleton(classType: SnackbarService),
+// @stacked-service
   ],
   bottomsheets: [
     StackedBottomsheet(classType: NoticeSheet),

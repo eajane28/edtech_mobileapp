@@ -5,8 +5,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class YourCourseViewModel extends BaseViewModel {
-
-final _navigationService = locator<NavigationService>();
+  final _navigationService = locator<NavigationService>();
 
   final yourCourseList = [
     CardData(
@@ -24,6 +23,6 @@ final _navigationService = locator<NavigationService>();
   ];
 
   void back() {
-    _navigationService.back();
+    _navigationService.navigateToHomeView();
   }
 }

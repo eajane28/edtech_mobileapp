@@ -1,3 +1,5 @@
+import 'package:edtech_mobile/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:edtech_mobile/app/app.bottomsheets.dart';
 import 'package:edtech_mobile/app/app.dialogs.dart';
@@ -7,6 +9,10 @@ import 'package:stacked_services/stacked_services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await setupLocator();
   setupDialogUi();
   setupBottomSheetUi();
@@ -19,11 +25,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: Routes.startupView,
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
-        fontFamily: 'Rubik'
-      ),
+      theme: ThemeData(primarySwatch: Colors.orange, fontFamily: 'Rubik'),
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,
       navigatorObservers: [

@@ -2,6 +2,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:edtech_mobile/services/auth_service.dart';
+import 'package:edtech_mobile/services/local_storage.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -10,13 +12,17 @@ import 'test_helpers.mocks.dart';
   MockSpec<NavigationService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
-  // @stacked-mock-spec
+  MockSpec<AuthService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<LocalStorage>(onMissingStub: OnMissingStub.returnDefault),
+// @stacked-mock-spec
 ])
 void registerServices() {
   getAndRegisterNavigationService();
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
-  // @stacked-mock-register
+  getAndRegisterAuthService();
+  getAndRegisterSharedPreferenceService();
+// @stacked-mock-register
 }
 
 MockNavigationService getAndRegisterNavigationService() {
@@ -69,6 +75,19 @@ MockDialogService getAndRegisterDialogService() {
   return service;
 }
 
+MockAuthService getAndRegisterAuthService() {
+  _removeRegistrationIfExists<AuthService>();
+  final service = MockAuthService();
+  locator.registerSingleton<AuthService>(service);
+  return service;
+}
+
+MockLocalStorage getAndRegisterSharedPreferenceService() {
+  _removeRegistrationIfExists<LocalStorage>();
+  final service = MockLocalStorage();
+  locator.registerSingleton<LocalStorage>(service);
+  return service;
+}
 // @stacked-mock-create
 
 void _removeRegistrationIfExists<T extends Object>() {

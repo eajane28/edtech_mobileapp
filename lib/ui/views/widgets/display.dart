@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Display extends StatelessWidget {
-  const Display({super.key, required this.image, required this.title, required this.subtitle});
+  const Display(
+      {super.key,
+      required this.image,
+      required this.title,
+      required this.subtitle});
 
   final String image;
   final String title;
@@ -11,7 +15,7 @@ class Display extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: Column(children: [
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Image.asset(
           image,
           width: double.infinity,
@@ -31,6 +35,7 @@ class Display extends StatelessWidget {
         ),
         Text(
           subtitle,
+          textAlign: TextAlign.center,
           style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,

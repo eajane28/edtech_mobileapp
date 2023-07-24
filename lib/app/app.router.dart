@@ -6,59 +6,52 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:edtech_mobile/ui/views/add_credit_card/add_credit_card_view.dart'
-    as _i25;
-import 'package:edtech_mobile/ui/views/checkout/checkout_view.dart' as _i24;
-import 'package:edtech_mobile/ui/views/choose_lesson/choose_lesson_view.dart'
-    as _i13;
-import 'package:edtech_mobile/ui/views/course_notfound/course_notfound_view.dart'
     as _i22;
+import 'package:edtech_mobile/ui/views/checkout/checkout_view.dart' as _i21;
+import 'package:edtech_mobile/ui/views/choose_lesson/choose_lesson_view.dart'
+    as _i10;
+import 'package:edtech_mobile/ui/views/course_notfound/course_notfound_view.dart'
+    as _i19;
 import 'package:edtech_mobile/ui/views/course_test/course_test_view.dart'
-    as _i15;
-import 'package:edtech_mobile/ui/views/courses/courses_view.dart' as _i9;
+    as _i12;
+import 'package:edtech_mobile/ui/views/forgot_password/forgot_password_view.dart'
+    as _i23;
 import 'package:edtech_mobile/ui/views/home/home_view.dart' as _i2;
 import 'package:edtech_mobile/ui/views/intro/intro_view.dart' as _i4;
-import 'package:edtech_mobile/ui/views/lesson/lesson_view.dart' as _i14;
+import 'package:edtech_mobile/ui/views/lesson/lesson_view.dart' as _i11;
 import 'package:edtech_mobile/ui/views/login/login_view.dart' as _i5;
-import 'package:edtech_mobile/ui/views/no_payment/no_payment_view.dart' as _i19;
-import 'package:edtech_mobile/ui/views/not_saved/not_saved_view.dart' as _i18;
+import 'package:edtech_mobile/ui/views/no_payment/no_payment_view.dart' as _i16;
+import 'package:edtech_mobile/ui/views/not_saved/not_saved_view.dart' as _i15;
 import 'package:edtech_mobile/ui/views/payment_added/payment_added_view.dart'
-    as _i21;
+    as _i18;
 import 'package:edtech_mobile/ui/views/payment_method/payment_method_view.dart'
-    as _i23;
+    as _i20;
 import 'package:edtech_mobile/ui/views/product_detail/product_detail_view.dart'
-    as _i12;
-import 'package:edtech_mobile/ui/views/profile/profile_view.dart' as _i7;
-import 'package:edtech_mobile/ui/views/result/result_view.dart' as _i17;
-import 'package:edtech_mobile/ui/views/saved/saved_view.dart' as _i20;
-import 'package:edtech_mobile/ui/views/search/search_view.dart' as _i11;
-import 'package:edtech_mobile/ui/views/settings/settings_view.dart' as _i8;
+    as _i9;
+import 'package:edtech_mobile/ui/views/result/result_view.dart' as _i14;
+import 'package:edtech_mobile/ui/views/saved/saved_view.dart' as _i17;
+import 'package:edtech_mobile/ui/views/search/search_view.dart' as _i8;
 import 'package:edtech_mobile/ui/views/signup/signup_view.dart' as _i6;
 import 'package:edtech_mobile/ui/views/startup/startup_view.dart' as _i3;
 import 'package:edtech_mobile/ui/views/test_question/test_question_view.dart'
-    as _i16;
+    as _i13;
 import 'package:edtech_mobile/ui/views/your_course/your_course_view.dart'
-    as _i10;
-import 'package:flutter/material.dart' as _i26;
+    as _i7;
+import 'package:flutter/material.dart' as _i24;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i27;
+import 'package:stacked_services/stacked_services.dart' as _i25;
 
 class Routes {
   static const homeView = '/home-view';
 
-  static const startupView = '/startup-view';
+  static const startupView = '/';
 
   static const introView = '/intro-view';
 
   static const loginView = '/login-view';
 
   static const signupView = '/signup-view';
-
-  static const profileView = '/profile-view';
-
-  static const settingsView = '/settings-view';
-
-  static const coursesView = '/courses-view';
 
   static const yourCourseView = '/your-course-view';
 
@@ -92,15 +85,14 @@ class Routes {
 
   static const addCreditCardView = '/add-credit-card-view';
 
+  static const forgotPasswordView = '/forgot-password-view';
+
   static const all = <String>{
     homeView,
     startupView,
     introView,
     loginView,
     signupView,
-    profileView,
-    settingsView,
-    coursesView,
     yourCourseView,
     searchView,
     productDetailView,
@@ -117,6 +109,7 @@ class Routes {
     paymentMethodView,
     checkoutView,
     addCreditCardView,
+    forgotPasswordView,
   };
 }
 
@@ -143,231 +136,211 @@ class StackedRouter extends _i1.RouterBase {
       page: _i6.SignupView,
     ),
     _i1.RouteDef(
-      Routes.profileView,
-      page: _i7.ProfileView,
-    ),
-    _i1.RouteDef(
-      Routes.settingsView,
-      page: _i8.SettingsView,
-    ),
-    _i1.RouteDef(
-      Routes.coursesView,
-      page: _i9.CoursesView,
-    ),
-    _i1.RouteDef(
       Routes.yourCourseView,
-      page: _i10.YourCourseView,
+      page: _i7.YourCourseView,
     ),
     _i1.RouteDef(
       Routes.searchView,
-      page: _i11.SearchView,
+      page: _i8.SearchView,
     ),
     _i1.RouteDef(
       Routes.productDetailView,
-      page: _i12.ProductDetailView,
+      page: _i9.ProductDetailView,
     ),
     _i1.RouteDef(
       Routes.chooseLessonView,
-      page: _i13.ChooseLessonView,
+      page: _i10.ChooseLessonView,
     ),
     _i1.RouteDef(
       Routes.lessonView,
-      page: _i14.LessonView,
+      page: _i11.LessonView,
     ),
     _i1.RouteDef(
       Routes.courseTestView,
-      page: _i15.CourseTestView,
+      page: _i12.CourseTestView,
     ),
     _i1.RouteDef(
       Routes.testQuestionView,
-      page: _i16.TestQuestionView,
+      page: _i13.TestQuestionView,
     ),
     _i1.RouteDef(
       Routes.resultView,
-      page: _i17.ResultView,
+      page: _i14.ResultView,
     ),
     _i1.RouteDef(
       Routes.notSavedView,
-      page: _i18.NotSavedView,
+      page: _i15.NotSavedView,
     ),
     _i1.RouteDef(
       Routes.noPaymentView,
-      page: _i19.NoPaymentView,
+      page: _i16.NoPaymentView,
     ),
     _i1.RouteDef(
       Routes.savedView,
-      page: _i20.SavedView,
+      page: _i17.SavedView,
     ),
     _i1.RouteDef(
       Routes.paymentAddedView,
-      page: _i21.PaymentAddedView,
+      page: _i18.PaymentAddedView,
     ),
     _i1.RouteDef(
       Routes.courseNotfoundView,
-      page: _i22.CourseNotfoundView,
+      page: _i19.CourseNotfoundView,
     ),
     _i1.RouteDef(
       Routes.paymentMethodView,
-      page: _i23.PaymentMethodView,
+      page: _i20.PaymentMethodView,
     ),
     _i1.RouteDef(
       Routes.checkoutView,
-      page: _i24.CheckoutView,
+      page: _i21.CheckoutView,
     ),
     _i1.RouteDef(
       Routes.addCreditCardView,
-      page: _i25.AddCreditCardView,
+      page: _i22.AddCreditCardView,
+    ),
+    _i1.RouteDef(
+      Routes.forgotPasswordView,
+      page: _i23.ForgotPasswordView,
     ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
       );
     },
     _i3.StartupView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
       );
     },
     _i4.IntroView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.IntroView(),
         settings: data,
       );
     },
     _i5.LoginView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i5.LoginView(),
+      final args = data.getArgs<LoginViewArguments>(
+        orElse: () => const LoginViewArguments(),
+      );
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => _i5.LoginView(key: args.key),
         settings: data,
       );
     },
     _i6.SignupView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i6.SignupView(),
+      final args = data.getArgs<SignupViewArguments>(
+        orElse: () => const SignupViewArguments(),
+      );
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => _i6.SignupView(key: args.key),
         settings: data,
       );
     },
-    _i7.ProfileView: (data) {
-      final args = data.getArgs<ProfileViewArguments>(nullOk: false);
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) =>
-            _i7.ProfileView(key: args.key, onBackPressed: args.onBackPressed),
+    _i7.YourCourseView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i7.YourCourseView(),
         settings: data,
       );
     },
-    _i8.SettingsView: (data) {
-      final args = data.getArgs<SettingsViewArguments>(nullOk: false);
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) =>
-            _i8.SettingsView(key: args.key, onBackPressed: args.onBackPressed),
+    _i8.SearchView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i8.SearchView(),
         settings: data,
       );
     },
-    _i9.CoursesView: (data) {
-      final args = data.getArgs<CoursesViewArguments>(nullOk: false);
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) =>
-            _i9.CoursesView(key: args.key, onBackPressed: args.onBackPressed),
+    _i9.ProductDetailView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i9.ProductDetailView(),
         settings: data,
       );
     },
-    _i10.YourCourseView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i10.YourCourseView(),
+    _i10.ChooseLessonView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i10.ChooseLessonView(),
         settings: data,
       );
     },
-    _i11.SearchView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i11.SearchView(),
+    _i11.LessonView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i11.LessonView(),
         settings: data,
       );
     },
-    _i12.ProductDetailView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i12.ProductDetailView(),
+    _i12.CourseTestView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i12.CourseTestView(),
         settings: data,
       );
     },
-    _i13.ChooseLessonView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i13.ChooseLessonView(),
+    _i13.TestQuestionView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i13.TestQuestionView(),
         settings: data,
       );
     },
-    _i14.LessonView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i14.LessonView(),
+    _i14.ResultView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i14.ResultView(),
         settings: data,
       );
     },
-    _i15.CourseTestView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i15.CourseTestView(),
+    _i15.NotSavedView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i15.NotSavedView(),
         settings: data,
       );
     },
-    _i16.TestQuestionView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i16.TestQuestionView(),
+    _i16.NoPaymentView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i16.NoPaymentView(),
         settings: data,
       );
     },
-    _i17.ResultView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i17.ResultView(),
+    _i17.SavedView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i17.SavedView(),
         settings: data,
       );
     },
-    _i18.NotSavedView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i18.NotSavedView(),
+    _i18.PaymentAddedView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i18.PaymentAddedView(),
         settings: data,
       );
     },
-    _i19.NoPaymentView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i19.NoPaymentView(),
+    _i19.CourseNotfoundView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i19.CourseNotfoundView(),
         settings: data,
       );
     },
-    _i20.SavedView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i20.SavedView(),
+    _i20.PaymentMethodView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i20.PaymentMethodView(),
         settings: data,
       );
     },
-    _i21.PaymentAddedView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i21.PaymentAddedView(),
+    _i21.CheckoutView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i21.CheckoutView(),
         settings: data,
       );
     },
-    _i22.CourseNotfoundView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i22.CourseNotfoundView(),
+    _i22.AddCreditCardView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i22.AddCreditCardView(),
         settings: data,
       );
     },
-    _i23.PaymentMethodView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i23.PaymentMethodView(),
-        settings: data,
-      );
-    },
-    _i24.CheckoutView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i24.CheckoutView(),
-        settings: data,
-      );
-    },
-    _i25.AddCreditCardView: (data) {
-      return _i26.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i25.AddCreditCardView(),
+    _i23.ForgotPasswordView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => _i23.ForgotPasswordView(),
         settings: data,
       );
     },
@@ -379,88 +352,51 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-class ProfileViewArguments {
-  const ProfileViewArguments({
-    this.key,
-    required this.onBackPressed,
-  });
+class LoginViewArguments {
+  const LoginViewArguments({this.key});
 
-  final _i26.Key? key;
-
-  final dynamic Function() onBackPressed;
+  final _i24.Key? key;
 
   @override
   String toString() {
-    return '{"key": "$key", "onBackPressed": "$onBackPressed"}';
+    return '{"key": "$key"}';
   }
 
   @override
-  bool operator ==(covariant ProfileViewArguments other) {
+  bool operator ==(covariant LoginViewArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key && other.onBackPressed == onBackPressed;
+    return other.key == key;
   }
 
   @override
   int get hashCode {
-    return key.hashCode ^ onBackPressed.hashCode;
+    return key.hashCode;
   }
 }
 
-class SettingsViewArguments {
-  const SettingsViewArguments({
-    this.key,
-    required this.onBackPressed,
-  });
+class SignupViewArguments {
+  const SignupViewArguments({this.key});
 
-  final _i26.Key? key;
-
-  final dynamic Function() onBackPressed;
+  final _i24.Key? key;
 
   @override
   String toString() {
-    return '{"key": "$key", "onBackPressed": "$onBackPressed"}';
+    return '{"key": "$key"}';
   }
 
   @override
-  bool operator ==(covariant SettingsViewArguments other) {
+  bool operator ==(covariant SignupViewArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key && other.onBackPressed == onBackPressed;
+    return other.key == key;
   }
 
   @override
   int get hashCode {
-    return key.hashCode ^ onBackPressed.hashCode;
+    return key.hashCode;
   }
 }
 
-class CoursesViewArguments {
-  const CoursesViewArguments({
-    this.key,
-    required this.onBackPressed,
-  });
-
-  final _i26.Key? key;
-
-  final void Function() onBackPressed;
-
-  @override
-  String toString() {
-    return '{"key": "$key", "onBackPressed": "$onBackPressed"}';
-  }
-
-  @override
-  bool operator ==(covariant CoursesViewArguments other) {
-    if (identical(this, other)) return true;
-    return other.key == key && other.onBackPressed == onBackPressed;
-  }
-
-  @override
-  int get hashCode {
-    return key.hashCode ^ onBackPressed.hashCode;
-  }
-}
-
-extension NavigatorStateExtension on _i27.NavigationService {
+extension NavigatorStateExtension on _i25.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -503,80 +439,32 @@ extension NavigatorStateExtension on _i27.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToLoginView([
+  Future<dynamic> navigateToLoginView({
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.loginView,
+        arguments: LoginViewArguments(key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
         transition: transition);
   }
 
-  Future<dynamic> navigateToSignupView([
+  Future<dynamic> navigateToSignupView({
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.signupView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
-  }
-
-  Future<dynamic> navigateToProfileView({
-    _i26.Key? key,
-    required dynamic Function() onBackPressed,
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
-  }) async {
-    return navigateTo<dynamic>(Routes.profileView,
-        arguments: ProfileViewArguments(key: key, onBackPressed: onBackPressed),
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
-  }
-
-  Future<dynamic> navigateToSettingsView({
-    _i26.Key? key,
-    required dynamic Function() onBackPressed,
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
-  }) async {
-    return navigateTo<dynamic>(Routes.settingsView,
-        arguments:
-            SettingsViewArguments(key: key, onBackPressed: onBackPressed),
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
-  }
-
-  Future<dynamic> navigateToCoursesView({
-    _i26.Key? key,
-    required void Function() onBackPressed,
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
-  }) async {
-    return navigateTo<dynamic>(Routes.coursesView,
-        arguments: CoursesViewArguments(key: key, onBackPressed: onBackPressed),
+        arguments: SignupViewArguments(key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -807,6 +695,20 @@ extension NavigatorStateExtension on _i27.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToForgotPasswordView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.forgotPasswordView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -849,80 +751,32 @@ extension NavigatorStateExtension on _i27.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithLoginView([
+  Future<dynamic> replaceWithLoginView({
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.loginView,
+        arguments: LoginViewArguments(key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
         transition: transition);
   }
 
-  Future<dynamic> replaceWithSignupView([
+  Future<dynamic> replaceWithSignupView({
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.signupView,
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
-  }
-
-  Future<dynamic> replaceWithProfileView({
-    _i26.Key? key,
-    required dynamic Function() onBackPressed,
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
-  }) async {
-    return replaceWith<dynamic>(Routes.profileView,
-        arguments: ProfileViewArguments(key: key, onBackPressed: onBackPressed),
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
-  }
-
-  Future<dynamic> replaceWithSettingsView({
-    _i26.Key? key,
-    required dynamic Function() onBackPressed,
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
-  }) async {
-    return replaceWith<dynamic>(Routes.settingsView,
-        arguments:
-            SettingsViewArguments(key: key, onBackPressed: onBackPressed),
-        id: routerId,
-        preventDuplicates: preventDuplicates,
-        parameters: parameters,
-        transition: transition);
-  }
-
-  Future<dynamic> replaceWithCoursesView({
-    _i26.Key? key,
-    required void Function() onBackPressed,
-    int? routerId,
-    bool preventDuplicates = true,
-    Map<String, String>? parameters,
-    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
-        transition,
-  }) async {
-    return replaceWith<dynamic>(Routes.coursesView,
-        arguments: CoursesViewArguments(key: key, onBackPressed: onBackPressed),
+        arguments: SignupViewArguments(key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1147,6 +1001,20 @@ extension NavigatorStateExtension on _i27.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.addCreditCardView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithForgotPasswordView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.forgotPasswordView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

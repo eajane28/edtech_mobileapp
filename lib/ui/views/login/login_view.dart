@@ -1,14 +1,17 @@
+import 'package:edtech_mobile/ui/common/input_validation_mixin.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
 import 'package:edtech_mobile/ui/views/widgets/container_icons.dart';
 import 'package:edtech_mobile/ui/views/widgets/display.dart';
+import 'package:edtech_mobile/ui/views/widgets/password.dart';
 import 'package:edtech_mobile/ui/views/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import 'login_viewmodel.dart';
 
-class LoginView extends StackedView<LoginViewModel> {
-  const LoginView({Key? key}) : super(key: key);
+class LoginView extends StackedView<LoginViewModel> with InputValidationMixin {
+  LoginView({Key? key}) : super(key: key);
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget builder(
@@ -22,72 +25,98 @@ class LoginView extends StackedView<LoginViewModel> {
           height: MediaQuery.sizeOf(context).height,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                const Center(
-                    child: Column(
-                  children: [
-                    Display(
-                        image: 'assets/Cool Kids Sitting.png', title: 'Log in', subtitle: 'Login with social networks'),
-                  ],
-                )),
-                const SizedBox(height: 8.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    for (var icon in viewModel.iconList) BuildIcon(iconsData: icon),
-                  ],
-                ),
-                const MyTextField(hintText:'Email'),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: TextField(
-                    obscureText: viewModel.isObscure,
-                    decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                          onPressed: viewModel.changeIcon,
-                          icon: Icon(viewModel.isObscure == true ? Icons.remove_red_eye : Icons.visibility_off)),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      hintText: 'Password',
-                    ),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  const Center(
+                      child: Column(
+                    children: [
+                      Display(
+                          image: 'assets/Cool Kids Sitting.png',
+                          title: 'Log in',
+                          subtitle: 'Login with social networks'),
+                    ],
+                  )),
+                  const SizedBox(height: 8.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      for (var icon in viewModel.iconList)
+                        BuildIcon(iconsData: icon),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 16.0),
-                const Center(
-                  child: Text(
-                    'Forgot Password?',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xFF78746D),
-                    ),
+                  MyTextField(
+                    hintText: 'Email',
+                    controller: viewModel.emailController,
+                    validator: (value) =>
+                        isEmailValid(value ?? '') ? null : 'Invalid Email',
                   ),
-                ),
-                const SizedBox(height: 16.0),
-                MyButton(
-                  title: 'Log in',
-                  onTap: viewModel.login,
-                ),
-                // button('Log in', onTap: viewModel.login),
-                const SizedBox(height: 16.0),
-                Center(
-                  child: GestureDetector(
-                    onTap: viewModel.signUp,
-                    child: const Text(
-                      'Sign up',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFF78746D),
+                  Password(
+                    controller: viewModel.passwordController,
+                  ),
+                  const SizedBox(height: 16.0),
+                  GestureDetector(
+                    onTap: viewModel.forgotPassword,
+                    child: const Center(
+                      child: Text(
+                        'Forgot Password?',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF78746D),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 16.0),
+                  MyWidgetButton(
+                    onTap: !viewModel.isBusy
+                        ? () {
+                            if (_formKey.currentState!.validate()) {
+                              viewModel.login();
+                            }
+                          }
+                        : null,
+                    title: !viewModel.isBusy
+                        ? const Text(
+                            'Log in',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFFFFFFFF),
+                            ),
+                          )
+                        : const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
+                          ),
+                  ),
+                  const SizedBox(height: 16.0),
+                  Center(
+                    child: GestureDetector(
+                      onTap: viewModel.signUp,
+                      child: const SizedBox(
+                        width: double.infinity,
+                        height: 40,
+                        child: Text(
+                          'Sign up',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xFF78746D),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

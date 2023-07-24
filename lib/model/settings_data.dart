@@ -1,8 +1,8 @@
 class SettingsData {
   final String iconPath;
   final String title;
-  final String text;
+  final String user;
 
   SettingsData(
-      {required this.iconPath, required this.title, required this.text});
+      {required this.iconPath, required this.title, required this.user});
 }
