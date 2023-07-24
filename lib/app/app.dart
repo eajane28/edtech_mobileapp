@@ -30,6 +30,8 @@ import 'package:edtech_mobile/ui/views/add_credit_card/add_credit_card_view.dart
 
 @StackedApp(
   routes: [
+    MaterialRoute(page: SettingsView),
+    MaterialRoute(page: ProfileView),
     MaterialRoute(page: HomeView),
     MaterialRoute(page: StartupView),
     MaterialRoute(page: IntroView),

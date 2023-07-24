@@ -28,22 +28,20 @@ class HomeViewModel extends BaseViewModel {
 
   void onPageChange(int value) {
     // print ('onItemTapped $value');
-    selectedIndex = value;
+    selectedIndex = value;    indeces.add(selectedIndex);
     rebuildUi();
   }
 
-  void addIndeces(int value){
-  }
-
   void animateToPage() {
-    pageController.animateToPage(0,
-        duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
-    // indeces.removeAt(indeces.length - 1);
+    pageController.animateToPage(indeces.length <= 1 ? 0 : indeces[indeces.length - 1],
+        duration: const Duration(milliseconds: 400), curve: Curves.easeInOut);
+    indeces.removeRange(indeces.length - 1, indeces.length);
     rebuildUi();
   }
 
   void onItemTapped(int value) {
     selectedIndex = value + 1;
+    // indeces.add(selectedIndex);
     if (selectedIndex == 0 || selectedIndex == 1) {
       pageController.animateToPage(0, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     } else if (selectedIndex == 2) {

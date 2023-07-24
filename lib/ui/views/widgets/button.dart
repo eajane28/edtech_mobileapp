@@ -7,15 +7,15 @@ class MyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-    width: double.infinity,
-    decoration: BoxDecoration(
-      color: const Color(0xFFE3562A),
-      borderRadius: BorderRadius.circular(16),
-    ),
-    child: GestureDetector(
+    return GestureDetector(
       onTap: onTap,
-      child: Padding(
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+        color: const Color(0xFFE3562A),
+        borderRadius: BorderRadius.circular(16),
+      ),
+        child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: Text(
           title,
@@ -27,7 +27,7 @@ class MyButton extends StatelessWidget {
           ),
         ),
       ),
-    ),
-  );
+      ),
+    );
   }
 }
