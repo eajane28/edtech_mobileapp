@@ -8,7 +8,8 @@ import 'package:stacked/stacked.dart';
 import 'courses_viewmodel.dart';
 
 class CoursesView extends StackedView<CoursesViewModel> {
-  const CoursesView({Key? key, required this.onBackPressed, required this.user}) : super(key: key);
+  const CoursesView({Key? key, required this.onBackPressed, required this.user})
+      : super(key: key);
 
   final void Function() onBackPressed;
   final User user;
@@ -26,17 +27,19 @@ class CoursesView extends StackedView<CoursesViewModel> {
           children: [
             Row(
               children: [
-                 Column(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
                       'Hello,',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                     ),
                     Text(
                       user.name,
-                      style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
+                      style: const TextStyle(
+                          fontSize: 32, fontWeight: FontWeight.w700),
                     ),
                   ],
                 ),
@@ -74,7 +77,8 @@ class CoursesView extends StackedView<CoursesViewModel> {
                 ),
                 Row(
                   children: [
-                    for (var item in viewModel.coursesList) CustomChip(chip: item),
+                    for (var item in viewModel.coursesList)
+                      CustomChip(chip: item),
                   ],
                 ),
               ],

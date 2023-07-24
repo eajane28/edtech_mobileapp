@@ -741,6 +741,17 @@ class MockAuthService extends _i1.Mock implements _i7.AuthService {
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
+  @override
+  _i5.Future<void> forgetPassword({required String? email}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #forgetPassword,
+          [],
+          {#email: email},
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }
 
 /// A class which mocks [LocalStorage].
@@ -790,4 +801,22 @@ class MockLocalStorage extends _i1.Mock implements _i10.LocalStorage {
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
+  @override
+  _i5.Future<void> setLastUpdatedPassword() => (super.noSuchMethod(
+        Invocation.method(
+          #setLastUpdatedPassword,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+  @override
+  _i5.Future<String?> getLastUpdatedPassword() => (super.noSuchMethod(
+        Invocation.method(
+          #getLastUpdatedPassword,
+          [],
+        ),
+        returnValue: _i5.Future<String?>.value(),
+        returnValueForMissingStub: _i5.Future<String?>.value(),
+      ) as _i5.Future<String?>);
 }

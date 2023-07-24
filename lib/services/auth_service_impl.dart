@@ -16,17 +16,21 @@ class AuthServiceImpl implements AuthService {
 
   @override
   Future<Either<AppException, None>> signUpWithEmail(
-      {required String name, required String email, required String password}) async {
+      {required String name,
+      required String email,
+      required String password}) async {
     try {
-      UserCredential credential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      UserCredential credential = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
 
       if (credential.user == null) {
         return Left(AppException(AppExceptionConstants.userNotFound));
       } else {
         db
-            .collection(userCollection)
+            .collection(FirebaseConstants.userCollection)
             .doc(credential.user!.uid)
-            .set(User(id: credential.user!.uid, email: email, name: name).toJson());
+            .set(User(id: credential.user!.uid, email: email, name: name)
+                .toJson());
         return const Right(None());
       }
     } on FirebaseAuthException catch (e) {
@@ -35,19 +39,25 @@ class AuthServiceImpl implements AuthService {
       } else if (e.code == 'email-already-in-use') {
         return Left(AppException(e.message!));
       } else {
-        return Left(AppException("Something went wrong!\nMaybe it is on our side"));
+        return Left(
+            AppException("Something went wrong!\nMaybe it is on our side"));
       }
     }
   }
 
   @override
-  Future<Either<AppException, User>> login({required String email, required String password}) async {
+  Future<Either<AppException, User>> login(
+      {required String email, required String password}) async {
     try {
-      final userCredential = await _auth.signInWithEmailAndPassword(email: email, password: password);
+      final userCredential = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       if (userCredential.user == null) {
         return Left(AppException(AppExceptionConstants.userNotFound));
       } else {
-        final user = await db.collection(userCollection).doc(userCredential.user!.uid).get();
+        final user = await db
+            .collection(FirebaseConstants.userCollection)
+            .doc(userCredential.user!.uid)
+            .get();
         if (user.exists) {
           final userObj = User.fromJson(user.data()!);
           await _localStorage.saveUser(userObj);
@@ -62,13 +72,31 @@ class AuthServiceImpl implements AuthService {
       } else if (e.code == 'wrong-password') {
         return Left(AppException('Wrong password provided for that user.'));
       } else {
-        return Left(AppException("Something went wrong!\nMaybe it is on our side"));
+        return Left(
+            AppException("Something went wrong!\nMaybe it is on our side"));
       }
     }
   }
 
   @override
-  Future<void> logout() async{
-    return await _auth.signOut().then((value) async => await _localStorage.clearUser());
+  Future<void> logout() async {
+    return await _auth
+        .signOut()
+        .then((value) async => await _localStorage.clearUser());
+  }
+
+  @override
+  Future<Either<AppException, None>> forgetPassword({required String email}) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+      return const Right(None());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        return Left(AppException('No user found for that email.'));
+      } else {
+        return Left(
+            AppException("Something went wrong!\nMaybe it is on our side"));
+      }
+    }
   }
 }

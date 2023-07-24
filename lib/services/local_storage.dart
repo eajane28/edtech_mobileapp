@@ -8,4 +8,8 @@ abstract interface class LocalStorage {
   Future<Either<AppException, User?>> getCurrentUser();
 
   Future<void> clearUser();
+
+  Future<void> setLastUpdatedPassword();
+
+  Future<String?> getLastUpdatedPassword();
 }

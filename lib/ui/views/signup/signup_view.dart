@@ -9,7 +9,8 @@ import 'package:stacked/stacked.dart';
 
 import 'signup_viewmodel.dart';
 
-class SignupView extends StackedView<SignupViewModel> with InputValidationMixin {
+class SignupView extends StackedView<SignupViewModel>
+    with InputValidationMixin {
   SignupView({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
 
@@ -25,7 +26,8 @@ class SignupView extends StackedView<SignupViewModel> with InputValidationMixin 
           child: SizedBox(
             height: MediaQuery.sizeOf(context).height,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
               child: Column(
                 children: <Widget>[
                   MyAppBar(title: '', onTap: viewModel.navigationService.back),
@@ -42,12 +44,16 @@ class SignupView extends StackedView<SignupViewModel> with InputValidationMixin 
                           MyTextField(
                             hintText: 'Name',
                             controller: viewModel.nameController,
-                            validator: (value) => notEmpty(value ?? '') ? null : 'Field Can\'t Be Empty',
+                            validator: (value) => notEmpty(value ?? '')
+                                ? null
+                                : 'Field Can\'t Be Empty',
                           ),
                           MyTextField(
                             hintText: 'Email',
                             controller: viewModel.emailController,
-                            validator: (value) => isEmailValid(value ?? '') ? null : 'Invalid Email',
+                            validator: (value) => isEmailValid(value ?? '')
+                                ? null
+                                : 'Invalid Email',
                           ),
                           Password(
                             controller: viewModel.passwordController,

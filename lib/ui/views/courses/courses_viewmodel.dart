@@ -9,7 +9,6 @@ class CoursesViewModel extends BaseViewModel {
   final AuthService authService = locator<AuthService>();
   // final SnackbarService _snackbarService = locator<SnackbarService>();
 
-
   final coursesList = [
     CoursesData(name: '#CSS'),
     CoursesData(name: '#UX'),

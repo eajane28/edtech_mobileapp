@@ -27,7 +27,8 @@ class HomeViewModel extends BaseViewModel {
   void init() async {
     setBusy(true);
     final response = await _localStorage.getCurrentUser();
-    response.fold((l) => _snackbarService.showSnackbar(message: l.message), (r) => user =r);
+    response.fold((l) => _snackbarService.showSnackbar(message: l.message),
+        (r) => user = r);
     setBusy(false);
   }
 
@@ -39,18 +40,22 @@ class HomeViewModel extends BaseViewModel {
   void addIndeces(int value) {}
 
   void animateToPage() {
-    pageController.animateToPage(0, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    pageController.animateToPage(0,
+        duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     rebuildUi();
   }
 
   void onItemTapped(int value) {
     selectedIndex = value + 1;
     if (selectedIndex == 0 || selectedIndex == 1) {
-      pageController.animateToPage(0, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+      pageController.animateToPage(0,
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     } else if (selectedIndex == 2) {
-      pageController.animateToPage(1, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+      pageController.animateToPage(1,
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     } else {
-      pageController.animateToPage(2, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+      pageController.animateToPage(2,
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     }
   }
 }

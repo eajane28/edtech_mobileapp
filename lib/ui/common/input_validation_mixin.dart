@@ -1,4 +1,4 @@
-mixin InputValidationMixin{
+mixin InputValidationMixin {
   bool isPasswordValid(String password) => password.length > 5;
 
   bool isEmailValid(String email) {

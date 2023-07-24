@@ -12,5 +12,6 @@ class IntroData with _$IntroData {
     required String message,
   }) = _IntroData;
 
-  factory IntroData.fromJson(Map<String, dynamic> json) => _$IntroDataFromJson(json);
+  factory IntroData.fromJson(Map<String, dynamic> json) =>
+      _$IntroDataFromJson(json);
 }

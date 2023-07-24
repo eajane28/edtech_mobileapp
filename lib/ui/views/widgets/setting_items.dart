@@ -1,11 +1,13 @@
 import 'package:edtech_mobile/model/settings_data.dart';
+import 'package:edtech_mobile/model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SettingsInfo extends StatelessWidget {
-  const SettingsInfo({super.key, required this.info});
+  const SettingsInfo({super.key, required this.info, required this.user});
 
   final SettingsData info;
+  final User user;
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +53,16 @@ class SettingsInfo extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Text(
-                      info.text,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF78746D),
-                      ),
-                    ),
+                    info.user!.isEmpty
+                        ? const SizedBox.shrink()
+                        : Text(
+                            info.user ?? '',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xFF78746D),
+                            ),
+                          ),
                   ],
                 ),
               ),

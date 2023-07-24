@@ -35,6 +35,7 @@ class Display extends StatelessWidget {
         ),
         Text(
           subtitle,
+          textAlign: TextAlign.center,
           style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,

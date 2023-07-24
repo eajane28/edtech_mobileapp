@@ -48,9 +48,7 @@ class MyWidgetButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-          child: title
-        ),
+            padding: const EdgeInsets.symmetric(vertical: 16.0), child: title),
       ),
     );
   }

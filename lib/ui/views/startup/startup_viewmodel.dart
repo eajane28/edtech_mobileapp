@@ -10,10 +10,9 @@ class StartupViewModel extends BaseViewModel {
 
   Future runStartupLogic() async {
     await Future.delayed(const Duration(seconds: 3), () async {
-      final res = await _localStorage.getCurrentUser(); 
-      res.fold((l) =>
-    _navigationService.replaceWithIntroView() , (r) => _navigationService.replaceWithHomeView());
+      final res = await _localStorage.getCurrentUser();
+      res.fold((l) => _navigationService.replaceWithIntroView(),
+          (r) => _navigationService.replaceWithHomeView());
     });
-
   }
 }

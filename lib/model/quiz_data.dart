@@ -13,5 +13,6 @@ class QuizData with _$QuizData {
     required String subtitle,
   }) = _QuizData;
 
-  factory QuizData.fromJson(Map<String, dynamic> json) => _$QuizDataFromJson(json);
+  factory QuizData.fromJson(Map<String, dynamic> json) =>
+      _$QuizDataFromJson(json);
 }

@@ -10,7 +10,7 @@ class Password extends StatefulWidget {
   PasswordState createState() => PasswordState();
 }
 
-class PasswordState extends State<Password> with InputValidationMixin{
+class PasswordState extends State<Password> with InputValidationMixin {
   bool isObscure = true;
 
   @override
@@ -29,10 +29,11 @@ class PasswordState extends State<Password> with InputValidationMixin{
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          
           hintText: 'Password',
         ),
-        validator: (value)=>isPasswordValid(value??'') ? null : 'Password must be at least 6 characters',
+        validator: (value) => isPasswordValid(value ?? '')
+            ? null
+            : 'Password must be at least 6 characters',
       ),
     );
   }

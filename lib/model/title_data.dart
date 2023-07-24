@@ -10,5 +10,6 @@ class TitleData with _$TitleData {
     required String title,
   }) = _TitleData;
 
-  factory TitleData.fromJson(Map<String, dynamic> json) => _$TitleDataFromJson(json);
+  factory TitleData.fromJson(Map<String, dynamic> json) =>
+      _$TitleDataFromJson(json);
 }

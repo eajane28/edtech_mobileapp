@@ -44,25 +44,30 @@ class LoginView extends StackedView<LoginViewModel> with InputValidationMixin {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      for (var icon in viewModel.iconList) BuildIcon(iconsData: icon),
+                      for (var icon in viewModel.iconList)
+                        BuildIcon(iconsData: icon),
                     ],
                   ),
                   MyTextField(
                     hintText: 'Email',
                     controller: viewModel.emailController,
-                    validator: (value) => isEmailValid(value ?? '') ? null : 'Invalid Email',
+                    validator: (value) =>
+                        isEmailValid(value ?? '') ? null : 'Invalid Email',
                   ),
                   Password(
                     controller: viewModel.passwordController,
                   ),
                   const SizedBox(height: 16.0),
-                  const Center(
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFF78746D),
+                  GestureDetector(
+                    onTap: viewModel.forgotPassword,
+                    child: const Center(
+                      child: Text(
+                        'Forgot Password?',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF78746D),
+                        ),
                       ),
                     ),
                   ),

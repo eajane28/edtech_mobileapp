@@ -14,9 +14,9 @@ class LoginViewModel extends BaseViewModel {
   final SnackbarService _snackbarService = locator<SnackbarService>();
 
   final iconList = [
-    IconsData(iconsPage: 'assets/Social Networks Icons.png'),
-    IconsData(iconsPage: 'assets/Social Networks Icons (1).png'),
-    IconsData(iconsPage: 'assets/Social Networks Icons (2).png'),
+    const IconsData(iconsPage: 'assets/Social Networks Icons.png'),
+    const IconsData(iconsPage: 'assets/Social Networks Icons (1).png'),
+    const IconsData(iconsPage: 'assets/Social Networks Icons (2).png'),
   ];
 
   bool isObscure = true;
@@ -32,9 +32,14 @@ class LoginViewModel extends BaseViewModel {
 
   void login() async {
     setBusy(true);
-    var result = await authService.login(email: emailController.text, password: passwordController.text);
-    result.fold(
-        (l) => _snackbarService.showSnackbar(message: l.message), (r) => _navigationService.navigateToHomeView());
+    var result = await authService.login(
+        email: emailController.text, password: passwordController.text);
+    result.fold((l) => _snackbarService.showSnackbar(message: l.message),
+        (r) => _navigationService.navigateToHomeView());
     setBusy(false);
+  }
+
+  void forgotPassword() {
+    _navigationService.navigateToForgotPasswordView();
   }
 }

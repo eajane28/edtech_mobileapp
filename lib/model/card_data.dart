@@ -14,5 +14,6 @@ class CardData with _$CardData {
     required String description,
   }) = _CardData;
 
-  factory CardData.fromJson(Map<String, dynamic> json) => _$CardDataFromJson(json);
+  factory CardData.fromJson(Map<String, dynamic> json) =>
+      _$CardDataFromJson(json);
 }

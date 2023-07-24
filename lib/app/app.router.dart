@@ -14,6 +14,8 @@ import 'package:edtech_mobile/ui/views/course_notfound/course_notfound_view.dart
     as _i19;
 import 'package:edtech_mobile/ui/views/course_test/course_test_view.dart'
     as _i12;
+import 'package:edtech_mobile/ui/views/forgot_password/forgot_password_view.dart'
+    as _i23;
 import 'package:edtech_mobile/ui/views/home/home_view.dart' as _i2;
 import 'package:edtech_mobile/ui/views/intro/intro_view.dart' as _i4;
 import 'package:edtech_mobile/ui/views/lesson/lesson_view.dart' as _i11;
@@ -35,10 +37,10 @@ import 'package:edtech_mobile/ui/views/test_question/test_question_view.dart'
     as _i13;
 import 'package:edtech_mobile/ui/views/your_course/your_course_view.dart'
     as _i7;
-import 'package:flutter/material.dart' as _i23;
+import 'package:flutter/material.dart' as _i24;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i24;
+import 'package:stacked_services/stacked_services.dart' as _i25;
 
 class Routes {
   static const homeView = '/home-view';
@@ -83,6 +85,8 @@ class Routes {
 
   static const addCreditCardView = '/add-credit-card-view';
 
+  static const forgotPasswordView = '/forgot-password-view';
+
   static const all = <String>{
     homeView,
     startupView,
@@ -105,6 +109,7 @@ class Routes {
     paymentMethodView,
     checkoutView,
     addCreditCardView,
+    forgotPasswordView,
   };
 }
 
@@ -194,23 +199,27 @@ class StackedRouter extends _i1.RouterBase {
       Routes.addCreditCardView,
       page: _i22.AddCreditCardView,
     ),
+    _i1.RouteDef(
+      Routes.forgotPasswordView,
+      page: _i23.ForgotPasswordView,
+    ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
     _i2.HomeView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i2.HomeView(),
         settings: data,
       );
     },
     _i3.StartupView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i3.StartupView(),
         settings: data,
       );
     },
     _i4.IntroView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i4.IntroView(),
         settings: data,
       );
@@ -219,7 +228,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<LoginViewArguments>(
         orElse: () => const LoginViewArguments(),
       );
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => _i5.LoginView(key: args.key),
         settings: data,
       );
@@ -228,104 +237,110 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<SignupViewArguments>(
         orElse: () => const SignupViewArguments(),
       );
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => _i6.SignupView(key: args.key),
         settings: data,
       );
     },
     _i7.YourCourseView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i7.YourCourseView(),
         settings: data,
       );
     },
     _i8.SearchView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i8.SearchView(),
         settings: data,
       );
     },
     _i9.ProductDetailView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i9.ProductDetailView(),
         settings: data,
       );
     },
     _i10.ChooseLessonView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i10.ChooseLessonView(),
         settings: data,
       );
     },
     _i11.LessonView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i11.LessonView(),
         settings: data,
       );
     },
     _i12.CourseTestView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i12.CourseTestView(),
         settings: data,
       );
     },
     _i13.TestQuestionView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i13.TestQuestionView(),
         settings: data,
       );
     },
     _i14.ResultView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i14.ResultView(),
         settings: data,
       );
     },
     _i15.NotSavedView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i15.NotSavedView(),
         settings: data,
       );
     },
     _i16.NoPaymentView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i16.NoPaymentView(),
         settings: data,
       );
     },
     _i17.SavedView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i17.SavedView(),
         settings: data,
       );
     },
     _i18.PaymentAddedView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i18.PaymentAddedView(),
         settings: data,
       );
     },
     _i19.CourseNotfoundView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i19.CourseNotfoundView(),
         settings: data,
       );
     },
     _i20.PaymentMethodView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i20.PaymentMethodView(),
         settings: data,
       );
     },
     _i21.CheckoutView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i21.CheckoutView(),
         settings: data,
       );
     },
     _i22.AddCreditCardView: (data) {
-      return _i23.MaterialPageRoute<dynamic>(
+      return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i22.AddCreditCardView(),
+        settings: data,
+      );
+    },
+    _i23.ForgotPasswordView: (data) {
+      return _i24.MaterialPageRoute<dynamic>(
+        builder: (context) => _i23.ForgotPasswordView(),
         settings: data,
       );
     },
@@ -340,7 +355,7 @@ class StackedRouter extends _i1.RouterBase {
 class LoginViewArguments {
   const LoginViewArguments({this.key});
 
-  final _i23.Key? key;
+  final _i24.Key? key;
 
   @override
   String toString() {
@@ -362,7 +377,7 @@ class LoginViewArguments {
 class SignupViewArguments {
   const SignupViewArguments({this.key});
 
-  final _i23.Key? key;
+  final _i24.Key? key;
 
   @override
   String toString() {
@@ -381,7 +396,7 @@ class SignupViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i24.NavigationService {
+extension NavigatorStateExtension on _i25.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -425,7 +440,7 @@ extension NavigatorStateExtension on _i24.NavigationService {
   }
 
   Future<dynamic> navigateToLoginView({
-    _i23.Key? key,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -441,7 +456,7 @@ extension NavigatorStateExtension on _i24.NavigationService {
   }
 
   Future<dynamic> navigateToSignupView({
-    _i23.Key? key,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -680,6 +695,20 @@ extension NavigatorStateExtension on _i24.NavigationService {
         transition: transition);
   }
 
+  Future<dynamic> navigateToForgotPasswordView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.forgotPasswordView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> replaceWithHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -723,7 +752,7 @@ extension NavigatorStateExtension on _i24.NavigationService {
   }
 
   Future<dynamic> replaceWithLoginView({
-    _i23.Key? key,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -739,7 +768,7 @@ extension NavigatorStateExtension on _i24.NavigationService {
   }
 
   Future<dynamic> replaceWithSignupView({
-    _i23.Key? key,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -972,6 +1001,20 @@ extension NavigatorStateExtension on _i24.NavigationService {
         transition,
   ]) async {
     return replaceWith<dynamic>(Routes.addCreditCardView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithForgotPasswordView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.forgotPasswordView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

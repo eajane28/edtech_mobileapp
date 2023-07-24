@@ -1,4 +1,3 @@
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'chosen_course_data.freezed.dart';

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MyTextField extends StatefulWidget {
-  const MyTextField({super.key, required this.hintText, required this.controller, this.validator});
+  const MyTextField(
+      {super.key,
+      required this.hintText,
+      required this.controller,
+      this.validator});
   final TextEditingController controller;
   final String hintText;
   final String? Function(String?)? validator;

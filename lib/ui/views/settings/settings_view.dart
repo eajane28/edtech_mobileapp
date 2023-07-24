@@ -12,11 +12,11 @@ class SettingsView extends StackedView<SettingsViewModel> {
   const SettingsView({
     Key? key,
     required this.onBackPressed,
-    required this.user, 
+    required this.user,
   }) : super(key: key);
 
   final Function() onBackPressed;
-    final User user;
+  final User user;
 
   @override
   Widget builder(
@@ -84,7 +84,7 @@ class SettingsView extends StackedView<SettingsViewModel> {
               ),
             ),
             for (var info in viewModel.settingsInfoList)
-              SettingsInfo(info: info),
+              SettingsInfo(info: info, user: user),
           ],
         ),
       ),
@@ -95,5 +95,11 @@ class SettingsView extends StackedView<SettingsViewModel> {
   SettingsViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      SettingsViewModel(user);
+      SettingsViewModel();
+
+  @override
+  void onViewModelReady(SettingsViewModel viewModel) {
+    viewModel.init();
+    super.onViewModelReady(viewModel);
+  }
 }

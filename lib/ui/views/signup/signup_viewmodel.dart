@@ -20,9 +20,11 @@ class SignupViewModel extends BaseViewModel {
   void signUp() async {
     setBusy(true);
     var response = await authService.signUpWithEmail(
-        name: nameController.text, email: emailController.text, password: passwordController.text);
-    response.fold(
-        (l) => _snackbarService.showSnackbar(message: l.message), (r) => navigationService.navigateToLoginView());
+        name: nameController.text,
+        email: emailController.text,
+        password: passwordController.text);
+    response.fold((l) => _snackbarService.showSnackbar(message: l.message),
+        (r) => navigationService.navigateToLoginView());
     setBusy(false);
   }
 }

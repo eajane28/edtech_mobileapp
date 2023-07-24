@@ -1,4 +1,3 @@
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'choices_data.freezed.dart';
@@ -14,4 +13,4 @@ class ChoicesData with _$ChoicesData {
 
   factory ChoicesData.fromJson(Map<String, dynamic> json) =>
       _$ChoicesDataFromJson(json);
-  }
+}

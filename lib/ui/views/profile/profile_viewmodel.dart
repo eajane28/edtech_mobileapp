@@ -17,6 +17,8 @@ class ProfileViewModel extends BaseViewModel {
   }
 
   void logout() async {
-    await _authService.logout().then((value) => _navigationService.replaceWith(Routes.loginView));
+    await _authService
+        .logout()
+        .then((value) => _navigationService.replaceWith(Routes.loginView));
   }
 }

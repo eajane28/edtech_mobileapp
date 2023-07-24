@@ -53,10 +53,10 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAm5p2_YAVPdlFeIS6i49kBxQa2qIczZUw',
-    appId: '1:978266348776:android:d172aeed9db8dde502fd5d',
-    messagingSenderId: '978266348776',
-    projectId: 'flutter-edtech',
-    storageBucket: 'flutter-edtech.appspot.com',
+    apiKey: 'AIzaSyBkH9shYG__EK7-FUwzFatKQX8SvG10IE0',
+    appId: '1:273139588544:android:73d0185d80df030e467c25',
+    messagingSenderId: '273139588544',
+    projectId: 'edtech-mobileapp',
+    storageBucket: 'edtech-mobileapp.appspot.com',
   );
 }

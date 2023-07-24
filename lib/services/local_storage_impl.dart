@@ -11,23 +11,37 @@ class LocalStorageImpl implements LocalStorage {
   @override
   Future<void> saveUser(User user) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString(userKey, jsonEncode(user.toJson()));
+    prefs.setString(AppConstants.userKey, jsonEncode(user.toJson()));
   }
 
   @override
   Future<void> clearUser() async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.remove(userKey);
+    prefs.remove(AppConstants.userKey);
   }
 
   @override
   Future<Either<AppException, User?>> getCurrentUser() async {
     final shared = await SharedPreferences.getInstance();
-    final user = shared.getString(userKey);
+    final user = shared.getString(AppConstants.userKey);
     if (user != null) {
       return Right(User.fromJson(jsonDecode(user)));
     } else {
-      return Left(AppException("Something went wrong!\nMaybe it is on our side"));
+      return Left(
+          AppException("Something went wrong!\nMaybe it is on our side"));
     }
+  }
+
+  @override
+  Future<void> setLastUpdatedPassword() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(
+        AppConstants.lastUpdatedPassword, DateTime.now().toString());
+  }
+
+  @override
+  getLastUpdatedPassword() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(AppConstants.lastUpdatedPassword);
   }
 }

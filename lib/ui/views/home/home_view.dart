@@ -38,7 +38,8 @@ class HomeView extends StackedView<HomeViewModel> {
                     onBackPressed: viewModel.animateToPage,
                   ),
                   SettingsView(
-                    onBackPressed: viewModel.animateToPage, user: viewModel.user!,
+                    onBackPressed: viewModel.animateToPage,
+                    user: viewModel.user!,
                   ),
                 ],
               ),
@@ -55,22 +56,25 @@ class HomeView extends StackedView<HomeViewModel> {
             BottomNavigationBarItem(
               label: "Courses",
               icon: SvgPicture.asset(SvgIcons.courses,
-                  colorFilter:
-                      ColorFilter.mode(viewModel.selectedIndex == 0 ? Colors.red : Colors.grey, BlendMode.srcIn),
+                  colorFilter: ColorFilter.mode(
+                      viewModel.selectedIndex == 0 ? Colors.red : Colors.grey,
+                      BlendMode.srcIn),
                   width: 20),
             ),
             BottomNavigationBarItem(
               label: "Profile",
               icon: SvgPicture.asset(SvgIcons.profile,
-                  colorFilter:
-                      ColorFilter.mode(viewModel.selectedIndex == 1 ? Colors.red : Colors.grey, BlendMode.srcIn),
+                  colorFilter: ColorFilter.mode(
+                      viewModel.selectedIndex == 1 ? Colors.red : Colors.grey,
+                      BlendMode.srcIn),
                   width: 20),
             ),
             BottomNavigationBarItem(
               label: "Settings",
               icon: SvgPicture.asset(SvgIcons.wheel,
-                  colorFilter:
-                      ColorFilter.mode(viewModel.selectedIndex == 2 ? Colors.red : Colors.grey, BlendMode.srcIn),
+                  colorFilter: ColorFilter.mode(
+                      viewModel.selectedIndex == 2 ? Colors.red : Colors.grey,
+                      BlendMode.srcIn),
                   width: 20),
             ),
           ],

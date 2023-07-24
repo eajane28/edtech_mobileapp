@@ -1,17 +1,8 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class SettingsData {
+  final String iconPath;
+  final String title;
+  final String user;
 
-part 'settings_data.freezed.dart';
-
-part 'settings_data.g.dart';
-
-@freezed
-class SettingsData with _$SettingsData {
-  const factory SettingsData({
-    required String iconPath,
-    required String title,
-    required String text,
-  }) = _SettingsData;
-
-  factory SettingsData.fromJson(Map<String, dynamic> json) =>
-      _$SettingsDataFromJson(json);
+  SettingsData(
+      {required this.iconPath, required this.title, required this.user});
 }
