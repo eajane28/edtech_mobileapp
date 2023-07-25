@@ -35,18 +35,16 @@ class UpdatePasswordDialogUi extends StackedView<UpdatePasswordDialogModel> with
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          request.title!,
-                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
-                        ),
-                        verticalSpaceTiny
-                      ],
-                    ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        request.title!,
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
+                      ),
+                      verticalSpaceTiny
+                    ],
                   ),
                   Container(
                     width: _graphicSize,
@@ -65,15 +63,19 @@ class UpdatePasswordDialogUi extends StackedView<UpdatePasswordDialogModel> with
                   )
                 ],
               ),
+              verticalSpaceSmall,
+              MyTextField(
+                hintText: "Current Password",
+                controller: viewModel.currentPasswordField,
+                validator: (value) => notEmpty(value!) ? null : "Walay sud. Di sabot ui!!",
+              ),
               verticalSpaceMedium,
               MyTextField(
                 hintText: "Enter New Password",
                 controller: viewModel.updatePasswordField,
                 validator: (value) {
                   if (notEmpty(value!)) {
-                    return passwordMatch(value, viewModel.matchPasswordField.text)
-                        ? null
-                        : "Di mao. Taka lamnang ka!!";
+                    return passwordMatch(value, viewModel.matchPasswordField.text) ? null : "Di mao. Taka lamnang ka!!";
                   } else {
                     return "Walay sud. Di sabot ui!!";
                   }
@@ -96,8 +98,12 @@ class UpdatePasswordDialogUi extends StackedView<UpdatePasswordDialogModel> with
               verticalSpaceMedium,
               GestureDetector(
                 onTap: () {
-                  request.data();
-                  completer(DialogResponse(confirmed: true, data: "complete"));
+                  if (_formKey.currentState!.validate()) {
+                    viewModel.updatePassword();
+                  } else {
+                    viewModel.snackbarService
+                        .showSnackbar(message: "Make sure your paswwords matched nor neither of the page is empty.");
+                  }
                 },
                 child: Container(
                   height: 50,
@@ -107,14 +113,20 @@ class UpdatePasswordDialogUi extends StackedView<UpdatePasswordDialogModel> with
                     color: Colors.black,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Text(
-                    'Got it',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
+                  child: viewModel.isBusy
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        )
+                      : const Text(
+                          'Change',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
                 ),
               )
             ],
@@ -128,4 +140,7 @@ class UpdatePasswordDialogUi extends StackedView<UpdatePasswordDialogModel> with
   UpdatePasswordDialogModel viewModelBuilder(BuildContext context) {
     return UpdatePasswordDialogModel();
   }
+
+  @override
+  bool get disposeViewModel => false;
 }

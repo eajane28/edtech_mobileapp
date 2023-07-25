@@ -57,9 +57,6 @@ class SettingsViewModel extends BaseViewModel {
       title: "Change Password",
       variant: DialogType.updatePasswordDialogUi,
       description: "",
-      data: (){
-          print("test");
-      }
     );
   }
 }
