@@ -124,4 +124,17 @@ class AuthServiceImpl implements AuthService {
       return Left(AppException(e.toString()));
     }
   }
+
+  @override
+  Future<Either<AppException, Timestamp?>> getLastUpdatedPassword(String uid) async {
+    try {
+      return await db
+          .collection(FirebaseConstants.userCollection)
+          .doc(uid)
+          .get()
+          .then((value) => Right(value.data()!['lastUpdatedPassword']));
+    } on FirebaseException catch (e) {
+      return Left(AppException(e.message!));
+    }
+  }
 }

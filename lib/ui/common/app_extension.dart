@@ -7,3 +7,7 @@ extension TimestampExtension on int {
 extension DateTimeTimestamp on DateTime{
   Timestamp toTimestamp()=> Timestamp.fromDate(this);
 }
+
+extension StringDateTime on String{
+  DateTime toDateTime() => DateTime.parse(this);
+}
