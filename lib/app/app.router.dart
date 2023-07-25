@@ -5,6 +5,7 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:edtech_mobile/model/card_data.dart' as _i25;
 import 'package:edtech_mobile/ui/views/add_credit_card/add_credit_card_view.dart'
     as _i22;
 import 'package:edtech_mobile/ui/views/checkout/checkout_view.dart' as _i21;
@@ -40,7 +41,7 @@ import 'package:edtech_mobile/ui/views/your_course/your_course_view.dart'
 import 'package:flutter/material.dart' as _i24;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i25;
+import 'package:stacked_services/stacked_services.dart' as _i26;
 
 class Routes {
   static const homeView = '/home-view';
@@ -255,8 +256,9 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i9.ProductDetailView: (data) {
+      final args = data.getArgs<ProductDetailViewArguments>(nullOk: false);
       return _i24.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i9.ProductDetailView(),
+        builder: (context) => _i9.ProductDetailView(args.course, key: args.key),
         settings: data,
       );
     },
@@ -339,8 +341,11 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i23.ForgotPasswordView: (data) {
+      final args = data.getArgs<ForgotPasswordViewArguments>(
+        orElse: () => const ForgotPasswordViewArguments(),
+      );
       return _i24.MaterialPageRoute<dynamic>(
-        builder: (context) => _i23.ForgotPasswordView(),
+        builder: (context) => _i23.ForgotPasswordView(key: args.key),
         settings: data,
       );
     },
@@ -396,7 +401,56 @@ class SignupViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i25.NavigationService {
+class ProductDetailViewArguments {
+  const ProductDetailViewArguments({
+    required this.course,
+    this.key,
+  });
+
+  final _i25.CardData course;
+
+  final _i24.Key? key;
+
+  @override
+  String toString() {
+    return '{"course": "$course", "key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant ProductDetailViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.course == course && other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return course.hashCode ^ key.hashCode;
+  }
+}
+
+class ForgotPasswordViewArguments {
+  const ForgotPasswordViewArguments({this.key});
+
+  final _i24.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant ForgotPasswordViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
+  }
+}
+
+extension NavigatorStateExtension on _i26.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -499,14 +553,17 @@ extension NavigatorStateExtension on _i25.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToProductDetailView([
+  Future<dynamic> navigateToProductDetailView({
+    required _i25.CardData course,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.productDetailView,
+        arguments: ProductDetailViewArguments(course: course, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -695,14 +752,16 @@ extension NavigatorStateExtension on _i25.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToForgotPasswordView([
+  Future<dynamic> navigateToForgotPasswordView({
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.forgotPasswordView,
+        arguments: ForgotPasswordViewArguments(key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -811,14 +870,17 @@ extension NavigatorStateExtension on _i25.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithProductDetailView([
+  Future<dynamic> replaceWithProductDetailView({
+    required _i25.CardData course,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.productDetailView,
+        arguments: ProductDetailViewArguments(course: course, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1007,14 +1069,16 @@ extension NavigatorStateExtension on _i25.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithForgotPasswordView([
+  Future<dynamic> replaceWithForgotPasswordView({
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.forgotPasswordView,
+        arguments: ForgotPasswordViewArguments(key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

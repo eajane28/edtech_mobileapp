@@ -1,3 +1,4 @@
+import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/ui/views/widgets/back_button.dart';
 import 'package:edtech_mobile/ui/views/widgets/card_courses.dart';
 import 'package:edtech_mobile/ui/views/widgets/search__widget.dart';
@@ -45,7 +46,7 @@ class SearchView extends StackedView<SearchViewModel> {
                 ),
               ),
               for (var carditem in viewModel.searchList)
-                CourseCard(card: carditem),
+                CourseCard(card: carditem, onTap: (CardData course) {}),
             ],
           ),
         ),

@@ -7,11 +7,14 @@ part 'card_data.g.dart';
 @freezed
 class CardData with _$CardData {
   const factory CardData({
-    required String cardImage,
-    required String price,
-    required String duration,
     required String title,
-    required String description,
+    required String subtitle,
+    required String about,
+    required String duration,
+    required String category,
+    required String image,
+    required double price,
+    required String id,
   }) = _CardData;
 
   factory CardData.fromJson(Map<String, dynamic> json) =>

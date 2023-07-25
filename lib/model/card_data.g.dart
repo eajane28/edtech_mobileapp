@@ -7,18 +7,24 @@ part of 'card_data.dart';
 // **************************************************************************
 
 _$_CardData _$$_CardDataFromJson(Map<String, dynamic> json) => _$_CardData(
-      cardImage: json['cardImage'] as String,
-      price: json['price'] as String,
-      duration: json['duration'] as String,
       title: json['title'] as String,
-      description: json['description'] as String,
+      subtitle: json['subtitle'] as String,
+      about: json['about'] as String,
+      duration: json['duration'] as String,
+      category: json['category'] as String,
+      image: json['image'] as String,
+      price: (json['price'] as num).toDouble(),
+      id: json['id'] as String,
     );
 
 Map<String, dynamic> _$$_CardDataToJson(_$_CardData instance) =>
     <String, dynamic>{
-      'cardImage': instance.cardImage,
-      'price': instance.price,
-      'duration': instance.duration,
       'title': instance.title,
-      'description': instance.description,
+      'subtitle': instance.subtitle,
+      'about': instance.about,
+      'duration': instance.duration,
+      'category': instance.category,
+      'image': instance.image,
+      'price': instance.price,
+      'id': instance.id,
     };

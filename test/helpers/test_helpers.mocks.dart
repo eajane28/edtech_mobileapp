@@ -742,16 +742,35 @@ class MockAuthService extends _i1.Mock implements _i7.AuthService {
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
   @override
-  _i5.Future<void> forgetPassword({required String? email}) =>
+  _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>> forgetPassword(
+          {required String? email}) =>
       (super.noSuchMethod(
         Invocation.method(
           #forgetPassword,
           [],
           {#email: email},
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue:
+            _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>>.value(
+                _FakeEither_0<_i8.AppException, _i2.None<dynamic>>(
+          this,
+          Invocation.method(
+            #forgetPassword,
+            [],
+            {#email: email},
+          ),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>>.value(
+                _FakeEither_0<_i8.AppException, _i2.None<dynamic>>(
+          this,
+          Invocation.method(
+            #forgetPassword,
+            [],
+            {#email: email},
+          ),
+        )),
+      ) as _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>>);
 }
 
 /// A class which mocks [LocalStorage].
