@@ -1,3 +1,4 @@
+import 'package:edtech_mobile/app/app.dialogs.dart';
 import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:edtech_mobile/app/app.router.dart';
 import 'package:edtech_mobile/model/settings_data.dart';
@@ -10,7 +11,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 class SettingsViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
-
+  final _dialogService = locator<DialogService>();
   bool light = true;
   final _localStorage = locator<LocalStorage>();
   final _snackbarService = locator<SnackbarService>();
@@ -25,12 +26,12 @@ class SettingsViewModel extends BaseViewModel {
         (r) => user = r);
 
     settingsInfoList = [
-      SettingsData(iconPath: SvgIcons.profile, title: 'Name', user: user!.name),
-      SettingsData(iconPath: SvgIcons.email, title: 'Email', user: user!.email),
+      SettingsData(iconPath: SvgIcons.profile, title: 'Name', user: user!.name, onPressed: null),
+      SettingsData(iconPath: SvgIcons.email, title: 'Email', user: user!.email, onPressed: null),
       SettingsData(
           iconPath: SvgIcons.password,
           title: 'Password',
-          user: lastUpdatedPassword == null ? '' : 'changed 2 weeks ago')
+          user: lastUpdatedPassword == null ? '' : 'changed 2 weeks ago', onPressed: showUpdatePasswordPopup)
     ];
 
     setBusy(false);
@@ -49,5 +50,16 @@ class SettingsViewModel extends BaseViewModel {
 
   void back() {
     _navigationService.navigateToHomeView();
+  }
+
+  void showUpdatePasswordPopup()async{
+    await _dialogService.showCustomDialog(
+      title: "Change Password",
+      variant: DialogType.updatePasswordDialogUi,
+      description: "",
+      data: (){
+          print("test");
+      }
+    );
   }
 }

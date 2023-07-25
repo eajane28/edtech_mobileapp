@@ -86,7 +86,7 @@ class AuthServiceImpl implements AuthService {
   }
 
   @override
-  Future<Either<AppException, None>> forgetPassword({required String email}) async {
+  Future<Either<AppException, None>> forgetPassword({required String email}) async{
     try {
       await _auth.sendPasswordResetEmail(email: email);
       return const Right(None());
@@ -97,6 +97,16 @@ class AuthServiceImpl implements AuthService {
         return Left(
             AppException("Something went wrong!\nMaybe it is on our side"));
       }
+    }
+  }
+
+  @override
+  Future<Either<AppException, None>> updatePassword(String newPassword) async{
+    try{
+      _auth.currentUser!.updatePassword(newPassword);
+      return const Right(None());
+    }on FirebaseAuthException catch(e){
+      return Left(AppException(e.message!));
     }
   }
 }

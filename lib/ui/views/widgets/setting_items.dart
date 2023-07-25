@@ -53,10 +53,10 @@ class SettingsInfo extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    info.user!.isEmpty
+                    info.user.isEmpty
                         ? const SizedBox.shrink()
                         : Text(
-                            info.user ?? '',
+                            info.user,
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
@@ -71,7 +71,7 @@ class SettingsInfo extends StatelessWidget {
           Expanded(
               flex: 1,
               child: IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.chevron_right)))
+                  onPressed: info.onPressed, icon: const Icon(Icons.chevron_right)))
         ],
       ),
     );

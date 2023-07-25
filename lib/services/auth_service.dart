@@ -12,4 +12,6 @@ abstract interface class AuthService {
   Future<void> logout();
 
   Future<Either<AppException, None>> forgetPassword({required String email});
+
+  Future<Either<AppException, None>> updatePassword(String password);
 }

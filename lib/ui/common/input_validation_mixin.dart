@@ -7,4 +7,6 @@ mixin InputValidationMixin {
   }
 
   bool notEmpty(String value) => value.isNotEmpty;
+
+  bool passwordMatch(String password, String match) => identical(password, match);
 }
