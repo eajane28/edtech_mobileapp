@@ -103,8 +103,14 @@ class AuthServiceImpl implements AuthService {
   @override
   Future<Either<AppException, None>> updatePassword(String currentPassword, String newPassword) async {
     try {
-      await login(email: _auth.currentUser!.email!, password: currentPassword).then(
-          (value) async => await _auth.currentUser!.updatePassword(newPassword).then((value) async => await logout()));
+      await login(email: _auth.currentUser!.email!, password: currentPassword)
+          .then((value) async {
+            await _auth.currentUser!.updatePassword(newPassword).then((value) async => await db
+          .collection(FirebaseConstants.userCollection)
+          .doc(_auth.currentUser!.uid)
+          .set({"lastUpdatedPassword": Timestamp.fromDate(DateTime.now())}, SetOptions(merge: true)));
+          })
+          .then((value) async => await logout());
       return const Right(None());
     } on FirebaseAuthException catch (e) {
       return Left(AppException(e.message!));
