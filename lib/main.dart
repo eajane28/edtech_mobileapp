@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edtech_mobile/app/app.dialogs.dart';
 import 'package:edtech_mobile/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,7 +11,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  CachedNetworkImage.logLevel = CacheManagerLogLevel.debug;
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

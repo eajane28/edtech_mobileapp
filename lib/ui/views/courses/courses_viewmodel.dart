@@ -24,7 +24,7 @@ class CoursesViewModel extends BaseViewModel {
         cardList = value;
       }
     });
-    print(cardList);
+    // print(cardList);
     // cardData = cardList[];
     setBusy(false);
   }
