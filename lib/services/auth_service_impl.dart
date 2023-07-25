@@ -6,6 +6,7 @@ import 'package:edtech_mobile/exceptions/app_exception_constants.dart';
 import 'package:edtech_mobile/model/user.dart';
 import 'package:edtech_mobile/services/auth_service.dart';
 import 'package:edtech_mobile/services/local_storage.dart';
+import 'package:edtech_mobile/ui/common/app_extension.dart';
 import 'package:edtech_mobile/ui/common/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 
@@ -103,17 +104,24 @@ class AuthServiceImpl implements AuthService {
   @override
   Future<Either<AppException, None>> updatePassword(String currentPassword, String newPassword) async {
     try {
-      await login(email: _auth.currentUser!.email!, password: currentPassword)
-          .then((value) async {
-            await _auth.currentUser!.updatePassword(newPassword).then((value) async => await db
-          .collection(FirebaseConstants.userCollection)
-          .doc(_auth.currentUser!.uid)
-          .set({"lastUpdatedPassword": Timestamp.fromDate(DateTime.now())}, SetOptions(merge: true)));
-          })
-          .then((value) async => await logout());
-      return const Right(None());
-    } on FirebaseAuthException catch (e) {
-      return Left(AppException(e.message!));
+      var response = await login(email: _auth.currentUser!.email!, password: currentPassword);
+      return response.fold((l) => Left(AppException(l.message)), (r) async {
+        try {
+          // await Future.wait([
+          await _auth.currentUser!.updatePassword(newPassword);
+          await db
+              .collection(FirebaseConstants.userCollection)
+              .doc(r.id)
+              .set({"lastUpdatedPassword": DateTime.now().toTimestamp()}, SetOptions(merge: true));
+          await logout();
+          // ]);
+          return const Right(None());
+        } catch (e) {
+          return Left(AppException(e.toString()));
+        }
+      });
+    } catch (e) {
+      return Left(AppException(e.toString()));
     }
   }
 }

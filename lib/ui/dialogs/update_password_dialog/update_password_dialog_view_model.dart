@@ -19,11 +19,11 @@ class UpdatePasswordDialogModel extends BaseViewModel {
   void updatePassword() async {
     setBusy(true);
     var response = await _authService.updatePassword(currentPasswordField.text, matchPasswordField.text);
-    response.fold((l) => snackbarService.showSnackbar(message: l.message),
-        (r) {
-          _navigatorService.replaceWithLoginView();
-          snackbarService.showSnackbar(message: "Password Successfully Change!/Try to login", duration: const Duration(seconds: 2));
-        });
+    response.fold((l) => snackbarService.showSnackbar(message: l.message), (r) {
+      _navigatorService.replaceWithLoginView();
+      snackbarService.showSnackbar(
+          message: "Password Successfully Change!/nTry to login", duration: const Duration(seconds: 2));
+    });
     setBusy(false);
   }
 }
