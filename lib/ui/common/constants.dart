@@ -1,6 +1,7 @@
 class FirebaseConstants {
   FirebaseConstants._();
   static const userCollection = 'users';
+  static const listOfCourses = 'courses';
 }
 
 class AppConstants {

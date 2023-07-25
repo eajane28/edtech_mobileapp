@@ -20,11 +20,14 @@ CardData _$CardDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CardData {
-  String get cardImage => throw _privateConstructorUsedError;
-  String get price => throw _privateConstructorUsedError;
-  String get duration => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
+  String get subtitle => throw _privateConstructorUsedError;
+  String get about => throw _privateConstructorUsedError;
+  String get duration => throw _privateConstructorUsedError;
+  String get category => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
+  double get price => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,11 +41,14 @@ abstract class $CardDataCopyWith<$Res> {
       _$CardDataCopyWithImpl<$Res, CardData>;
   @useResult
   $Res call(
-      {String cardImage,
-      String price,
+      {String title,
+      String subtitle,
+      String about,
       String duration,
-      String title,
-      String description});
+      String category,
+      String image,
+      double price,
+      String id});
 }
 
 /// @nodoc
@@ -58,32 +64,47 @@ class _$CardDataCopyWithImpl<$Res, $Val extends CardData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cardImage = null,
-    Object? price = null,
-    Object? duration = null,
     Object? title = null,
-    Object? description = null,
+    Object? subtitle = null,
+    Object? about = null,
+    Object? duration = null,
+    Object? category = null,
+    Object? image = null,
+    Object? price = null,
+    Object? id = null,
   }) {
     return _then(_value.copyWith(
-      cardImage: null == cardImage
-          ? _value.cardImage
-          : cardImage // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
+      subtitle: null == subtitle
+          ? _value.subtitle
+          : subtitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      about: null == about
+          ? _value.about
+          : about // ignore: cast_nullable_to_non_nullable
               as String,
       duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -97,11 +118,14 @@ abstract class _$$_CardDataCopyWith<$Res> implements $CardDataCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String cardImage,
-      String price,
+      {String title,
+      String subtitle,
+      String about,
       String duration,
-      String title,
-      String description});
+      String category,
+      String image,
+      double price,
+      String id});
 }
 
 /// @nodoc
@@ -115,32 +139,47 @@ class __$$_CardDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cardImage = null,
-    Object? price = null,
-    Object? duration = null,
     Object? title = null,
-    Object? description = null,
+    Object? subtitle = null,
+    Object? about = null,
+    Object? duration = null,
+    Object? category = null,
+    Object? image = null,
+    Object? price = null,
+    Object? id = null,
   }) {
     return _then(_$_CardData(
-      cardImage: null == cardImage
-          ? _value.cardImage
-          : cardImage // ignore: cast_nullable_to_non_nullable
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
+      subtitle: null == subtitle
+          ? _value.subtitle
+          : subtitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      about: null == about
+          ? _value.about
+          : about // ignore: cast_nullable_to_non_nullable
               as String,
       duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -150,29 +189,38 @@ class __$$_CardDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CardData implements _CardData {
   const _$_CardData(
-      {required this.cardImage,
-      required this.price,
+      {required this.title,
+      required this.subtitle,
+      required this.about,
       required this.duration,
-      required this.title,
-      required this.description});
+      required this.category,
+      required this.image,
+      required this.price,
+      required this.id});
 
   factory _$_CardData.fromJson(Map<String, dynamic> json) =>
       _$$_CardDataFromJson(json);
 
   @override
-  final String cardImage;
+  final String title;
   @override
-  final String price;
+  final String subtitle;
+  @override
+  final String about;
   @override
   final String duration;
   @override
-  final String title;
+  final String category;
   @override
-  final String description;
+  final String image;
+  @override
+  final double price;
+  @override
+  final String id;
 
   @override
   String toString() {
-    return 'CardData(cardImage: $cardImage, price: $price, duration: $duration, title: $title, description: $description)';
+    return 'CardData(title: $title, subtitle: $subtitle, about: $about, duration: $duration, category: $category, image: $image, price: $price, id: $id)';
   }
 
   @override
@@ -180,20 +228,23 @@ class _$_CardData implements _CardData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CardData &&
-            (identical(other.cardImage, cardImage) ||
-                other.cardImage == cardImage) &&
-            (identical(other.price, price) || other.price == price) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.subtitle, subtitle) ||
+                other.subtitle == subtitle) &&
+            (identical(other.about, about) || other.about == about) &&
             (identical(other.duration, duration) ||
                 other.duration == duration) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description));
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, cardImage, price, duration, title, description);
+  int get hashCode => Object.hash(runtimeType, title, subtitle, about, duration,
+      category, image, price, id);
 
   @JsonKey(ignore: true)
   @override
@@ -211,24 +262,33 @@ class _$_CardData implements _CardData {
 
 abstract class _CardData implements CardData {
   const factory _CardData(
-      {required final String cardImage,
-      required final String price,
+      {required final String title,
+      required final String subtitle,
+      required final String about,
       required final String duration,
-      required final String title,
-      required final String description}) = _$_CardData;
+      required final String category,
+      required final String image,
+      required final double price,
+      required final String id}) = _$_CardData;
 
   factory _CardData.fromJson(Map<String, dynamic> json) = _$_CardData.fromJson;
 
   @override
-  String get cardImage;
+  String get title;
   @override
-  String get price;
+  String get subtitle;
+  @override
+  String get about;
   @override
   String get duration;
   @override
-  String get title;
+  String get category;
   @override
-  String get description;
+  String get image;
+  @override
+  double get price;
+  @override
+  String get id;
   @override
   @JsonKey(ignore: true)
   _$$_CardDataCopyWith<_$_CardData> get copyWith =>

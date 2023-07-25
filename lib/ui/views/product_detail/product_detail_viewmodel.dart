@@ -9,4 +9,8 @@ class ProductDetailViewModel extends BaseViewModel {
   void addToCart() {
     _navigationService.navigateToPaymentAddedView();
   }
+
+  void backToHomeView(){
+    _navigationService.back();
+  }
 }

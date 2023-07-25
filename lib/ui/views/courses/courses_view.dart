@@ -1,3 +1,4 @@
+import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/user.dart';
 import 'package:edtech_mobile/ui/views/widgets/card_courses.dart';
 import 'package:edtech_mobile/ui/views/widgets/chip.dart';
@@ -8,11 +9,11 @@ import 'package:stacked/stacked.dart';
 import 'courses_viewmodel.dart';
 
 class CoursesView extends StackedView<CoursesViewModel> {
-  const CoursesView({Key? key, required this.onBackPressed, required this.user})
-      : super(key: key);
+  CoursesView({Key? key, required this.onBackPressed, required this.user}) : super(key: key);
 
   final void Function() onBackPressed;
   final User user;
+  CardData? cardData;
 
   @override
   Widget builder(
@@ -20,72 +21,77 @@ class CoursesView extends StackedView<CoursesViewModel> {
     CoursesViewModel viewModel,
     Widget? child,
   ) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Hello,',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                    ),
-                    Text(
-                      user.name,
-                      style: const TextStyle(
-                          fontSize: 32, fontWeight: FontWeight.w700),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: SizedBox(
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                          height: 48,
-                          width: 48,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: const Color(0xFFBEBAB3),
-                            ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Hello,',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                  ),
+                  Text(
+                    user.name,
+                    style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: SizedBox(
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                        height: 48,
+                        width: 48,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: const Color(0xFFBEBAB3),
                           ),
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: Image.asset('assets/Notification.png'),
-                          )),
-                    ),
+                        ),
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Image.asset('assets/Notification.png'),
+                        )),
                   ),
                 ),
-              ],
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: SearchBox(),
-            ),
-            Row(
-              children: [
-                const Text(
-                  'Category:',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-                ),
-                Row(
-                  children: [
-                    for (var item in viewModel.coursesList)
-                      CustomChip(chip: item),
-                  ],
-                ),
-              ],
-            ),
-            for (var carditem in viewModel.cardList) CourseCard(card: carditem),
-          ],
-        ),
+              ),
+            ],
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 16.0),
+            child: SearchBox(),
+          ),
+          Row(
+            children: [
+              const Text(
+                'Category:',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+              ),
+              Row(
+                children: [
+                  for (var item in viewModel.coursesList) CustomChip(chip: item),
+                ],
+              ),
+            ],
+          ),
+          Expanded(
+            child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: viewModel.cardList.length,
+                itemBuilder: (context, index) {
+                  var cardItem = viewModel.cardList[index];
+                  return CourseCard(card: cardItem, onTap: (CardData course) {viewModel.onTap(course);}
+                  );
+                }),
+          )
+        ],
       ),
     );
   }
@@ -95,4 +101,9 @@ class CoursesView extends StackedView<CoursesViewModel> {
     BuildContext context,
   ) =>
       CoursesViewModel();
+  @override
+  void onViewModelReady(CoursesViewModel viewModel) {
+    viewModel.init();
+    super.onViewModelReady(viewModel);
+  }
 }
