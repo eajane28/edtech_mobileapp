@@ -76,7 +76,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: 30,
+            height: 48,
             child: Row(
               children: [
                 const Text(

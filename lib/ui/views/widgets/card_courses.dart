@@ -27,7 +27,10 @@ class CourseCard extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  Image.network(card.image),
+                  SizedBox(
+                    height: 194,
+                    child: Image.network(card.image)
+                    ),
                   Stack(
                     children: [
                       Align(
