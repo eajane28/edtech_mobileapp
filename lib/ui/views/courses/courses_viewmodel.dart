@@ -9,6 +9,16 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 // import 'package:stacked_services/stacked_services.dart';
 
+  // enum CourseType {
+  //   css,
+  //   ux,
+  //   swift,
+  //   ui,
+  //   html,
+  //   php,
+  //   java,
+  // }
+
 class CoursesViewModel extends BaseViewModel {
   final AuthService authService = locator<AuthService>();
   final CourseRepository _repository = locator<CourseRepository>();
@@ -18,6 +28,7 @@ class CoursesViewModel extends BaseViewModel {
   List<CardData> cardList = [];
   CardData? cardData;
   bool courseItemSelected = true;
+  late List<String> selectedItems = [];
 
  init() async {
     setBusy(true);

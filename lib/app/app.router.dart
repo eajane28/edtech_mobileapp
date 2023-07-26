@@ -336,7 +336,7 @@ class StackedRouter extends _i1.RouterBase {
     },
     _i22.AddCreditCardView: (data) {
       return _i24.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i22.AddCreditCardView(),
+        builder: (context) => _i22.AddCreditCardView(),
         settings: data,
       );
     },

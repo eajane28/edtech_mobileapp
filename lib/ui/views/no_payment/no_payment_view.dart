@@ -33,7 +33,7 @@ class NoPaymentView extends StackedView<NoPaymentViewModel> {
                 child: Container(
                     margin: const EdgeInsets.all(16.0),
                     child:
-                        MyButton(title: 'Continue', onTap: viewModel.proceed)),
+                        MyButton(title: 'Continue', onTap: viewModel.continueToAddCreditCard)),
               )
             ],
           ),

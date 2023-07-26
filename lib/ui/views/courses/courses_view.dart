@@ -74,7 +74,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             height: 30,
             child: Row(
@@ -90,7 +90,17 @@ class CoursesView extends StackedView<CoursesViewModel> {
                     itemCount: viewModel.coursesList.length,
                     itemBuilder: (context, index) {
                       var courseItem = viewModel.coursesList[index];
-                      return CustomChip(chip: courseItem);
+                      return CustomChip(
+                        chip: courseItem,
+                        onSelected: (isChecked, item) { //this can be transfered to the viewmodel
+                          if (!viewModel.selectedItems.contains(item)) {
+                            viewModel.selectedItems.add(item);
+                          } else if (viewModel.selectedItems.contains(item)) {
+                            viewModel.selectedItems.remove(item);
+                          }
+                           print('Selected Items: ${viewModel.selectedItems}');
+                        },
+                      );
                     },
                   ),
                 ),
@@ -98,27 +108,27 @@ class CoursesView extends StackedView<CoursesViewModel> {
             ),
           ),
           viewModel.isBusy
-            ? const Expanded(
-              child: Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.orange,
+              ? const Expanded(
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.orange,
+                    ),
                   ),
-                ),
-            )
-          : Expanded(
-            child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: viewModel.cardList.length,
-                itemBuilder: (context, index) {
-                  var cardItem = viewModel.cardList[index];
-                  return CourseCard(
-                      card: cardItem,
-                      onTap: (CardData course) {
-                        viewModel.onTap(course);
-                      });
-                }),
-          )
+                )
+              : Expanded(
+                  child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: viewModel.cardList.length,
+                      itemBuilder: (context, index) {
+                        var cardItem = viewModel.cardList[index];
+                        return CourseCard(
+                            card: cardItem,
+                            onTap: (CardData course) {
+                              viewModel.onTap(course);
+                            });
+                      }),
+                )
         ],
       ),
     );

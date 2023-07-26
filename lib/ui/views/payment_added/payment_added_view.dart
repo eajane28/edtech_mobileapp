@@ -34,7 +34,7 @@ class PaymentAddedView extends StackedView<PaymentAddedViewModel> {
                 padding: const EdgeInsets.only(bottom: 146.0),
                 child: Container(
                     margin: const EdgeInsets.all(16.0),
-                    child: MyButton(title: 'Continue', onTap: viewModel.next)),
+                    child: MyButton(title: 'Continue', onTap: viewModel.continueToPaymentMethod)),
               )
             ],
           ),

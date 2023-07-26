@@ -12,12 +12,12 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
+import '../repository/course_repository.dart';
+import '../repository/course_repository_impl.dart';
 import '../services/auth_service.dart';
 import '../services/auth_service_impl.dart';
 import '../services/local_storage.dart';
 import '../services/local_storage_impl.dart';
-import '../repository/course_repository.dart';
-import '../repository/course_repository_impl.dart';
 
 final locator = StackedLocator.instance;
 

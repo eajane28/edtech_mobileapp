@@ -37,7 +37,7 @@ class ForgotPasswordView extends StackedView<ForgotPasswordViewModel> with Input
                   hintText: 'Email',
                   controller: viewModel.emailController,
                   validator: (value) =>
-                        isEmailValid(value ?? '') ? null : 'Invalid Email',
+                        isEmailValid(value ?? '') ? null : 'Invalid Email', keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 20),
                 MyWidgetButton(
