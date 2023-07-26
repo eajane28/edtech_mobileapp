@@ -2,6 +2,7 @@
 
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/user.dart';
+import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/card_courses.dart';
 import 'package:edtech_mobile/ui/views/widgets/chip.dart';
 import 'package:edtech_mobile/ui/views/widgets/search_widget.dart';
@@ -23,7 +24,11 @@ class CoursesView extends StackedView<CoursesViewModel> {
     CoursesViewModel viewModel,
     Widget? child,
   ) {
-    return Padding(
+    return viewModel.isBusy
+        ? const Center(
+      child: CircularProgressIndicator(),
+    )
+        : Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Column(
         children: [
@@ -76,7 +81,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
           ),
           Container(
             width: MediaQuery.of(context).size.width,
-            height: 30,
+            height: 32,
             child: Row(
               children: [
                 const Text(
@@ -97,6 +102,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
               ],
             ),
           ),
+          verticalSpaceSmall,
           viewModel.isBusy
             ? const Expanded(
               child: Center(
