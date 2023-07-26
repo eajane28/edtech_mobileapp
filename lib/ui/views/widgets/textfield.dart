@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyTextField extends StatefulWidget {
-  const MyTextField(
-      {super.key,
-      required this.hintText,
-      required this.controller,
-      this.validator});
+  const MyTextField({super.key, required this.hintText, required this.controller, this.validator});
   final TextEditingController controller;
   final String hintText;
   final String? Function(String?)? validator;
@@ -28,8 +24,6 @@ class _MyTextFieldState extends State<MyTextField> {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
         decoration: InputDecoration(
-          // errorText: _validate ? 'Field Can\'t Be Empty' : null,
-          // errorStyle: _validate ? const TextStyle(color: Colors.red) : null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
           ),

@@ -1,6 +1,6 @@
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/display.dart';
-import 'package:edtech_mobile/ui/views/widgets/search__widget.dart';
+import 'package:edtech_mobile/ui/views/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -26,15 +26,16 @@ class CourseNotfoundView extends StackedView<CourseNotfoundViewModel> {
               const SizedBox(
                 height: 16,
               ),
-              const SearchBox(),
+              SearchBox(
+                controller: viewModel.searchController,
+              ),
               const SizedBox(
                 height: 16,
               ),
               const Display(
                   image: 'assets/Cool Kids Standing.png',
                   title: ' Course not found',
-                  subtitle:
-                      'Try searching the course with a different keyword'),
+                  subtitle: 'Try searching the course with a different keyword'),
             ],
           ),
         ),
