@@ -1,8 +1,10 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/user.dart';
 import 'package:edtech_mobile/ui/views/widgets/card_courses.dart';
 import 'package:edtech_mobile/ui/views/widgets/chip.dart';
-import 'package:edtech_mobile/ui/views/widgets/search__widget.dart';
+import 'package:edtech_mobile/ui/views/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -66,32 +68,58 @@ class CoursesView extends StackedView<CoursesViewModel> {
               ),
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 16.0),
-            child: SearchBox(),
-          ),
-          Row(
-            children: [
-              const Text(
-                'Category:',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+          InkWell(
+            onTap: viewModel.navigateToSearchView,
+            child: AbsorbPointer(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                child: SearchBox(controller: viewModel.searchController),
               ),
-              Row(
-                children: [
-                  for (var item in viewModel.coursesList) CustomChip(chip: item),
-                ],
-              ),
-            ],
+            ),
           ),
-          Expanded(
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 30,
+            child: Row(
+              children: [
+                const Text(
+                  'Category:',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: viewModel.coursesList.length,
+                    itemBuilder: (context, index) {
+                      var courseItem = viewModel.coursesList[index];
+                      return CustomChip(chip: courseItem);
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          viewModel.isBusy
+            ? const Expanded(
+              child: Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.orange,
+                  ),
+                ),
+            )
+          : Expanded(
             child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: viewModel.cardList.length,
                 itemBuilder: (context, index) {
                   var cardItem = viewModel.cardList[index];
-                  return CourseCard(card: cardItem, onTap: (CardData course) {viewModel.onTap(course);}
-                  );
+                  return CourseCard(
+                      card: cardItem,
+                      onTap: (CardData course) {
+                        viewModel.onTap(course);
+                      });
                 }),
           )
         ],

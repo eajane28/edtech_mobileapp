@@ -16,8 +16,8 @@ import '../services/auth_service.dart';
 import '../services/auth_service_impl.dart';
 import '../services/local_storage.dart';
 import '../services/local_storage_impl.dart';
-import '../services/repository.dart';
-import '../services/repository_impl.dart';
+import '../repository/course_repository.dart';
+import '../repository/course_repository_impl.dart';
 
 final locator = StackedLocator.instance;
 
@@ -35,6 +35,6 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton<AuthService>(() => AuthServiceImpl());
   locator.registerLazySingleton<LocalStorage>(() => LocalStorageImpl());
-  locator.registerLazySingleton<Repository>(() => RepositoryImpl());
+  locator.registerLazySingleton<CourseRepository>(() => CourseRepositoryImpl());
   locator.registerLazySingleton(() => SnackbarService());
 }

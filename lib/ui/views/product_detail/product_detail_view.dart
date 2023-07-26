@@ -62,7 +62,7 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                   ),
                   Text(
                     course.about,
-                      style: const TextStyle(
+                    style: const TextStyle(
                       height: 1.7,
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -101,12 +101,10 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                   ],
                 ),
               ),
-              // const SizedBox(height: 200),
               Expanded(child: Container()),
               Container(
                   margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32),
-                  child: MyButton(
-                      title: 'Purchase', onTap: viewModel.addToCart)),
+                  child: MyButton(title: 'Purchase', onTap: viewModel.addToCart)),
             ],
           ),
         ),
