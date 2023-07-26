@@ -11,10 +11,11 @@ import 'package:stacked/stacked.dart';
 import 'courses_viewmodel.dart';
 
 class CoursesView extends StackedView<CoursesViewModel> {
-  const CoursesView({Key? key, required this.onBackPressed, required this.user}) : super(key: key);
+  CoursesView({Key? key, required this.onBackPressed, required this.user}) : super(key: key);
 
   final void Function() onBackPressed;
   final User user;
+  CardData? cardData;
 
   @override
   Widget builder(
@@ -22,22 +23,18 @@ class CoursesView extends StackedView<CoursesViewModel> {
     CoursesViewModel viewModel,
     Widget? child,
   ) {
-    return viewModel.isBusy
-        ? const Center(
-            child: CircularProgressIndicator(),
-          )
-        : Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Hello,',
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Hello,',
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                   ),
                   Text(

@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:flutter/material.dart';
 
@@ -28,13 +27,7 @@ class CourseCard extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  // Image.network(card.image),
-                  CachedNetworkImage(
-                    imageUrl: card.image,
-                    placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
-                    fadeInDuration: const Duration(milliseconds: 1500),
-                  ),
+                  Image.network(card.image),
                   Stack(
                     children: [
                       Align(
