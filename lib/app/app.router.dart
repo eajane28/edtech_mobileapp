@@ -5,7 +5,6 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:edtech_mobile/model/card_data.dart' as _i25;
 import 'package:edtech_mobile/ui/views/add_credit_card/add_credit_card_view.dart'
     as _i22;
 import 'package:edtech_mobile/ui/views/checkout/checkout_view.dart' as _i21;
@@ -41,7 +40,7 @@ import 'package:edtech_mobile/ui/views/your_course/your_course_view.dart'
 import 'package:flutter/material.dart' as _i24;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i26;
+import 'package:stacked_services/stacked_services.dart' as _i25;
 
 class Routes {
   static const homeView = '/home-view';
@@ -256,9 +255,8 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i9.ProductDetailView: (data) {
-      final args = data.getArgs<ProductDetailViewArguments>(nullOk: false);
       return _i24.MaterialPageRoute<dynamic>(
-        builder: (context) => _i9.ProductDetailView(args.course, key: args.key),
+        builder: (context) => const _i9.ProductDetailView(),
         settings: data,
       );
     },
@@ -401,33 +399,6 @@ class SignupViewArguments {
   }
 }
 
-class ProductDetailViewArguments {
-  const ProductDetailViewArguments({
-    required this.course,
-    this.key,
-  });
-
-  final _i25.CardData course;
-
-  final _i24.Key? key;
-
-  @override
-  String toString() {
-    return '{"course": "$course", "key": "$key"}';
-  }
-
-  @override
-  bool operator ==(covariant ProductDetailViewArguments other) {
-    if (identical(this, other)) return true;
-    return other.course == course && other.key == key;
-  }
-
-  @override
-  int get hashCode {
-    return course.hashCode ^ key.hashCode;
-  }
-}
-
 class ForgotPasswordViewArguments {
   const ForgotPasswordViewArguments({this.key});
 
@@ -450,7 +421,7 @@ class ForgotPasswordViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i26.NavigationService {
+extension NavigatorStateExtension on _i25.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -553,17 +524,14 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToProductDetailView({
-    required _i25.CardData course,
-    _i24.Key? key,
+  Future<dynamic> navigateToProductDetailView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  }) async {
+  ]) async {
     return navigateTo<dynamic>(Routes.productDetailView,
-        arguments: ProductDetailViewArguments(course: course, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -870,17 +838,14 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithProductDetailView({
-    required _i25.CardData course,
-    _i24.Key? key,
+  Future<dynamic> replaceWithProductDetailView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  }) async {
+  ]) async {
     return replaceWith<dynamic>(Routes.productDetailView,
-        arguments: ProductDetailViewArguments(course: course, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
