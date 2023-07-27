@@ -20,9 +20,11 @@ PaymentData _$PaymentDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PaymentData {
-  String get image => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get subtitle => throw _privateConstructorUsedError;
+  String get creditCardImage => throw _privateConstructorUsedError;
+  String get creditCardName => throw _privateConstructorUsedError;
+  String get creditCardNumber => throw _privateConstructorUsedError;
+  String get creditCardExpiryDate => throw _privateConstructorUsedError;
+  String get creditCardCVV => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +38,12 @@ abstract class $PaymentDataCopyWith<$Res> {
           PaymentData value, $Res Function(PaymentData) then) =
       _$PaymentDataCopyWithImpl<$Res, PaymentData>;
   @useResult
-  $Res call({String image, String title, String subtitle});
+  $Res call(
+      {String creditCardImage,
+      String creditCardName,
+      String creditCardNumber,
+      String creditCardExpiryDate,
+      String creditCardCVV});
 }
 
 /// @nodoc
@@ -52,22 +59,32 @@ class _$PaymentDataCopyWithImpl<$Res, $Val extends PaymentData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? image = null,
-    Object? title = null,
-    Object? subtitle = null,
+    Object? creditCardImage = null,
+    Object? creditCardName = null,
+    Object? creditCardNumber = null,
+    Object? creditCardExpiryDate = null,
+    Object? creditCardCVV = null,
   }) {
     return _then(_value.copyWith(
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      creditCardImage: null == creditCardImage
+          ? _value.creditCardImage
+          : creditCardImage // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      creditCardName: null == creditCardName
+          ? _value.creditCardName
+          : creditCardName // ignore: cast_nullable_to_non_nullable
               as String,
-      subtitle: null == subtitle
-          ? _value.subtitle
-          : subtitle // ignore: cast_nullable_to_non_nullable
+      creditCardNumber: null == creditCardNumber
+          ? _value.creditCardNumber
+          : creditCardNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      creditCardExpiryDate: null == creditCardExpiryDate
+          ? _value.creditCardExpiryDate
+          : creditCardExpiryDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      creditCardCVV: null == creditCardCVV
+          ? _value.creditCardCVV
+          : creditCardCVV // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -81,7 +98,12 @@ abstract class _$$_PaymentDataCopyWith<$Res>
       __$$_PaymentDataCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String image, String title, String subtitle});
+  $Res call(
+      {String creditCardImage,
+      String creditCardName,
+      String creditCardNumber,
+      String creditCardExpiryDate,
+      String creditCardCVV});
 }
 
 /// @nodoc
@@ -95,22 +117,32 @@ class __$$_PaymentDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? image = null,
-    Object? title = null,
-    Object? subtitle = null,
+    Object? creditCardImage = null,
+    Object? creditCardName = null,
+    Object? creditCardNumber = null,
+    Object? creditCardExpiryDate = null,
+    Object? creditCardCVV = null,
   }) {
     return _then(_$_PaymentData(
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      creditCardImage: null == creditCardImage
+          ? _value.creditCardImage
+          : creditCardImage // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      creditCardName: null == creditCardName
+          ? _value.creditCardName
+          : creditCardName // ignore: cast_nullable_to_non_nullable
               as String,
-      subtitle: null == subtitle
-          ? _value.subtitle
-          : subtitle // ignore: cast_nullable_to_non_nullable
+      creditCardNumber: null == creditCardNumber
+          ? _value.creditCardNumber
+          : creditCardNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      creditCardExpiryDate: null == creditCardExpiryDate
+          ? _value.creditCardExpiryDate
+          : creditCardExpiryDate // ignore: cast_nullable_to_non_nullable
+              as String,
+      creditCardCVV: null == creditCardCVV
+          ? _value.creditCardCVV
+          : creditCardCVV // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -120,21 +152,29 @@ class __$$_PaymentDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PaymentData implements _PaymentData {
   const _$_PaymentData(
-      {required this.image, required this.title, required this.subtitle});
+      {required this.creditCardImage,
+      required this.creditCardName,
+      required this.creditCardNumber,
+      required this.creditCardExpiryDate,
+      required this.creditCardCVV});
 
   factory _$_PaymentData.fromJson(Map<String, dynamic> json) =>
       _$$_PaymentDataFromJson(json);
 
   @override
-  final String image;
+  final String creditCardImage;
   @override
-  final String title;
+  final String creditCardName;
   @override
-  final String subtitle;
+  final String creditCardNumber;
+  @override
+  final String creditCardExpiryDate;
+  @override
+  final String creditCardCVV;
 
   @override
   String toString() {
-    return 'PaymentData(image: $image, title: $title, subtitle: $subtitle)';
+    return 'PaymentData(creditCardImage: $creditCardImage, creditCardName: $creditCardName, creditCardNumber: $creditCardNumber, creditCardExpiryDate: $creditCardExpiryDate, creditCardCVV: $creditCardCVV)';
   }
 
   @override
@@ -142,15 +182,22 @@ class _$_PaymentData implements _PaymentData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PaymentData &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.subtitle, subtitle) ||
-                other.subtitle == subtitle));
+            (identical(other.creditCardImage, creditCardImage) ||
+                other.creditCardImage == creditCardImage) &&
+            (identical(other.creditCardName, creditCardName) ||
+                other.creditCardName == creditCardName) &&
+            (identical(other.creditCardNumber, creditCardNumber) ||
+                other.creditCardNumber == creditCardNumber) &&
+            (identical(other.creditCardExpiryDate, creditCardExpiryDate) ||
+                other.creditCardExpiryDate == creditCardExpiryDate) &&
+            (identical(other.creditCardCVV, creditCardCVV) ||
+                other.creditCardCVV == creditCardCVV));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, image, title, subtitle);
+  int get hashCode => Object.hash(runtimeType, creditCardImage, creditCardName,
+      creditCardNumber, creditCardExpiryDate, creditCardCVV);
 
   @JsonKey(ignore: true)
   @override
@@ -168,19 +215,25 @@ class _$_PaymentData implements _PaymentData {
 
 abstract class _PaymentData implements PaymentData {
   const factory _PaymentData(
-      {required final String image,
-      required final String title,
-      required final String subtitle}) = _$_PaymentData;
+      {required final String creditCardImage,
+      required final String creditCardName,
+      required final String creditCardNumber,
+      required final String creditCardExpiryDate,
+      required final String creditCardCVV}) = _$_PaymentData;
 
   factory _PaymentData.fromJson(Map<String, dynamic> json) =
       _$_PaymentData.fromJson;
 
   @override
-  String get image;
+  String get creditCardImage;
   @override
-  String get title;
+  String get creditCardName;
   @override
-  String get subtitle;
+  String get creditCardNumber;
+  @override
+  String get creditCardExpiryDate;
+  @override
+  String get creditCardCVV;
   @override
   @JsonKey(ignore: true)
   _$$_PaymentDataCopyWith<_$_PaymentData> get copyWith =>

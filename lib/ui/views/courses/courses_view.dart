@@ -70,7 +70,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
             child: AbsorbPointer(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: SearchBox(controller: viewModel.searchController, onChanged: (value) {},),
+                child: SearchBox(controller: viewModel.searchController),
               ),
             ),
           ),

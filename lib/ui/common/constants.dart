@@ -3,6 +3,7 @@ class FirebaseConstants {
   static const userCollection = 'users';
   static const listOfCourses = 'courses';
   static const category = 'category';
+  static const payment = 'payment';
 }
 
 class AppConstants {

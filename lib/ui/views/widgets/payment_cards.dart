@@ -14,26 +14,26 @@ class PaymentItem extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Row(
           children: [
-            Image.asset(card.image, width: 78, height: 72),
+            Image.asset("card.image", width: 78, height: 72),
             const SizedBox(width: 8.0),
-            Expanded(
+            const Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    card.title,
-                    style: const TextStyle(
+                    'card.title',
+                    style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                       color: Color(0xFF3C3A36),
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 8,
                   ),
                   Text(
-                    card.subtitle,
-                    style: const TextStyle(
+                    "card.subtitle",
+                    style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
                       color: Color(0xFF78746D),
