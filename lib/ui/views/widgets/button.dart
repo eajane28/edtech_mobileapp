@@ -35,20 +35,23 @@ class MyButton extends StatelessWidget {
 class MyWidgetButton extends StatelessWidget {
   final Widget title;
   final Function()? onTap;
-  const MyWidgetButton({super.key, required this.onTap, required this.title});
+
+  const MyWidgetButton({super.key, required this.onTap, required this.title, this.color, this.width});
+
+  final Color? color;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: double.infinity,
+        width: width ?? double.infinity,
         decoration: BoxDecoration(
-          color: const Color(0xFFE3562A),
+          color: color ?? const Color(0xFFE3562A),
           borderRadius: BorderRadius.circular(16),
         ),
-        child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0), child: title),
+        child: Padding(padding: const EdgeInsets.symmetric(vertical: 16.0), child: title),
       ),
     );
   }
