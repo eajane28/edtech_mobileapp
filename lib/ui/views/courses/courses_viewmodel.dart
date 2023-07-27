@@ -9,15 +9,15 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 // import 'package:stacked_services/stacked_services.dart';
 
-  // enum CourseType {
-  //   css,
-  //   ux,
-  //   swift,
-  //   ui,
-  //   html,
-  //   php,
-  //   java,
-  // }
+// enum CourseType {
+//   css,
+//   ux,
+//   swift,
+//   ui,
+//   html,
+//   php,
+//   java,
+// }
 
 class CoursesViewModel extends BaseViewModel {
   final AuthService authService = locator<AuthService>();
@@ -30,27 +30,36 @@ class CoursesViewModel extends BaseViewModel {
   bool courseItemSelected = true;
   late List<String> selectedItems = [];
 
- init() async {
+  init() async {
     setBusy(true);
-    await _repository.getCourses().then((value) {
-      if(value.isNotEmpty){
+    await _repository.getCourses(searchController.text, selectedItems).then((value) {
+      if (selectedItems.isEmpty) {
         cardList = value;
+      } else if (selectedItems.isNotEmpty) {
+        cardList = value;
+      } else {
+        cardList = [];
       }
     });
     setBusy(false);
   }
 
   final coursesList = [
-    const CoursesData(name: 'CSS'),
-    const CoursesData(name: 'UX'),
+    const CoursesData(name: 'HTML/CSS'),
+    const CoursesData(name: 'UI/UX'),
     const CoursesData(name: 'Swift'),
-    const CoursesData(name: 'UI'),
-    const CoursesData(name: 'HTML'),
+    const CoursesData(name: 'Web'),
+    const CoursesData(name: 'Javascript'),
     const CoursesData(name: 'PHP'),
     const CoursesData(name: 'Java'),
+    const CoursesData(name: 'Python'),
+    const CoursesData(name: 'App Dev'),
+    const CoursesData(name: 'Mobile App'),
+    const CoursesData(name: 'Sql'),
+    const CoursesData(name: 'Telecom'),
   ];
 
-   onTap(CardData courseItem){
+  onTap(CardData courseItem) {
     _navigation.navigateToProductDetailView(course: courseItem);
   }
 

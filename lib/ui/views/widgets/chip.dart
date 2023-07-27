@@ -20,7 +20,7 @@ class _CustomChipState extends State<CustomChip> {
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
         child: FilterChip(
-          onSelected: (bool value,) {
+          onSelected: (bool value) {
             setState(() {
               isSelected = !isSelected;
               widget.onSelected(isSelected, widget.chip.name);

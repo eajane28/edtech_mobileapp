@@ -12,16 +12,21 @@ final NavigationService _navigationService = locator<NavigationService>();
 final CourseRepository _repository = locator<CourseRepository>();
 
 class SearchViewModel extends BaseViewModel {
-  List<CardData> searchList = [];
+  List<CardData> searchList = []; //used for retrieving all the data from courseview
   CardData? cardData;
   final TextEditingController searchController = TextEditingController();
+  late List<String> selectedItems = [];
 
   init() async {
     setBusy(true);
-    await _repository.getCourses().then((value) {
-      if (value.isNotEmpty) {
+    await _repository.getCourses(searchController.text, selectedItems).then((value) {
+      if (searchController.text.isNotEmpty) {
         searchList = value;
+      } else {
+        _navigationService.navigateToCourseNotfoundView();
       }
+      searchList = [];
+      print(searchList);
     });
     setBusy(false);
   }

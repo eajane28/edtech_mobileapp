@@ -27,10 +27,7 @@ class CourseCard extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 194,
-                    child: Image.network(card.image)
-                    ),
+                  SizedBox(height: 194, child: Image.network(card.image, fit: BoxFit.cover)),
                   Stack(
                     children: [
                       Align(
@@ -81,8 +78,7 @@ class CourseCard extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: Text(
                       card.subtitle,
-                      style: const TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.w400),
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                     ),
                   )
                 ],

@@ -70,7 +70,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
             child: AbsorbPointer(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: SearchBox(controller: viewModel.searchController),
+                child: SearchBox(controller: viewModel.searchController, onChanged: (value) {},),
               ),
             ),
           ),
@@ -98,7 +98,8 @@ class CoursesView extends StackedView<CoursesViewModel> {
                           } else if (viewModel.selectedItems.contains(item)) {
                             viewModel.selectedItems.remove(item);
                           }
-                           print('Selected Items: ${viewModel.selectedItems}');
+                          viewModel.init();
+                          //  print('Selected Items: ${viewModel.selectedItems}');
                         },
                       );
                     },
