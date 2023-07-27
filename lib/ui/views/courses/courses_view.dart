@@ -116,7 +116,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
             ),
           ),
           verticalSpaceSmall,
-          viewModel.isBusy
+          viewModel.busy('courses')
               ? const Expanded(
                   child: Center(
                     child: CircularProgressIndicator(
