@@ -79,7 +79,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width,
             height: 32,
             child: SingleChildScrollView(

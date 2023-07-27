@@ -7,11 +7,12 @@ part 'payment_data.g.dart';
 @freezed
 class PaymentData with _$PaymentData {
   const factory PaymentData({
-    required String creditCardImage,
-    required String creditCardName,
-    required String creditCardNumber,
-    required String creditCardExpiryDate,
-    required String creditCardCVV,
+    final String? id,
+    required String name,
+    required String paymentMethod,
+    required String cardNumber,
+    required String expiryDate,
+    required String cvv,
   }) = _PaymentData;
 
   factory PaymentData.fromJson(Map<String, dynamic> json) =>

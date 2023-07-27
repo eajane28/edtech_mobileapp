@@ -8,13 +8,14 @@ class CourseTestViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
   final quizList = [
-    QuizData(
+    const QuizData(
         image: 'assets/Cool Kids Standing.png',
         quizNo: 'Quiz 1',
         quizTitle: 'Tags For Headers',
         subtitle:
             'Let\'s put your memory on this topic test. Solve tasks and check your knowledge.'),
-    QuizData(
+
+    const QuizData(
         image: 'assets/Cool Kids Sitting.png',
         quizNo: 'Quiz 2',
         quizTitle: 'Tags For Headers',

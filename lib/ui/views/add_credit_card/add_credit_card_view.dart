@@ -1,5 +1,6 @@
 import 'package:edtech_mobile/ui/common/input_validation_mixin.dart';
 import 'package:edtech_mobile/ui/common/ui_helpers.dart';
+import 'package:edtech_mobile/ui/views/add_credit_card/card_utils.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
 import 'package:edtech_mobile/ui/views/widgets/textfield.dart';
@@ -47,16 +48,25 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                       controller: viewModel.nameController,
                       validator: (value) => notEmpty(value ?? '') ? null : 'Field Can\'t Be Empty',
                       keyboardType: TextInputType.text,
+                      textInputAction: TextInputAction.next,
+                      onEditingComplete: () => viewModel.onEditComplete(viewModel.cardNumberFocusNode, context),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: MyTextField(
                       hintText: 'Credit card number',
+                      focusNode: viewModel.cardNumberFocusNode,
                       controller: viewModel.cardNumberController,
-                      validator: cardNumberValid,
+                      suffix: CardUtils.getCardIcon(viewModel.paymentData == null
+                          ? CardType.others
+                          : CardType.values.firstWhere(
+                              (element) => element.name == viewModel.paymentData!.paymentMethod)),
+                      validator: validateCardNum,
                       keyboardType: TextInputType.number,
                       formatters: [CreditCartInputFormatter(), LengthLimitingTextInputFormatter(19)],
+                      textInputAction: TextInputAction.next,
+                      onEditingComplete: () => viewModel.onEditComplete(viewModel.expiryFocusNode, context),
                     ),
                   ),
                   Padding(
@@ -78,6 +88,7 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                                 width: 155.5,
                                 child: MyTextField(
                                   hintText: 'MM/YY',
+                                  focusNode: viewModel.expiryFocusNode,
                                   controller: viewModel.expiryDateController,
                                   validator: cardExpiryValid,
                                   keyboardType: TextInputType.number,
@@ -93,6 +104,8 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                                     // FilteringTextInputFormatter.digitsOnly
                                     CreditCartInputFormatter(isMonth: true)
                                   ],
+                                  textInputAction: TextInputAction.next,
+                                  onEditingComplete: () => viewModel.onEditComplete(viewModel.cvvFocusNode, context),
                                 )),
                           ],
                         ),
@@ -110,6 +123,7 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                                 width: 155.5,
                                 child: MyTextField(
                                   hintText: '****',
+                                  focusNode: viewModel.cvvFocusNode,
                                   isObscure: true,
                                   controller: viewModel.cvvController,
                                   validator: cvvValid,
@@ -118,6 +132,8 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                                     LengthLimitingTextInputFormatter(4),
                                     FilteringTextInputFormatter.digitsOnly
                                   ],
+                                  textInputAction: TextInputAction.done,
+                                  onEditingComplete: () => FocusScope.of(context).unfocus(),
                                 )),
                           ],
                         )
@@ -127,7 +143,14 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: Container(
-                        margin: const EdgeInsets.all(16.0), child: MyButton(title: 'Save', onTap: viewModel.save)),
+                        margin: const EdgeInsets.all(16.0),
+                        child: MyButton(
+                            title: 'Save',
+                            onTap: () {
+                              if (_formKey.currentState!.validate()) {
+                                viewModel.save();
+                              }
+                            })),
                   ),
                 ],
               ),
@@ -143,4 +166,16 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
     BuildContext context,
   ) =>
       AddCreditCardViewModel();
+
+  @override
+  void onViewModelReady(AddCreditCardViewModel viewModel) {
+    viewModel.init();
+    super.onViewModelReady(viewModel);
+  }
+
+  @override
+  void onDispose(AddCreditCardViewModel viewModel) {
+    viewModel.cardNumberController.removeListener(viewModel.getCardTypeFrmNumber);
+    super.onDispose(viewModel);
+  }
 }

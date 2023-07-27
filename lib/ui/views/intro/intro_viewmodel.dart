@@ -15,19 +15,19 @@ class IntroViewModel extends BaseViewModel {
   }
 
   final introList = [
-    IntroData(
+    const IntroData(
       imagePage: 'assets/Cool Kids Long Distance Relationship.png',
       title: 'Learn anytime and anywhere',
       message:
           'Quarantine is the perfect time to spend your day learning something new, from anywhere!',
     ),
-    IntroData(
+    const IntroData(
       imagePage: 'assets/Cool Kids Staying Home.png',
       title: 'Find a course for you',
       message:
           'Quarantine is the perfect time to spend your day learning something new, from anywhere!',
     ),
-    IntroData(
+    const IntroData(
       imagePage: 'assets/Cool Kids High Tech.png',
       title: 'Improve your skills',
       message:

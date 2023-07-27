@@ -12,7 +12,10 @@ class MyTextField extends StatefulWidget {
       this.focusNode,
       this.onChanged,
       this.isObscure,
-      this.obscuringCharacter});
+      this.obscuringCharacter,
+      this.textInputAction,
+      this.onEditingComplete,
+      this.suffix});
 
   final TextEditingController controller;
   final String hintText;
@@ -23,6 +26,9 @@ class MyTextField extends StatefulWidget {
   final void Function(String)? onChanged;
   final bool? isObscure;
   final String? obscuringCharacter;
+  final Widget? suffix;
+  final TextInputAction? textInputAction;
+  final void Function()? onEditingComplete;
 
   @override
   State<MyTextField> createState() => _MyTextFieldState();
@@ -41,11 +47,17 @@ class _MyTextFieldState extends State<MyTextField> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
+        textInputAction: widget.textInputAction,
+        onEditingComplete: widget.onEditingComplete,
         obscureText: widget.isObscure ?? false,
         obscuringCharacter: widget.obscuringCharacter ?? "*",
         focusNode: widget.focusNode,
         inputFormatters: widget.formatters,
         decoration: InputDecoration(
+          suffixIcon: Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: widget.suffix,
+          ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
           ),

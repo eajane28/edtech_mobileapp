@@ -9,11 +9,11 @@ class PaymentRepositoryImpl implements PaymentRepository {
   @override
   Future<void> getPaymentMethod(String name, String cardNumber, String expiry, String cvv) {
     db.collection(FirebaseConstants.payment).doc().set(PaymentData(
-            creditCardName: name,
-            creditCardNumber: cardNumber,
-            creditCardExpiryDate: expiry,
-            creditCardCVV: cvv,
-            creditCardImage: '') // not sure with the credit card
+            name: name,
+            cardNumber: cardNumber,
+            expiryDate: expiry,
+            cvv: cvv,
+            paymentMethod: '') // not sure with the credit card
         .toJson());
     // TODO: implement makePayment
     throw UnimplementedError();
