@@ -1,3 +1,5 @@
+import 'package:edtech_mobile/repository/payment_repository.dart';
+import 'package:edtech_mobile/repository/payment_repository_impl.dart';
 import 'package:edtech_mobile/services/auth_service_impl.dart';
 import 'package:edtech_mobile/services/local_storage_impl.dart';
 import 'package:edtech_mobile/repository/course_repository.dart';
@@ -71,6 +73,7 @@ import 'package:edtech_mobile/ui/views/forgot_password/forgot_password_view.dart
     LazySingleton(classType: AuthServiceImpl, asType: AuthService),
     LazySingleton(classType: LocalStorageImpl, asType: LocalStorage),
     LazySingleton(classType: CourseRepositoryImpl, asType: CourseRepository),
+    LazySingleton(classType: PaymentRepositoryImpl, asType: PaymentRepository),
     LazySingleton(classType: SnackbarService),
 // @stacked-service
   ],

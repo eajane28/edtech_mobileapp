@@ -3,6 +3,7 @@ import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
+import 'package:edtech_mobile/ui/views/widgets/my_circular_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:stacked/stacked.dart';
@@ -123,7 +124,7 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
               Row(
                 children: [
                   MyWidgetButton(
-                    onTap: () {},
+                    onTap: viewModel.addToCart,
                     color: Colors.transparent,
                     title: const Icon(
                       MaterialCommunityIcons.cart_outline,
@@ -133,7 +134,20 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                     width: 40,
                   ),
                   horizontalSpaceMedium,
-                  Expanded(child: MyButton(title: 'Purchase', onTap: viewModel.addToCart)),
+                  Expanded(
+                      child: MyWidgetButton(
+                          title: viewModel.isBusy
+                              ? const MyCircularProgressBar()
+                              : const Text(
+                                  'Purchase',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color(0xFFFFFFFF),
+                                  ),
+                                ),
+                          onTap: viewModel.purchaseCourse)),
                 ],
               ),
             ],

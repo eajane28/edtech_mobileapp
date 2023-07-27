@@ -23,9 +23,14 @@ class AddCreditCardViewModel extends BaseViewModel {
   }
 
   void save() {
-    print(paymentData!.paymentMethod);
-    print(cardNumberController.text.replaceAll(' ', ''));
+    setBusy(true);
+    paymentData = paymentData!.copyWith(
+        name: nameController.text,
+        cardNumber: cardNumberController.text.replaceAll(' ', ''),
+        expiryDate: expiryDateController.text,
+        cvv: cvvController.text);
     _navigationService.navigateToPaymentAddedView();
+    setBusy(false);
   }
 
   void back() {
@@ -33,14 +38,10 @@ class AddCreditCardViewModel extends BaseViewModel {
   }
 
   void getCardTypeFrmNumber() {
-    String input = cardNumberController.text.replaceAll(' ', '');
-    rebuildUi();
-    CardType cardType = CardUtils.getCardTypeFrmNumber(input);
+    CardType cardType = CardUtils.getCardTypeFrmNumber(cardNumberController.text.replaceAll(' ', ''));
     rebuildUi();
 
-      paymentData = PaymentData(paymentMethod: cardType.name,
-          name: '', cardNumber: '', expiryDate: '',
-          cvv: '');
+    paymentData = PaymentData(paymentMethod: cardType.name, name: '', cardNumber: '', expiryDate: '', cvv: '');
 
     rebuildUi();
   }

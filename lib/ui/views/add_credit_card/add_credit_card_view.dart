@@ -3,6 +3,7 @@ import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/add_credit_card/card_utils.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
+import 'package:edtech_mobile/ui/views/widgets/my_circular_progress_bar.dart';
 import 'package:edtech_mobile/ui/views/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -144,13 +145,21 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: Container(
                         margin: const EdgeInsets.all(16.0),
-                        child: MyButton(
-                            title: 'Save',
+                        child: MyWidgetButton(
+                            title: viewModel.isBusy ? const MyCircularProgressBar() : const Text(
+                              'Save',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFFFFFFFF),
+                              ),
+                            ),
                             onTap: () {
-                              if (_formKey.currentState!.validate()) {
-                                viewModel.save();
-                              }
-                            })),
+                    if (_formKey.currentState!.validate()) {
+                    viewModel.save();
+                    }
+                    })),
                   ),
                 ],
               ),

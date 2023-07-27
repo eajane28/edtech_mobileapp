@@ -1,3 +1,7 @@
+import 'package:dartz/dartz.dart';
+import 'package:edtech_mobile/exceptions/app_exception.dart';
+import 'package:edtech_mobile/model/payment_data.dart';
+
 abstract interface class PaymentRepository {
-  Future<void> getPaymentMethod(String name, String cardNumber, String expiry, String cvv);
+  Future<Either<AppException, List<PaymentData>>> getPaymentMethods();
 }
