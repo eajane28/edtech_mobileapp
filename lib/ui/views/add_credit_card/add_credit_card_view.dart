@@ -130,7 +130,7 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                                   validator: cvvValid,
                                   keyboardType: TextInputType.number,
                                   formatters: [
-                                    LengthLimitingTextInputFormatter(4),
+                                    LengthLimitingTextInputFormatter(3),
                                     FilteringTextInputFormatter.digitsOnly
                                   ],
                                   textInputAction: TextInputAction.done,

@@ -1,6 +1,8 @@
 import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:edtech_mobile/app/app.router.dart';
 import 'package:edtech_mobile/model/payment_data.dart';
+import 'package:edtech_mobile/repository/payment_repository.dart';
+import 'package:edtech_mobile/ui/common/constants.dart';
 import 'package:edtech_mobile/ui/views/add_credit_card/card_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -12,24 +14,27 @@ class AddCreditCardViewModel extends BaseViewModel {
   final TextEditingController cardNumberController = TextEditingController();
   final TextEditingController expiryDateController = TextEditingController();
   final TextEditingController cvvController = TextEditingController();
+  final _paymentRepository = locator<PaymentRepository>();
+  final _snackBarService = locator<SnackbarService>();
   FocusNode cardNumberFocusNode = FocusNode();
   FocusNode expiryFocusNode = FocusNode();
   FocusNode cvvFocusNode = FocusNode();
 
   PaymentData? paymentData;
 
-  void init(){
+  void init() {
     cardNumberController.addListener(getCardTypeFrmNumber);
   }
 
-  void save() {
+  void save() async {
     setBusy(true);
-    paymentData = paymentData!.copyWith(
+    final response = await _paymentRepository.addPaymentMethod(paymentData!.copyWith(
         name: nameController.text,
         cardNumber: cardNumberController.text.replaceAll(' ', ''),
         expiryDate: expiryDateController.text,
-        cvv: cvvController.text);
-    _navigationService.navigateToPaymentAddedView();
+        cvv: cvvController.text));
+    response.fold((l) => _snackBarService.showSnackbar(message: AppConstants.myErrorMessage),
+        (r) => _navigationService.navigateToPaymentAddedView());
     setBusy(false);
   }
 

@@ -14,7 +14,7 @@ mixin InputValidationMixin {
 
   String? cvvValid(String? value) {
     if (notEmpty(value!)) {
-      return value.length == 4 ? null : "CVV not valid";
+      return value.length == 3 ? null : "CVV not valid";
     } else {
       return 'Field Can\'t Be Empty';
     }

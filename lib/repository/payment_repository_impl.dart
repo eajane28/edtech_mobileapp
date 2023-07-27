@@ -23,4 +23,28 @@ class PaymentRepositoryImpl implements PaymentRepository {
       return Left(AppException(e.message!));
     }
   }
+
+  @override
+  Future<Either<AppException, None>> addPaymentMethod(PaymentData paymentData) async {
+    try {
+      var doc = db
+          .collection(FirebaseConstants.userCollection)
+          .doc(_auth.currentUser!.uid)
+          .collection(FirebaseConstants.paymentCollection)
+          .doc();
+      await doc.set(
+          paymentData
+              .copyWith(
+                  id: doc.id,
+                  name: paymentData.name,
+                  cardNumber: paymentData.cardNumber,
+                  expiryDate: paymentData.expiryDate,
+                  cvv: paymentData.cvv)
+              .toJson(),
+          SetOptions(merge: true));
+      return const Right(None());
+    } on FirebaseException catch (e) {
+      return Left(AppException(e.message!));
+    }
+  }
 }

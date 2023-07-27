@@ -4,4 +4,6 @@ import 'package:edtech_mobile/model/payment_data.dart';
 
 abstract interface class PaymentRepository {
   Future<Either<AppException, List<PaymentData>>> getPaymentMethods();
+
+  Future<Either<AppException, None>> addPaymentMethod(PaymentData paymentData);
 }
