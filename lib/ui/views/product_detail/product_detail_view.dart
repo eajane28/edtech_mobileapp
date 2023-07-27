@@ -26,115 +26,116 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
             children: [
               MyAppBar(title: course.title, onTap: viewModel.backToHomeView),
               Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: Column(
-                          children: [
-                            // Image.network(course.image),
-                            CachedNetworkImage(
-                              imageUrl: course.image,
-                              placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                              errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
-                              fadeInDuration: const Duration(milliseconds: 800),
-                            ),
-                            const SizedBox(height: 16),
-                            Align(
-                              alignment: Alignment.bottomRight,
-                              child: Chip(
-                                label: Text(
-                                  '\$${course.price}',
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xFFF2F2F2),
+                child: ScrollConfiguration(
+                  behavior: MyScrollBehavior(),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          child: Column(
+                            children: [
+                              // Image.network(course.image),
+                              CachedNetworkImage(
+                                imageUrl: course.image,
+                                placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                                errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                                fadeInDuration: const Duration(milliseconds: 800),
+                              ),
+                              const SizedBox(height: 16),
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: Chip(
+                                  label: Text(
+                                    '\$${course.price}',
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: Color(0xFFF2F2F2),
+                                    ),
                                   ),
+                                  backgroundColor: const Color(0xFF65AAEA),
                                 ),
-                                backgroundColor: const Color(0xFF65AAEA),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          const Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              'About the course',
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xFF3C3A36),
-                              ),
-                            ),
+                              )
+                            ],
                           ),
-                          Text(
-                            "${course.about}${List<String>.generate(1000, (index) => "s")}",
-                            style: const TextStyle(
-                              height: 1.7,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xFF3C3A36),
-                            ),
-                          )
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                        ),
+                        Column(
                           children: [
                             const Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                'Duration',
+                                'About the course',
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 24,
                                   fontWeight: FontWeight.w500,
                                   color: Color(0xFF3C3A36),
                                 ),
                               ),
                             ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                course.duration,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color(0xFF3C3A36),
-                                ),
+                            Text(
+                              course.about,
+                              style: const TextStyle(
+                                height: 1.7,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xFF3C3A36),
                               ),
                             )
                           ],
                         ),
-                      ),
-                      // Expanded(child: Container()),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  'Duration',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                    color: Color(0xFF3C3A36),
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                  course.duration,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color(0xFF3C3A36),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        // Expanded(child: Container()),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32),
-                  child: Row(
-                    children: [
-                      MyWidgetButton(
-                        onTap: () {},
-                        color: Colors.transparent,
-                        title: const Icon(
-                          MaterialCommunityIcons.cart_outline,
-                          size: 40,
-                          color: Colors.orange,
-                        ),
-                        width: 40,
-                      ),
-                      horizontalSpaceMedium,
-                      Expanded(child: MyButton(title: 'Purchase', onTap: viewModel.addToCart)),
-                    ],
-                  )),
+              Row(
+                children: [
+                  MyWidgetButton(
+                    onTap: () {},
+                    color: Colors.transparent,
+                    title: const Icon(
+                      MaterialCommunityIcons.cart_outline,
+                      size: 40,
+                      color: Colors.orange,
+                    ),
+                    width: 40,
+                  ),
+                  horizontalSpaceMedium,
+                  Expanded(child: MyButton(title: 'Purchase', onTap: viewModel.addToCart)),
+                ],
+              ),
             ],
           ),
         ),

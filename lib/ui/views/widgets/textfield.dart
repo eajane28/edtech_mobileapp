@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MyTextField extends StatefulWidget {
-  const MyTextField({super.key, required this.hintText, required this.controller, this.validator, required this.keyboardType});
+  const MyTextField({super.key, required this.hintText, required this.controller, this.validator, this.keyboardType});
   final TextEditingController controller;
   final String hintText;
   final String? Function(String?)? validator;
-  final TextInputType keyboardType;
+  final TextInputType? keyboardType;
 
   @override
   State<MyTextField> createState() => _MyTextFieldState();
