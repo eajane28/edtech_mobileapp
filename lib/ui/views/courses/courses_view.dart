@@ -84,6 +84,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
             height: 32,
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
               child: Row(
                 children: [
                   const Text(
