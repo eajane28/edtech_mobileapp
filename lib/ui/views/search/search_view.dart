@@ -31,7 +31,9 @@ class SearchView extends StackedView<SearchViewModel> {
                     children: [
                       MyBackButton(onTap: viewModel.backToHomeView),
                       const SizedBox(width: 8),
-                      Expanded(child: SearchBox(controller: viewModel.searchController)),
+                      Expanded(
+                          child: SearchBox(
+                              controller: viewModel.searchController, onChanged: (controller) => viewModel.init())),
                     ],
                   ),
                 ],

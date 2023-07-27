@@ -7,7 +7,7 @@ class ProductDetailViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
   void addToCart() {
-    _navigationService.navigateToPaymentAddedView();
+    _navigationService.navigateToNoPaymentView();
   }
 
   void backToHomeView(){

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MyTextField extends StatefulWidget {
-  const MyTextField({super.key, required this.hintText, required this.controller, this.validator});
+  const MyTextField({super.key, required this.hintText, required this.controller, this.validator, required this.keyboardType});
   final TextEditingController controller;
   final String hintText;
   final String? Function(String?)? validator;
+  final TextInputType keyboardType;
 
   @override
   State<MyTextField> createState() => _MyTextFieldState();
@@ -12,11 +13,11 @@ class MyTextField extends StatefulWidget {
 
 class _MyTextFieldState extends State<MyTextField> {
   // final bool _validate = false;
-  @override
-  void dispose() {
-    widget.controller.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   widget.controller.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,7 @@ class _MyTextFieldState extends State<MyTextField> {
         ),
         validator: widget.validator,
         controller: widget.controller,
+        keyboardType: widget.keyboardType,
       ),
     );
   }

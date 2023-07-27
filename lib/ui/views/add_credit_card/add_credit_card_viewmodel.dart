@@ -12,7 +12,7 @@ class AddCreditCardViewModel extends BaseViewModel {
   final TextEditingController cvvController = TextEditingController();
 
   void save() {
-    _navigationService.navigateToPaymentMethodView();
+    _navigationService.navigateToPaymentAddedView();
   }
 
   void back() {

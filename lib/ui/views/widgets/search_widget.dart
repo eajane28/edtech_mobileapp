@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class SearchBox extends StatelessWidget {
-  const SearchBox({super.key, required this.controller});
+  const SearchBox({super.key, required this.controller, required this.onChanged});
   final TextEditingController controller;
+  final Function(dynamic value) onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      // controller: widget.onChanged;
       decoration: InputDecoration(
         hintText: 'Search',
         hintStyle: const TextStyle(

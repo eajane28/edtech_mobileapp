@@ -6,8 +6,8 @@ import 'package:stacked_services/stacked_services.dart';
 class PaymentAddedViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
-  void next() {
-    _navigationService.navigateToAddCreditCardView();
+  void continueToPaymentMethod() {
+    _navigationService.navigateToPaymentMethodView();
   }
 
   void back() {
