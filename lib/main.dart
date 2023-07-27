@@ -8,7 +8,7 @@ import 'package:edtech_mobile/app/app.router.dart';
 import 'package:relative_time/relative_time.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(

@@ -82,15 +82,17 @@ class CoursesView extends StackedView<CoursesViewModel> {
           Container(
             width: MediaQuery.of(context).size.width,
             height: 32,
-            child: Row(
-              children: [
-                const Text(
-                  'Category:',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-                ),
-                Expanded(
-                  child: ListView.builder(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  const Text(
+                    'Category:',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                  ),
+                  ListView.builder(
                     shrinkWrap: true,
+                    primary: false,
                     scrollDirection: Axis.horizontal,
                     itemCount: viewModel.coursesList.length,
                     itemBuilder: (context, index) {
@@ -98,8 +100,8 @@ class CoursesView extends StackedView<CoursesViewModel> {
                       return CustomChip(chip: courseItem);
                     },
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           verticalSpaceSmall,
