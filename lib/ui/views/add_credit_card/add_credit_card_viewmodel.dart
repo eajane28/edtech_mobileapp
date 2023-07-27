@@ -10,6 +10,10 @@ class AddCreditCardViewModel extends BaseViewModel {
   final TextEditingController cardNumberController = TextEditingController();
   final TextEditingController expiryDateController = TextEditingController();
   final TextEditingController cvvController = TextEditingController();
+  String cardNumber = '';
+  String cvvCode = '';
+  String cardHolderName = '';
+  String expiryDate = '';
 
   void save() {
     _navigationService.navigateToPaymentAddedView();

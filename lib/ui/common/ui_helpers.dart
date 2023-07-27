@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 const double _tinySize = 5.0;
 const double _smallSize = 10.0;
@@ -76,13 +77,76 @@ double getResponsiveFontSize(BuildContext context,
 
   return responsiveSize;
 }
+
 /*
 * Removes the glowing overscroll
 * */
 class MyScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildOverscrollIndicator(
-      BuildContext context, Widget child, ScrollableDetails details) {
+  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
     return child;
+  }
+}
+
+/*
+* Inserts a space every 4 characters
+* */
+class CreditCartInputFormatter extends TextInputFormatter {
+  final bool? isMonth;
+
+  CreditCartInputFormatter({this.isMonth = false});
+
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    var text = newValue.text;
+    text = text.replaceAll(RegExp(r'(\s)|(\D)'), '');
+
+    int offset = newValue.selection.start;
+    var subText = newValue.text.substring(0, offset).replaceAll(RegExp(r'(\s)|(\D)'), '');
+    int realTrimOffset = subText.length;
+
+    var buffer = StringBuffer();
+    for (int i = 0; i < text.length; i++) {
+      buffer.write(text[i]);
+      var nonZeroIndex = i + 1;
+      if (isMonth! == false) {
+        if (nonZeroIndex % 4 == 0 && nonZeroIndex != text.length) {
+          buffer.write(' '); // Replace this with anything you want to put after each 4 numbers
+        }
+      } else {
+        if (nonZeroIndex % 2 == 0 && nonZeroIndex != text.length) {
+          buffer.write('/'); // Replace this with anything you want to put after each 4 numbers
+        }
+      }
+
+      // This block is only executed once
+      if (isMonth! == false) {
+        if (nonZeroIndex % 4 == 0 && subText.length == nonZeroIndex && nonZeroIndex > 4) {
+          int moveCursorToRight = nonZeroIndex ~/ 4 - 1;
+          realTrimOffset += moveCursorToRight;
+        }
+      } else {
+        if (nonZeroIndex % 2 == 0 && subText.length == nonZeroIndex && nonZeroIndex > 2) {
+          int moveCursorToRight = nonZeroIndex ~/ 2 - 1;
+          realTrimOffset += moveCursorToRight;
+        }
+      }
+
+      // This block is only executed
+      if (isMonth! == false) {
+        if (nonZeroIndex % 4 != 0 && subText.length == nonZeroIndex) {
+          int moveCursorToRight = nonZeroIndex ~/ 4;
+          realTrimOffset += moveCursorToRight;
+        }
+      }else{
+        if (nonZeroIndex % 2 != 0 && subText.length == nonZeroIndex) {
+          int moveCursorToRight = nonZeroIndex ~/ 2;
+          realTrimOffset += moveCursorToRight;
+        }
+      }
+    }
+
+    var string = buffer.toString();
+    return newValue.copyWith(text: string, selection: TextSelection.collapsed(offset: realTrimOffset));
   }
 }
