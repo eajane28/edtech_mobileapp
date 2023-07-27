@@ -1,4 +1,5 @@
 // import 'package:edtech_mobile/model/card_data.dart';
+// import 'package:dartz/dartz.dart';
 import 'package:edtech_mobile/app/app.router.dart';
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/repository/course_repository.dart';
@@ -16,20 +17,29 @@ class SearchViewModel extends BaseViewModel {
   CardData? cardData;
   final TextEditingController searchController = TextEditingController();
   late List<String> selectedItems = [];
+  String? searchQuery;
 
-  init() async {
-    setBusy(true);
-    await _repository.getCourses(searchController.text, selectedItems).then((value) {
-      if (searchController.text.isNotEmpty) {
-        searchList = value;
-      } else {
-        _navigationService.navigateToCourseNotfoundView();
-      }
-      searchList = [];
-      print(searchList);
+  init() {
+    searchCourses(searchController.text);
+    searchController.addListener(() {
+      searchCourses(searchController.text);
     });
-    setBusy(false);
   }
+
+  Future<void> searchCourses(String search) async {
+    if(search == searchQuery) return;
+    setBusy(true);
+    searchQuery = search;
+     _repository.getCourses(searchController.text, selectedItems).then((value) {
+      searchList = value;
+      // if(searchList.isEmpty) {
+      //   _navigationService.navigateToCourseNotfoundView();
+      // }
+      setBusy(false);
+     });
+    
+  }
+
 
   void backToHomeView() {
     _navigationService.back();

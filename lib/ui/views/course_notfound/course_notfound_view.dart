@@ -28,7 +28,7 @@ class CourseNotfoundView extends StackedView<CourseNotfoundViewModel> {
                   const SizedBox(width: 8),
                   Expanded(
                       child: SearchBox(
-                          controller: viewModel.searchController, onChanged: (controller) => viewModel.init())),
+                          controller: viewModel.searchController)),
                 ],
               ),
               const SizedBox(

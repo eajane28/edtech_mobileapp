@@ -1,6 +1,7 @@
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/ui/views/widgets/back_button.dart';
 import 'package:edtech_mobile/ui/views/widgets/card_courses.dart';
+import 'package:edtech_mobile/ui/views/widgets/display.dart';
 import 'package:edtech_mobile/ui/views/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -33,17 +34,20 @@ class SearchView extends StackedView<SearchViewModel> {
                       const SizedBox(width: 8),
                       Expanded(
                           child: SearchBox(
-                              controller: viewModel.searchController, onChanged: (controller) => viewModel.init())),
+                              controller: viewModel.searchController)),
                     ],
                   ),
                 ],
               ),
             ),
-            const Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                'No. of Results',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+            Visibility(
+              visible: viewModel.searchList.isNotEmpty,
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  '${viewModel.searchList.length} Results',
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                ),
               ),
             ),
             viewModel.isBusy
@@ -54,7 +58,17 @@ class SearchView extends StackedView<SearchViewModel> {
                       ),
                     ),
                   )
-                : Expanded(
+                : viewModel.searchList.isEmpty?
+                const Expanded(
+                  child: Center(
+                    child: Display(
+                      image: 'assets/Cool Kids Standing.png',
+                      title: ' Course not found',
+                      subtitle: 'Try searching the course with a different keyword'),
+                  ),
+                )
+                  :
+                Expanded(
                     child: ListView.builder(
                       physics: const BouncingScrollPhysics(),
                       shrinkWrap: true,

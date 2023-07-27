@@ -7,17 +7,6 @@ import 'package:edtech_mobile/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-// import 'package:stacked_services/stacked_services.dart';
-
-// enum CourseType {
-//   css,
-//   ux,
-//   swift,
-//   ui,
-//   html,
-//   php,
-//   java,
-// }
 
 class CoursesViewModel extends BaseViewModel {
   final AuthService authService = locator<AuthService>();

@@ -21,13 +21,5 @@ class CourseRepositoryImpl implements CourseRepository {
       // isGreaterThanOrEqualTo: search);
     }
     return searchresults;
-    // List<CardData> cards = [];
-    // await db.collection(FirebaseConstants.listOfCourses).get().then((value) {
-    //   if (value.docs.isNotEmpty) {
-    //     var snapshots = value.docs;
-    //     cards = snapshots.map((e) => CardData.fromJson(e.data())).toList();
-    //   }
-    // });
-    // return cards;
   }
 }
