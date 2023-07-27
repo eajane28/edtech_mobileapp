@@ -335,8 +335,11 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i22.AddCreditCardView: (data) {
+      final args = data.getArgs<AddCreditCardViewArguments>(
+        orElse: () => const AddCreditCardViewArguments(),
+      );
       return _i24.MaterialPageRoute<dynamic>(
-        builder: (context) => _i22.AddCreditCardView(),
+        builder: (context) => _i22.AddCreditCardView(key: args.key),
         settings: data,
       );
     },
@@ -425,6 +428,28 @@ class ProductDetailViewArguments {
   @override
   int get hashCode {
     return course.hashCode ^ key.hashCode;
+  }
+}
+
+class AddCreditCardViewArguments {
+  const AddCreditCardViewArguments({this.key});
+
+  final _i24.Key? key;
+
+  @override
+  String toString() {
+    return '{"key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant AddCreditCardViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode;
   }
 }
 
@@ -738,14 +763,16 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToAddCreditCardView([
+  Future<dynamic> navigateToAddCreditCardView({
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.addCreditCardView,
+        arguments: AddCreditCardViewArguments(key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1055,14 +1082,16 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithAddCreditCardView([
+  Future<dynamic> replaceWithAddCreditCardView({
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.addCreditCardView,
+        arguments: AddCreditCardViewArguments(key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
