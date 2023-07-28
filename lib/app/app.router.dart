@@ -11,8 +11,6 @@ import 'package:edtech_mobile/ui/views/add_credit_card/add_credit_card_view.dart
 import 'package:edtech_mobile/ui/views/checkout/checkout_view.dart' as _i21;
 import 'package:edtech_mobile/ui/views/choose_lesson/choose_lesson_view.dart'
     as _i10;
-import 'package:edtech_mobile/ui/views/course_notfound/course_notfound_view.dart'
-    as _i19;
 import 'package:edtech_mobile/ui/views/course_test/course_test_view.dart'
     as _i12;
 import 'package:edtech_mobile/ui/views/forgot_password/forgot_password_view.dart'
@@ -185,10 +183,6 @@ class StackedRouter extends _i1.RouterBase {
       page: _i18.PaymentAddedView,
     ),
     _i1.RouteDef(
-      Routes.courseNotfoundView,
-      page: _i19.CourseNotfoundView,
-    ),
-    _i1.RouteDef(
       Routes.paymentMethodView,
       page: _i20.PaymentMethodView,
     ),
@@ -313,12 +307,6 @@ class StackedRouter extends _i1.RouterBase {
     _i18.PaymentAddedView: (data) {
       return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => const _i18.PaymentAddedView(),
-        settings: data,
-      );
-    },
-    _i19.CourseNotfoundView: (data) {
-      return _i24.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i19.CourseNotfoundView(),
         settings: data,
       );
     },
