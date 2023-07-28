@@ -150,3 +150,36 @@ class CreditCartInputFormatter extends TextInputFormatter {
     return newValue.copyWith(text: string, selection: TextSelection.collapsed(offset: realTrimOffset));
   }
 }
+
+String formatCreditCardNumber(String input) {
+  // Remove any non-digit characters from the input string
+  String cleanedInput = input.replaceAll(RegExp(r'\D'), '');
+
+  // Ensure the input string is exactly 16 characters long
+  if (cleanedInput.length > 16) {
+    throw const FormatException("Invalid credit card number length");
+  }
+
+  // Format the credit card number as **** **** **** 4242
+  String masked = '';
+  StringBuffer buffer = StringBuffer(masked);
+  for (int i = 0; i < cleanedInput.length - 4; i++) {
+    buffer.write('*');
+  }
+  buffer.write(cleanedInput.substring(cleanedInput.length - 4));
+  String spacedInput;
+  spacedInput = buffer.toString();
+  if (buffer.toString().length % 4 == 0) {
+    int numOfSpaces = (buffer.toString().length / 4).ceil() - 1;
+    print(numOfSpaces);
+
+    // Split the cleaned input into groups of four characters
+    List<String> groups = [];
+    for (var i = 0; i < buffer.toString().length; i += 4) {
+      groups.add(buffer.toString().substring(i, i + 4));
+    }
+    // Join the groups with spaces between them
+    spacedInput = groups.join(' ');
+  }
+  return spacedInput;
+}

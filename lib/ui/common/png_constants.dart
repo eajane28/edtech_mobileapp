@@ -11,13 +11,13 @@ class PngConstants {
 class CardTypeImage {
   CardTypeImage._();
 
-  static const String _rootPath = "assets/";
-  static const String mastercard = "${_rootPath}mastercard.png";
-  static const String americanExpress = "${_rootPath}american_express.png";
-  static const String diners = "${_rootPath}diners_club.png";
-  static const String discover = "${_rootPath}discover.png";
-  static const String jcb = "${_rootPath}jcb.png";
-  static const String verve = "${_rootPath}verve.png";
-  static const String visa = "${_rootPath}visa.png";
+  static const String rootPath = "assets/";
+  static const String mastercard = "${rootPath}mastercard.png";
+  static const String americanExpress = "${rootPath}american_express.png";
+  static const String diners = "${rootPath}diners_club.png";
+  static const String discover = "${rootPath}discover.png";
+  static const String jcb = "${rootPath}jcb.png";
+  static const String verve = "${rootPath}verve.png";
+  static const String visa = "${rootPath}visa.png";
 
 }

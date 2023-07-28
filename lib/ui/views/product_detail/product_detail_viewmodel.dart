@@ -22,6 +22,7 @@ class ProductDetailViewModel extends BaseViewModel {
     paymentMethods.isEmpty
         ? _navigationService.navigateToNoPaymentView()
         : _navigationService.navigateToPaymentMethodView(cards: paymentMethods);
+    setBusy(false);
   }
 
   void backToHomeView() {

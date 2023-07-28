@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:edtech_mobile/ui/common/png_constants.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +13,7 @@ class CardUtils {
     String img = "";
     Icon? icon;
     switch (cardType) {
-      case CardType.master:
+      case CardType.mastercard:
         img = CardTypeImage.mastercard;
         break;
       case CardType.visa:
@@ -20,13 +22,13 @@ class CardUtils {
       case CardType.verve:
         img = CardTypeImage.verve;
         break;
-      case CardType.americanExpress:
+      case CardType.american_express:
         img = CardTypeImage.americanExpress;
         break;
       case CardType.discover:
         img = CardTypeImage.discover;
         break;
-      case CardType.dinersClub:
+      case CardType.diners_club:
         img = CardTypeImage.diners;
         break;
       case CardType.jcb:
@@ -65,17 +67,17 @@ class CardUtils {
     CardType cardType;
     if (input.startsWith(RegExp(
         r'((5[1-5])|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720))'))) {
-      cardType = CardType.master;
+      cardType = CardType.mastercard;
     } else if (input.startsWith(RegExp(r'[4]'))) {
       cardType = CardType.visa;
     } else if (input.startsWith(RegExp(r'((506(0|1))|(507(8|9))|(6500))'))) {
       cardType = CardType.verve;
     } else if (input.startsWith(RegExp(r'((34)|(37))'))) {
-      cardType = CardType.americanExpress;
+      cardType = CardType.american_express;
     } else if (input.startsWith(RegExp(r'((6[45])|(6011))'))) {
       cardType = CardType.discover;
     } else if (input.startsWith(RegExp(r'((30[0-5])|(3[89])|(36)|(3095))'))) {
-      cardType = CardType.dinersClub;
+      cardType = CardType.diners_club;
     } else if (input.startsWith(RegExp(r'(352[89]|35[3-8][0-9])'))) {
       cardType = CardType.jcb;
     } else if (input.length <= 8) {
@@ -88,12 +90,12 @@ class CardUtils {
 }
 
 enum CardType {
-  master,
+  mastercard,
   visa,
   verve,
   discover,
-  americanExpress,
-  dinersClub,
+  american_express,
+  diners_club,
   jcb,
   others,
   invalid
