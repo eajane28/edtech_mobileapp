@@ -21,8 +21,7 @@ class ProductDetailViewModel extends BaseViewModel {
     response.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => paymentMethods = r);
     paymentMethods.isEmpty
         ? _navigationService.navigateToNoPaymentView()
-        : _navigationService.navigateToPaymentMethodView();
-    setBusy(false);
+        : _navigationService.navigateToPaymentMethodView(cards: paymentMethods);
   }
 
   void backToHomeView() {
