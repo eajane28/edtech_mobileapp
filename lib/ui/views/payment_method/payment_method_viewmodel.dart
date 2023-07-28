@@ -4,19 +4,33 @@ import 'package:edtech_mobile/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../model/payment_data.dart';
+import '../../../repository/payment_repository.dart';
+
 class PaymentMethodViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
+  final PaymentRepository _paymentService = locator<PaymentRepository>();
 
-  final paymentList = [
-    // PaymentData(
-    //     image: 'assets/Mastercard.png',
-    //     title: '**** **** **** 5738',
-    //     subtitle: 'Expires 09/29'),
-    // PaymentData(
-    //     image: 'assets/Visa.png',
-    //     title: '**** **** **** 8897',
-    //     subtitle: 'Expires 09/29'),
-  ];
+
+  List <PaymentData> paymentList = [];
+
+  void init () async {
+    setBusy(true);
+    getPaymentMethod();
+    setBusy(false);}
+
+  void getPaymentMethod() async{
+    // setBusy(true);
+    final result = await _paymentService.getPaymentMethods();
+    result.fold((l) => null, (r) => paymentList = r);
+    // if(paymentList.isNotEmpty){
+    //   return paymentList;
+    // }
+    // print(paymentList);
+    // return null;
+    // rebuildUi();
+    // setBusy(false);
+  }
 
   void proceed() {
     _navigationService.navigateToCheckoutView();

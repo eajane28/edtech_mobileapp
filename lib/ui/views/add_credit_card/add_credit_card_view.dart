@@ -92,7 +92,7 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                                   focusNode: viewModel.expiryFocusNode,
                                   controller: viewModel.expiryDateController,
                                   validator: cardExpiryValid,
-                                  keyboardType: TextInputType.number,
+                                  keyboardType: TextInputType.datetime,
                                   onChanged: (String value) {
                                     if (viewModel.expiryDateController.text.startsWith(RegExp('[2-9]'))) {
                                       viewModel.expiryDateController.text = '0${viewModel.expiryDateController.text}';
@@ -123,7 +123,7 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                             SizedBox(
                                 width: 155.5,
                                 child: MyTextField(
-                                  hintText: '****',
+                                  hintText: '***',
                                   focusNode: viewModel.cvvFocusNode,
                                   isObscure: true,
                                   controller: viewModel.cvvController,

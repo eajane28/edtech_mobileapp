@@ -37,17 +37,25 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
               const SizedBox(height: 78),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                child: Column(
-                  children: [
-                    for (var card in viewModel.paymentList)
-                      PaymentItem(card: card),
-                  ],
+                child: viewModel.isBusy? const Center(child: CircularProgressIndicator(color: Colors.orange,))
+                : SizedBox(
+                  height: 200,
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: viewModel.paymentList.length,
+                    itemBuilder: (context, index) => PaymentItem(card: viewModel.init().paymentList[index]
+                    ),
+                  ),
+                  // Column(
+                  //   children: [
+                  //     for (var item in viewModel.paymentList) PaymentItem(card: item)
+                  //   ],
+                  // )
                 ),
               ),
               const SizedBox(height: 361),
               Container(
-                  margin: const EdgeInsets.all(16.0),
-                  child: MyButton(title: 'Continue', onTap: viewModel.proceed))
+                  margin: const EdgeInsets.all(16.0), child: MyButton(title: 'Continue', onTap: viewModel.proceed))
             ],
           ),
         ),
@@ -60,4 +68,10 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
     BuildContext context,
   ) =>
       PaymentMethodViewModel();
+
+  @override
+  void onViewModelReady(PaymentMethodViewModel viewModel) {
+    viewModel.init();
+    super.onViewModelReady(viewModel);
+  }
 }
