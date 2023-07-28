@@ -1,9 +1,12 @@
+import 'package:edtech_mobile/repository/payment_repository.dart';
+import 'package:edtech_mobile/repository/payment_repository_impl.dart';
 import 'package:edtech_mobile/services/auth_service_impl.dart';
 import 'package:edtech_mobile/services/local_storage_impl.dart';
 import 'package:edtech_mobile/repository/course_repository.dart';
 import 'package:edtech_mobile/repository/course_repository_impl.dart';
 import 'package:edtech_mobile/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:edtech_mobile/ui/dialogs/info_alert/info_alert_dialog.dart';
+import 'package:edtech_mobile/ui/dialogs/update_password_dialog/update_password_dialog_ui.dart';
 import 'package:edtech_mobile/ui/views/home/home_view.dart';
 import 'package:edtech_mobile/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -36,6 +39,8 @@ import 'package:edtech_mobile/ui/views/forgot_password/forgot_password_view.dart
 
 @StackedApp(
   routes: [
+    // MaterialRoute(page: SettingsView),
+    // MaterialRoute(page: ProfileView),
     MaterialRoute(page: HomeView),
     MaterialRoute(page: StartupView, initial: true),
     MaterialRoute(page: IntroView),
@@ -66,6 +71,7 @@ import 'package:edtech_mobile/ui/views/forgot_password/forgot_password_view.dart
     LazySingleton(classType: AuthServiceImpl, asType: AuthService),
     LazySingleton(classType: LocalStorageImpl, asType: LocalStorage),
     LazySingleton(classType: CourseRepositoryImpl, asType: CourseRepository),
+    LazySingleton(classType: PaymentRepositoryImpl, asType: PaymentRepository),
     LazySingleton(classType: SnackbarService),
 // @stacked-service
   ],
@@ -75,6 +81,7 @@ import 'package:edtech_mobile/ui/views/forgot_password/forgot_password_view.dart
   ],
   dialogs: [
     StackedDialog(classType: InfoAlertDialog),
+    StackedDialog(classType: UpdatePasswordDialogUi),
     // @stacked-dialog
   ],
 )

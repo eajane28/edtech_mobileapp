@@ -14,6 +14,8 @@ import 'package:stacked_shared/stacked_shared.dart';
 
 import '../repository/course_repository.dart';
 import '../repository/course_repository_impl.dart';
+import '../repository/payment_repository.dart';
+import '../repository/payment_repository_impl.dart';
 import '../services/auth_service.dart';
 import '../services/auth_service_impl.dart';
 import '../services/local_storage.dart';
@@ -36,5 +38,7 @@ Future<void> setupLocator({
   locator.registerLazySingleton<AuthService>(() => AuthServiceImpl());
   locator.registerLazySingleton<LocalStorage>(() => LocalStorageImpl());
   locator.registerLazySingleton<CourseRepository>(() => CourseRepositoryImpl());
+  locator
+      .registerLazySingleton<PaymentRepository>(() => PaymentRepositoryImpl());
   locator.registerLazySingleton(() => SnackbarService());
 }

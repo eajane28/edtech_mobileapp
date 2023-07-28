@@ -6,11 +6,12 @@
 import 'dart:async' as _i5;
 import 'dart:ui' as _i6;
 
+import 'package:cloud_firestore/cloud_firestore.dart' as _i10;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:edtech_mobile/exceptions/app_exception.dart' as _i8;
 import 'package:edtech_mobile/model/user.dart' as _i9;
 import 'package:edtech_mobile/services/auth_service.dart' as _i7;
-import 'package:edtech_mobile/services/local_storage.dart' as _i10;
+import 'package:edtech_mobile/services/local_storage.dart' as _i11;
 import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i3;
@@ -771,12 +772,76 @@ class MockAuthService extends _i1.Mock implements _i7.AuthService {
           ),
         )),
       ) as _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>>);
+  @override
+  _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>> updatePassword(
+    String? currentPassword,
+    String? password,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updatePassword,
+          [
+            currentPassword,
+            password,
+          ],
+        ),
+        returnValue:
+            _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>>.value(
+                _FakeEither_0<_i8.AppException, _i2.None<dynamic>>(
+          this,
+          Invocation.method(
+            #updatePassword,
+            [
+              currentPassword,
+              password,
+            ],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>>.value(
+                _FakeEither_0<_i8.AppException, _i2.None<dynamic>>(
+          this,
+          Invocation.method(
+            #updatePassword,
+            [
+              currentPassword,
+              password,
+            ],
+          ),
+        )),
+      ) as _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>>);
+  @override
+  _i5.Future<_i2.Either<_i8.AppException, _i10.Timestamp?>>
+      getLastUpdatedPassword(String? uid) => (super.noSuchMethod(
+            Invocation.method(
+              #getLastUpdatedPassword,
+              [uid],
+            ),
+            returnValue:
+                _i5.Future<_i2.Either<_i8.AppException, _i10.Timestamp?>>.value(
+                    _FakeEither_0<_i8.AppException, _i10.Timestamp?>(
+              this,
+              Invocation.method(
+                #getLastUpdatedPassword,
+                [uid],
+              ),
+            )),
+            returnValueForMissingStub:
+                _i5.Future<_i2.Either<_i8.AppException, _i10.Timestamp?>>.value(
+                    _FakeEither_0<_i8.AppException, _i10.Timestamp?>(
+              this,
+              Invocation.method(
+                #getLastUpdatedPassword,
+                [uid],
+              ),
+            )),
+          ) as _i5.Future<_i2.Either<_i8.AppException, _i10.Timestamp?>>);
 }
 
 /// A class which mocks [LocalStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLocalStorage extends _i1.Mock implements _i10.LocalStorage {
+class MockLocalStorage extends _i1.Mock implements _i11.LocalStorage {
   @override
   _i5.Future<void> saveUser(_i9.User? user) => (super.noSuchMethod(
         Invocation.method(

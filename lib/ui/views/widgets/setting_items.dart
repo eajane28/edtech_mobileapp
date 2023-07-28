@@ -2,6 +2,7 @@ import 'package:edtech_mobile/model/settings_data.dart';
 import 'package:edtech_mobile/model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:relative_time/relative_time.dart';
 
 class SettingsInfo extends StatelessWidget {
   const SettingsInfo({super.key, required this.info, required this.user});
@@ -53,10 +54,20 @@ class SettingsInfo extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    info.user!.isEmpty
+                    info.user == null
                         ? const SizedBox.shrink()
                         : Text(
-                            info.user ?? '',
+                            info.user!,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xFF78746D),
+                            ),
+                          ),
+                    info.dateTime == null
+                        ? const SizedBox.shrink()
+                        : Text(
+                            RelativeTime(context, numeric: true).format(info.dateTime!),
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
@@ -71,7 +82,7 @@ class SettingsInfo extends StatelessWidget {
           Expanded(
               flex: 1,
               child: IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.chevron_right)))
+                  onPressed: info.onPressed, icon: const Icon(Icons.chevron_right)))
         ],
       ),
     );

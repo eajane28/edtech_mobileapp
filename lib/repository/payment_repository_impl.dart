@@ -8,18 +8,46 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class PaymentRepositoryImpl implements PaymentRepository {
   final db = FirebaseFirestore.instance;
-  final _auth = FirebaseAuth.instance;
+ final _auth = FirebaseAuth.instance;
 
   @override
-  Future<Either<AppException, None>> setPaymentMethod({required String name,required String cardNumber,required String expiry,required String cvv}) async {
-    final user = _auth.currentUser;
-    db.collection(FirebaseConstants.payment).doc().set(PaymentData(
-            creditCardName: name,
-            creditCardNumber: cardNumber,
-            creditCardExpiryDate: expiry,
-            creditCardCVV: cvv) // not sure with the credit card
-        .toJson());
+  Future<Either<AppException, List<PaymentData>>> getPaymentMethods() async {
+    try {
+      return Right(await db
+          .collection(FirebaseConstants.userCollection)
+          .doc(_auth.currentUser!.uid)
+          .collection(FirebaseConstants.paymentCollection)
+          .get()
+          .then((value) => value.docs.map((e) => PaymentData.fromJson(e.data())).toList()));
+    } on FirebaseException catch (e) {
+      return Left(AppException(e.message!));
+    }
   }
+
+  @override
+  Future<Either<AppException, None>> addPaymentMethod(PaymentData paymentData) async {
+    try {
+      var doc = db
+          .collection(FirebaseConstants.userCollection)
+          .doc(_auth.currentUser!.uid)
+          .collection(FirebaseConstants.paymentCollection)
+          .doc();
+      await doc.set(
+          paymentData
+              .copyWith(
+                  id: doc.id,
+                  name: paymentData.name,
+                  cardNumber: paymentData.cardNumber,
+                  expiryDate: paymentData.expiryDate,
+                  cvv: paymentData.cvv)
+              .toJson(),
+          SetOptions(merge: true));
+      return const Right(None());
+    } on FirebaseException catch (e) {
+      return Left(AppException(e.message!));
+    }
+  }
+  
 
   
 }

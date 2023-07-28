@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -52,9 +49,19 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyAhs0f9YmHm92nkbqPN0vW2TFxout8MafQ',
+    appId: '1:273139588544:web:cb446c5d2b1a2fa3467c25',
+    messagingSenderId: '273139588544',
+    projectId: 'edtech-mobileapp',
+    authDomain: 'edtech-mobileapp.firebaseapp.com',
+    storageBucket: 'edtech-mobileapp.appspot.com',
+    measurementId: 'G-N039LM49MV',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBkH9shYG__EK7-FUwzFatKQX8SvG10IE0',
-    appId: '1:273139588544:android:73d0185d80df030e467c25',
+    appId: '1:273139588544:android:28c286af743bbe95467c25',
     messagingSenderId: '273139588544',
     projectId: 'edtech-mobileapp',
     storageBucket: 'edtech-mobileapp.appspot.com',

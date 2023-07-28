@@ -6,6 +6,7 @@ import 'package:edtech_mobile/exceptions/app_exception_constants.dart';
 import 'package:edtech_mobile/model/user.dart';
 import 'package:edtech_mobile/services/auth_service.dart';
 import 'package:edtech_mobile/services/local_storage.dart';
+import 'package:edtech_mobile/ui/common/app_extension.dart';
 import 'package:edtech_mobile/ui/common/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 
@@ -86,7 +87,7 @@ class AuthServiceImpl implements AuthService {
   }
 
   @override
-  Future<Either<AppException, None>> forgetPassword({required String email}) async {
+  Future<Either<AppException, None>> forgetPassword({required String email}) async{
     try {
       await _auth.sendPasswordResetEmail(email: email);
       return const Right(None());
@@ -97,6 +98,43 @@ class AuthServiceImpl implements AuthService {
         return Left(
             AppException("Something went wrong!\nMaybe it is on our side"));
       }
+    }
+  }
+
+  @override
+  Future<Either<AppException, None>> updatePassword(String currentPassword, String newPassword) async {
+    try {
+      var response = await login(email: _auth.currentUser!.email!, password: currentPassword);
+      return response.fold((l) => Left(AppException(l.message)), (r) async {
+        try {
+          // await Future.wait([
+          await _auth.currentUser!.updatePassword(newPassword);
+          await db
+              .collection(FirebaseConstants.userCollection)
+              .doc(r.id)
+              .set({"lastUpdatedPassword": DateTime.now().toTimestamp()}, SetOptions(merge: true));
+          await logout();
+          // ]);
+          return const Right(None());
+        } catch (e) {
+          return Left(AppException(e.toString()));
+        }
+      });
+    } catch (e) {
+      return Left(AppException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<AppException, Timestamp?>> getLastUpdatedPassword(String uid) async {
+    try {
+      return await db
+          .collection(FirebaseConstants.userCollection)
+          .doc(uid)
+          .get()
+          .then((value) => Right(value.data()!['lastUpdatedPassword']));
+    } on FirebaseException catch (e) {
+      return Left(AppException(e.message!));
     }
   }
 }

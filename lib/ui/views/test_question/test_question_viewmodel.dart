@@ -8,9 +8,9 @@ class TestQuestionViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
   final choices = [
-    ChoicesData(choices: 'A.', description: '<h5>'),
-    ChoicesData(choices: 'B.', description: '<p>'),
-    ChoicesData(choices: 'C.', description: '<h1>')
+    const ChoicesData(choices: 'A.', description: '<h5>'),
+    const ChoicesData(choices: 'B.', description: '<p>'),
+    const ChoicesData(choices: 'C.', description: '<h1>')
   ];
 
   void proceed() {
