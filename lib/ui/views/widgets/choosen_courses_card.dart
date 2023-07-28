@@ -31,13 +31,14 @@ class LessonItem extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
-                    SizedBox(
+                    Container(
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
                       width: double.infinity,
-                      child: LinearProgressIndicator(
+                      child: const LinearProgressIndicator(
                         color: Colors.blue,
                         value: .6,
                         minHeight: 8,
-                        borderRadius: BorderRadius.circular(12),
+                        // borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                   ],

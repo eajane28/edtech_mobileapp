@@ -8,18 +8,20 @@ part of 'payment_data.dart';
 
 _$_PaymentData _$$_PaymentDataFromJson(Map<String, dynamic> json) =>
     _$_PaymentData(
-      creditCardImage: json['creditCardImage'] as String,
-      creditCardName: json['creditCardName'] as String,
-      creditCardNumber: json['creditCardNumber'] as String,
-      creditCardExpiryDate: json['creditCardExpiryDate'] as String,
-      creditCardCVV: json['creditCardCVV'] as String,
+      id: json['id'] as String?,
+      name: json['name'] as String,
+      paymentMethod: json['paymentMethod'] as String,
+      cardNumber: json['cardNumber'] as String,
+      expiryDate: json['expiryDate'] as String,
+      cvv: json['cvv'] as String,
     );
 
 Map<String, dynamic> _$$_PaymentDataToJson(_$_PaymentData instance) =>
     <String, dynamic>{
-      'creditCardImage': instance.creditCardImage,
-      'creditCardName': instance.creditCardName,
-      'creditCardNumber': instance.creditCardNumber,
-      'creditCardExpiryDate': instance.creditCardExpiryDate,
-      'creditCardCVV': instance.creditCardCVV,
+      'id': instance.id,
+      'name': instance.name,
+      'paymentMethod': instance.paymentMethod,
+      'cardNumber': instance.cardNumber,
+      'expiryDate': instance.expiryDate,
+      'cvv': instance.cvv,
     };

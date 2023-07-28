@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,13 @@ class CourseCard extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  SizedBox(height: 194, child: Image.network(card.image, fit: BoxFit.cover)),
+                  // Image.network(card.image),
+                  CachedNetworkImage(
+                    imageUrl: card.image,
+                    placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                    fadeInDuration: const Duration(milliseconds: 800),
+                  ),
                   Stack(
                     children: [
                       Align(
@@ -78,7 +85,8 @@ class CourseCard extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: Text(
                       card.subtitle,
-                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                      style: const TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.w400),
                     ),
                   )
                 ],

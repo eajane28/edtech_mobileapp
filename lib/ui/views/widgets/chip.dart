@@ -20,11 +20,12 @@ class _CustomChipState extends State<CustomChip> {
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: GestureDetector(
         child: FilterChip(
+          // selected: isSelected,
+          selectedColor: Colors.blue,
           onSelected: (bool value) {
-            setState(() {
-              isSelected = !isSelected;
-              widget.onSelected(isSelected, widget.chip.name);
-            });
+            isSelected = !isSelected;
+            widget.onSelected(isSelected, widget.chip.name);
+            setState(() {});
           },
           label: Text(
             widget.chip.name,

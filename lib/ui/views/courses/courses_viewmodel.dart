@@ -2,8 +2,8 @@ import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:edtech_mobile/app/app.router.dart';
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/courses_data.dart';
-import 'package:edtech_mobile/services/auth_service.dart';
 import 'package:edtech_mobile/repository/course_repository.dart';
+import 'package:edtech_mobile/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -21,6 +21,12 @@ class CoursesViewModel extends BaseViewModel {
 
   init() async {
     setBusy(true);
+    getCourses();
+    setBusy(false);
+  }
+
+  void getCourses() async {
+    setBusyForObject('courses', true);
     await _repository.getCourses(searchController.text, selectedItems).then((value) {
       if (selectedItems.isEmpty) {
         cardList = value;
@@ -30,7 +36,9 @@ class CoursesViewModel extends BaseViewModel {
         cardList = [];
       }
     });
-    setBusy(false);
+    // print(cardList);
+    // cardData = cardList[];
+    setBusyForObject('courses', false);
   }
 
   final coursesList = [

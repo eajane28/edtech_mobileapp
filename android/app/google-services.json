@@ -36,6 +36,35 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:273139588544:android:28c286af743bbe95467c25",
+        "android_client_info": {
+          "package_name": "com.example.edtech_mobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "273139588544-af3u2mkjr73a0ao5u6a9941eljsofgln.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkH9shYG__EK7-FUwzFatKQX8SvG10IE0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "273139588544-af3u2mkjr73a0ao5u6a9941eljsofgln.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:273139588544:android:952ccd5497431fb5467c25",
         "android_client_info": {
           "package_name": "com.example.edtechapp"

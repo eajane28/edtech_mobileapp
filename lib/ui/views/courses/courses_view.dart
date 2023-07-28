@@ -2,6 +2,7 @@
 
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/user.dart';
+import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/card_courses.dart';
 import 'package:edtech_mobile/ui/views/widgets/chip.dart';
 import 'package:edtech_mobile/ui/views/widgets/search_widget.dart';
@@ -23,7 +24,11 @@ class CoursesView extends StackedView<CoursesViewModel> {
     CoursesViewModel viewModel,
     Widget? child,
   ) {
-    return Padding(
+    return viewModel.isBusy
+        ? const Center(
+      child: CircularProgressIndicator(),
+    )
+        : Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Column(
         children: [
@@ -76,16 +81,19 @@ class CoursesView extends StackedView<CoursesViewModel> {
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: 48,
-            child: Row(
-              children: [
-                const Text(
-                  'Category:',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-                ),
-                Expanded(
-                  child: ListView.builder(
+            height: 32,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              child: Row(
+                children: [
+                  const Text(
+                    'Category:',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                  ),
+                  ListView.builder(
                     shrinkWrap: true,
+                    primary: false,
                     scrollDirection: Axis.horizontal,
                     itemCount: viewModel.coursesList.length,
                     itemBuilder: (context, index) {
@@ -104,11 +112,12 @@ class CoursesView extends StackedView<CoursesViewModel> {
                       );
                     },
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-          viewModel.isBusy
+          verticalSpaceSmall,
+          viewModel.busy('courses')
               ? const Expanded(
                   child: Center(
                     child: CircularProgressIndicator(

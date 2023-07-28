@@ -1,13 +1,14 @@
+import 'package:edtech_mobile/app/app.dialogs.dart';
 import 'package:edtech_mobile/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:edtech_mobile/app/app.bottomsheets.dart';
-import 'package:edtech_mobile/app/app.dialogs.dart';
 import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:edtech_mobile/app/app.router.dart';
+import 'package:relative_time/relative_time.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
@@ -31,6 +32,10 @@ class MainApp extends StatelessWidget {
       navigatorObservers: [
         StackedService.routeObserver,
       ],
+      localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+        RelativeTimeLocalizations.delegate,
+      ],
+      debugShowCheckedModeBanner: false,
     );
   }
 }
