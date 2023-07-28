@@ -1,4 +1,5 @@
 import 'package:edtech_mobile/model/payment_data.dart';
+import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
 import 'package:edtech_mobile/ui/views/widgets/payment_cards.dart';
@@ -24,7 +25,8 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
           title: 'Payment',
           onTap: viewModel.back,
         ),
-        body: Padding(
+        body: Container(
+          height: screenHeight(context),
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
@@ -40,19 +42,29 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
                   ),
                 ),
               ),
-              const SizedBox(height: 78),
+              const SizedBox(height: 32),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 6.0),
                 child: Column(
                   children: [
-                    for (var card in viewModel.paymentMethods!) PaymentItem(card: card),
+                    for (var card in viewModel.paymentMethods!)
+                      PaymentItem(
+                          card: card,
+                          index: viewModel.paymentMethods!.indexOf(card),
+                          groupValue: viewModel.groupValue,
+                          onPressed:
+                          viewModel.selectedCard,
+                      ),
                   ],
                 ),
               ),
               const SizedBox(height: 361),
-              Container(
-                  margin: const EdgeInsets.all(16.0),
-                  child: MyButton(title: 'Continue', onTap: viewModel.proceed))
+              Expanded(child: Container()),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                    margin: const EdgeInsets.all(16.0), child: MyButton(title: 'Continue', onTap: viewModel.proceed)),
+              )
             ],
           ),
         ),

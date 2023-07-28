@@ -14,6 +14,9 @@ class PaymentMethodViewModel extends BaseViewModel {
   final _paymentRepository = locator<PaymentRepository>();
   final _snackBarService = locator<SnackbarService>();
   List<PaymentData>? paymentMethods;
+  late PaymentData selectedPaymentData;
+  int groupValue = 0;
+
 
   void init() async {
     setBusy(true);
@@ -34,5 +37,11 @@ class PaymentMethodViewModel extends BaseViewModel {
 
   void back() {
     _navigationService.back();
+  }
+
+  void selectedCard(PaymentData card){
+    groupValue = paymentMethods!.indexOf(card);
+    selectedPaymentData = card;
+    rebuildUi();
   }
 }
