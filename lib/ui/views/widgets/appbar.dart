@@ -35,3 +35,39 @@ class MyAppBar extends StatelessWidget {
     );
   }
 }
+
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const CustomAppBar({super.key, required this.title, this.onTap});
+
+  final String title;
+  final void Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8),
+      child: Row(
+        children: [
+          MyBackButton(onTap: onTap),
+          horizontalSpaceMedium,
+          Expanded(
+            child: Center(
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 48)
+        ],
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(64);
+}

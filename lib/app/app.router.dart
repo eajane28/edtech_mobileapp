@@ -6,6 +6,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:edtech_mobile/model/card_data.dart' as _i25;
+import 'package:edtech_mobile/model/payment_data.dart' as _i26;
 import 'package:edtech_mobile/ui/views/add_credit_card/add_credit_card_view.dart'
     as _i22;
 import 'package:edtech_mobile/ui/views/checkout/checkout_view.dart' as _i21;
@@ -39,7 +40,7 @@ import 'package:edtech_mobile/ui/views/your_course/your_course_view.dart'
 import 'package:flutter/material.dart' as _i24;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i26;
+import 'package:stacked_services/stacked_services.dart' as _i27;
 
 class Routes {
   static const homeView = '/home-view';
@@ -311,8 +312,12 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i20.PaymentMethodView: (data) {
+      final args = data.getArgs<PaymentMethodViewArguments>(
+        orElse: () => const PaymentMethodViewArguments(),
+      );
       return _i24.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i20.PaymentMethodView(),
+        builder: (context) =>
+            _i20.PaymentMethodView(key: args.key, cards: args.cards),
         settings: data,
       );
     },
@@ -419,6 +424,33 @@ class ProductDetailViewArguments {
   }
 }
 
+class PaymentMethodViewArguments {
+  const PaymentMethodViewArguments({
+    this.key,
+    this.cards,
+  });
+
+  final _i24.Key? key;
+
+  final List<_i26.PaymentData>? cards;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "cards": "$cards"}';
+  }
+
+  @override
+  bool operator ==(covariant PaymentMethodViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.cards == cards;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ cards.hashCode;
+  }
+}
+
 class AddCreditCardViewArguments {
   const AddCreditCardViewArguments({this.key});
 
@@ -463,7 +495,7 @@ class ForgotPasswordViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i26.NavigationService {
+extension NavigatorStateExtension on _i27.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -723,14 +755,17 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToPaymentMethodView([
+  Future<dynamic> navigateToPaymentMethodView({
+    _i24.Key? key,
+    List<_i26.PaymentData>? cards,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.paymentMethodView,
+        arguments: PaymentMethodViewArguments(key: key, cards: cards),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1042,14 +1077,17 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithPaymentMethodView([
+  Future<dynamic> replaceWithPaymentMethodView({
+    _i24.Key? key,
+    List<_i26.PaymentData>? cards,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.paymentMethodView,
+        arguments: PaymentMethodViewArguments(key: key, cards: cards),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
