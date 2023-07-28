@@ -8,7 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class PaymentRepositoryImpl implements PaymentRepository {
   final db = FirebaseFirestore.instance;
-  final _auth = FirebaseAuth.instance;
+ final _auth = FirebaseAuth.instance;
 
   @override
   Future<Either<AppException, List<PaymentData>>> getPaymentMethods() async {
@@ -47,4 +47,7 @@ class PaymentRepositoryImpl implements PaymentRepository {
       return Left(AppException(e.message!));
     }
   }
+  
+
+  
 }
