@@ -137,4 +137,17 @@ class AuthServiceImpl implements AuthService {
       return Left(AppException(e.message!));
     }
   }
+
+  @override
+  Future<Either<AppException, User>> getCurrentUserData() async {
+    try {
+      return Right(await db
+          .collection(FirebaseConstants.userCollection)
+          .doc(_auth.currentUser!.uid)
+          .get()
+          .then((value) => User.fromJson(value.data()!)));
+    } on FirebaseException catch (_) {
+      return Left(AppException(AppConstants.myErrorMessage));
+    }
+  }
 }

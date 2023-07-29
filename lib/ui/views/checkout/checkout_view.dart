@@ -4,6 +4,7 @@ import 'package:edtech_mobile/model/payment_data.dart';
 import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
+import 'package:edtech_mobile/ui/views/widgets/my_circular_progress_bar.dart';
 import 'package:edtech_mobile/ui/views/widgets/payment_cards.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -99,13 +100,24 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                 ),
               ),
               PaymentItem(card: selectedPayment),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    margin: const EdgeInsets.all(16.0),
-                    child: MyButton(title: 'Confirm Payment \$50.00', onTap: viewModel.confirm),
-                  ),
+              Expanded(child: Container()),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  margin: const EdgeInsets.all(16.0),
+                  child: MyWidgetButton(
+                      title: viewModel.isBusy
+                          ? const MyCircularProgressBar()
+                          : Text(
+                              'Confirm Payment \$${selectedCourse.price}',
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFFFFFFFF),
+                              ),
+                            ),
+                      onTap: viewModel.isBusy ? null : () => viewModel.confirm(selectedCourse)),
                 ),
               )
             ],
