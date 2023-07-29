@@ -26,6 +26,8 @@ mixin _$PaymentData {
   String get cardNumber => throw _privateConstructorUsedError;
   String get expiryDate => throw _privateConstructorUsedError;
   String get cvv => throw _privateConstructorUsedError;
+  @TimestampConverter()
+  DateTime? get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +47,8 @@ abstract class $PaymentDataCopyWith<$Res> {
       String paymentMethod,
       String cardNumber,
       String expiryDate,
-      String cvv});
+      String cvv,
+      @TimestampConverter() DateTime? createdAt});
 }
 
 /// @nodoc
@@ -67,6 +70,7 @@ class _$PaymentDataCopyWithImpl<$Res, $Val extends PaymentData>
     Object? cardNumber = null,
     Object? expiryDate = null,
     Object? cvv = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -93,6 +97,10 @@ class _$PaymentDataCopyWithImpl<$Res, $Val extends PaymentData>
           ? _value.cvv
           : cvv // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -111,7 +119,8 @@ abstract class _$$_PaymentDataCopyWith<$Res>
       String paymentMethod,
       String cardNumber,
       String expiryDate,
-      String cvv});
+      String cvv,
+      @TimestampConverter() DateTime? createdAt});
 }
 
 /// @nodoc
@@ -131,6 +140,7 @@ class __$$_PaymentDataCopyWithImpl<$Res>
     Object? cardNumber = null,
     Object? expiryDate = null,
     Object? cvv = null,
+    Object? createdAt = freezed,
   }) {
     return _then(_$_PaymentData(
       id: freezed == id
@@ -157,6 +167,10 @@ class __$$_PaymentDataCopyWithImpl<$Res>
           ? _value.cvv
           : cvv // ignore: cast_nullable_to_non_nullable
               as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -170,7 +184,8 @@ class _$_PaymentData implements _PaymentData {
       required this.paymentMethod,
       required this.cardNumber,
       required this.expiryDate,
-      required this.cvv});
+      required this.cvv,
+      @TimestampConverter() this.createdAt});
 
   factory _$_PaymentData.fromJson(Map<String, dynamic> json) =>
       _$$_PaymentDataFromJson(json);
@@ -187,10 +202,13 @@ class _$_PaymentData implements _PaymentData {
   final String expiryDate;
   @override
   final String cvv;
+  @override
+  @TimestampConverter()
+  final DateTime? createdAt;
 
   @override
   String toString() {
-    return 'PaymentData(id: $id, name: $name, paymentMethod: $paymentMethod, cardNumber: $cardNumber, expiryDate: $expiryDate, cvv: $cvv)';
+    return 'PaymentData(id: $id, name: $name, paymentMethod: $paymentMethod, cardNumber: $cardNumber, expiryDate: $expiryDate, cvv: $cvv, createdAt: $createdAt)';
   }
 
   @override
@@ -206,13 +224,15 @@ class _$_PaymentData implements _PaymentData {
                 other.cardNumber == cardNumber) &&
             (identical(other.expiryDate, expiryDate) ||
                 other.expiryDate == expiryDate) &&
-            (identical(other.cvv, cvv) || other.cvv == cvv));
+            (identical(other.cvv, cvv) || other.cvv == cvv) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, paymentMethod, cardNumber, expiryDate, cvv);
+  int get hashCode => Object.hash(runtimeType, id, name, paymentMethod,
+      cardNumber, expiryDate, cvv, createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -235,7 +255,8 @@ abstract class _PaymentData implements PaymentData {
       required final String paymentMethod,
       required final String cardNumber,
       required final String expiryDate,
-      required final String cvv}) = _$_PaymentData;
+      required final String cvv,
+      @TimestampConverter() final DateTime? createdAt}) = _$_PaymentData;
 
   factory _PaymentData.fromJson(Map<String, dynamic> json) =
       _$_PaymentData.fromJson;
@@ -252,6 +273,9 @@ abstract class _PaymentData implements PaymentData {
   String get expiryDate;
   @override
   String get cvv;
+  @override
+  @TimestampConverter()
+  DateTime? get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_PaymentDataCopyWith<_$_PaymentData> get copyWith =>

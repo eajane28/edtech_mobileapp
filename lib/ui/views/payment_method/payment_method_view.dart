@@ -10,8 +10,8 @@ import 'package:stacked/stacked.dart';
 import 'payment_method_viewmodel.dart';
 
 class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
-  const PaymentMethodView({Key? key, required this.cards, required this.selectedCourse}) : super(key: key);
-  final List<PaymentData> cards;
+  const PaymentMethodView({Key? key, this.cards, required this.selectedCourse}) : super(key: key);
+  final List<PaymentData>? cards;
   final Course selectedCourse;
 
   @override
@@ -49,10 +49,10 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
                 padding: const EdgeInsets.symmetric(horizontal: 6.0),
                 child: Column(
                   children: [
-                    for (var card in viewModel.paymentMethods)
+                    for (var card in viewModel.paymentMethods!)
                       PaymentItem(
                         card: card,
-                        index: viewModel.paymentMethods.indexOf(card),
+                        index: viewModel.paymentMethods!.indexOf(card),
                         groupValue: viewModel.groupValue,
                         onPressed: viewModel.selectedCard,
                       ),

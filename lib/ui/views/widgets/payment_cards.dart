@@ -4,25 +4,19 @@ import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:flutter/material.dart';
 
 class PaymentItem extends StatelessWidget {
-  const PaymentItem(
-      {super.key,
-      required this.card,
-      this.selected = false,
-      required this.index,
-      required this.groupValue, required this.onPressed});
+  const PaymentItem({super.key, required this.card, this.index, this.groupValue, this.onPressed});
 
-  final int index;
-  final bool? selected;
+  final int? index;
   final PaymentData card;
-  final int groupValue;
-  final void Function(PaymentData) onPressed;
+  final int? groupValue;
+  final void Function(PaymentData)? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onPressed(card),
+      onTap: index == null ? null : () => onPressed!(card),
       child: Card(
-        color: selected! ? Colors.blue.withOpacity(0.6) : Colors.white,
+        color: Colors.white,
         margin: const EdgeInsets.symmetric(vertical: 8.0),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -60,11 +54,13 @@ class PaymentItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Radio(
-                value: index,
-                onChanged: null,
-                groupValue: groupValue,
-              )
+              index == null
+                  ? const SizedBox.shrink()
+                  : Radio(
+                      value: index,
+                      onChanged: null,
+                      groupValue: groupValue,
+                    )
             ],
           ),
         ),

@@ -33,10 +33,11 @@ class AddCreditCardViewModel extends BaseViewModel {
         name: nameController.text,
         cardNumber: cardNumberController.text.replaceAll(' ', ''),
         expiryDate: expiryDateController.text,
-        cvv: cvvController.text);
+        cvv: cvvController.text,
+    );
     final response = await _paymentRepository.addPaymentMethod(paymentData!);
     response.fold((l) => _snackBarService.showSnackbar(message: AppConstants.myErrorMessage),
-        (r) => _navigationService.navigateToPaymentAddedView(course: course, paymentData: paymentData!));
+        (r) => _navigationService.navigateToPaymentAddedView(course: course));
     setBusy(false);
   }
 

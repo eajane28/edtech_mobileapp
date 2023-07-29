@@ -17,6 +17,7 @@ class PaymentRepositoryImpl implements PaymentRepository {
           .collection(FirebaseConstants.userCollection)
           .doc(_auth.currentUser!.uid)
           .collection(FirebaseConstants.paymentCollection)
+          .orderBy('createdAt', descending: true)
           .get()
           .then((value) => value.docs.map((e) => PaymentData.fromJson(e.data())).toList()));
     } on FirebaseException catch (e) {
@@ -39,7 +40,8 @@ class PaymentRepositoryImpl implements PaymentRepository {
                   name: paymentData.name,
                   cardNumber: paymentData.cardNumber,
                   expiryDate: paymentData.expiryDate,
-                  cvv: paymentData.cvv)
+                  cvv: paymentData.cvv,
+                  createdAt: DateTime.now())
               .toJson(),
           SetOptions(merge: true));
       return const Right(None());

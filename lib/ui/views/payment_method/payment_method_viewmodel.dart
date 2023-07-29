@@ -8,28 +8,24 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class PaymentMethodViewModel extends BaseViewModel {
-  PaymentMethodViewModel({required this.paymentMethods});
+  PaymentMethodViewModel({this.paymentMethods});
 
   final _navigationService = locator<NavigationService>();
   final _paymentRepository = locator<PaymentRepository>();
   final _snackBarService = locator<SnackbarService>();
-  List<PaymentData> paymentMethods;
+  List<PaymentData>? paymentMethods;
   late PaymentData selectedPaymentData;
   int groupValue = 0;
 
   void init() async {
     setBusy(true);
-    getPaymentMethods();
-    if (paymentMethods.isNotEmpty) {
-      selectedPaymentData = paymentMethods[0];
-    }
+    selectedPaymentData = paymentMethods![groupValue];
     setBusy(false);
   }
 
-  void getPaymentMethods() async {
+  Future<void> getPaymentMethods() async {
     final response = await _paymentRepository.getPaymentMethods();
-    response.fold((l) => _snackBarService.showSnackbar(message: l.message),
-        (r) => paymentMethods.isEmpty ? paymentMethods = r : paymentMethods.addAll(r));
+    response.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => paymentMethods = r);
   }
 
   void proceed(Course course) {
@@ -41,8 +37,9 @@ class PaymentMethodViewModel extends BaseViewModel {
   }
 
   void selectedCard(PaymentData card) {
-    groupValue = paymentMethods.indexOf(card);
+    groupValue = paymentMethods!.indexOf(card);
+    print(paymentMethods!.length);
     selectedPaymentData = card;
-    rebuildUi();
+    notifyListeners();
   }
 }

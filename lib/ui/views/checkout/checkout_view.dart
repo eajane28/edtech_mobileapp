@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/payment_data.dart';
+import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
+import 'package:edtech_mobile/ui/views/widgets/payment_cards.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -13,14 +16,14 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
   final PaymentData selectedPayment;
 
   @override
-  Widget builder(
-    BuildContext context,
-    CheckoutViewModel viewModel,
-    Widget? child,
-  ) {
+  Widget builder(BuildContext context,
+      CheckoutViewModel viewModel,
+      Widget? child,) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
+        child: Container(
+          height: screenHeight(context),
+          width: screenWidth(context),
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
@@ -30,42 +33,54 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset('assets/Illustration.png',
-                        width: 169, height: 122),
+                    CachedNetworkImage(
+                        imageUrl: selectedCourse.image,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                        fadeInDuration: const Duration(milliseconds: 800),
+                        width: 169,
+                        height: 122),
                     const SizedBox(width: 8.0),
-                    const Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'HTML',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF3C3A36),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            selectedCourse.title,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 3,
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFF3C3A36),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          '\$50.00',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF3C3A36),
+                          const SizedBox(
+                            height: 8,
                           ),
-                        ),
-                      ],
+                          Text(
+                            '\$${selectedCourse.price}',
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFF3C3A36),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 16.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: Text(
-                  'You can launch a new career in web development today by learning HTML & CSS. You don\'t need a computer science degree or expensive software. All you need is a computer, a bit of time, a lot of determination, and a teacher you trust.',
-                  style: TextStyle(
+                  selectedCourse.subtitle,
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Color(0xFF78746D),
@@ -83,52 +98,14 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                   ),
                 ),
               ),
-              Card(
-                margin: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    children: [
-                      Image.asset('assets/Mastercard.png',
-                          width: 78, height: 72),
-                      const SizedBox(width: 8.0),
-                      const Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '**** **** **** 5738',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xFF3C3A36),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Text(
-                              'Expires 09/29',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF78746D),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
+              PaymentItem(card: selectedPayment),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    margin: const EdgeInsets.all(16.0),
+                    child: MyButton(title: 'Confirm Payment \$50.00', onTap: viewModel.confirm),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 300.0),
-                child: Container(
-                  margin: const EdgeInsets.all(16.0),
-                  child: MyButton(
-                      title: 'Confirm Payment \$50.00',
-                      onTap: viewModel.confirm),
                 ),
               )
             ],
@@ -139,8 +116,6 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
   }
 
   @override
-  CheckoutViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  CheckoutViewModel viewModelBuilder(BuildContext context,) =>
       CheckoutViewModel();
 }
