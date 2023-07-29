@@ -27,7 +27,7 @@ class CheckoutViewModel extends BaseViewModel {
         (l) => _snackBarService.showSnackbar(message: AppConstants.myErrorMessage, duration: AppConstants.defDuration),
         (r) {
       _snackBarService.showSnackbar(message: "Successfully purchased course.", duration: AppConstants.defDuration);
-      _navigationService.navigateToYourCourseView();
+      _navigationService.clearTillFirstAndShow(Routes.yourCourseView);
     });
     setBusy(false);
   }

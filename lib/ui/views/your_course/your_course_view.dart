@@ -36,4 +36,10 @@ class YourCourseView extends StackedView<YourCourseViewModel> {
     BuildContext context,
   ) =>
       YourCourseViewModel();
+
+  @override
+  void onViewModelReady(YourCourseViewModel viewModel) {
+    viewModel.init();
+    super.onViewModelReady(viewModel);
+  }
 }
