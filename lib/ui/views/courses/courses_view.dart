@@ -16,7 +16,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
 
   final void Function() onBackPressed;
   final User user;
-  CardData? cardData;
+  Course? cardData;
 
   @override
   Widget builder(
@@ -134,7 +134,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
                         var cardItem = viewModel.cardList[index];
                         return CourseCard(
                             card: cardItem,
-                            onTap: (CardData course) {
+                            onTap: (Course course) {
                               viewModel.onTap(course);
                             });
                       }),

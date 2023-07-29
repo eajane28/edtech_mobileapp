@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-CardData _$CardDataFromJson(Map<String, dynamic> json) {
-  return _CardData.fromJson(json);
+Course _$CourseFromJson(Map<String, dynamic> json) {
+  return _Course.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CardData {
+mixin _$Course {
   String get title => throw _privateConstructorUsedError;
   String get subtitle => throw _privateConstructorUsedError;
   String get about => throw _privateConstructorUsedError;
@@ -27,18 +27,18 @@ mixin _$CardData {
   String get category => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
+  String? get video => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CardDataCopyWith<CardData> get copyWith =>
-      throw _privateConstructorUsedError;
+  $CourseCopyWith<Course> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CardDataCopyWith<$Res> {
-  factory $CardDataCopyWith(CardData value, $Res Function(CardData) then) =
-      _$CardDataCopyWithImpl<$Res, CardData>;
+abstract class $CourseCopyWith<$Res> {
+  factory $CourseCopyWith(Course value, $Res Function(Course) then) =
+      _$CourseCopyWithImpl<$Res, Course>;
   @useResult
   $Res call(
       {String title,
@@ -48,13 +48,14 @@ abstract class $CardDataCopyWith<$Res> {
       String category,
       String image,
       double price,
+      String? video,
       String id});
 }
 
 /// @nodoc
-class _$CardDataCopyWithImpl<$Res, $Val extends CardData>
-    implements $CardDataCopyWith<$Res> {
-  _$CardDataCopyWithImpl(this._value, this._then);
+class _$CourseCopyWithImpl<$Res, $Val extends Course>
+    implements $CourseCopyWith<$Res> {
+  _$CourseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -71,6 +72,7 @@ class _$CardDataCopyWithImpl<$Res, $Val extends CardData>
     Object? category = null,
     Object? image = null,
     Object? price = null,
+    Object? video = freezed,
     Object? id = null,
   }) {
     return _then(_value.copyWith(
@@ -102,6 +104,10 @@ class _$CardDataCopyWithImpl<$Res, $Val extends CardData>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
+      video: freezed == video
+          ? _value.video
+          : video // ignore: cast_nullable_to_non_nullable
+              as String?,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -111,10 +117,9 @@ class _$CardDataCopyWithImpl<$Res, $Val extends CardData>
 }
 
 /// @nodoc
-abstract class _$$_CardDataCopyWith<$Res> implements $CardDataCopyWith<$Res> {
-  factory _$$_CardDataCopyWith(
-          _$_CardData value, $Res Function(_$_CardData) then) =
-      __$$_CardDataCopyWithImpl<$Res>;
+abstract class _$$_CourseCopyWith<$Res> implements $CourseCopyWith<$Res> {
+  factory _$$_CourseCopyWith(_$_Course value, $Res Function(_$_Course) then) =
+      __$$_CourseCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -125,15 +130,15 @@ abstract class _$$_CardDataCopyWith<$Res> implements $CardDataCopyWith<$Res> {
       String category,
       String image,
       double price,
+      String? video,
       String id});
 }
 
 /// @nodoc
-class __$$_CardDataCopyWithImpl<$Res>
-    extends _$CardDataCopyWithImpl<$Res, _$_CardData>
-    implements _$$_CardDataCopyWith<$Res> {
-  __$$_CardDataCopyWithImpl(
-      _$_CardData _value, $Res Function(_$_CardData) _then)
+class __$$_CourseCopyWithImpl<$Res>
+    extends _$CourseCopyWithImpl<$Res, _$_Course>
+    implements _$$_CourseCopyWith<$Res> {
+  __$$_CourseCopyWithImpl(_$_Course _value, $Res Function(_$_Course) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -146,9 +151,10 @@ class __$$_CardDataCopyWithImpl<$Res>
     Object? category = null,
     Object? image = null,
     Object? price = null,
+    Object? video = freezed,
     Object? id = null,
   }) {
-    return _then(_$_CardData(
+    return _then(_$_Course(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -177,6 +183,10 @@ class __$$_CardDataCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
+      video: freezed == video
+          ? _value.video
+          : video // ignore: cast_nullable_to_non_nullable
+              as String?,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -187,8 +197,8 @@ class __$$_CardDataCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CardData implements _CardData {
-  const _$_CardData(
+class _$_Course implements _Course {
+  const _$_Course(
       {required this.title,
       required this.subtitle,
       required this.about,
@@ -196,10 +206,11 @@ class _$_CardData implements _CardData {
       required this.category,
       required this.image,
       required this.price,
+      this.video,
       required this.id});
 
-  factory _$_CardData.fromJson(Map<String, dynamic> json) =>
-      _$$_CardDataFromJson(json);
+  factory _$_Course.fromJson(Map<String, dynamic> json) =>
+      _$$_CourseFromJson(json);
 
   @override
   final String title;
@@ -216,18 +227,20 @@ class _$_CardData implements _CardData {
   @override
   final double price;
   @override
+  final String? video;
+  @override
   final String id;
 
   @override
   String toString() {
-    return 'CardData(title: $title, subtitle: $subtitle, about: $about, duration: $duration, category: $category, image: $image, price: $price, id: $id)';
+    return 'Course(title: $title, subtitle: $subtitle, about: $about, duration: $duration, category: $category, image: $image, price: $price, video: $video, id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CardData &&
+            other is _$_Course &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.subtitle, subtitle) ||
                 other.subtitle == subtitle) &&
@@ -238,30 +251,31 @@ class _$_CardData implements _CardData {
                 other.category == category) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.price, price) || other.price == price) &&
+            (identical(other.video, video) || other.video == video) &&
             (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, title, subtitle, about, duration,
-      category, image, price, id);
+      category, image, price, video, id);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CardDataCopyWith<_$_CardData> get copyWith =>
-      __$$_CardDataCopyWithImpl<_$_CardData>(this, _$identity);
+  _$$_CourseCopyWith<_$_Course> get copyWith =>
+      __$$_CourseCopyWithImpl<_$_Course>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CardDataToJson(
+    return _$$_CourseToJson(
       this,
     );
   }
 }
 
-abstract class _CardData implements CardData {
-  const factory _CardData(
+abstract class _Course implements Course {
+  const factory _Course(
       {required final String title,
       required final String subtitle,
       required final String about,
@@ -269,9 +283,10 @@ abstract class _CardData implements CardData {
       required final String category,
       required final String image,
       required final double price,
-      required final String id}) = _$_CardData;
+      final String? video,
+      required final String id}) = _$_Course;
 
-  factory _CardData.fromJson(Map<String, dynamic> json) = _$_CardData.fromJson;
+  factory _Course.fromJson(Map<String, dynamic> json) = _$_Course.fromJson;
 
   @override
   String get title;
@@ -288,9 +303,11 @@ abstract class _CardData implements CardData {
   @override
   double get price;
   @override
+  String? get video;
+  @override
   String get id;
   @override
   @JsonKey(ignore: true)
-  _$$_CardDataCopyWith<_$_CardData> get copyWith =>
+  _$$_CourseCopyWith<_$_Course> get copyWith =>
       throw _privateConstructorUsedError;
 }

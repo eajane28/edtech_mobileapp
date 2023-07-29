@@ -14,8 +14,8 @@ class CoursesViewModel extends BaseViewModel {
   final NavigationService _navigation = locator<NavigationService>();
   final TextEditingController searchController = TextEditingController();
   // final SnackbarService _snackbarService = locator<SnackbarService>();
-  List<CardData> cardList = [];
-  CardData? cardData;
+  List<Course> cardList = [];
+  Course? cardData;
   bool courseItemSelected = true;
   late List<String> selectedItems = [];
 
@@ -56,7 +56,7 @@ class CoursesViewModel extends BaseViewModel {
     const CoursesData(name: 'Telecom'),
   ];
 
-  onTap(CardData courseItem) {
+  onTap(Course courseItem) {
     _navigation.navigateToProductDetailView(course: courseItem);
   }
 

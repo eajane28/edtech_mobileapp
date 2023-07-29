@@ -6,7 +6,7 @@ part of 'card_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CardData _$$_CardDataFromJson(Map<String, dynamic> json) => _$_CardData(
+_$_Course _$$_CourseFromJson(Map<String, dynamic> json) => _$_Course(
       title: json['title'] as String,
       subtitle: json['subtitle'] as String,
       about: json['about'] as String,
@@ -14,11 +14,11 @@ _$_CardData _$$_CardDataFromJson(Map<String, dynamic> json) => _$_CardData(
       category: json['category'] as String,
       image: json['image'] as String,
       price: (json['price'] as num).toDouble(),
+      video: json['video'] as String?,
       id: json['id'] as String,
     );
 
-Map<String, dynamic> _$$_CardDataToJson(_$_CardData instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_CourseToJson(_$_Course instance) => <String, dynamic>{
       'title': instance.title,
       'subtitle': instance.subtitle,
       'about': instance.about,
@@ -26,5 +26,6 @@ Map<String, dynamic> _$$_CardDataToJson(_$_CardData instance) =>
       'category': instance.category,
       'image': instance.image,
       'price': instance.price,
+      'video': instance.video,
       'id': instance.id,
     };
