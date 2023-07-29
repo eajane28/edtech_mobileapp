@@ -1,3 +1,4 @@
+import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/ui/common/input_validation_mixin.dart';
 import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/add_credit_card/card_utils.dart';
@@ -12,8 +13,9 @@ import 'package:stacked/stacked.dart';
 import 'add_credit_card_viewmodel.dart';
 
 class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputValidationMixin {
-  AddCreditCardView({Key? key}) : super(key: key);
+  AddCreditCardView({Key? key, required this.course}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
+  final Course course;
 
   @override
   Widget builder(
@@ -156,10 +158,10 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                               ),
                             ),
                             onTap: () {
-                    if (_formKey.currentState!.validate()) {
-                    viewModel.save();
-                    }
-                    })),
+                              if (_formKey.currentState!.validate()) {
+                                viewModel.save(course);
+                              }
+                            })),
                   ),
                 ],
               ),
@@ -171,9 +173,7 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
   }
 
   @override
-  AddCreditCardViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  AddCreditCardViewModel viewModelBuilder(BuildContext context,) =>
       AddCreditCardViewModel();
 
   @override

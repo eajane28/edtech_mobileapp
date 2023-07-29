@@ -1,3 +1,5 @@
+import 'package:edtech_mobile/model/card_data.dart';
+import 'package:edtech_mobile/model/payment_data.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
 import 'package:edtech_mobile/ui/views/widgets/display.dart';
@@ -7,7 +9,9 @@ import 'package:stacked/stacked.dart';
 import 'payment_added_viewmodel.dart';
 
 class PaymentAddedView extends StackedView<PaymentAddedViewModel> {
-  const PaymentAddedView({Key? key}) : super(key: key);
+  const PaymentAddedView({Key? key, required this.course, required this.paymentData}) : super(key: key);
+  final Course course;
+  final PaymentData paymentData;
 
   @override
   Widget builder(
@@ -26,15 +30,15 @@ class PaymentAddedView extends StackedView<PaymentAddedViewModel> {
                 child: Display(
                     image: 'assets/Cool Kids Sitting.png',
                     title: 'Payment Method added',
-                    subtitle:
-                        'You can buy the course now. Continue to payment.'),
+                    subtitle: 'You can buy the course now. Continue to payment.'),
               ),
               const SizedBox(height: 32),
               Padding(
                 padding: const EdgeInsets.only(bottom: 146.0),
                 child: Container(
                     margin: const EdgeInsets.all(16.0),
-                    child: MyButton(title: 'Continue', onTap: viewModel.continueToPaymentMethod)),
+                    child: MyButton(
+                        title: 'Continue', onTap: () => viewModel.continueToPaymentMethod(paymentData, course))),
               )
             ],
           ),

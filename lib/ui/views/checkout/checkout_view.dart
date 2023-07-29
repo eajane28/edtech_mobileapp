@@ -1,3 +1,5 @@
+import 'package:edtech_mobile/model/card_data.dart';
+import 'package:edtech_mobile/model/payment_data.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +8,9 @@ import 'package:stacked/stacked.dart';
 import 'checkout_viewmodel.dart';
 
 class CheckoutView extends StackedView<CheckoutViewModel> {
-  const CheckoutView({Key? key}) : super(key: key);
+  const CheckoutView({Key? key, required this.selectedCourse, required this.selectedPayment}) : super(key: key);
+  final Course selectedCourse;
+  final PaymentData selectedPayment;
 
   @override
   Widget builder(

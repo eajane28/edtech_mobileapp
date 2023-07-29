@@ -34,22 +34,18 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
             builder: (context, player) => Column(
               children: [
                 MyAppBar(title: course.title, onTap: viewModel.backToHomeView),
-                viewModel.isBusy
-                    ? const MyCircularProgressBar(
-                        indicatorColor: Colors.orange,
-                      )
-                    : Expanded(
-                        child: ScrollConfiguration(
-                          behavior: MyScrollBehavior(),
-                          child: SingleChildScrollView(
+              Expanded(
+                  child: ScrollConfiguration(
+                    behavior: MyScrollBehavior(),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
                             child: Column(
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                                  child: Column(
-                                    children: [
-                                      // Image.network(course.image),
-                                      course.video == null
+                                // Image.network(course.image),
+                                course.video == null
                                           ? CachedNetworkImage(
                                               imageUrl: course.image,
                                               placeholder: (context, url) =>

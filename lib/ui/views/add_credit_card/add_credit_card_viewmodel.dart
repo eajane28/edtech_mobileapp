@@ -1,5 +1,6 @@
 import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:edtech_mobile/app/app.router.dart';
+import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/payment_data.dart';
 import 'package:edtech_mobile/repository/payment_repository.dart';
 import 'package:edtech_mobile/ui/common/constants.dart';
@@ -26,15 +27,16 @@ class AddCreditCardViewModel extends BaseViewModel {
     cardNumberController.addListener(getCardTypeFrmNumber);
   }
 
-  void save() async {
+  void save(Course course) async {
     setBusy(true);
-    final response = await _paymentRepository.addPaymentMethod(paymentData!.copyWith(
+    paymentData = paymentData!.copyWith(
         name: nameController.text,
         cardNumber: cardNumberController.text.replaceAll(' ', ''),
         expiryDate: expiryDateController.text,
-        cvv: cvvController.text));
+        cvv: cvvController.text);
+    final response = await _paymentRepository.addPaymentMethod(paymentData!);
     response.fold((l) => _snackBarService.showSnackbar(message: AppConstants.myErrorMessage),
-        (r) => _navigationService.navigateToPaymentAddedView());
+        (r) => _navigationService.navigateToPaymentAddedView(course: course, paymentData: paymentData!));
     setBusy(false);
   }
 

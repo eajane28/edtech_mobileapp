@@ -18,7 +18,7 @@ class ProductDetailViewModel extends BaseViewModel {
   late YoutubePlayerController youtubePlayerController = YoutubePlayerController(initialVideoId: "");
 
   void init() {
-    setBusy(true);
+    setBusyForObject('video', true);
     if (course.video != null) {
       youtubePlayerController = YoutubePlayerController(
         initialVideoId: YoutubePlayer.convertUrlToId(course.video!)!,
@@ -29,11 +29,11 @@ class ProductDetailViewModel extends BaseViewModel {
         ),
       );
     }
-    setBusy(false);
+    setBusyForObject('video', false);
   }
 
   void addToCart() {
-    _navigationService.navigateToNoPaymentView();
+    // _navigationService.navigateToNoPaymentView();
   }
 
   void purchaseCourse() async {
@@ -41,8 +41,8 @@ class ProductDetailViewModel extends BaseViewModel {
     final response = await _paymentRepository.getPaymentMethods();
     response.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => paymentMethods = r);
     paymentMethods.isEmpty
-        ? _navigationService.navigateToNoPaymentView()
-        : _navigationService.navigateToPaymentMethodView(cards: paymentMethods);
+        ? _navigationService.navigateToNoPaymentView(course: course)
+        : _navigationService.navigateToPaymentMethodView(cards: paymentMethods, selectedCourse: course);
     setBusy(false);
   }
 

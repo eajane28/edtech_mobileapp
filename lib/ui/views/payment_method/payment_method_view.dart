@@ -1,3 +1,4 @@
+import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/payment_data.dart';
 import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
@@ -9,8 +10,9 @@ import 'package:stacked/stacked.dart';
 import 'payment_method_viewmodel.dart';
 
 class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
-  const PaymentMethodView({Key? key, this.cards, }) : super(key: key);
-  final List<PaymentData>? cards;
+  const PaymentMethodView({Key? key, required this.cards, required this.selectedCourse}) : super(key: key);
+  final List<PaymentData> cards;
+  final Course selectedCourse;
 
   @override
   Widget builder(
@@ -47,13 +49,12 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
                 padding: const EdgeInsets.symmetric(horizontal: 6.0),
                 child: Column(
                   children: [
-                    for (var card in viewModel.paymentMethods!)
+                    for (var card in viewModel.paymentMethods)
                       PaymentItem(
-                          card: card,
-                          index: viewModel.paymentMethods!.indexOf(card),
-                          groupValue: viewModel.groupValue,
-                          onPressed:
-                          viewModel.selectedCard,
+                        card: card,
+                        index: viewModel.paymentMethods.indexOf(card),
+                        groupValue: viewModel.groupValue,
+                        onPressed: viewModel.selectedCard,
                       ),
                   ],
                 ),
@@ -63,7 +64,8 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                    margin: const EdgeInsets.all(16.0), child: MyButton(title: 'Continue', onTap: viewModel.proceed)),
+                    margin: const EdgeInsets.all(16.0),
+                    child: MyButton(title: 'Continue', onTap: () => viewModel.proceed(selectedCourse))),
               )
             ],
           ),
