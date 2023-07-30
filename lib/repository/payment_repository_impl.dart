@@ -5,7 +5,6 @@ import 'package:edtech_mobile/exceptions/app_exception.dart';
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/payment_data.dart';
 import 'package:edtech_mobile/repository/payment_repository.dart';
-import 'package:edtech_mobile/services/auth_service.dart';
 import 'package:edtech_mobile/services/local_storage.dart';
 import 'package:edtech_mobile/ui/common/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,7 +12,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 class PaymentRepositoryImpl implements PaymentRepository {
   final db = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
-  final _authRepository = locator<AuthService>();
   final _localStorage = locator<LocalStorage>();
 
   @override
@@ -59,9 +57,12 @@ class PaymentRepositoryImpl implements PaymentRepository {
   @override
   Future<Either<AppException, None>> purchaseCourse(Course course) async {
     try {
-      final user = await _authRepository.getCurrentUserData();
+      final user = await _localStorage.getCurrentUser();
       return user.fold((l) => Left(AppException(l.message)), (r) async {
         List<String> currentPurchasedCourse = [];
+        if (r!.purchaseCourses.contains(course.id)) {
+          return Left(AppException("You have purchased this course already"));
+        }
         currentPurchasedCourse.addAll(r.purchaseCourses);
         currentPurchasedCourse.add(course.id);
         await db

@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:edtech_mobile/model/card_data.dart';
 import 'package:flutter/material.dart';
 
-Widget card(cardData) {
+Widget card(Course cardData) {
   return Card(
     margin: const EdgeInsets.symmetric(vertical: 8),
     child: Column(
@@ -13,7 +15,12 @@ Widget card(cardData) {
           ),
           child: Column(
             children: [
-              Image.asset(cardData.cardImage),
+              CachedNetworkImage(
+                imageUrl: cardData.image,
+                placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                fadeInDuration: const Duration(milliseconds: 800),
+              ),
               const Stack(
                 children: [
                   Align(
@@ -63,7 +70,7 @@ Widget card(cardData) {
               Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  cardData.description,
+                  cardData.subtitle,
                   style: const TextStyle(
                       fontSize: 14, fontWeight: FontWeight.w400),
                 ),

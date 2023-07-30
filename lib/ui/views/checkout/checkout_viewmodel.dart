@@ -24,7 +24,7 @@ class CheckoutViewModel extends BaseViewModel {
     setBusy(true);
     final response = await _paymentRepository.purchaseCourse(course);
     response.fold(
-        (l) => _snackBarService.showSnackbar(message: AppConstants.myErrorMessage, duration: AppConstants.defDuration),
+        (l) => _snackBarService.showSnackbar(message: l.message, duration: AppConstants.defDuration),
         (r) {
       _snackBarService.showSnackbar(message: "Successfully purchased course.", duration: AppConstants.defDuration);
       _navigationService.clearTillFirstAndShow(Routes.yourCourseView);
