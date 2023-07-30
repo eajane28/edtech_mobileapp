@@ -5,14 +5,18 @@ import 'package:edtech_mobile/ui/views/widgets/payment_cards.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../model/card_data.dart';
 import 'payment_method_viewmodel.dart';
 
 class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
   const PaymentMethodView({
     Key? key,
     this.cards,
+    required this.course,
   }) : super(key: key);
   final List<PaymentData>? cards;
+  final CardData course;
+  //declare item for courses from the previous page
 
   @override
   Widget builder(
@@ -53,7 +57,7 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
                         ))
                       : Column(
                           children: [
-                            for (var card in viewModel.paymentMethods!) PaymentItem(card: card, onTap: (PaymentData card) => viewModel.proceedToCheckout(card)),
+                            for (var card in viewModel.paymentMethods!) PaymentItem(card: card, onTap: (PaymentData card) => viewModel.proceedToCheckout(card, course)),
                             GestureDetector(
                               onTap: viewModel.addNewCreditCard,
                               child: Card(

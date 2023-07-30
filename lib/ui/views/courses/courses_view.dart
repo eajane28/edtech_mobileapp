@@ -135,7 +135,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
                         return CourseCard(
                             card: cardItem,
                             onTap: (CardData course) {
-                              viewModel.onTap(course);
+                              viewModel.onTapToProductDetailView(course);
                             });
                       }),
                 )

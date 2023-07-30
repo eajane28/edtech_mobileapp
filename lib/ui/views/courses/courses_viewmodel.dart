@@ -54,7 +54,7 @@ class CoursesViewModel extends BaseViewModel {
     const CoursesData(name: 'Telecom'),
   ];
 
-  onTap(CardData courseItem) {
+  onTapToProductDetailView(CardData courseItem) {
     _navigation.navigateToProductDetailView(course: courseItem);
   }
 

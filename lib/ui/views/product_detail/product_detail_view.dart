@@ -16,9 +16,11 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
   final CardData course;
 
   @override
-  Widget builder(BuildContext context,
-      ProductDetailViewModel viewModel,
-      Widget? child,) {
+  Widget builder(
+    BuildContext context,
+    ProductDetailViewModel viewModel,
+    Widget? child,
+  ) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -123,7 +125,8 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
               ),
               Row(
                 children: [
-                  MyWidgetButton( //if addtocart go then adtocart won't delete
+                  MyWidgetButton(
+                    //if addtocart go then adtocart won't delete
                     onTap: viewModel.addToCart,
                     color: Colors.transparent,
                     title: const Icon(
@@ -147,7 +150,12 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                                     color: Color(0xFFFFFFFF),
                                   ),
                                 ),
-                          onTap: viewModel.purchaseCourse)),
+                          onTap: () {
+                             viewModel.purchaseCourse(context, course);
+                          }
+                             
+                              )
+                              ), //currently on using data in multiple views
                 ],
               ),
             ],
@@ -158,6 +166,8 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
   }
 
   @override
-  ProductDetailViewModel viewModelBuilder(BuildContext context,) =>
+  ProductDetailViewModel viewModelBuilder(
+    BuildContext context,
+  ) =>
       ProductDetailViewModel();
 }

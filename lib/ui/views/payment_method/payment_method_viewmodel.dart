@@ -7,6 +7,8 @@ import 'package:edtech_mobile/repository/payment_repository.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../model/card_data.dart';
+
 // import '../../../model/payment_data.dart';
 // import '../../../repository/payment_repository.dart';
 
@@ -18,6 +20,7 @@ class PaymentMethodViewModel extends BaseViewModel {
   final _snackBarService = locator<SnackbarService>();
   List<PaymentData>? paymentMethods;
   PaymentData? paymentData;
+  CardData? course;
 
   void init() async {
     setBusy(true);
@@ -32,8 +35,8 @@ class PaymentMethodViewModel extends BaseViewModel {
     response.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => paymentMethods);
   }
 
-  void proceedToCheckout(PaymentData card) {
-    _navigationService.navigateToCheckoutView();
+  void proceedToCheckout(PaymentData card, CardData course) {
+    _navigationService.navigateToCheckoutView(card: card, course: course);
   }
 
   void addNewCreditCard() {
