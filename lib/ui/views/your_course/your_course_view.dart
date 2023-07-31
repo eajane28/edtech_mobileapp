@@ -1,5 +1,6 @@
 import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
+import 'package:edtech_mobile/ui/views/widgets/card_courses.dart';
 import 'package:edtech_mobile/ui/views/widgets/my_circular_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';

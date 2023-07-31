@@ -31,8 +31,8 @@ class YourCourseViewModel extends BaseViewModel {
     _navigationService.navigateToHomeView();
   }
 
-  // onTapToProductDetailView(CardData courseItem) {
-  //   _navigationService.navigateToProductDetailView(course: courseItem);
-  // }
+  onTapToProductDetailView(Course courseItem) {
+    _navigationService.navigateToProductDetailView(course: courseItem);
+  }
 
 }
