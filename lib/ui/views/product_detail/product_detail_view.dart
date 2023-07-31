@@ -142,7 +142,7 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                 Row(
                   children: [
                     MyWidgetButton(
-                      onTap:() => viewModel.addToCart(course),
+                      onTap: () => viewModel.addToCart(course),
                       color: Colors.transparent,
                       title: const Icon(
                         MaterialCommunityIcons.cart_outline,
