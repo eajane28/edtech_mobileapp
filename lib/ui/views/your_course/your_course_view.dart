@@ -3,10 +3,12 @@ import 'package:edtech_mobile/ui/views/widgets/your_courses.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../model/card_data.dart';
 import 'your_course_viewmodel.dart';
 
 class YourCourseView extends StackedView<YourCourseViewModel> {
-  const YourCourseView({Key? key}) : super(key: key);
+  const YourCourseView(this.course, {Key? key}) : super(key: key);
+  final CardData course;
 
   @override
   Widget builder(
@@ -22,7 +24,13 @@ class YourCourseView extends StackedView<YourCourseViewModel> {
             child: Column(
               children: [
                 MyAppBar(title: 'Your Courses', onTap: viewModel.back),
-                for (var carditem in viewModel.yourCourseList) card(carditem),
+                for (var carditem in viewModel.yourCourseList)
+                  YourCourseCard(
+                    card: carditem,
+                    onTap: (CardData card) {
+                      viewModel.onTapToProductDetailView(course);
+                    },
+                  ),
               ],
             ),
           ),

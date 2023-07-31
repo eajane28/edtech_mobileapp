@@ -42,7 +42,7 @@ class ProfileView extends StackedView<ProfileViewModel> {
                 ),
               ),
               const SizedBox(height: 8.0),
-              ProfileTabs(text: 'Your Courses', onTap: viewModel.goto),
+              ProfileTabs(text: 'Your Courses', onTap: viewModel.navigateToYourCourseView),
               ProfileTabs(text: 'Payment', onTap: null),
               Center(
                 child: GestureDetector(

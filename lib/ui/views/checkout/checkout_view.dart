@@ -151,7 +151,7 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                 padding: const EdgeInsets.only(top: 300.0),
                 child: Container(
                   margin: const EdgeInsets.all(16.0),
-                  child: MyButton(title: 'Confirm Payment \$50.00', onTap: viewModel.confirm),
+                  child: MyButton(title: 'Confirm Payment \$50.00', onTap: () {viewModel.confirmToYourCourses(course);}),
                 ),
               )
             ],

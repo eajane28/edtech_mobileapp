@@ -127,7 +127,7 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                 children: [
                   MyWidgetButton(
                     //if addtocart go then adtocart won't delete
-                    onTap: viewModel.addToCart,
+                    onTap: () {viewModel.addToCart(course);},
                     color: Colors.transparent,
                     title: const Icon(
                       MaterialCommunityIcons.cart_outline,

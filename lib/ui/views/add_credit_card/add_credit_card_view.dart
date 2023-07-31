@@ -9,11 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../model/card_data.dart';
 import 'add_credit_card_viewmodel.dart';
 
 class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputValidationMixin {
-  AddCreditCardView({Key? key}) : super(key: key);
+  AddCreditCardView(this.course, {Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
+  final CardData course;
 
   @override
   Widget builder(
@@ -157,7 +159,7 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                             ),
                             onTap: () {
                     if (_formKey.currentState!.validate()) {
-                    viewModel.save();
+                    viewModel.save(course);
                     }
                     })),
                   ),

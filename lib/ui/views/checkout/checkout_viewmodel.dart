@@ -6,8 +6,8 @@ import 'package:stacked_services/stacked_services.dart';
 class CheckoutViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
-  void confirm() {
-    _navigationService.navigateToYourCourseView();
+  void confirmToYourCourses(course) {
+    _navigationService.navigateToYourCourseView(course: course);
   }
 
   void back() {

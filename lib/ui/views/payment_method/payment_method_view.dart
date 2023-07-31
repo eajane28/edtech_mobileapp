@@ -59,7 +59,7 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
                           children: [
                             for (var card in viewModel.paymentMethods!) PaymentItem(card: card, onTap: (PaymentData card) => viewModel.proceedToCheckout(card, course)),
                             GestureDetector(
-                              onTap: viewModel.addNewCreditCard,
+                              onTap: () {viewModel.addNewCreditCard(course);},
                               child: Card(
                                 margin: const EdgeInsets.symmetric(vertical: 8.0),
                                 child: Padding(

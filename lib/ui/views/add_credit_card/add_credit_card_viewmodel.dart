@@ -29,7 +29,7 @@ class AddCreditCardViewModel extends BaseViewModel {
     cardNumberController.addListener(getCardTypeFrmNumber);
   }
 
-  void save() async {
+  void save(course) async {
     setBusy(true);
     final response = await _paymentRepository.addPaymentMethod(paymentData!.copyWith(
         name: nameController.text,

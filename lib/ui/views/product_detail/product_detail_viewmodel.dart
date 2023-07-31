@@ -16,8 +16,8 @@ class ProductDetailViewModel extends BaseViewModel {
   List<PaymentData> paymentMethods = [];
   // final CardData course;
 
-  void addToCart() {
-    _navigationService.navigateToNoPaymentView();
+  void addToCart(course) {
+    _navigationService.navigateToNoPaymentView(course: course);
   }
 
   void purchaseCourse(context, course) async {
@@ -25,7 +25,7 @@ class ProductDetailViewModel extends BaseViewModel {
     final response = await _paymentRepository.getPaymentMethods();
     response.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => paymentMethods = r);
     paymentMethods.isEmpty
-        ? _navigationService.navigateToNoPaymentView()
+        ? _navigationService.navigateToNoPaymentView(course: course)
         : _navigationService.navigateToPaymentMethodView(cards: paymentMethods, course: course);
     setBusy(false);
   }
