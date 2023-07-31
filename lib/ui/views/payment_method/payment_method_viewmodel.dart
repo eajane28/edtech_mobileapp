@@ -21,7 +21,7 @@ class PaymentMethodViewModel extends BaseViewModel {
     if(paymentMethods != null) {
       selectedPaymentData = paymentMethods![groupValue];
     }
-    rebuildUi();
+    // rebuildUi();
     setBusy(false);
   }
 

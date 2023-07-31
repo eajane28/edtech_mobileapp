@@ -28,22 +28,18 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
           title: 'Payment',
           onTap: viewModel.back,
         ),
-        body: viewModel.isBusy
-            ? const MyCircularProgressBar(
-                indicatorColor: Colors.orange,
-              )
-            : Container(
-                height: screenHeight(context),
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 24),
-                    const Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        'Choose your payment method',
-                        style: TextStyle(
-                          fontSize: 14,
+        body: Container(
+          height: screenHeight(context),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              const SizedBox(height: 24),
+              const Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'Choose your payment method',
+                  style: TextStyle(
+                    fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Color(0xFF000000),
                   ),
@@ -52,18 +48,24 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
               const SizedBox(height: 32),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                child: Column(
-                  children: [
-                    for (var card in viewModel.paymentMethods!)
-                      PaymentItem(
-                        card: card,
-                        index: viewModel.paymentMethods!.indexOf(card),
-                        groupValue: viewModel.groupValue,
-                        onPressed: viewModel.selectedCard,
-                      ),
-                      GestureDetector(
-                              onTap: () {viewModel.addNewCreditCard(selectedCourse);},
-                              child: Card(
+                child: viewModel.isBusy
+                    ? const MyCircularProgressBar(
+                        indicatorColor: Colors.orange,
+                      )
+                    : Column(
+                        children: [
+                          for (var card in viewModel.paymentMethods!)
+                            PaymentItem(
+                              card: card,
+                              index: viewModel.paymentMethods!.indexOf(card),
+                              groupValue: viewModel.groupValue,
+                              onPressed: viewModel.selectedCard,
+                            ),
+                          GestureDetector(
+                            onTap: () {
+                              viewModel.addNewCreditCard(selectedCourse);
+                            },
+                            child: Card(
                                 margin: const EdgeInsets.symmetric(vertical: 8.0),
                                 child: Padding(
                                   padding: const EdgeInsets.all(16.0),

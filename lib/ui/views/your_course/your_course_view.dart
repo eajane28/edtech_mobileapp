@@ -4,13 +4,10 @@ import 'package:edtech_mobile/ui/views/widgets/card_courses.dart';
 import 'package:edtech_mobile/ui/views/widgets/my_circular_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
-import '../../../model/card_data.dart';
 import 'your_course_viewmodel.dart';
 
 class YourCourseView extends StackedView<YourCourseViewModel> {
-  const YourCourseView(this.course, {Key? key}) : super(key: key);
-  final Course course;
+  const YourCourseView({Key? key}) : super(key: key);
 
   @override
   Widget builder(
@@ -32,7 +29,7 @@ class YourCourseView extends StackedView<YourCourseViewModel> {
                 : ListView.separated(
                 itemBuilder: (context, index) => CourseCard(
                           card: viewModel.yourCourseList[index],
-                          onTap: (Course card) {},
+                          onTap: viewModel.onTapToProductDetailView,
                         ),
                     separatorBuilder: (_, index) => verticalSpaceSmall,
                     itemCount: viewModel.yourCourseList.length)),

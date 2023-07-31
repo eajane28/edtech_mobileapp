@@ -31,8 +31,8 @@ class YourCourseViewModel extends BaseViewModel {
     _navigationService.navigateToHomeView();
   }
 
-  onTapToProductDetailView(Course courseItem) {
-    _navigationService.navigateToProductDetailView(course: courseItem);
+  onTapToProductDetailView(Course courseItem) async {
+    await _navigationService.navigateToProductDetailView(course: courseItem);
   }
 
 }

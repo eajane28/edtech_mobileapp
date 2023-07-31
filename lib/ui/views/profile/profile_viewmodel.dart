@@ -1,18 +1,29 @@
 import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:edtech_mobile/app/app.router.dart';
+import 'package:edtech_mobile/model/user.dart';
 import 'package:edtech_mobile/services/auth_service.dart';
+import 'package:edtech_mobile/services/local_storage.dart';
+import 'package:edtech_mobile/ui/common/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
-import '../../../model/card_data.dart';
 
 class ProfileViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _authService = locator<AuthService>();
-  late final Course course;
+  final _localStorage = locator<LocalStorage>();
+  final _snackBarService = locator<SnackbarService>();
+  late User user;
+
+  void init() async {
+    setBusy(true);
+    await getUser();
+    setBusy(false);
+  }
 
   void navigateToYourCourseView() async {
-    await _navigationService.navigateToYourCourseView(course: course);
+    user.purchaseCourses.isEmpty
+        ? _snackBarService.showSnackbar(message: "You have not purchased any courses yet",duration: AppConstants.defDuration)
+        : await _navigationService.navigateToYourCourseView();
   }
 
   void back() {
@@ -20,8 +31,12 @@ class ProfileViewModel extends BaseViewModel {
   }
 
   void logout() async {
-    await _authService
-        .logout()
-        .then((value) => _navigationService.replaceWith(Routes.loginView));
+    await _authService.logout().then((value) => _navigationService.replaceWith(Routes.loginView));
+  }
+
+  Future<void> getUser() async {
+    final response = await _localStorage.getCurrentUser();
+    response.fold(
+        (l) => _snackBarService.showSnackbar(message: l.message, duration: AppConstants.defDuration), (r) => user = r!);
   }
 }

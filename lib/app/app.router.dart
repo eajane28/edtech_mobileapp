@@ -236,9 +236,8 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i7.YourCourseView: (data) {
-      final args = data.getArgs<YourCourseViewArguments>(nullOk: false);
       return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => _i7.YourCourseView(args.course, key: args.key),
+        builder: (context) => const _i7.YourCourseView(),
         settings: data,
       );
     },
@@ -399,33 +398,6 @@ class SignupViewArguments {
   @override
   int get hashCode {
     return key.hashCode;
-  }
-}
-
-class YourCourseViewArguments {
-  const YourCourseViewArguments({
-    required this.course,
-    this.key,
-  });
-
-  final _i24.Course course;
-
-  final _i23.Key? key;
-
-  @override
-  String toString() {
-    return '{"course": "$course", "key": "$key"}';
-  }
-
-  @override
-  bool operator ==(covariant YourCourseViewArguments other) {
-    if (identical(this, other)) return true;
-    return other.course == course && other.key == key;
-  }
-
-  @override
-  int get hashCode {
-    return course.hashCode ^ key.hashCode;
   }
 }
 
@@ -698,17 +670,14 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToYourCourseView({
-    required _i24.Course course,
-    _i23.Key? key,
+  Future<dynamic> navigateToYourCourseView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  }) async {
+  ]) async {
     return navigateTo<dynamic>(Routes.yourCourseView,
-        arguments: YourCourseViewArguments(course: course, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1025,17 +994,14 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithYourCourseView({
-    required _i24.Course course,
-    _i23.Key? key,
+  Future<dynamic> replaceWithYourCourseView([
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  }) async {
+  ]) async {
     return replaceWith<dynamic>(Routes.yourCourseView,
-        arguments: YourCourseViewArguments(course: course, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

@@ -24,49 +24,48 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
   ) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: YoutubePlayerBuilder(
-            player: YoutubePlayer(
-              controller: viewModel.youtubePlayerController,
-              showVideoProgressIndicator: true,
-            ),
-            builder: (context, player) => Column(
-              children: [
-                MyAppBar(title: course.title, onTap: viewModel.backToHomeView),
-              Expanded(
-                  child: ScrollConfiguration(
-                    behavior: MyScrollBehavior(),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+        child: viewModel.isBusy
+            ? const MyCircularProgressBar()
+            : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: YoutubePlayerBuilder(
+                  player: YoutubePlayer(
+                    controller: viewModel.youtubePlayerController,
+                    showVideoProgressIndicator: true,
+                  ),
+                  builder: (context, player) => Column(
+                    children: [
+                      MyAppBar(title: course.title, onTap: viewModel.backToHomeView),
+                      Expanded(
+                        child: ScrollConfiguration(
+                          behavior: MyScrollBehavior(),
+                          child: SingleChildScrollView(
                             child: Column(
                               children: [
-                                // Image.network(course.image),
-                                course.video == null
-                                          ? CachedNetworkImage(
-                                              imageUrl: course.image,
-                                              placeholder: (context, url) =>
-                                                  const Center(child: CircularProgressIndicator()),
-                                              errorWidget: (context, url, error) =>
-                                                  const Center(child: Icon(Icons.error)),
-                                              fadeInDuration: const Duration(milliseconds: 800),
-                                            )
-                                          : SizedBox(
-                                              width: 512,
-                                              height: 360,
-                                              child: AspectRatio(
-                                                aspectRatio: 16 / 19,
-                                                child: player,
-                                              )),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                                  child: Column(
+                                    children: [
+                                      // Image.network(course.image),
+                                      viewModel.user.purchaseCourses.contains(course.id)
+                                          ? course.video != null
+                                              ? SizedBox(
+                                                  width: 512,
+                                                  height: 360,
+                                                  child: AspectRatio(
+                                                    aspectRatio: 16 / 19,
+                                                    child: player,
+                                                  ))
+                                              : courseImage()
+                                          : courseImage(),
                                       const SizedBox(height: 16),
                                       Align(
                                         alignment: Alignment.bottomRight,
                                         child: Chip(
                                           label: Text(
-                                            '\$${course.price}',
+                                            viewModel.user.purchaseCourses.contains(course.id)
+                                                ? "Purchased"
+                                                : '\$${course.price}',
                                             style: const TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
@@ -139,39 +138,49 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                           ),
                         ),
                       ),
-                Row(
-                  children: [
-                    MyWidgetButton(
-                      onTap: () => viewModel.addToCart(course),
-                      color: Colors.transparent,
-                      title: const Icon(
-                        MaterialCommunityIcons.cart_outline,
-                        size: 40,
-                        color: Colors.orange,
+                      Row(
+                        children: [
+                          MyWidgetButton(
+                            onTap: () => viewModel.addToCart(course),
+                            color: Colors.transparent,
+                            title: const Icon(
+                              MaterialCommunityIcons.cart_outline,
+                              size: 40,
+                              color: Colors.orange,
+                            ),
+                            width: 40,
+                          ),
+                          horizontalSpaceMedium,
+                          Expanded(
+                              child: MyWidgetButton(
+                                  title: viewModel.busy('purchase')
+                                      ? const MyCircularProgressBar()
+                                      : const Text(
+                                          'Purchase',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                            color: Color(0xFFFFFFFF),
+                                          ),
+                                        ),
+                                  onTap: viewModel.busy('purchase') ? null : () => viewModel.purchaseCourse(course)))
+                        ],
                       ),
-                      width: 40,
-                    ),
-                    horizontalSpaceMedium,
-                    Expanded(
-                        child: MyWidgetButton(
-                            title: viewModel.isBusy
-                                ? const MyCircularProgressBar()
-                                : const Text(
-                                    'Purchase',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      color: Color(0xFFFFFFFF),
-                                    ),
-                                  ),
-                            onTap:() => viewModel.purchaseCourse(course)))                  ],
+                    ],
+                  ),
                 ),
-              ],
-            ),
-          ),
-        ),
+              ),
       ),
+    );
+  }
+
+  Widget courseImage() {
+    return CachedNetworkImage(
+      imageUrl: course.image,
+      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+      errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+      fadeInDuration: const Duration(milliseconds: 800),
     );
   }
 
