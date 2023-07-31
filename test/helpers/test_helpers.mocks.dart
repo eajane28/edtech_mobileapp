@@ -836,6 +836,31 @@ class MockAuthService extends _i1.Mock implements _i7.AuthService {
               ),
             )),
           ) as _i5.Future<_i2.Either<_i8.AppException, _i10.Timestamp?>>);
+  @override
+  _i5.Future<_i2.Either<_i8.AppException, _i9.User>> getCurrentUserData() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getCurrentUserData,
+          [],
+        ),
+        returnValue: _i5.Future<_i2.Either<_i8.AppException, _i9.User>>.value(
+            _FakeEither_0<_i8.AppException, _i9.User>(
+          this,
+          Invocation.method(
+            #getCurrentUserData,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<_i2.Either<_i8.AppException, _i9.User>>.value(
+                _FakeEither_0<_i8.AppException, _i9.User>(
+          this,
+          Invocation.method(
+            #getCurrentUserData,
+            [],
+          ),
+        )),
+      ) as _i5.Future<_i2.Either<_i8.AppException, _i9.User>>);
 }
 
 /// A class which mocks [LocalStorage].

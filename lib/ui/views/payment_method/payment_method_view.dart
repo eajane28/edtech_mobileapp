@@ -2,12 +2,10 @@ import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/payment_data.dart';
 import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
-// import 'package:edtech_mobile/ui/views/widgets/button.dart';
+import 'package:edtech_mobile/ui/views/widgets/button.dart';
 import 'package:edtech_mobile/ui/views/widgets/payment_cards.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-
-import '../../../model/card_data.dart';
 import 'payment_method_viewmodel.dart';
 
 class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
@@ -58,7 +56,7 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
                         onPressed: viewModel.selectedCard,
                       ),
                       GestureDetector(
-                              onTap: () {viewModel.addNewCreditCard(course);},
+                              onTap: () {viewModel.addNewCreditCard(selectedCourse);},
                               child: Card(
                                 margin: const EdgeInsets.symmetric(vertical: 8.0),
                                 child: Padding(

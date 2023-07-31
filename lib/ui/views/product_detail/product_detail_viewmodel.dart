@@ -40,7 +40,7 @@ class ProductDetailViewModel extends BaseViewModel {
     _navigationService.navigateToNoPaymentView(course: course);
   }
 
-  void purchaseCourse(context, course) async {
+  void purchaseCourse(course) async {
     setBusy(true);
     final response = await _paymentRepository.getPaymentMethods();
     response.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => paymentMethods = r);

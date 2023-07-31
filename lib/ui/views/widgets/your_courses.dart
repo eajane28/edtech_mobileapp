@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:flutter/material.dart';
-typedef OnTap = Function(CardData card);
+typedef OnTap = Function(Course card);
 
 class YourCourseCard extends StatelessWidget {
   const YourCourseCard({super.key, required this.card, required this.onTap});
 
   final OnTap onTap;
-  final CardData card;
+  final Course card;
 
   @override
   Widget build(BuildContext context) {

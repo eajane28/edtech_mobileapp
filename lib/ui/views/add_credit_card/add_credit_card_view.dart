@@ -9,8 +9,6 @@ import 'package:edtech_mobile/ui/views/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stacked/stacked.dart';
-
-import '../../../model/card_data.dart';
 import 'add_credit_card_viewmodel.dart';
 
 class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputValidationMixin {

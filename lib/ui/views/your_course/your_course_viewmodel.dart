@@ -4,11 +4,8 @@ import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/repository/course_repository.dart';
 import 'package:edtech_mobile/services/local_storage.dart';
 import 'package:edtech_mobile/ui/common/constants.dart';
-// import 'package:edtech_mobile/model/card_data.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
-import '../../../model/card_data.dart';
 
 class YourCourseViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
@@ -34,8 +31,8 @@ class YourCourseViewModel extends BaseViewModel {
     _navigationService.navigateToHomeView();
   }
 
-  onTapToProductDetailView(CardData courseItem) {
-    _navigationService.navigateToProductDetailView(course: courseItem);
-  }
+  // onTapToProductDetailView(CardData courseItem) {
+  //   _navigationService.navigateToProductDetailView(course: courseItem);
+  // }
 
 }
