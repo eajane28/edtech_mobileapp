@@ -36,8 +36,6 @@ class CoursesViewModel extends BaseViewModel {
         cardList = [];
       }
     });
-    // print(cardList);
-    // cardData = cardList[];
     setBusyForObject('courses', false);
   }
 

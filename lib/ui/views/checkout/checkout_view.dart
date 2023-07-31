@@ -9,6 +9,10 @@ import 'package:edtech_mobile/ui/views/widgets/payment_cards.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../model/card_data.dart';
+import '../../../model/payment_data.dart';
+import '../../common/png_constants.dart';
+import '../../common/ui_helpers.dart';
 import 'checkout_viewmodel.dart';
 
 class CheckoutView extends StackedView<CheckoutViewModel> {

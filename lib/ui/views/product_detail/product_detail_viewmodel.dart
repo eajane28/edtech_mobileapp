@@ -1,3 +1,5 @@
+// import 'dart:js';
+
 import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:edtech_mobile/app/app.router.dart';
 import 'package:edtech_mobile/model/card_data.dart';
@@ -6,6 +8,8 @@ import 'package:edtech_mobile/repository/payment_repository.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+// import '../../../model/card_data.dart';
 
 class ProductDetailViewModel extends BaseViewModel {
   ProductDetailViewModel({required this.course});
@@ -36,7 +40,7 @@ class ProductDetailViewModel extends BaseViewModel {
     // _navigationService.navigateToNoPaymentView();
   }
 
-  void purchaseCourse() async {
+  void purchaseCourse(context, course) async {
     setBusy(true);
     final response = await _paymentRepository.getPaymentMethods();
     response.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => paymentMethods = r);

@@ -1,7 +1,10 @@
 import 'package:edtech_mobile/model/payment_data.dart';
 import 'package:edtech_mobile/ui/common/png_constants.dart';
 import 'package:edtech_mobile/ui/common/ui_helpers.dart';
+// import 'package:edtech_mobile/ui/views/widgets/card_courses.dart';
 import 'package:flutter/material.dart';
+
+typedef OnTap = Function(PaymentData card);
 
 class PaymentItem extends StatelessWidget {
   const PaymentItem({super.key, required this.card, this.index, this.groupValue, this.onPressed});

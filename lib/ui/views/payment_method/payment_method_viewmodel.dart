@@ -7,6 +7,11 @@ import 'package:edtech_mobile/repository/payment_repository.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../model/card_data.dart';
+
+// import '../../../model/payment_data.dart';
+// import '../../../repository/payment_repository.dart';
+
 class PaymentMethodViewModel extends BaseViewModel {
   PaymentMethodViewModel({this.paymentMethods});
 
@@ -16,7 +21,6 @@ class PaymentMethodViewModel extends BaseViewModel {
   List<PaymentData>? paymentMethods;
   late PaymentData selectedPaymentData;
   int groupValue = 0;
-
   void init() async {
     setBusy(true);
     selectedPaymentData = paymentMethods![groupValue];
@@ -30,6 +34,9 @@ class PaymentMethodViewModel extends BaseViewModel {
 
   void proceed(Course course) {
     _navigationService.navigateToCheckoutView(selectedCourse: course, selectedPayment: selectedPaymentData);
+
+  void addNewCreditCard() {
+    _navigationService.navigateToAddCreditCardView();
   }
 
   void back() {
