@@ -4,10 +4,13 @@ import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/back_button.dart';
 import 'package:flutter/material.dart';
 
-class MyAppBar extends StatelessWidget {
+class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   void Function()? onTap;
   MyAppBar({super.key, required this.title, required this.onTap});
+
+  @override
+  Size get preferredSize => const Size.fromHeight(64);
 
   @override
   Widget build(BuildContext context) {

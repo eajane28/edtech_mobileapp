@@ -1,4 +1,6 @@
+import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/payment_data.dart';
+import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 // import 'package:edtech_mobile/ui/views/widgets/button.dart';
 import 'package:edtech_mobile/ui/views/widgets/payment_cards.dart';
@@ -9,14 +11,9 @@ import '../../../model/card_data.dart';
 import 'payment_method_viewmodel.dart';
 
 class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
-  const PaymentMethodView({
-    Key? key,
-    this.cards,
-    required this.course,
-  }) : super(key: key);
+  const PaymentMethodView({Key? key, this.cards, required this.selectedCourse}) : super(key: key);
   final List<PaymentData>? cards;
-  final CardData course;
-  //declare item for courses from the previous page
+  final Course selectedCourse;
 
   @override
   Widget builder(
@@ -31,7 +28,8 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
           title: 'Payment',
           onTap: viewModel.back,
         ),
-        body: Padding(
+        body: Container(
+          height: screenHeight(context),
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
@@ -47,18 +45,19 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
                   ),
                 ),
               ),
-              const SizedBox(height: 78),
+              const SizedBox(height: 32),
               Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                  child: viewModel.isBusy
-                      ? const Center(
-                          child: CircularProgressIndicator(
-                          color: Colors.orange,
-                        ))
-                      : Column(
-                          children: [
-                            for (var card in viewModel.paymentMethods!) PaymentItem(card: card, onTap: (PaymentData card) => viewModel.proceedToCheckout(card, course)),
-                            GestureDetector(
+                padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                child: Column(
+                  children: [
+                    for (var card in viewModel.paymentMethods!)
+                      PaymentItem(
+                        card: card,
+                        index: viewModel.paymentMethods!.indexOf(card),
+                        groupValue: viewModel.groupValue,
+                        onPressed: viewModel.selectedCard,
+                      ),
+                      GestureDetector(
                               onTap: () {viewModel.addNewCreditCard(course);},
                               child: Card(
                                 margin: const EdgeInsets.symmetric(vertical: 8.0),
@@ -83,11 +82,17 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
                                   ),),
                               ),
                             )
-                          ],
-                        )),
-              // const Expanded(child: SizedBox(height: 361)),
-              // Container(
-              //     margin: const EdgeInsets.all(16.0), child: MyButton(title: 'Continue', onTap: viewModel.proceed))
+                  ],
+                ),
+              ),
+              const SizedBox(height: 361),
+              Expanded(child: Container()),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                    margin: const EdgeInsets.all(16.0),
+                    child: MyButton(title: 'Continue', onTap: () => viewModel.proceed(selectedCourse))),
+              )
             ],
           ),
         ),

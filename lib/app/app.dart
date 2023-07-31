@@ -6,6 +6,7 @@ import 'package:edtech_mobile/repository/course_repository.dart';
 import 'package:edtech_mobile/repository/course_repository_impl.dart';
 import 'package:edtech_mobile/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:edtech_mobile/ui/dialogs/info_alert/info_alert_dialog.dart';
+import 'package:edtech_mobile/ui/dialogs/my_confirmation_dialog/my_confirmation_dialog.dart';
 import 'package:edtech_mobile/ui/dialogs/update_password_dialog/update_password_dialog_ui.dart';
 import 'package:edtech_mobile/ui/views/home/home_view.dart';
 import 'package:edtech_mobile/ui/views/startup/startup_view.dart';
@@ -82,6 +83,7 @@ import 'package:edtech_mobile/ui/views/forgot_password/forgot_password_view.dart
   dialogs: [
     StackedDialog(classType: InfoAlertDialog),
     StackedDialog(classType: UpdatePasswordDialogUi),
+    StackedDialog(classType: MyConfirmationDialog),
     // @stacked-dialog
   ],
 )

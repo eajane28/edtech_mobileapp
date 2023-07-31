@@ -1,4 +1,6 @@
+import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
+import 'package:edtech_mobile/ui/views/widgets/my_circular_progress_bar.dart';
 import 'package:edtech_mobile/ui/views/widgets/your_courses.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -11,37 +13,35 @@ class YourCourseView extends StackedView<YourCourseViewModel> {
   final CardData course;
 
   @override
-  Widget builder(
-    BuildContext context,
-    YourCourseViewModel viewModel,
-    Widget? child,
-  ) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
+  Widget builder(BuildContext context,
+      YourCourseViewModel viewModel,
+      Widget? child,) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: MyAppBar(title: 'Your Courses', onTap: viewModel.back),
+        body: Container(
+            height: screenHeight(context),
+            width: screenWidth(context),
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(
-              children: [
-                MyAppBar(title: 'Your Courses', onTap: viewModel.back),
-                for (var carditem in viewModel.yourCourseList)
-                  YourCourseCard(
-                    card: carditem,
-                    onTap: (CardData card) {
-                      viewModel.onTapToProductDetailView(course);
-                    },
-                  ),
-              ],
-            ),
-          ),
-        ),
+            child: viewModel.isBusy
+                ? const MyCircularProgressBar(
+              indicatorColor: Colors.orange,
+            )
+                : ListView.separated(
+                    itemBuilder: (context, index) => card(viewModel.yourCourseList[index]),
+                    separatorBuilder: (_, index) => verticalSpaceSmall,
+                    itemCount: viewModel.yourCourseList.length)),
       ),
     );
   }
 
   @override
-  YourCourseViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  YourCourseViewModel viewModelBuilder(BuildContext context,) =>
       YourCourseViewModel();
+
+  @override
+  void onViewModelReady(YourCourseViewModel viewModel) {
+    viewModel.init();
+    super.onViewModelReady(viewModel);
+  }
 }

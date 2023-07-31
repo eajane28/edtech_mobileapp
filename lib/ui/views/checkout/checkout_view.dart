@@ -1,6 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:edtech_mobile/model/card_data.dart';
+import 'package:edtech_mobile/model/payment_data.dart';
+import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
+import 'package:edtech_mobile/ui/views/widgets/my_circular_progress_bar.dart';
+import 'package:edtech_mobile/ui/views/widgets/payment_cards.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -11,19 +16,19 @@ import '../../common/ui_helpers.dart';
 import 'checkout_viewmodel.dart';
 
 class CheckoutView extends StackedView<CheckoutViewModel> {
-  const CheckoutView(this.card, this.course, {Key? key}) : super(key: key);
-  final PaymentData card;
-  final CardData course;
+  const CheckoutView({Key? key, required this.selectedCourse, required this.selectedPayment}) : super(key: key);
+  final Course selectedCourse;
+  final PaymentData selectedPayment;
 
   @override
-  Widget builder(
-    BuildContext context,
-    CheckoutViewModel viewModel,
-    Widget? child,
-  ) {
+  Widget builder(BuildContext context,
+      CheckoutViewModel viewModel,
+      Widget? child,) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
+        child: Container(
+          height: screenHeight(context),
+          width: screenWidth(context),
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
@@ -33,48 +38,39 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: 122,
-                      width: 169,
-                      child: CachedNetworkImage(
-                        imageUrl: course.image,
+                    CachedNetworkImage(
+                        imageUrl: selectedCourse.image,
+                        fit: BoxFit.cover,
                         placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
                         errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
                         fadeInDuration: const Duration(milliseconds: 800),
-                      ),
-                    ),
-                    // Image.asset('assets/Illustration.png',
-                    //     width: 169, height: 122),
+                        width: 169,
+                        height: 122),
                     const SizedBox(width: 8.0),
-                    SizedBox(
-                      width: 200,
-                      height: 169,
+                    Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Flexible(
-                            flex: 3,
-                            child: Text(
-                              course.title,
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xFF3C3A36),
-                              ),
+                          Text(
+                            selectedCourse.title,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 3,
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFF3C3A36),
                             ),
                           ),
                           const SizedBox(
                             height: 8,
                           ),
-                          Flexible(
-                            child: Text(
-                              '\$${course.price}',
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xFF3C3A36),
-                              ),
+                          Text(
+                            '\$${selectedCourse.price}',
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFF3C3A36),
                             ),
                           ),
                         ],
@@ -86,7 +82,9 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: Text(
-                  course.subtitle,
+                  selectedCourse.subtitle,
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
@@ -105,53 +103,26 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                   ),
                 ),
               ),
-              Card(
-                margin: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    children: [
-                      card.paymentMethod == 'other'
-                          ? Icon(
-                              Icons.credit_card,
-                              size: 40.0,
-                              color: Colors.grey[600],
-                            )
-                          : Image.asset('${CardTypeImage.rootPath}${card.paymentMethod}.png', width: 78, height: 72),
-                      horizontalSpaceMedium,
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              formatCreditCardNumber(card.cardNumber),
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xFF3C3A36),
-                              ),
-                            ),
-                            verticalSpaceMedium,
-                            Text(
-                              "Expires ${card.expiryDate}",
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xFF78746D),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 300.0),
+              PaymentItem(card: selectedPayment),
+              Expanded(child: Container()),
+              Align(
+                alignment: Alignment.bottomCenter,
                 child: Container(
                   margin: const EdgeInsets.all(16.0),
-                  child: MyButton(title: 'Confirm Payment \$50.00', onTap: () {viewModel.confirmToYourCourses(course);}),
+                  child: MyWidgetButton(
+                      title: viewModel.isBusy
+                          ? const MyCircularProgressBar()
+                          : Text(
+                              'Confirm Payment \$${selectedCourse.price}',
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFFFFFFFF),
+                              ),
+                            ),
+                      onTap: viewModel.isBusy ? null : () => viewModel.confirm(selectedCourse)),
+
                 ),
               )
             ],
@@ -162,8 +133,6 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
   }
 
   @override
-  CheckoutViewModel viewModelBuilder(
-    BuildContext context,
-  ) =>
+  CheckoutViewModel viewModelBuilder(BuildContext context,) =>
       CheckoutViewModel();
 }

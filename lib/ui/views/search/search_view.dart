@@ -77,7 +77,7 @@ class SearchView extends StackedView<SearchViewModel> {
                         var cardItem = viewModel.searchList[index];
                         return CourseCard(
                             card: cardItem,
-                            onTap: (CardData course) {
+                            onTap: (Course course) {
                               viewModel.onTap(course);
                             });
                       },

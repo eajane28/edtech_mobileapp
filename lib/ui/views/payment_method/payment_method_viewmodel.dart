@@ -1,8 +1,8 @@
 import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:edtech_mobile/app/app.router.dart';
+import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/payment_data.dart';
 import 'package:edtech_mobile/repository/payment_repository.dart';
-
 // import 'package:edtech_mobile/model/payment_data.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -19,25 +19,21 @@ class PaymentMethodViewModel extends BaseViewModel {
   final _paymentRepository = locator<PaymentRepository>();
   final _snackBarService = locator<SnackbarService>();
   List<PaymentData>? paymentMethods;
-  PaymentData? paymentData;
-  CardData? course;
-
+  late PaymentData selectedPaymentData;
+  int groupValue = 0;
   void init() async {
     setBusy(true);
-    if (paymentMethods == null) {
-      getPaymentMethods();
-    }
+    selectedPaymentData = paymentMethods![groupValue];
     setBusy(false);
   }
 
-  void getPaymentMethods() async {
+  Future<void> getPaymentMethods() async {
     final response = await _paymentRepository.getPaymentMethods();
-    response.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => paymentMethods);
+    response.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => paymentMethods = r);
   }
 
-  void proceedToCheckout(PaymentData card, CardData course) {
-    _navigationService.navigateToCheckoutView(card: card, course: course);
-  }
+  void proceed(Course course) {
+    _navigationService.navigateToCheckoutView(selectedCourse: course, selectedPayment: selectedPaymentData);
 
   void addNewCreditCard(CardData course) {
     _navigationService.navigateToAddCreditCardView(course: course);
@@ -45,5 +41,12 @@ class PaymentMethodViewModel extends BaseViewModel {
 
   void back() {
     _navigationService.back();
+  }
+
+  void selectedCard(PaymentData card) {
+    groupValue = paymentMethods!.indexOf(card);
+    print(paymentMethods!.length);
+    selectedPaymentData = card;
+    notifyListeners();
   }
 }

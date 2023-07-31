@@ -170,8 +170,7 @@ String formatCreditCardNumber(String input) {
   String spacedInput;
   spacedInput = buffer.toString();
   if (buffer.toString().length % 4 == 0) {
-    int numOfSpaces = (buffer.toString().length / 4).ceil() - 1;
-    print(numOfSpaces);
+    (buffer.toString().length / 4).ceil() - 1;
 
     // Split the cleaned input into groups of four characters
     List<String> groups = [];

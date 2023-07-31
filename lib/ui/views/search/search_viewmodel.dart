@@ -13,8 +13,8 @@ final NavigationService _navigationService = locator<NavigationService>();
 final CourseRepository _repository = locator<CourseRepository>();
 
 class SearchViewModel extends BaseViewModel {
-  List<CardData> searchList = []; //used for retrieving all the data from courseview
-  CardData? cardData;
+  List<Course> searchList = []; //used for retrieving all the data from courseview
+  Course? cardData;
   final TextEditingController searchController = TextEditingController();
   late List<String> selectedItems = [];
   String? searchQuery;
@@ -45,7 +45,7 @@ class SearchViewModel extends BaseViewModel {
     _navigationService.back();
   }
 
-  onTap(CardData courseItem) {
+  onTap(Course courseItem) {
     _navigationService.navigateToProductDetailView(course: courseItem);
   }
 }

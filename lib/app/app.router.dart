@@ -294,7 +294,9 @@ class StackedRouter extends _i1.RouterBase {
     _i16.NoPaymentView: (data) {
       final args = data.getArgs<NoPaymentViewArguments>(nullOk: false);
       return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => _i16.NoPaymentView(args.course, key: args.key),
+        builder: (context) =>
+            _i16.NoPaymentView(key: args.key, course: args.course),
+
         settings: data,
       );
     },
@@ -307,7 +309,8 @@ class StackedRouter extends _i1.RouterBase {
     _i18.PaymentAddedView: (data) {
       final args = data.getArgs<PaymentAddedViewArguments>(nullOk: false);
       return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => _i18.PaymentAddedView(args.course, key: args.key),
+        builder: (context) =>
+            _i18.PaymentAddedView(key: args.key, course: args.course),
         settings: data,
       );
     },
@@ -315,15 +318,19 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<PaymentMethodViewArguments>(nullOk: false);
       return _i23.MaterialPageRoute<dynamic>(
         builder: (context) => _i19.PaymentMethodView(
-            key: args.key, cards: args.cards, course: args.course),
+            key: args.key,
+            cards: args.cards,
+            selectedCourse: args.selectedCourse),
         settings: data,
       );
     },
     _i20.CheckoutView: (data) {
       final args = data.getArgs<CheckoutViewArguments>(nullOk: false);
       return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) =>
-            _i20.CheckoutView(args.card, args.course, key: args.key),
+        builder: (context) => _i20.CheckoutView(
+            key: args.key,
+            selectedCourse: args.selectedCourse,
+            selectedPayment: args.selectedPayment),
         settings: data,
       );
     },
@@ -331,7 +338,8 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<AddCreditCardViewArguments>(nullOk: false);
       return _i23.MaterialPageRoute<dynamic>(
         builder: (context) =>
-            _i21.AddCreditCardView(args.course, key: args.key),
+            _i21.AddCreditCardView(key: args.key, course: args.course),
+
         settings: data,
       );
     },
@@ -429,7 +437,7 @@ class ProductDetailViewArguments {
     this.key,
   });
 
-  final _i24.CardData course;
+  final _i24.Course course;
 
   final _i23.Key? key;
 
@@ -452,55 +460,57 @@ class ProductDetailViewArguments {
 
 class NoPaymentViewArguments {
   const NoPaymentViewArguments({
-    required this.course,
     this.key,
+    required this.course,
   });
-
-  final _i24.CardData course;
 
   final _i23.Key? key;
 
+  final _i24.Course course;
+
   @override
   String toString() {
-    return '{"course": "$course", "key": "$key"}';
+    return '{"key": "$key", "course": "$course"}';
+
   }
 
   @override
   bool operator ==(covariant NoPaymentViewArguments other) {
     if (identical(this, other)) return true;
-    return other.course == course && other.key == key;
+    return other.key == key && other.course == course;
+
   }
 
   @override
   int get hashCode {
-    return course.hashCode ^ key.hashCode;
+    return key.hashCode ^ course.hashCode;
   }
 }
 
 class PaymentAddedViewArguments {
   const PaymentAddedViewArguments({
-    required this.course,
     this.key,
+    required this.course,
   });
-
-  final _i24.CardData course;
 
   final _i23.Key? key;
 
+  final _i24.Course course;
+
   @override
   String toString() {
-    return '{"course": "$course", "key": "$key"}';
+    return '{"key": "$key", "course": "$course"}';
   }
 
   @override
   bool operator ==(covariant PaymentAddedViewArguments other) {
     if (identical(this, other)) return true;
-    return other.course == course && other.key == key;
+    return other.key == key && other.course == course;
   }
 
   @override
   int get hashCode {
-    return course.hashCode ^ key.hashCode;
+    return key.hashCode ^ course.hashCode;
   }
 }
 
@@ -508,86 +518,93 @@ class PaymentMethodViewArguments {
   const PaymentMethodViewArguments({
     this.key,
     this.cards,
-    required this.course,
+    required this.selectedCourse,
   });
 
   final _i23.Key? key;
 
   final List<_i25.PaymentData>? cards;
 
-  final _i24.CardData course;
+  final _i24.Course selectedCourse;
 
   @override
   String toString() {
-    return '{"key": "$key", "cards": "$cards", "course": "$course"}';
+    return '{"key": "$key", "cards": "$cards", "selectedCourse": "$selectedCourse"}';
   }
 
   @override
   bool operator ==(covariant PaymentMethodViewArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key && other.cards == cards && other.course == course;
+    return other.key == key &&
+        other.cards == cards &&
+        other.selectedCourse == selectedCourse;
   }
 
   @override
   int get hashCode {
-    return key.hashCode ^ cards.hashCode ^ course.hashCode;
+    return key.hashCode ^ cards.hashCode ^ selectedCourse.hashCode;
   }
 }
 
 class CheckoutViewArguments {
   const CheckoutViewArguments({
-    required this.card,
-    required this.course,
     this.key,
+    required this.selectedCourse,
+    required this.selectedPayment,
   });
-
-  final _i25.PaymentData card;
-
-  final _i24.CardData course;
 
   final _i23.Key? key;
 
+  final _i24.Course selectedCourse;
+
+  final _i25.PaymentData selectedPayment;
+
   @override
   String toString() {
-    return '{"card": "$card", "course": "$course", "key": "$key"}';
+    return '{"key": "$key", "selectedCourse": "$selectedCourse", "selectedPayment": "$selectedPayment"}';
   }
 
   @override
   bool operator ==(covariant CheckoutViewArguments other) {
     if (identical(this, other)) return true;
-    return other.card == card && other.course == course && other.key == key;
+    return other.key == key &&
+        other.selectedCourse == selectedCourse &&
+        other.selectedPayment == selectedPayment;
   }
 
   @override
   int get hashCode {
-    return card.hashCode ^ course.hashCode ^ key.hashCode;
+    return key.hashCode ^ selectedCourse.hashCode ^ selectedPayment.hashCode;
   }
 }
 
 class AddCreditCardViewArguments {
   const AddCreditCardViewArguments({
-    required this.course,
     this.key,
+    required this.course,
   });
 
-  final _i24.CardData course;
 
   final _i23.Key? key;
 
+  final _i24.Course course;
+
   @override
   String toString() {
-    return '{"course": "$course", "key": "$key"}';
+    return '{"key": "$key", "course": "$course"}';
+
   }
 
   @override
   bool operator ==(covariant AddCreditCardViewArguments other) {
     if (identical(this, other)) return true;
-    return other.course == course && other.key == key;
+    return other.key == key && other.course == course;
   }
 
   @override
   int get hashCode {
-    return course.hashCode ^ key.hashCode;
+    return key.hashCode ^ course.hashCode;
+
   }
 }
 
@@ -720,7 +737,7 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> navigateToProductDetailView({
-    required _i24.CardData course,
+    required _i24.Course course,
     _i23.Key? key,
     int? routerId,
     bool preventDuplicates = true,
@@ -821,8 +838,8 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> navigateToNoPaymentView({
-    required _i24.CardData course,
     _i23.Key? key,
+    required _i24.Course course,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -830,7 +847,7 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition,
   }) async {
     return navigateTo<dynamic>(Routes.noPaymentView,
-        arguments: NoPaymentViewArguments(course: course, key: key),
+        arguments: NoPaymentViewArguments(key: key, course: course),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -852,8 +869,8 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> navigateToPaymentAddedView({
-    required _i24.CardData course,
     _i23.Key? key,
+    required _i24.Course course,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -861,7 +878,7 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition,
   }) async {
     return navigateTo<dynamic>(Routes.paymentAddedView,
-        arguments: PaymentAddedViewArguments(course: course, key: key),
+        arguments: PaymentAddedViewArguments(key: key, course: course),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -871,7 +888,7 @@ extension NavigatorStateExtension on _i26.NavigationService {
   Future<dynamic> navigateToPaymentMethodView({
     _i23.Key? key,
     List<_i25.PaymentData>? cards,
-    required _i24.CardData course,
+    required _i24.Course selectedCourse,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -879,8 +896,8 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition,
   }) async {
     return navigateTo<dynamic>(Routes.paymentMethodView,
-        arguments:
-            PaymentMethodViewArguments(key: key, cards: cards, course: course),
+        arguments: PaymentMethodViewArguments(
+            key: key, cards: cards, selectedCourse: selectedCourse),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -888,9 +905,9 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> navigateToCheckoutView({
-    required _i25.PaymentData card,
-    required _i24.CardData course,
     _i23.Key? key,
+    required _i24.Course selectedCourse,
+    required _i25.PaymentData selectedPayment,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -898,7 +915,10 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition,
   }) async {
     return navigateTo<dynamic>(Routes.checkoutView,
-        arguments: CheckoutViewArguments(card: card, course: course, key: key),
+        arguments: CheckoutViewArguments(
+            key: key,
+            selectedCourse: selectedCourse,
+            selectedPayment: selectedPayment),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -908,6 +928,7 @@ extension NavigatorStateExtension on _i26.NavigationService {
   Future<dynamic> navigateToAddCreditCardView({
     required _i24.CardData course,
     _i23.Key? key,
+    required _i24.Course course,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -915,7 +936,8 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition,
   }) async {
     return navigateTo<dynamic>(Routes.addCreditCardView,
-        arguments: AddCreditCardViewArguments(course: course, key: key),
+        arguments: AddCreditCardViewArguments(key: key, course: course),
+
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1044,7 +1066,7 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> replaceWithProductDetailView({
-    required _i24.CardData course,
+    required _i24.Course course,
     _i23.Key? key,
     int? routerId,
     bool preventDuplicates = true,
@@ -1145,8 +1167,9 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> replaceWithNoPaymentView({
-    required _i24.CardData course,
     _i23.Key? key,
+    required _i24.Course course,
+
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1154,7 +1177,8 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition,
   }) async {
     return replaceWith<dynamic>(Routes.noPaymentView,
-        arguments: NoPaymentViewArguments(course: course, key: key),
+        arguments: NoPaymentViewArguments(key: key, course: course),
+
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1176,8 +1200,8 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> replaceWithPaymentAddedView({
-    required _i24.CardData course,
     _i23.Key? key,
+    required _i24.Course course,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1185,7 +1209,7 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition,
   }) async {
     return replaceWith<dynamic>(Routes.paymentAddedView,
-        arguments: PaymentAddedViewArguments(course: course, key: key),
+        arguments: PaymentAddedViewArguments(key: key, course: course),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1195,7 +1219,7 @@ extension NavigatorStateExtension on _i26.NavigationService {
   Future<dynamic> replaceWithPaymentMethodView({
     _i23.Key? key,
     List<_i25.PaymentData>? cards,
-    required _i24.CardData course,
+    required _i24.Course selectedCourse,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1203,8 +1227,8 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition,
   }) async {
     return replaceWith<dynamic>(Routes.paymentMethodView,
-        arguments:
-            PaymentMethodViewArguments(key: key, cards: cards, course: course),
+        arguments: PaymentMethodViewArguments(
+            key: key, cards: cards, selectedCourse: selectedCourse),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1212,9 +1236,9 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> replaceWithCheckoutView({
-    required _i25.PaymentData card,
-    required _i24.CardData course,
     _i23.Key? key,
+    required _i24.Course selectedCourse,
+    required _i25.PaymentData selectedPayment,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1222,7 +1246,10 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition,
   }) async {
     return replaceWith<dynamic>(Routes.checkoutView,
-        arguments: CheckoutViewArguments(card: card, course: course, key: key),
+        arguments: CheckoutViewArguments(
+            key: key,
+            selectedCourse: selectedCourse,
+            selectedPayment: selectedPayment),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1232,6 +1259,7 @@ extension NavigatorStateExtension on _i26.NavigationService {
   Future<dynamic> replaceWithAddCreditCardView({
     required _i24.CardData course,
     _i23.Key? key,
+    required _i24.Course course,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1239,7 +1267,8 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition,
   }) async {
     return replaceWith<dynamic>(Routes.addCreditCardView,
-        arguments: AddCreditCardViewArguments(course: course, key: key),
+        arguments: AddCreditCardViewArguments(key: key, course: course),
+
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

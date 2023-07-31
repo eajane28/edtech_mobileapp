@@ -7,17 +7,19 @@ import 'package:flutter/material.dart';
 typedef OnTap = Function(PaymentData card);
 
 class PaymentItem extends StatelessWidget {
-  const PaymentItem({super.key, required this.card, required this.onTap});
+  const PaymentItem({super.key, required this.card, this.index, this.groupValue, this.onPressed});
 
-  final OnTap onTap;
+  final int? index;
   final PaymentData card;
+  final int? groupValue;
+  final void Function(PaymentData)? onPressed;
 
   @override
   Widget build(BuildContext context) {
-    // bool selected = false;
     return GestureDetector(
-      onTap: () => onTap(card),
+      onTap: index == null ? null : () => onPressed!(card),
       child: Card(
+        color: Colors.white,
         margin: const EdgeInsets.symmetric(vertical: 8.0),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -54,7 +56,14 @@ class PaymentItem extends StatelessWidget {
                     )
                   ],
                 ),
-              )
+              ),
+              index == null
+                  ? const SizedBox.shrink()
+                  : Radio(
+                      value: index,
+                      onChanged: null,
+                      groupValue: groupValue,
+                    )
             ],
           ),
         ),
