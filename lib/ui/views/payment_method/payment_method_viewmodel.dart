@@ -35,8 +35,8 @@ class PaymentMethodViewModel extends BaseViewModel {
   void proceed(Course course) {
     _navigationService.navigateToCheckoutView(selectedCourse: course, selectedPayment: selectedPaymentData);
 
-  void addNewCreditCard() {
-    _navigationService.navigateToAddCreditCardView();
+  void addNewCreditCard(CardData course) {
+    _navigationService.navigateToAddCreditCardView(course: course);
   }
 
   void back() {

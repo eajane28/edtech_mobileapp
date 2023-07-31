@@ -36,8 +36,8 @@ class ProductDetailViewModel extends BaseViewModel {
     setBusyForObject('video', false);
   }
 
-  void addToCart() {
-    // _navigationService.navigateToNoPaymentView();
+  void addToCart(course) {
+    _navigationService.navigateToNoPaymentView(course: course);
   }
 
   void purchaseCourse(context, course) async {
@@ -47,6 +47,7 @@ class ProductDetailViewModel extends BaseViewModel {
     paymentMethods.isEmpty
         ? _navigationService.navigateToNoPaymentView(course: course)
         : _navigationService.navigateToPaymentMethodView(cards: paymentMethods, selectedCourse: course);
+
     setBusy(false);
   }
 

@@ -8,6 +8,8 @@ import 'package:edtech_mobile/ui/common/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../model/card_data.dart';
+
 class YourCourseViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _localStorage = locator<LocalStorage>();
@@ -31,4 +33,9 @@ class YourCourseViewModel extends BaseViewModel {
   void back() {
     _navigationService.navigateToHomeView();
   }
+
+  onTapToProductDetailView(CardData courseItem) {
+    _navigationService.navigateToProductDetailView(course: courseItem);
+  }
+
 }

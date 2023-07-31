@@ -122,6 +122,7 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                               ),
                             ),
                       onTap: viewModel.isBusy ? null : () => viewModel.confirm(selectedCourse)),
+
                 ),
               )
             ],

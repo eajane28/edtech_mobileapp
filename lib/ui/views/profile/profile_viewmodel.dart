@@ -4,12 +4,15 @@ import 'package:edtech_mobile/services/auth_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../../../model/card_data.dart';
+
 class ProfileViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _authService = locator<AuthService>();
+  late final CardData course;
 
-  void goto() async {
-    await _navigationService.navigateToYourCourseView();
+  void navigateToYourCourseView() async {
+    await _navigationService.navigateToYourCourseView(course: course);
   }
 
   void back() {
