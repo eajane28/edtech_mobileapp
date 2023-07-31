@@ -296,7 +296,6 @@ class StackedRouter extends _i1.RouterBase {
       return _i23.MaterialPageRoute<dynamic>(
         builder: (context) =>
             _i16.NoPaymentView(key: args.key, course: args.course),
-
         settings: data,
       );
     },
@@ -339,7 +338,6 @@ class StackedRouter extends _i1.RouterBase {
       return _i23.MaterialPageRoute<dynamic>(
         builder: (context) =>
             _i21.AddCreditCardView(key: args.key, course: args.course),
-
         settings: data,
       );
     },
@@ -410,7 +408,7 @@ class YourCourseViewArguments {
     this.key,
   });
 
-  final _i24.CardData course;
+  final _i24.Course course;
 
   final _i23.Key? key;
 
@@ -471,14 +469,12 @@ class NoPaymentViewArguments {
   @override
   String toString() {
     return '{"key": "$key", "course": "$course"}';
-
   }
 
   @override
   bool operator ==(covariant NoPaymentViewArguments other) {
     if (identical(this, other)) return true;
     return other.key == key && other.course == course;
-
   }
 
   @override
@@ -584,7 +580,6 @@ class AddCreditCardViewArguments {
     required this.course,
   });
 
-
   final _i23.Key? key;
 
   final _i24.Course course;
@@ -592,7 +587,6 @@ class AddCreditCardViewArguments {
   @override
   String toString() {
     return '{"key": "$key", "course": "$course"}';
-
   }
 
   @override
@@ -604,7 +598,6 @@ class AddCreditCardViewArguments {
   @override
   int get hashCode {
     return key.hashCode ^ course.hashCode;
-
   }
 }
 
@@ -706,7 +699,7 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> navigateToYourCourseView({
-    required _i24.CardData course,
+    required _i24.Course course,
     _i23.Key? key,
     int? routerId,
     bool preventDuplicates = true,
@@ -926,7 +919,6 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> navigateToAddCreditCardView({
-    required _i24.CardData course,
     _i23.Key? key,
     required _i24.Course course,
     int? routerId,
@@ -937,7 +929,6 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }) async {
     return navigateTo<dynamic>(Routes.addCreditCardView,
         arguments: AddCreditCardViewArguments(key: key, course: course),
-
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1035,7 +1026,7 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> replaceWithYourCourseView({
-    required _i24.CardData course,
+    required _i24.Course course,
     _i23.Key? key,
     int? routerId,
     bool preventDuplicates = true,
@@ -1169,7 +1160,6 @@ extension NavigatorStateExtension on _i26.NavigationService {
   Future<dynamic> replaceWithNoPaymentView({
     _i23.Key? key,
     required _i24.Course course,
-
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -1178,7 +1168,6 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }) async {
     return replaceWith<dynamic>(Routes.noPaymentView,
         arguments: NoPaymentViewArguments(key: key, course: course),
-
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1257,7 +1246,6 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }
 
   Future<dynamic> replaceWithAddCreditCardView({
-    required _i24.CardData course,
     _i23.Key? key,
     required _i24.Course course,
     int? routerId,
@@ -1268,7 +1256,6 @@ extension NavigatorStateExtension on _i26.NavigationService {
   }) async {
     return replaceWith<dynamic>(Routes.addCreditCardView,
         arguments: AddCreditCardViewArguments(key: key, course: course),
-
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

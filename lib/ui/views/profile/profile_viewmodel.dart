@@ -9,7 +9,7 @@ import '../../../model/card_data.dart';
 class ProfileViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _authService = locator<AuthService>();
-  late final CardData course;
+  late final Course course;
 
   void navigateToYourCourseView() async {
     await _navigationService.navigateToYourCourseView(course: course);

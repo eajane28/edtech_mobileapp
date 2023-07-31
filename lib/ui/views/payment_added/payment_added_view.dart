@@ -5,7 +5,6 @@ import 'package:edtech_mobile/ui/views/widgets/display.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../model/card_data.dart';
 import 'payment_added_viewmodel.dart';
 
 class PaymentAddedView extends StackedView<PaymentAddedViewModel> {

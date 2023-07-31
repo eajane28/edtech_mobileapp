@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../model/card_data.dart';
 
 class AddCreditCardViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
@@ -24,7 +23,7 @@ class AddCreditCardViewModel extends BaseViewModel {
   FocusNode cvvFocusNode = FocusNode();
 
   PaymentData? paymentData;
-   CardData? course;
+   Course? course;
 
   void init() {
     cardNumberController.addListener(getCardTypeFrmNumber);
