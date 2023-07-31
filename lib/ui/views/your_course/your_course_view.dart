@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../model/card_data.dart';
-import '../widgets/card_courses.dart';
 import 'your_course_viewmodel.dart';
 
 class YourCourseView extends StackedView<YourCourseViewModel> {

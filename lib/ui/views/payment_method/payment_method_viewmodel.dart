@@ -17,7 +17,11 @@ class PaymentMethodViewModel extends BaseViewModel {
   int groupValue = 0;
   void init() async {
     setBusy(true);
-    selectedPaymentData = paymentMethods![groupValue];
+    await getPaymentMethods();
+    if(paymentMethods != null) {
+      selectedPaymentData = paymentMethods![groupValue];
+    }
+    rebuildUi();
     setBusy(false);
   }
 
@@ -40,7 +44,6 @@ class PaymentMethodViewModel extends BaseViewModel {
 
   void selectedCard(PaymentData card) {
     groupValue = paymentMethods!.indexOf(card);
-    print(paymentMethods!.length);
     selectedPaymentData = card;
     notifyListeners();
   }
