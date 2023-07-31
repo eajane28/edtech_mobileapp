@@ -255,8 +255,10 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i10.ChooseLessonView: (data) {
+      final args = data.getArgs<ChooseLessonViewArguments>(nullOk: false);
       return _i23.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i10.ChooseLessonView(),
+        builder: (context) =>
+            _i10.ChooseLessonView(key: args.key, course: args.course),
         settings: data,
       );
     },
@@ -425,6 +427,33 @@ class ProductDetailViewArguments {
   @override
   int get hashCode {
     return course.hashCode ^ key.hashCode;
+  }
+}
+
+class ChooseLessonViewArguments {
+  const ChooseLessonViewArguments({
+    this.key,
+    required this.course,
+  });
+
+  final _i23.Key? key;
+
+  final _i24.Course course;
+
+  @override
+  String toString() {
+    return '{"key": "$key", "course": "$course"}';
+  }
+
+  @override
+  bool operator ==(covariant ChooseLessonViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.key == key && other.course == course;
+  }
+
+  @override
+  int get hashCode {
+    return key.hashCode ^ course.hashCode;
   }
 }
 
@@ -715,14 +744,17 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToChooseLessonView([
+  Future<dynamic> navigateToChooseLessonView({
+    _i23.Key? key,
+    required _i24.Course course,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.chooseLessonView,
+        arguments: ChooseLessonViewArguments(key: key, course: course),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1039,14 +1071,17 @@ extension NavigatorStateExtension on _i26.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithChooseLessonView([
+  Future<dynamic> replaceWithChooseLessonView({
+    _i23.Key? key,
+    required _i24.Course course,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.chooseLessonView,
+        arguments: ChooseLessonViewArguments(key: key, course: course),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

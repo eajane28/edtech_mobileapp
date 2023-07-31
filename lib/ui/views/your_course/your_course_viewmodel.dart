@@ -32,7 +32,7 @@ class YourCourseViewModel extends BaseViewModel {
   }
 
   onTapToProductDetailView(Course courseItem) async {
-    await _navigationService.navigateToProductDetailView(course: courseItem);
+    await _navigationService.navigateToChooseLessonView(course: courseItem);
   }
 
 }

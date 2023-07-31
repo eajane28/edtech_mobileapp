@@ -7,7 +7,6 @@ import 'package:edtech_mobile/ui/views/widgets/my_circular_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:stacked/stacked.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import 'product_detail_viewmodel.dart';
 
@@ -22,53 +21,39 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
     ProductDetailViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      body: SafeArea(
-        child: viewModel.isBusy
+    return SafeArea(
+      child: Scaffold(
+        appBar: MyAppBar(title: course.title, onTap: viewModel.backToHomeView),
+        body: viewModel.isBusy
             ? const MyCircularProgressBar()
             : Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: YoutubePlayerBuilder(
-                  player: YoutubePlayer(
-                    controller: viewModel.youtubePlayerController,
-                    showVideoProgressIndicator: true,
-                  ),
-                  builder: (context, player) => Column(
-                    children: [
-                      MyAppBar(title: course.title, onTap: viewModel.backToHomeView),
-                      Expanded(
-                        child: ScrollConfiguration(
-                          behavior: MyScrollBehavior(),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                                  child: Column(
-                                    children: [
-                                      // Image.network(course.image),
-                                      viewModel.user.purchaseCourses.contains(course.id)
-                                          ? course.video != null
-                                              ? SizedBox(
-                                                  width: 512,
-                                                  height: 360,
-                                                  child: AspectRatio(
-                                                    aspectRatio: 16 / 19,
-                                                    child: player,
-                                                  ))
-                                              : courseImage()
-                                          : courseImage(),
-                                      const SizedBox(height: 16),
-                                      Align(
-                                        alignment: Alignment.bottomRight,
-                                        child: Chip(
-                                          label: Text(
-                                            viewModel.user.purchaseCourses.contains(course.id)
-                                                ? "Purchased"
-                                                : '\$${course.price}',
-                                            style: const TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ScrollConfiguration(
+                        behavior: MyScrollBehavior(),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                                child: Column(
+                                  children: [
+                                    CachedNetworkImage(
+                                      imageUrl: course.image,
+                                      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                                      errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                                      fadeInDuration: const Duration(milliseconds: 800),
+                                    ),
+                                    const SizedBox(height: 16),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Chip(
+                                        label: Text('\$${course.price}',
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
                                               color: Color(0xFFF2F2F2),
                                             ),
                                           ),
@@ -170,17 +155,7 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                     ],
                   ),
                 ),
-              ),
       ),
-    );
-  }
-
-  Widget courseImage() {
-    return CachedNetworkImage(
-      imageUrl: course.image,
-      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-      errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
-      fadeInDuration: const Duration(milliseconds: 800),
     );
   }
 

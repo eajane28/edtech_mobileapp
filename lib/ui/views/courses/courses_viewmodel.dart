@@ -2,8 +2,11 @@ import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:edtech_mobile/app/app.router.dart';
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/courses_data.dart';
+import 'package:edtech_mobile/model/user.dart';
 import 'package:edtech_mobile/repository/course_repository.dart';
 import 'package:edtech_mobile/services/auth_service.dart';
+import 'package:edtech_mobile/services/local_storage.dart';
+import 'package:edtech_mobile/ui/common/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -13,14 +16,17 @@ class CoursesViewModel extends BaseViewModel {
   final CourseRepository _repository = locator<CourseRepository>();
   final NavigationService _navigation = locator<NavigationService>();
   final TextEditingController searchController = TextEditingController();
-  // final SnackbarService _snackbarService = locator<SnackbarService>();
+  final _localStorage = locator<LocalStorage>();
+  final _snackBarService = locator<SnackbarService>();
   List<Course> cardList = [];
   Course? cardData;
   bool courseItemSelected = true;
   late List<String> selectedItems = [];
+  late User user;
 
   init() async {
     setBusy(true);
+    await getUser();
     getCourses();
     setBusy(false);
   }
@@ -54,8 +60,10 @@ class CoursesViewModel extends BaseViewModel {
     const CoursesData(name: 'Telecom'),
   ];
 
-  onTap(Course courseItem) {
-    _navigation.navigateToProductDetailView(course: courseItem);
+  onTap(Course courseItem) async {
+    user.purchaseCourses.contains(courseItem.id)
+        ? await _navigation.navigateToChooseLessonView(course: courseItem)
+        : await _navigation.navigateToProductDetailView(course: courseItem);
   }
 
   void navigateToSearchView() {
@@ -65,5 +73,11 @@ class CoursesViewModel extends BaseViewModel {
   void chipClicked() {
     courseItemSelected = !courseItemSelected;
     notifyListeners();
+  }
+
+  Future<void> getUser() async {
+    final response = await _localStorage.getCurrentUser();
+    response.fold(
+        (l) => _snackBarService.showSnackbar(message: l.message, duration: AppConstants.defDuration), (r) => user = r!);
   }
 }
