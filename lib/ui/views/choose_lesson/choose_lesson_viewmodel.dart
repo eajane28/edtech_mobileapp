@@ -1,18 +1,22 @@
+import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:edtech_mobile/model/card_data.dart';
-import 'package:edtech_mobile/model/chosen_course_data.dart';
+import 'package:edtech_mobile/model/course_topics.dart';
+import 'package:edtech_mobile/repository/course_repository.dart';
+import 'package:edtech_mobile/ui/common/constants.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ChooseLessonViewModel extends BaseViewModel {
   late YoutubePlayerController youtubePlayerController = YoutubePlayerController(initialVideoId: "");
+  final _courseRepository = locator<CourseRepository>();
+  final _snackBarService = locator<SnackbarService>();
   bool play = false;
-  final lessonList = [
-    const ChosenCards(toImage: 'assets/Cool Kids Study.png', title: 'Main Tags'),
-    const ChosenCards(toImage: 'assets/bike.png', title: 'Tags for Headers'),
-    const ChosenCards(toImage: 'assets/Cool Kids Study.png', title: 'Style Tags')
-  ];
+  List<CourseTopics> lessonList = [];
 
   void init(Course course) async {
+    setBusy(true);
+    getTopics(course.id);
     setBusyForObject('video', true);
     if (course.video != null) {
       youtubePlayerController = YoutubePlayerController(
@@ -25,6 +29,7 @@ class ChooseLessonViewModel extends BaseViewModel {
       );
       setBusyForObject('video', false);
     }
+    setBusy(false);
   }
 
   void initVideo(Course course) {
@@ -46,5 +51,11 @@ class ChooseLessonViewModel extends BaseViewModel {
     youtubePlayerController.notifyListeners();
     play = false;
     rebuildUi();
+  }
+
+  void getTopics(String courseId) async {
+    final response = await _courseRepository.getMyCourseTopics(courseId: courseId);
+    response.fold((l) => _snackBarService.showSnackbar(message: l.message, duration: AppConstants.defDuration), (
+        r) => lessonList = r);
   }
 }

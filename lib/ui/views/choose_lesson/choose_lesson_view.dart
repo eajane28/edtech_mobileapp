@@ -2,7 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
-import 'package:edtech_mobile/ui/views/widgets/choosen_courses_card.dart';
+import 'package:edtech_mobile/ui/views/widgets/lesson_item.dart';
+import 'package:edtech_mobile/ui/views/widgets/my_circular_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -32,18 +33,20 @@ class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
         return SafeArea(
         child: Scaffold(
           appBar: MyAppBar(title: course.title, onTap: locator<NavigationService>().back),
-          body: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            children: [
-              Card(
-                child: Column(
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        color: Color(0xFFFFF5EE),
-                      ),
-                      child: Stack(
-                        children: [
+          body: viewModel.isBusy
+                ? const MyCircularProgressBar()
+                : ListView(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    children: [
+                      Card(
+                        child: Column(
+                          children: [
+                            Container(
+                              decoration: const BoxDecoration(
+                                color: Color(0xFFFFF5EE),
+                              ),
+                              child: Stack(
+                                children: [
                           viewModel.play
                               ? player
                               : CachedNetworkImage(
@@ -90,19 +93,25 @@ class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
-                                color: Color(0xFF78746D),
+                                        color: Color(0xFF78746D),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ),
-                        ],
+                            )
+                          ],
+                        ),
                       ),
-                    )
-                  ],
-                ),
-              ),
-              for (var card in viewModel.lessonList) LessonItem(card: card),
-            ],
-          ),
+                      // for (CourseTopics topic in viewModel.lessonList) LessonItem(topic: topic)
+                      ListView.separated(
+                          shrinkWrap: true,
+                          primary: false,
+                          itemBuilder: (context, index) => LessonItem(topic: viewModel.lessonList[index]),
+                          separatorBuilder: (context, index) => const SizedBox.shrink(),
+                          itemCount: viewModel.lessonList.length)
+                    ],
+                  ),
         ),
       );
       },
