@@ -83,7 +83,8 @@ double getResponsiveFontSize(BuildContext context,
 * */
 class MyScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
+  Widget buildOverscrollIndicator(
+      BuildContext context, Widget child, ScrollableDetails details) {
     return child;
   }
 }
@@ -97,12 +98,14 @@ class CreditCartInputFormatter extends TextInputFormatter {
   CreditCartInputFormatter({this.isMonth = false});
 
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
     var text = newValue.text;
     text = text.replaceAll(RegExp(r'(\s)|(\D)'), '');
 
     int offset = newValue.selection.start;
-    var subText = newValue.text.substring(0, offset).replaceAll(RegExp(r'(\s)|(\D)'), '');
+    var subText =
+        newValue.text.substring(0, offset).replaceAll(RegExp(r'(\s)|(\D)'), '');
     int realTrimOffset = subText.length;
 
     var buffer = StringBuffer();
@@ -111,22 +114,28 @@ class CreditCartInputFormatter extends TextInputFormatter {
       var nonZeroIndex = i + 1;
       if (isMonth! == false) {
         if (nonZeroIndex % 4 == 0 && nonZeroIndex != text.length) {
-          buffer.write(' '); // Replace this with anything you want to put after each 4 numbers
+          buffer.write(
+              ' '); // Replace this with anything you want to put after each 4 numbers
         }
       } else {
         if (nonZeroIndex % 2 == 0 && nonZeroIndex != text.length) {
-          buffer.write('/'); // Replace this with anything you want to put after each 4 numbers
+          buffer.write(
+              '/'); // Replace this with anything you want to put after each 4 numbers
         }
       }
 
       // This block is only executed once
       if (isMonth! == false) {
-        if (nonZeroIndex % 4 == 0 && subText.length == nonZeroIndex && nonZeroIndex > 4) {
+        if (nonZeroIndex % 4 == 0 &&
+            subText.length == nonZeroIndex &&
+            nonZeroIndex > 4) {
           int moveCursorToRight = nonZeroIndex ~/ 4 - 1;
           realTrimOffset += moveCursorToRight;
         }
       } else {
-        if (nonZeroIndex % 2 == 0 && subText.length == nonZeroIndex && nonZeroIndex > 2) {
+        if (nonZeroIndex % 2 == 0 &&
+            subText.length == nonZeroIndex &&
+            nonZeroIndex > 2) {
           int moveCursorToRight = nonZeroIndex ~/ 2 - 1;
           realTrimOffset += moveCursorToRight;
         }
@@ -138,7 +147,7 @@ class CreditCartInputFormatter extends TextInputFormatter {
           int moveCursorToRight = nonZeroIndex ~/ 4;
           realTrimOffset += moveCursorToRight;
         }
-      }else{
+      } else {
         if (nonZeroIndex % 2 != 0 && subText.length == nonZeroIndex) {
           int moveCursorToRight = nonZeroIndex ~/ 2;
           realTrimOffset += moveCursorToRight;
@@ -147,7 +156,9 @@ class CreditCartInputFormatter extends TextInputFormatter {
     }
 
     var string = buffer.toString();
-    return newValue.copyWith(text: string, selection: TextSelection.collapsed(offset: realTrimOffset));
+    return newValue.copyWith(
+        text: string,
+        selection: TextSelection.collapsed(offset: realTrimOffset));
   }
 }
 

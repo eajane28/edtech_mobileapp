@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:edtech_mobile/exceptions/app_exception.dart';
 import 'package:edtech_mobile/model/card_data.dart';
+import 'package:edtech_mobile/model/chosen_course_data.dart';
 import 'package:edtech_mobile/repository/course_repository.dart';
 import 'package:edtech_mobile/ui/common/constants.dart';
 
@@ -9,19 +10,23 @@ class CourseRepositoryImpl implements CourseRepository {
   final db = FirebaseFirestore.instance;
 
   @override
-  Future<List<Course>> getCourses(String search, List<String> coursesList) async {
-    Query<Map<String, dynamic>> retrievedCourses = db.collection(FirebaseConstants.listOfCourses);
+  Future<List<Course>> getCourses(
+      String search, List<String> coursesList) async {
+    Query<Map<String, dynamic>> retrievedCourses =
+        db.collection(FirebaseConstants.listOfCourses);
 
     if (coursesList.isNotEmpty) {
-      retrievedCourses = retrievedCourses.where(FirebaseConstants.category, whereIn: coursesList.toList());
+      retrievedCourses = retrievedCourses.where(FirebaseConstants.category,
+          whereIn: coursesList.toList());
     }
 
-    final searchresults =
-        await retrievedCourses.get().then((value) => value.docs.map((e) => Course.fromJson(e.data())).toList());
+    final searchresults = await retrievedCourses.get().then(
+        (value) => value.docs.map((e) => Course.fromJson(e.data())).toList());
 
     if (search.isNotEmpty) {
       return searchresults
-          .where((listOfCourses) => listOfCourses.title.toLowerCase().contains(search.toLowerCase()))
+          .where((listOfCourses) =>
+              listOfCourses.title.toLowerCase().contains(search.toLowerCase()))
           .toList();
       // isGreaterThanOrEqualTo: search);
     }
@@ -29,13 +34,30 @@ class CourseRepositoryImpl implements CourseRepository {
   }
 
   @override
-  Future<Either<AppException, List<Course>>> getMyCourses(List<String> coursesList) async {
+  Future<Either<AppException, List<Course>>> getMyCourses(
+      List<String> coursesList) async {
     try {
       return Right(await db
           .collection(FirebaseConstants.listOfCourses)
           .where('id', whereIn: coursesList)
           .get()
-          .then((value) => value.docs.map((e) => Course.fromJson(e.data())).toList()));
+          .then((value) =>
+              value.docs.map((e) => Course.fromJson(e.data())).toList()));
+    } on FirebaseException catch (e) {
+      return Left(AppException(e.message!));
+    }
+  }
+
+  @override
+  Future<Either<AppException, List<Topics>>> getTopics(String courseId) async {
+    try {
+      return Right(await db
+          .collection(FirebaseConstants.listOfCourses)
+          .doc(courseId)
+          .collection(FirebaseConstants.topics)
+          .get()
+          .then((value) =>
+              value.docs.map((e) => Topics.fromJson(e.data())).toList()));
     } on FirebaseException catch (e) {
       return Left(AppException(e.message!));
     }

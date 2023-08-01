@@ -1,12 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/choosen_courses_card.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import '../../../model/card_data.dart';
+import '../../../model/chosen_course_data.dart';
 import 'choose_lesson_viewmodel.dart';
 
 class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
-  const ChooseLessonView({Key? key}) : super(key: key);
+  const ChooseLessonView(this.course, {Key? key}) : super(key: key);
+  final Course course;
 
   @override
   Widget builder(
@@ -16,76 +21,133 @@ class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
   ) {
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          children: [
-            MyAppBar(title: 'HTML', onTap: null),
-            // appBar('HTML', onTap: null),
-            Card(
-              child: Column(
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                      color: Color(0xFFFFF5EE),
-                    ),
-                    child: Column(
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: YoutubePlayerBuilder(
+                player: YoutubePlayer(
+                  controller: viewModel.youtubePlayerController,
+                  showVideoProgressIndicator: true,
+                ),
+                builder: (context, player) => Column(
                       children: [
-                        Image.asset(
-                            'assets/Cool Kids Long Distance Relationship.png'),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: IconButton(
-                              iconSize: 50,
-                              color: Colors.blue[300],
-                              onPressed: () {},
-                              icon:
-                                  const Icon(Icons.play_circle_outline_sharp)),
-                        )
-                      ],
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            'HTML',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFF3C3A36),
-                            ),
+                        MyAppBar(
+                            title: course.title,
+                            onTap: viewModel.backToYourCourses),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            physics: const BouncingScrollPhysics(),
+                            child: viewModel.isBusy
+                                ? const Expanded(
+                                    child: Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  )
+                                : Column(
+                                    children: [
+                                      Card(
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              decoration: const BoxDecoration(
+                                                color: Color(0xFFFFF5EE),
+                                              ),
+                                              child: Column(
+                                                children: [
+                                                  course.video == null
+                                                      ? CachedNetworkImage(
+                                                          imageUrl:
+                                                              course.image,
+                                                          placeholder: (context,
+                                                                  url) =>
+                                                              const Center(
+                                                                  child:
+                                                                      CircularProgressIndicator()),
+                                                          errorWidget: (context,
+                                                                  url, error) =>
+                                                              const Center(
+                                                                  child: Icon(Icons
+                                                                      .error)),
+                                                          fadeInDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      800),
+                                                        )
+                                                      : SizedBox(
+                                                          width: 512,
+                                                          height: 360,
+                                                          child: AspectRatio(
+                                                            aspectRatio:
+                                                                16 / 19,
+                                                            child: player,
+                                                          )),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(16.0),
+                                              child: Column(
+                                                children: [
+                                                  Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Text(
+                                                      course.title,
+                                                      style: const TextStyle(
+                                                        fontSize: 24,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color:
+                                                            Color(0xFF3C3A36),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Text(
+                                                      course.subtitle,
+                                                      style: const TextStyle(
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color:
+                                                            Color(0xFF78746D),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      for (var card in viewModel.topics!)
+                                        LessonItem(
+                                          topic: card,
+                                          onTap: (Topics topic) {
+                                            viewModel.onTap(topic);
+                                          },
+                                        ),
+                                    ],
+                                  ),
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            'Advanced web applications',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFF78746D),
-                            ),
-                          ),
-                        ),
                       ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            for (var card in viewModel.lessonList) LessonItem(card: card),
-          ],
-        ),
+                    ))),
       ),
     );
+  }
+
+  @override
+  void onViewModelReady(ChooseLessonViewModel viewModel) {
+    viewModel.init();
+    super.onViewModelReady(viewModel);
   }
 
   @override
   ChooseLessonViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      ChooseLessonViewModel();
+      ChooseLessonViewModel(course: course);
 }

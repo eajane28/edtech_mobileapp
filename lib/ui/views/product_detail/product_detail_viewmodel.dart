@@ -19,7 +19,8 @@ class ProductDetailViewModel extends BaseViewModel {
   final _snackBarService = locator<SnackbarService>();
   final Course course;
   List<PaymentData> paymentMethods = [];
-  late YoutubePlayerController youtubePlayerController = YoutubePlayerController(initialVideoId: "");
+  late YoutubePlayerController youtubePlayerController =
+      YoutubePlayerController(initialVideoId: "");
 
   void init() {
     setBusyForObject('video', true);
@@ -43,10 +44,12 @@ class ProductDetailViewModel extends BaseViewModel {
   void purchaseCourse(context, course) async {
     setBusy(true);
     final response = await _paymentRepository.getPaymentMethods();
-    response.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => paymentMethods = r);
+    response.fold((l) => _snackBarService.showSnackbar(message: l.message),
+        (r) => paymentMethods = r);
     paymentMethods.isEmpty
         ? _navigationService.navigateToNoPaymentView(course: course)
-        : _navigationService.navigateToPaymentMethodView(cards: paymentMethods, selectedCourse: course);
+        : _navigationService.navigateToPaymentMethodView(
+            cards: paymentMethods, selectedCourse: course);
 
     setBusy(false);
   }

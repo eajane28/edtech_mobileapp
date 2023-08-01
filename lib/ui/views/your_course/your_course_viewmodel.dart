@@ -7,7 +7,6 @@ import 'package:edtech_mobile/ui/common/constants.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-
 class YourCourseViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _localStorage = locator<LocalStorage>();
@@ -21,7 +20,9 @@ class YourCourseViewModel extends BaseViewModel {
     final user = await _localStorage.getCurrentUser();
     user.fold((l) => null, (r) async {
       final response = await _courseRepository.getMyCourses(r!.purchaseCourses);
-      response.fold((l) => _snackBarService.showSnackbar(message: l.message, duration: AppConstants.defDuration),
+      response.fold(
+          (l) => _snackBarService.showSnackbar(
+              message: l.message, duration: AppConstants.defDuration),
           (r) => yourCourseList = r);
       rebuildUi();
     });
@@ -32,8 +33,7 @@ class YourCourseViewModel extends BaseViewModel {
     _navigationService.navigateToHomeView();
   }
 
-  onTapToProductDetailView(Course courseItem) {
-    _navigationService.navigateToProductDetailView(course: courseItem);
+  void onTapToChooseLessonView(Course courseItem) {
+    _navigationService.navigateToChooseLessonView(course: courseItem);
   }
-
 }

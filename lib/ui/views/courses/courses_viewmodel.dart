@@ -27,7 +27,9 @@ class CoursesViewModel extends BaseViewModel {
 
   void getCourses() async {
     setBusyForObject('courses', true);
-    await _repository.getCourses(searchController.text, selectedItems).then((value) {
+    await _repository
+        .getCourses(searchController.text, selectedItems)
+        .then((value) {
       if (selectedItems.isEmpty) {
         cardList = value;
       } else if (selectedItems.isNotEmpty) {

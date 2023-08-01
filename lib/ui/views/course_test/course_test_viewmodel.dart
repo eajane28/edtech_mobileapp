@@ -14,7 +14,6 @@ class CourseTestViewModel extends BaseViewModel {
         quizTitle: 'Tags For Headers',
         subtitle:
             'Let\'s put your memory on this topic test. Solve tasks and check your knowledge.'),
-
     const QuizData(
         image: 'assets/Cool Kids Sitting.png',
         quizNo: 'Quiz 2',

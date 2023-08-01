@@ -36,6 +36,7 @@ import 'package:edtech_mobile/ui/views/add_credit_card/add_credit_card_view.dart
 import 'package:edtech_mobile/services/auth_service.dart';
 import 'package:edtech_mobile/services/local_storage.dart';
 import 'package:edtech_mobile/ui/views/forgot_password/forgot_password_view.dart';
+import 'package:edtech_mobile/ui/views/topic_introduction/topic_introduction_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -63,6 +64,7 @@ import 'package:edtech_mobile/ui/views/forgot_password/forgot_password_view.dart
     MaterialRoute(page: CheckoutView),
     MaterialRoute(page: AddCreditCardView),
     MaterialRoute(page: ForgotPasswordView),
+    MaterialRoute(page: TopicIntroductionView),
 // @stacked-route
   ],
   dependencies: [

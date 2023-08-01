@@ -6,14 +6,18 @@ part of 'chosen_course_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ChosenCards _$$_ChosenCardsFromJson(Map<String, dynamic> json) =>
-    _$_ChosenCards(
-      toImage: json['toImage'] as String,
-      title: json['title'] as String,
+_$_Topics _$$_TopicsFromJson(Map<String, dynamic> json) => _$_Topics(
+      image: json['image'] as String,
+      intro: json['intro'] as String,
+      topic: json['topic'] as String,
+      video: json['video'] as String?,
+      id: json['id'] as String,
     );
 
-Map<String, dynamic> _$$_ChosenCardsToJson(_$_ChosenCards instance) =>
-    <String, dynamic>{
-      'toImage': instance.toImage,
-      'title': instance.title,
+Map<String, dynamic> _$$_TopicsToJson(_$_Topics instance) => <String, dynamic>{
+      'image': instance.image,
+      'intro': instance.intro,
+      'topic': instance.topic,
+      'video': instance.video,
+      'id': instance.id,
     };

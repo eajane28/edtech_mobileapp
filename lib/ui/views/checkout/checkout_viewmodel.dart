@@ -14,7 +14,8 @@ class CheckoutViewModel extends BaseViewModel {
   final _snackBarService = locator<SnackbarService>();
 
   void confirm(Course course) async {
-    var confirm = await _dialogService.showCustomDialog(variant: DialogType.myConfirmation, title: 'Proceed Payment?');
+    var confirm = await _dialogService.showCustomDialog(
+        variant: DialogType.myConfirmation, title: 'Proceed Payment?');
     if (confirm != null && confirm.confirmed) {
       purchase(course);
     }
@@ -24,13 +25,14 @@ class CheckoutViewModel extends BaseViewModel {
     setBusy(true);
     final response = await _paymentRepository.purchaseCourse(course);
     response.fold(
-        (l) => _snackBarService.showSnackbar(message: l.message, duration: AppConstants.defDuration),
-        (r) {
-      _snackBarService.showSnackbar(message: "Successfully purchased course.", duration: AppConstants.defDuration);
+        (l) => _snackBarService.showSnackbar(
+            message: l.message, duration: AppConstants.defDuration), (r) {
+      _snackBarService.showSnackbar(
+          message: "Successfully purchased course.",
+          duration: AppConstants.defDuration);
       _navigationService.clearTillFirstAndShow(Routes.yourCourseView);
     });
     setBusy(false);
-
   }
 
   void back() {

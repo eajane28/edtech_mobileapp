@@ -9,13 +9,14 @@ import '../../../model/card_data.dart';
 import 'your_course_viewmodel.dart';
 
 class YourCourseView extends StackedView<YourCourseViewModel> {
-  const YourCourseView(this.course, {Key? key}) : super(key: key);
-  final Course course;
+  const YourCourseView({Key? key}) : super(key: key);
 
   @override
-  Widget builder(BuildContext context,
-      YourCourseViewModel viewModel,
-      Widget? child,) {
+  Widget builder(
+    BuildContext context,
+    YourCourseViewModel viewModel,
+    Widget? child,
+  ) {
     return SafeArea(
       child: Scaffold(
         appBar: MyAppBar(title: 'Your Courses', onTap: viewModel.back),
@@ -25,10 +26,16 @@ class YourCourseView extends StackedView<YourCourseViewModel> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: viewModel.isBusy
                 ? const MyCircularProgressBar(
-              indicatorColor: Colors.orange,
-            )
+                    indicatorColor: Colors.orange,
+                  )
                 : ListView.separated(
-                    itemBuilder: (context, index) => CourseCard(card: viewModel.yourCourseList[index], onTap: (Course card) {  },),
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) => CourseCard(
+                          card: viewModel.yourCourseList[index],
+                          onTap: (Course card) {
+                            viewModel.onTapToChooseLessonView(card);
+                          },
+                        ),
                     separatorBuilder: (_, index) => verticalSpaceSmall,
                     itemCount: viewModel.yourCourseList.length)),
       ),
@@ -36,7 +43,9 @@ class YourCourseView extends StackedView<YourCourseViewModel> {
   }
 
   @override
-  YourCourseViewModel viewModelBuilder(BuildContext context,) =>
+  YourCourseViewModel viewModelBuilder(
+    BuildContext context,
+  ) =>
       YourCourseViewModel();
 
   @override

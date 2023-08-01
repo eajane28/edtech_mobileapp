@@ -12,11 +12,11 @@ import 'package:stacked/stacked.dart';
 
 import 'add_credit_card_viewmodel.dart';
 
-class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputValidationMixin {
+class AddCreditCardView extends StackedView<AddCreditCardViewModel>
+    with InputValidationMixin {
   AddCreditCardView({Key? key, required this.course}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
   final Course course;
-
 
   @override
   Widget builder(
@@ -41,7 +41,8 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                       padding: EdgeInsets.symmetric(vertical: 16.0),
                       child: Text(
                         'Add credit card',
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.w500),
                       ),
                     ),
                   ),
@@ -50,10 +51,13 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                     child: MyTextField(
                       hintText: 'Name',
                       controller: viewModel.nameController,
-                      validator: (value) => notEmpty(value ?? '') ? null : 'Field Can\'t Be Empty',
+                      validator: (value) => notEmpty(value ?? '')
+                          ? null
+                          : 'Field Can\'t Be Empty',
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.next,
-                      onEditingComplete: () => viewModel.onEditComplete(viewModel.cardNumberFocusNode, context),
+                      onEditingComplete: () => viewModel.onEditComplete(
+                          viewModel.cardNumberFocusNode, context),
                     ),
                   ),
                   Padding(
@@ -62,15 +66,21 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                       hintText: 'Credit card number',
                       focusNode: viewModel.cardNumberFocusNode,
                       controller: viewModel.cardNumberController,
-                      suffix: CardUtils.getCardIcon(viewModel.paymentData == null
-                          ? CardType.others
-                          : CardType.values.firstWhere(
-                              (element) => element.name == viewModel.paymentData!.paymentMethod)),
+                      suffix: CardUtils.getCardIcon(
+                          viewModel.paymentData == null
+                              ? CardType.others
+                              : CardType.values.firstWhere((element) =>
+                                  element.name ==
+                                  viewModel.paymentData!.paymentMethod)),
                       validator: validateCardNum,
                       keyboardType: TextInputType.number,
-                      formatters: [CreditCartInputFormatter(), LengthLimitingTextInputFormatter(19)],
+                      formatters: [
+                        CreditCartInputFormatter(),
+                        LengthLimitingTextInputFormatter(19)
+                      ],
                       textInputAction: TextInputAction.next,
-                      onEditingComplete: () => viewModel.onEditComplete(viewModel.expiryFocusNode, context),
+                      onEditingComplete: () => viewModel.onEditComplete(
+                          viewModel.expiryFocusNode, context),
                     ),
                   ),
                   Padding(
@@ -97,10 +107,16 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                                   validator: cardExpiryValid,
                                   keyboardType: TextInputType.datetime,
                                   onChanged: (String value) {
-                                    if (viewModel.expiryDateController.text.startsWith(RegExp('[2-9]'))) {
-                                      viewModel.expiryDateController.text = '0${viewModel.expiryDateController.text}';
+                                    if (viewModel.expiryDateController.text
+                                        .startsWith(RegExp('[2-9]'))) {
+                                      viewModel.expiryDateController.text =
+                                          '0${viewModel.expiryDateController.text}';
                                       viewModel.expiryDateController.selection =
-                                          TextSelection.collapsed(offset: viewModel.expiryDateController.text.length);
+                                          TextSelection.collapsed(
+                                              offset: viewModel
+                                                  .expiryDateController
+                                                  .text
+                                                  .length);
                                     }
                                   },
                                   formatters: [
@@ -109,7 +125,9 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                                     CreditCartInputFormatter(isMonth: true)
                                   ],
                                   textInputAction: TextInputAction.next,
-                                  onEditingComplete: () => viewModel.onEditComplete(viewModel.cvvFocusNode, context),
+                                  onEditingComplete: () =>
+                                      viewModel.onEditComplete(
+                                          viewModel.cvvFocusNode, context),
                                 )),
                           ],
                         ),
@@ -137,7 +155,8 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                                     FilteringTextInputFormatter.digitsOnly
                                   ],
                                   textInputAction: TextInputAction.done,
-                                  onEditingComplete: () => FocusScope.of(context).unfocus(),
+                                  onEditingComplete: () =>
+                                      FocusScope.of(context).unfocus(),
                                 )),
                           ],
                         )
@@ -149,21 +168,22 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
                     child: Container(
                         margin: const EdgeInsets.all(16.0),
                         child: MyWidgetButton(
-                            title: viewModel.isBusy ? const MyCircularProgressBar() : const Text(
-                              'Save',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xFFFFFFFF),
-                              ),
-                            ),
+                            title: viewModel.isBusy
+                                ? const MyCircularProgressBar()
+                                : const Text(
+                                    'Save',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      color: Color(0xFFFFFFFF),
+                                    ),
+                                  ),
                             onTap: () {
                               if (_formKey.currentState!.validate()) {
                                 viewModel.save(course);
                               }
                             })),
-
                   ),
                 ],
               ),
@@ -175,7 +195,9 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
   }
 
   @override
-  AddCreditCardViewModel viewModelBuilder(BuildContext context,) =>
+  AddCreditCardViewModel viewModelBuilder(
+    BuildContext context,
+  ) =>
       AddCreditCardViewModel();
 
   @override
@@ -186,7 +208,8 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel> with InputVa
 
   @override
   void onDispose(AddCreditCardViewModel viewModel) {
-    viewModel.cardNumberController.removeListener(viewModel.getCardTypeFrmNumber);
+    viewModel.cardNumberController
+        .removeListener(viewModel.getCardTypeFrmNumber);
     super.onDispose(viewModel);
   }
 }

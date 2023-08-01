@@ -22,7 +22,9 @@ mixin InputValidationMixin {
 
   String? cardExpiryValid(String? value) {
     if (notEmpty(value!)) {
-      return value.replaceAll(" ", '').length == 5 ? null : "Card expiry date not valid";
+      return value.replaceAll(" ", '').length == 5
+          ? null
+          : "Card expiry date not valid";
     } else {
       return 'Field Can\'t Be Empty';
     }

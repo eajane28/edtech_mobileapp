@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
+import '../../../model/chosen_course_data.dart';
+
 class Header extends StatelessWidget {
-  const Header({super.key});
+  const Header({super.key, required this.topic});
+
+  final Topics topic;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         const SizedBox(height: 32),
-        const Text(
-          'Tags For Headers',
-          style: TextStyle(
+        Text(
+          topic.topic,
+          style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w600,
             color: Color(0xFF3C3A36),

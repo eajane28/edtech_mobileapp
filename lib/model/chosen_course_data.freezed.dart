@@ -14,34 +14,36 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ChosenCards _$ChosenCardsFromJson(Map<String, dynamic> json) {
-  return _ChosenCards.fromJson(json);
+Topics _$TopicsFromJson(Map<String, dynamic> json) {
+  return _Topics.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ChosenCards {
-  String get toImage => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
+mixin _$Topics {
+  String get image => throw _privateConstructorUsedError;
+  String get intro => throw _privateConstructorUsedError;
+  String get topic => throw _privateConstructorUsedError;
+  String? get video => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ChosenCardsCopyWith<ChosenCards> get copyWith =>
-      throw _privateConstructorUsedError;
+  $TopicsCopyWith<Topics> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ChosenCardsCopyWith<$Res> {
-  factory $ChosenCardsCopyWith(
-          ChosenCards value, $Res Function(ChosenCards) then) =
-      _$ChosenCardsCopyWithImpl<$Res, ChosenCards>;
+abstract class $TopicsCopyWith<$Res> {
+  factory $TopicsCopyWith(Topics value, $Res Function(Topics) then) =
+      _$TopicsCopyWithImpl<$Res, Topics>;
   @useResult
-  $Res call({String toImage, String title});
+  $Res call(
+      {String image, String intro, String topic, String? video, String id});
 }
 
 /// @nodoc
-class _$ChosenCardsCopyWithImpl<$Res, $Val extends ChosenCards>
-    implements $ChosenCardsCopyWith<$Res> {
-  _$ChosenCardsCopyWithImpl(this._value, this._then);
+class _$TopicsCopyWithImpl<$Res, $Val extends Topics>
+    implements $TopicsCopyWith<$Res> {
+  _$TopicsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -51,55 +53,83 @@ class _$ChosenCardsCopyWithImpl<$Res, $Val extends ChosenCards>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? toImage = null,
-    Object? title = null,
+    Object? image = null,
+    Object? intro = null,
+    Object? topic = null,
+    Object? video = freezed,
+    Object? id = null,
   }) {
     return _then(_value.copyWith(
-      toImage: null == toImage
-          ? _value.toImage
-          : toImage // ignore: cast_nullable_to_non_nullable
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      intro: null == intro
+          ? _value.intro
+          : intro // ignore: cast_nullable_to_non_nullable
+              as String,
+      topic: null == topic
+          ? _value.topic
+          : topic // ignore: cast_nullable_to_non_nullable
+              as String,
+      video: freezed == video
+          ? _value.video
+          : video // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_ChosenCardsCopyWith<$Res>
-    implements $ChosenCardsCopyWith<$Res> {
-  factory _$$_ChosenCardsCopyWith(
-          _$_ChosenCards value, $Res Function(_$_ChosenCards) then) =
-      __$$_ChosenCardsCopyWithImpl<$Res>;
+abstract class _$$_TopicsCopyWith<$Res> implements $TopicsCopyWith<$Res> {
+  factory _$$_TopicsCopyWith(_$_Topics value, $Res Function(_$_Topics) then) =
+      __$$_TopicsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String toImage, String title});
+  $Res call(
+      {String image, String intro, String topic, String? video, String id});
 }
 
 /// @nodoc
-class __$$_ChosenCardsCopyWithImpl<$Res>
-    extends _$ChosenCardsCopyWithImpl<$Res, _$_ChosenCards>
-    implements _$$_ChosenCardsCopyWith<$Res> {
-  __$$_ChosenCardsCopyWithImpl(
-      _$_ChosenCards _value, $Res Function(_$_ChosenCards) _then)
+class __$$_TopicsCopyWithImpl<$Res>
+    extends _$TopicsCopyWithImpl<$Res, _$_Topics>
+    implements _$$_TopicsCopyWith<$Res> {
+  __$$_TopicsCopyWithImpl(_$_Topics _value, $Res Function(_$_Topics) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? toImage = null,
-    Object? title = null,
+    Object? image = null,
+    Object? intro = null,
+    Object? topic = null,
+    Object? video = freezed,
+    Object? id = null,
   }) {
-    return _then(_$_ChosenCards(
-      toImage: null == toImage
-          ? _value.toImage
-          : toImage // ignore: cast_nullable_to_non_nullable
+    return _then(_$_Topics(
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      intro: null == intro
+          ? _value.intro
+          : intro // ignore: cast_nullable_to_non_nullable
+              as String,
+      topic: null == topic
+          ? _value.topic
+          : topic // ignore: cast_nullable_to_non_nullable
+              as String,
+      video: freezed == video
+          ? _value.video
+          : video // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -107,63 +137,85 @@ class __$$_ChosenCardsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChosenCards implements _ChosenCards {
-  const _$_ChosenCards({required this.toImage, required this.title});
+class _$_Topics implements _Topics {
+  const _$_Topics(
+      {required this.image,
+      required this.intro,
+      required this.topic,
+      this.video,
+      required this.id});
 
-  factory _$_ChosenCards.fromJson(Map<String, dynamic> json) =>
-      _$$_ChosenCardsFromJson(json);
+  factory _$_Topics.fromJson(Map<String, dynamic> json) =>
+      _$$_TopicsFromJson(json);
 
   @override
-  final String toImage;
+  final String image;
   @override
-  final String title;
+  final String intro;
+  @override
+  final String topic;
+  @override
+  final String? video;
+  @override
+  final String id;
 
   @override
   String toString() {
-    return 'ChosenCards(toImage: $toImage, title: $title)';
+    return 'Topics(image: $image, intro: $intro, topic: $topic, video: $video, id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChosenCards &&
-            (identical(other.toImage, toImage) || other.toImage == toImage) &&
-            (identical(other.title, title) || other.title == title));
+            other is _$_Topics &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.intro, intro) || other.intro == intro) &&
+            (identical(other.topic, topic) || other.topic == topic) &&
+            (identical(other.video, video) || other.video == video) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, toImage, title);
+  int get hashCode => Object.hash(runtimeType, image, intro, topic, video, id);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChosenCardsCopyWith<_$_ChosenCards> get copyWith =>
-      __$$_ChosenCardsCopyWithImpl<_$_ChosenCards>(this, _$identity);
+  _$$_TopicsCopyWith<_$_Topics> get copyWith =>
+      __$$_TopicsCopyWithImpl<_$_Topics>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChosenCardsToJson(
+    return _$$_TopicsToJson(
       this,
     );
   }
 }
 
-abstract class _ChosenCards implements ChosenCards {
-  const factory _ChosenCards(
-      {required final String toImage,
-      required final String title}) = _$_ChosenCards;
+abstract class _Topics implements Topics {
+  const factory _Topics(
+      {required final String image,
+      required final String intro,
+      required final String topic,
+      final String? video,
+      required final String id}) = _$_Topics;
 
-  factory _ChosenCards.fromJson(Map<String, dynamic> json) =
-      _$_ChosenCards.fromJson;
+  factory _Topics.fromJson(Map<String, dynamic> json) = _$_Topics.fromJson;
 
   @override
-  String get toImage;
+  String get image;
   @override
-  String get title;
+  String get intro;
+  @override
+  String get topic;
+  @override
+  String? get video;
+  @override
+  String get id;
   @override
   @JsonKey(ignore: true)
-  _$$_ChosenCardsCopyWith<_$_ChosenCards> get copyWith =>
+  _$$_TopicsCopyWith<_$_Topics> get copyWith =>
       throw _privateConstructorUsedError;
 }

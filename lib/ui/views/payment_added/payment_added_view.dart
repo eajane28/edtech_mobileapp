@@ -8,7 +8,10 @@ import 'package:stacked/stacked.dart';
 import 'payment_added_viewmodel.dart';
 
 class PaymentAddedView extends StackedView<PaymentAddedViewModel> {
-  const PaymentAddedView({Key? key, required this.course,}) : super(key: key);
+  const PaymentAddedView({
+    Key? key,
+    required this.course,
+  }) : super(key: key);
   final Course course;
 
   @override
@@ -28,7 +31,8 @@ class PaymentAddedView extends StackedView<PaymentAddedViewModel> {
                 child: Display(
                     image: 'assets/Cool Kids Sitting.png',
                     title: 'Payment Method added',
-                    subtitle: 'You can buy the course now. Continue to payment.'),
+                    subtitle:
+                        'You can buy the course now. Continue to payment.'),
               ),
               const SizedBox(height: 32),
               Padding(
@@ -36,7 +40,9 @@ class PaymentAddedView extends StackedView<PaymentAddedViewModel> {
                 child: Container(
                     margin: const EdgeInsets.all(16.0),
                     child: MyButton(
-                        title: 'Continue', onTap: () => viewModel.continueToPaymentMethod(course))),
+                        title: 'Continue',
+                        onTap: () =>
+                            viewModel.continueToPaymentMethod(course))),
               )
             ],
           ),

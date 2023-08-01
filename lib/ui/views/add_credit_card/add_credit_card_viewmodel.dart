@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-
 class AddCreditCardViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final TextEditingController nameController = TextEditingController();
@@ -23,23 +22,24 @@ class AddCreditCardViewModel extends BaseViewModel {
   FocusNode cvvFocusNode = FocusNode();
 
   PaymentData? paymentData;
-   Course? course;
+  Course? course;
 
   void init() {
     cardNumberController.addListener(getCardTypeFrmNumber);
   }
 
   void save(Course course) async {
-
     setBusy(true);
     paymentData = paymentData!.copyWith(
-        name: nameController.text,
-        cardNumber: cardNumberController.text.replaceAll(' ', ''),
-        expiryDate: expiryDateController.text,
-        cvv: cvvController.text,
+      name: nameController.text,
+      cardNumber: cardNumberController.text.replaceAll(' ', ''),
+      expiryDate: expiryDateController.text,
+      cvv: cvvController.text,
     );
     final response = await _paymentRepository.addPaymentMethod(paymentData!);
-    response.fold((l) => _snackBarService.showSnackbar(message: AppConstants.myErrorMessage),
+    response.fold(
+        (l) =>
+            _snackBarService.showSnackbar(message: AppConstants.myErrorMessage),
         (r) => _navigationService.navigateToPaymentAddedView(course: course));
     setBusy(false);
   }
@@ -49,15 +49,21 @@ class AddCreditCardViewModel extends BaseViewModel {
   }
 
   void getCardTypeFrmNumber() {
-    CardType cardType = CardUtils.getCardTypeFrmNumber(cardNumberController.text.replaceAll(' ', ''));
+    CardType cardType = CardUtils.getCardTypeFrmNumber(
+        cardNumberController.text.replaceAll(' ', ''));
     rebuildUi();
 
-    paymentData = PaymentData(paymentMethod: cardType.name, name: '', cardNumber: '', expiryDate: '', cvv: '');
+    paymentData = PaymentData(
+        paymentMethod: cardType.name,
+        name: '',
+        cardNumber: '',
+        expiryDate: '',
+        cvv: '');
 
     rebuildUi();
   }
 
-  void onEditComplete(FocusNode next, BuildContext context){
+  void onEditComplete(FocusNode next, BuildContext context) {
     FocusScope.of(context).requestFocus(next);
   }
 }

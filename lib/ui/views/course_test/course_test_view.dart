@@ -4,10 +4,13 @@ import 'package:edtech_mobile/ui/views/widgets/courses_header.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../model/chosen_course_data.dart';
 import 'course_test_viewmodel.dart';
 
 class CourseTestView extends StackedView<CourseTestViewModel> {
-  const CourseTestView({Key? key}) : super(key: key);
+  const CourseTestView(this.topic, {Key? key}) : super(key: key);
+
+  final Topics topic;
 
   @override
   Widget builder(
@@ -15,22 +18,19 @@ class CourseTestView extends StackedView<CourseTestViewModel> {
     CourseTestViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-        body: SafeArea(
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
               MyAppBar(title: 'HTML', onTap: null),
-              const Header(),
+              Header(topic: topic),
               for (var quiz in viewModel.quizList)
                 quizCard(quiz, onTap: viewModel.begin)
             ],
           ),
         ),
-      ),
-    ));
+      );
   }
 
   @override

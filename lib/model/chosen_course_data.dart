@@ -5,12 +5,14 @@ part 'chosen_course_data.freezed.dart';
 part 'chosen_course_data.g.dart';
 
 @freezed
-class ChosenCards with _$ChosenCards {
-  const factory ChosenCards({
-    required String toImage,
-    required String title,
-  }) = _ChosenCards;
+class Topics with _$Topics {
+  const factory Topics({
+    required String image,
+    required String intro,
+    required String topic,
+    final String? video,
+    required String id,
+  }) = _Topics;
 
-  factory ChosenCards.fromJson(Map<String, dynamic> json) =>
-      _$ChosenCardsFromJson(json);
+  factory Topics.fromJson(Map<String, dynamic> json) => _$TopicsFromJson(json);
 }

@@ -19,5 +19,4 @@ class CardTypeImage {
   static const String jcb = "${rootPath}jcb.png";
   static const String verve = "${rootPath}verve.png";
   static const String visa = "${rootPath}visa.png";
-
 }

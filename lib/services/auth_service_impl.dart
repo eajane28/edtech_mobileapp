@@ -87,7 +87,8 @@ class AuthServiceImpl implements AuthService {
   }
 
   @override
-  Future<Either<AppException, None>> forgetPassword({required String email}) async{
+  Future<Either<AppException, None>> forgetPassword(
+      {required String email}) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
       return const Right(None());
@@ -102,17 +103,18 @@ class AuthServiceImpl implements AuthService {
   }
 
   @override
-  Future<Either<AppException, None>> updatePassword(String currentPassword, String newPassword) async {
+  Future<Either<AppException, None>> updatePassword(
+      String currentPassword, String newPassword) async {
     try {
-      var response = await login(email: _auth.currentUser!.email!, password: currentPassword);
+      var response = await login(
+          email: _auth.currentUser!.email!, password: currentPassword);
       return response.fold((l) => Left(AppException(l.message)), (r) async {
         try {
           // await Future.wait([
           await _auth.currentUser!.updatePassword(newPassword);
-          await db
-              .collection(FirebaseConstants.userCollection)
-              .doc(r.id)
-              .set({"lastUpdatedPassword": DateTime.now().toTimestamp()}, SetOptions(merge: true));
+          await db.collection(FirebaseConstants.userCollection).doc(r.id).set(
+              {"lastUpdatedPassword": DateTime.now().toTimestamp()},
+              SetOptions(merge: true));
           await logout();
           // ]);
           return const Right(None());
@@ -126,7 +128,8 @@ class AuthServiceImpl implements AuthService {
   }
 
   @override
-  Future<Either<AppException, Timestamp?>> getLastUpdatedPassword(String uid) async {
+  Future<Either<AppException, Timestamp?>> getLastUpdatedPassword(
+      String uid) async {
     try {
       return await db
           .collection(FirebaseConstants.userCollection)

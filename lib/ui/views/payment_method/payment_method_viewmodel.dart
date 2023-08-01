@@ -6,7 +6,6 @@ import 'package:edtech_mobile/repository/payment_repository.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-
 class PaymentMethodViewModel extends BaseViewModel {
   PaymentMethodViewModel({this.paymentMethods});
 
@@ -18,17 +17,23 @@ class PaymentMethodViewModel extends BaseViewModel {
   int groupValue = 0;
   void init() async {
     setBusy(true);
-    selectedPaymentData = paymentMethods![groupValue];
+    await getPaymentMethods();
+    if (paymentMethods != null) {
+      selectedPaymentData = paymentMethods![groupValue];
+    }
+    rebuildUi();
     setBusy(false);
   }
 
   Future<void> getPaymentMethods() async {
     final response = await _paymentRepository.getPaymentMethods();
-    response.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => paymentMethods = r);
+    response.fold((l) => _snackBarService.showSnackbar(message: l.message),
+        (r) => paymentMethods = r);
   }
 
   void proceed(Course course) {
-    _navigationService.navigateToCheckoutView(selectedCourse: course, selectedPayment: selectedPaymentData);
+    _navigationService.navigateToCheckoutView(
+        selectedCourse: course, selectedPayment: selectedPaymentData);
   }
 
   void addNewCreditCard(Course course) {

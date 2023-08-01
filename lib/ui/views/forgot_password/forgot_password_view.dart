@@ -8,7 +8,8 @@ import 'package:stacked/stacked.dart';
 
 import 'forgot_password_viewmodel.dart';
 
-class ForgotPasswordView extends StackedView<ForgotPasswordViewModel> with InputValidationMixin{
+class ForgotPasswordView extends StackedView<ForgotPasswordViewModel>
+    with InputValidationMixin {
   ForgotPasswordView({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
 
@@ -20,8 +21,8 @@ class ForgotPasswordView extends StackedView<ForgotPasswordViewModel> with Input
   ) {
     return Scaffold(
         body: SafeArea(
-          child: SingleChildScrollView(
-              child: Padding(
+      child: SingleChildScrollView(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Form(
             key: _formKey,
@@ -31,45 +32,47 @@ class ForgotPasswordView extends StackedView<ForgotPasswordViewModel> with Input
                 const Display(
                     image: 'assets/Cool Kids Sitting.png',
                     title: 'Forget Password',
-                    subtitle: 'Provide your account\'s email for which you want to reset your password.'),
+                    subtitle:
+                        'Provide your account\'s email for which you want to reset your password.'),
                 const SizedBox(height: 20),
                 MyTextField(
                   hintText: 'Email',
                   controller: viewModel.emailController,
                   validator: (value) =>
-                        isEmailValid(value ?? '') ? null : 'Invalid Email', keyboardType: TextInputType.emailAddress,
+                      isEmailValid(value ?? '') ? null : 'Invalid Email',
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 20),
                 MyWidgetButton(
-                      onTap: !viewModel.isBusy
-                          ? () {
-                              if (_formKey.currentState!.validate()) {
-                                viewModel.changePassword();
-                              }
-                            }
-                          : null,
-                      title: !viewModel.isBusy
-                          ? const Text(
-                              'Enter',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: Color(0xFFFFFFFF),
-                              ),
-                            )
-                          : const Center(
-                              child: CircularProgressIndicator(
-                                color: Colors.white,
-                              ),
-                            ),
-                    ),
+                  onTap: !viewModel.isBusy
+                      ? () {
+                          if (_formKey.currentState!.validate()) {
+                            viewModel.changePassword();
+                          }
+                        }
+                      : null,
+                  title: !viewModel.isBusy
+                      ? const Text(
+                          'Enter',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xFFFFFFFF),
+                          ),
+                        )
+                      : const Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        ),
+                ),
               ],
             ),
           ),
-              ),
-            ),
-        ));
+        ),
+      ),
+    ));
   }
 
   @override

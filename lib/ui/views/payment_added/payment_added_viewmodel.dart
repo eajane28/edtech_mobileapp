@@ -4,7 +4,6 @@ import 'package:edtech_mobile/model/card_data.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-
 class PaymentAddedViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   Course? course;

@@ -12,7 +12,7 @@ class ProfileViewModel extends BaseViewModel {
   late final Course course;
 
   void navigateToYourCourseView() async {
-    await _navigationService.navigateToYourCourseView(course: course);
+    await _navigationService.navigateToYourCourseView();
   }
 
   void back() {
