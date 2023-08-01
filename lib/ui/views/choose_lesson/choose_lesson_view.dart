@@ -65,7 +65,7 @@ class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
                                       child: IconButton(
                                           iconSize: 50,
                                           color: Colors.blue[300],
-                                          onPressed: () => viewModel.playVideo(course),
+                                          onPressed: () => viewModel.playVideo(),
                                           icon: const Icon(Icons.play_circle_outline_sharp)),
                                     ))
                         ],
@@ -111,6 +111,7 @@ class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
                             return LessonItem(
                               topic: viewModel.lessonList[index],
                               course: course,
+                              topics: viewModel.lessonList,
                             );
                           },
                           separatorBuilder: (context, index) => const SizedBox.shrink(),

@@ -14,10 +14,11 @@ class LessonItemViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   late UserProgress progress;
   late List<CourseTopicQuestions> questions;
+  List<CourseTopics> topics = [];
 
-
-  void init(Course course, CourseTopics topic) async {
+  void init(Course course, CourseTopics topic, List<CourseTopics> topics) async {
     setBusy(true);
+    this.topics = topics;
     await getQuestions(course.id, topic.id);
     await getProgress(course, topic);
     rebuildUi();
@@ -31,11 +32,12 @@ class LessonItemViewModel extends BaseViewModel {
 
   Future<void> getQuestions(String courseId, String topicId) async {
     final response = await _courseRepository.getMyCourseTopicQuestions(courseId: courseId, topicId: topicId);
-    response.fold((l) => _snackBarService.showSnackbar(message: l.message, duration: AppConstants.defDuration), (
-        r) => questions = r);
+    response.fold((l) => _snackBarService.showSnackbar(message: l.message, duration: AppConstants.defDuration),
+        (r) => questions = r);
   }
 
-  void navigateToTopic() async {
-    await _navigationService.navigateToTestQuestionView();
+  void navigateToTopic(CourseTopics topic, Course course) async {
+    await _navigationService.navigateToLessonView(
+        topic: topic, topicIndex: topics.indexOf(topic) + 1, course: course, numberOfLessons: topics.length);
   }
 }

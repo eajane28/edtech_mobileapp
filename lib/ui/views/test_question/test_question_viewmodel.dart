@@ -1,19 +1,17 @@
 import 'package:edtech_mobile/app/app.locator.dart';
-import 'package:edtech_mobile/app/app.router.dart';
-import 'package:edtech_mobile/model/choices_data.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class TestQuestionViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
+  final PageController pageController = PageController(initialPage: 0);
 
-  final choices = [
-    const ChoicesData(choices: 'A.', description: '<h5>'),
-    const ChoicesData(choices: 'B.', description: '<p>'),
-    const ChoicesData(choices: 'C.', description: '<h1>')
-  ];
+  void proceed(int index) {
+    pageController.animateToPage(index+1, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+  }
 
-  void proceed() {
-    _navigationService.navigateToResultView();
+  void back() {
+    _navigationService.back();
   }
 }

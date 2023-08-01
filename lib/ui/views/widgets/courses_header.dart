@@ -1,14 +1,17 @@
+import 'package:edtech_mobile/model/course_topics.dart';
+import 'package:edtech_mobile/ui/views/lesson/lesson_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
-import '../../../model/chosen_course_data.dart';
+class Header extends ViewModelWidget<LessonViewModel> {
+  const Header({super.key, required this.topic, required this.topicIndex, required this.numberOfLessons});
 
-class Header extends StatelessWidget {
-  const Header({super.key, required this.topic});
-
-  final Topics topic;
+  final CourseTopics topic;
+  final int topicIndex;
+  final int numberOfLessons;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, LessonViewModel viewModel) {
     return Column(
       children: [
         const SizedBox(height: 32),
@@ -20,11 +23,11 @@ class Header extends StatelessWidget {
             color: Color(0xFF3C3A36),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Text(
-            '3 of 11 lessons',
-            style: TextStyle(
+            '$topicIndex of $numberOfLessons lessons',
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,
               color: Color(0xFF78746D),
@@ -37,22 +40,23 @@ class Header extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: Container(
-                  decoration: const BoxDecoration(
-                      color: Color(0xFFF8F2EE),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16),
-                          bottomLeft: Radius.circular(16))),
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 22.0),
-                  child: const Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Lessons',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF3C3A36),
+                child: GestureDetector(
+                  onTap: () => viewModel.animateToPage(0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: viewModel.initialPage == 0 ? Colors.orange : const Color(0xFFF8F2EE),
+                        borderRadius:
+                            const BorderRadius.only(topLeft: Radius.circular(16), bottomLeft: Radius.circular(16))),
+                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 22.0),
+                    child: const Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Lessons',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF3C3A36),
+                        ),
                       ),
                     ),
                   ),
@@ -60,18 +64,20 @@ class Header extends StatelessWidget {
               ),
               const SizedBox(width: 4),
               Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 22.0),
-                  color: const Color(0xFFF8F2EE),
-                  child: const Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Tests',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF3C3A36),
+                child: GestureDetector(
+                  onTap: () => viewModel.animateToPage(1),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 22.0),
+                    color: viewModel.initialPage == 1 ? Colors.orange : const Color(0xFFF8F2EE),
+                    child: const Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Tests',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFF3C3A36),
+                        ),
                       ),
                     ),
                   ),
@@ -103,7 +109,7 @@ class Header extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 24),
+        const SizedBox(height: 16),
       ],
     );
   }

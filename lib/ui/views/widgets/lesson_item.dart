@@ -7,15 +7,16 @@ import 'package:stacked/stacked.dart';
 import 'lesson_item_view_model.dart';
 
 class LessonItem extends StackedView<LessonItemViewModel> {
-  const LessonItem({super.key, required this.topic, required this.course});
+  const LessonItem({super.key, required this.topics, required this.topic, required this.course});
 
   final CourseTopics topic;
   final Course course;
+  final List<CourseTopics> topics;
 
   @override
   Widget builder(BuildContext context, LessonItemViewModel viewModel, Widget? child) {
     return GestureDetector(
-      onTap: viewModel.navigateToTopic,
+      onTap: () => viewModel.navigateToTopic(topic, course),
       child: Card(
           // margin: const EdgeInsets.symmetric(vertical: 8.0),
           child: Padding(
@@ -71,7 +72,7 @@ class LessonItem extends StackedView<LessonItemViewModel> {
 
   @override
   void onViewModelReady(LessonItemViewModel viewModel) {
-    viewModel.init(course, topic);
+    viewModel.init(course, topic, topics);
     super.onViewModelReady(viewModel);
   }
 

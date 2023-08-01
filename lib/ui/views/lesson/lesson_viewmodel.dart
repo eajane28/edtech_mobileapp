@@ -1,16 +1,20 @@
+import 'package:edtech_mobile/model/course_topics.dart';
+import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../app/app.locator.dart';
-import '../../../model/chosen_course_data.dart';
 
 class LessonViewModel extends BaseViewModel {
   LessonViewModel({required this.topic});
+
+  int initialPage = 0;
+
   final _navigationService = locator<NavigationService>();
-  late YoutubePlayerController youtubePlayerController =
-      YoutubePlayerController(initialVideoId: "");
-  final Topics topic;
+  late YoutubePlayerController youtubePlayerController = YoutubePlayerController(initialVideoId: "");
+  final pageController = PageController(initialPage: 0);
+  final CourseTopics topic;
 
   void init() {
     loadingVideo();
@@ -22,16 +26,25 @@ class LessonViewModel extends BaseViewModel {
 
   void loadingVideo() {
     setBusyForObject('video', true);
-    if (topic.video != null) {
       youtubePlayerController = YoutubePlayerController(
-        initialVideoId: YoutubePlayer.convertUrlToId(topic.video!)!,
+        initialVideoId: YoutubePlayer.convertUrlToId(topic.video)!,
         flags: const YoutubePlayerFlags(
           controlsVisibleAtStart: false,
           autoPlay: false,
           mute: false,
         ),
       );
-    }
     setBusyForObject('video', false);
+  }
+
+  void animateToPage(int index) {
+    pageController.animateToPage(index, duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
+    onPageChanged(index);
+    rebuildUi();
+  }
+
+  void onPageChanged(int index) {
+    initialPage = index;
+    rebuildUi();
   }
 }

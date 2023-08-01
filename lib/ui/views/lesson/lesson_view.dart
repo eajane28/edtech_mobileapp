@@ -1,3 +1,6 @@
+import 'package:edtech_mobile/model/course_topics.dart';
+import 'package:edtech_mobile/ui/common/ui_helpers.dart';
+import 'package:edtech_mobile/ui/views/course_test/course_test_view.dart';
 import 'package:edtech_mobile/ui/views/topic_introduction/topic_introduction_view.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/courses_header.dart';
@@ -5,14 +8,17 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../model/card_data.dart';
-import '../../../model/chosen_course_data.dart';
 import 'lesson_viewmodel.dart';
 
 class LessonView extends StackedView<LessonViewModel> {
-  const LessonView(this.topic, this.course, {Key? key}) : super(key: key);
+  const LessonView(
+      {Key? key, required this.numberOfLessons, required this.topicIndex, required this.course, required this.topic})
+      : super(key: key);
 
-  final Topics topic;
+  final CourseTopics topic;
   final Course course;
+  final int topicIndex;
+  final int numberOfLessons;
 
   @override
   Widget builder(
@@ -20,29 +26,42 @@ class LessonView extends StackedView<LessonViewModel> {
     LessonViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-             child: Column(
-                children: [
-                  MyAppBar(
-                      title: course.title, onTap: viewModel.backToChooseLesson),
-                  Header(topic: topic),
-                  const SizedBox(height: 16),
-                  Expanded(
-                    child: PageView(
-                        physics: const BouncingScrollPhysics(),
-                        controller: PageController(),
-                        // onPageChanged: viewModel.onPageChanged,
-                        children: [
-                          TopicIntroductionView(topic),
-                          Placeholder(),
-                        ]),
-                  ),
-                ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: MyAppBar(title: course.title, onTap: viewModel.backToChooseLesson),
+        body: Container(
+          width: screenWidth(context),
+          height: screenHeight(context),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            children: [
+              Header(
+                topic: topic,
+                topicIndex: topicIndex,
+                numberOfLessons: numberOfLessons,
               ),
-            )),
+              Expanded(
+                child: PageView(
+                    onPageChanged: viewModel.onPageChanged,
+                    physics: const BouncingScrollPhysics(),
+                    controller: viewModel.pageController,
+                    // onPageChanged: viewModel.onPageChanged,
+                    children: [
+                      TopicIntroductionView(
+                        topic: topic,
+                        topicIndex: topicIndex,
+                        course: course,
+                      ),
+                      CourseTestView(
+                        topic: topic,
+                        course: course,
+                      ),
+                    ]),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 

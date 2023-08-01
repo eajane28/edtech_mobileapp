@@ -32,15 +32,15 @@ class ChooseLessonViewModel extends BaseViewModel {
     setBusy(false);
   }
 
-  void initVideo(Course course) {
+  void initVideo() {
     youtubePlayerController.updateValue(YoutubePlayerValue(hasPlayed: true));
     youtubePlayerController.notifyListeners();
     play = true;
     notifyListeners();
   }
 
-  void playVideo(Course course) {
-    initVideo(course);
+  void playVideo() {
+    initVideo();
     rebuildUi();
   }
 
