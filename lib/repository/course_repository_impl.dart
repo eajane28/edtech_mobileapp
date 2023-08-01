@@ -3,11 +3,14 @@ import 'package:dartz/dartz.dart';
 import 'package:edtech_mobile/exceptions/app_exception.dart';
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/course_topics.dart';
+import 'package:edtech_mobile/model/user.dart';
 import 'package:edtech_mobile/repository/course_repository.dart';
 import 'package:edtech_mobile/ui/common/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CourseRepositoryImpl implements CourseRepository {
   final db = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
 
   @override
   Future<List<Course>> getCourses(String search, List<String> coursesList) async {
@@ -52,6 +55,61 @@ class CourseRepositoryImpl implements CourseRepository {
           .get()
           .then((value) => value.docs.map((e) => CourseTopics.fromJson(e.data())).toList());
       return Right(topicLists);
+    } on FirebaseException catch (e) {
+      return Left(AppException(e.message!));
+    }
+  }
+
+  @override
+  Future<void> createProgress(
+      {required String courseId, required String topicId, required UserProgress userProgress}) async {
+    try {
+      await db
+          .collection(FirebaseConstants.userCollection)
+          .doc(_auth.currentUser!.uid)
+          .collection(FirebaseConstants.progress)
+          .doc(courseId)
+          .collection('topics')
+          .doc(topicId)
+          .set(userProgress.toJson(), SetOptions(merge: true));
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    }
+  }
+
+  @override
+  Future<Either<AppException, UserProgress>> getProgress({required String courseId, required String topicId}) async {
+    try {
+      return Right(await db
+          .collection(FirebaseConstants.userCollection)
+          .doc(_auth.currentUser!.uid)
+          .collection(FirebaseConstants.progress)
+          .doc(courseId)
+          .collection('topics')
+          .doc(topicId)
+          .get()
+          .then((value) {
+        return UserProgress.fromJson(value.data() ?? {"topicId": 'c', 'answered': 0});
+      }));
+    } on FirebaseException catch (e) {
+      return Left(AppException(e.message!));
+    }
+  }
+
+  @override
+  Future<Either<AppException, List<CourseTopicQuestions>>> getMyCourseTopicQuestions(
+      {required String courseId, required String topicId}) async {
+    try {
+      return Right(await db
+          .collection(FirebaseConstants.listOfCourses)
+          .doc(courseId)
+          .collection('topics')
+          .doc(topicId)
+          .collection('questions')
+          .get()
+          .then((value) => value.docs.map((e) {
+            return CourseTopicQuestions.fromJson(e.data());
+          }).toList()));
     } on FirebaseException catch (e) {
       return Left(AppException(e.message!));
     }

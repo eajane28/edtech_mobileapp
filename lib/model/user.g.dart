@@ -22,3 +22,15 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'email': instance.email,
       'purchaseCourses': instance.purchaseCourses,
     };
+
+_$_UserProgress _$$_UserProgressFromJson(Map<String, dynamic> json) =>
+    _$_UserProgress(
+      topicId: json['topicId'] as String?,
+      answered: json['answered'] as int? ?? 0,
+    );
+
+Map<String, dynamic> _$$_UserProgressToJson(_$_UserProgress instance) =>
+    <String, dynamic>{
+      'topicId': instance.topicId,
+      'answered': instance.answered,
+    };

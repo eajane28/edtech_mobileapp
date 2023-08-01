@@ -20,9 +20,10 @@ class CourseTopics with _$CourseTopics{
 @freezed
 class CourseTopicQuestions with _$CourseTopicQuestions{
   const factory CourseTopicQuestions({
-    required final String id,
-    required final String image,
-    required final String question,
+    required final String? id,
+    required final String? image,
+    required final String? question,
+    required final String? answer,
     @Default([]) List<String> choices,
   }) = _CourseTopicQuestions;
 

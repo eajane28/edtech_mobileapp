@@ -270,9 +270,10 @@ CourseTopicQuestions _$CourseTopicQuestionsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CourseTopicQuestions {
-  String get id => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
-  String get question => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
+  String? get question => throw _privateConstructorUsedError;
+  String? get answer => throw _privateConstructorUsedError;
   List<String> get choices => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -287,7 +288,12 @@ abstract class $CourseTopicQuestionsCopyWith<$Res> {
           $Res Function(CourseTopicQuestions) then) =
       _$CourseTopicQuestionsCopyWithImpl<$Res, CourseTopicQuestions>;
   @useResult
-  $Res call({String id, String image, String question, List<String> choices});
+  $Res call(
+      {String? id,
+      String? image,
+      String? question,
+      String? answer,
+      List<String> choices});
 }
 
 /// @nodoc
@@ -304,24 +310,29 @@ class _$CourseTopicQuestionsCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? image = null,
-    Object? question = null,
+    Object? id = freezed,
+    Object? image = freezed,
+    Object? question = freezed,
+    Object? answer = freezed,
     Object? choices = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
+              as String?,
+      image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      question: null == question
+              as String?,
+      question: freezed == question
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      answer: freezed == answer
+          ? _value.answer
+          : answer // ignore: cast_nullable_to_non_nullable
+              as String?,
       choices: null == choices
           ? _value.choices
           : choices // ignore: cast_nullable_to_non_nullable
@@ -338,7 +349,12 @@ abstract class _$$_CourseTopicQuestionsCopyWith<$Res>
       __$$_CourseTopicQuestionsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String image, String question, List<String> choices});
+  $Res call(
+      {String? id,
+      String? image,
+      String? question,
+      String? answer,
+      List<String> choices});
 }
 
 /// @nodoc
@@ -352,24 +368,29 @@ class __$$_CourseTopicQuestionsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? image = null,
-    Object? question = null,
+    Object? id = freezed,
+    Object? image = freezed,
+    Object? question = freezed,
+    Object? answer = freezed,
     Object? choices = null,
   }) {
     return _then(_$_CourseTopicQuestions(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
+              as String?,
+      image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      question: null == question
+              as String?,
+      question: freezed == question
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      answer: freezed == answer
+          ? _value.answer
+          : answer // ignore: cast_nullable_to_non_nullable
+              as String?,
       choices: null == choices
           ? _value._choices
           : choices // ignore: cast_nullable_to_non_nullable
@@ -385,6 +406,7 @@ class _$_CourseTopicQuestions implements _CourseTopicQuestions {
       {required this.id,
       required this.image,
       required this.question,
+      required this.answer,
       final List<String> choices = const []})
       : _choices = choices;
 
@@ -392,11 +414,13 @@ class _$_CourseTopicQuestions implements _CourseTopicQuestions {
       _$$_CourseTopicQuestionsFromJson(json);
 
   @override
-  final String id;
+  final String? id;
   @override
-  final String image;
+  final String? image;
   @override
-  final String question;
+  final String? question;
+  @override
+  final String? answer;
   final List<String> _choices;
   @override
   @JsonKey()
@@ -408,7 +432,7 @@ class _$_CourseTopicQuestions implements _CourseTopicQuestions {
 
   @override
   String toString() {
-    return 'CourseTopicQuestions(id: $id, image: $image, question: $question, choices: $choices)';
+    return 'CourseTopicQuestions(id: $id, image: $image, question: $question, answer: $answer, choices: $choices)';
   }
 
   @override
@@ -420,12 +444,13 @@ class _$_CourseTopicQuestions implements _CourseTopicQuestions {
             (identical(other.image, image) || other.image == image) &&
             (identical(other.question, question) ||
                 other.question == question) &&
+            (identical(other.answer, answer) || other.answer == answer) &&
             const DeepCollectionEquality().equals(other._choices, _choices));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, image, question,
+  int get hashCode => Object.hash(runtimeType, id, image, question, answer,
       const DeepCollectionEquality().hash(_choices));
 
   @JsonKey(ignore: true)
@@ -445,20 +470,23 @@ class _$_CourseTopicQuestions implements _CourseTopicQuestions {
 
 abstract class _CourseTopicQuestions implements CourseTopicQuestions {
   const factory _CourseTopicQuestions(
-      {required final String id,
-      required final String image,
-      required final String question,
+      {required final String? id,
+      required final String? image,
+      required final String? question,
+      required final String? answer,
       final List<String> choices}) = _$_CourseTopicQuestions;
 
   factory _CourseTopicQuestions.fromJson(Map<String, dynamic> json) =
       _$_CourseTopicQuestions.fromJson;
 
   @override
-  String get id;
+  String? get id;
   @override
-  String get image;
+  String? get image;
   @override
-  String get question;
+  String? get question;
+  @override
+  String? get answer;
   @override
   List<String> get choices;
   @override

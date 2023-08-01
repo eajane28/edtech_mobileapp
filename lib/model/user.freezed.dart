@@ -207,3 +207,158 @@ abstract class _User implements User {
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
 }
+
+UserProgress _$UserProgressFromJson(Map<String, dynamic> json) {
+  return _UserProgress.fromJson(json);
+}
+
+/// @nodoc
+mixin _$UserProgress {
+  String? get topicId => throw _privateConstructorUsedError;
+  int get answered => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserProgressCopyWith<UserProgress> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserProgressCopyWith<$Res> {
+  factory $UserProgressCopyWith(
+          UserProgress value, $Res Function(UserProgress) then) =
+      _$UserProgressCopyWithImpl<$Res, UserProgress>;
+  @useResult
+  $Res call({String? topicId, int answered});
+}
+
+/// @nodoc
+class _$UserProgressCopyWithImpl<$Res, $Val extends UserProgress>
+    implements $UserProgressCopyWith<$Res> {
+  _$UserProgressCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? topicId = freezed,
+    Object? answered = null,
+  }) {
+    return _then(_value.copyWith(
+      topicId: freezed == topicId
+          ? _value.topicId
+          : topicId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      answered: null == answered
+          ? _value.answered
+          : answered // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_UserProgressCopyWith<$Res>
+    implements $UserProgressCopyWith<$Res> {
+  factory _$$_UserProgressCopyWith(
+          _$_UserProgress value, $Res Function(_$_UserProgress) then) =
+      __$$_UserProgressCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? topicId, int answered});
+}
+
+/// @nodoc
+class __$$_UserProgressCopyWithImpl<$Res>
+    extends _$UserProgressCopyWithImpl<$Res, _$_UserProgress>
+    implements _$$_UserProgressCopyWith<$Res> {
+  __$$_UserProgressCopyWithImpl(
+      _$_UserProgress _value, $Res Function(_$_UserProgress) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? topicId = freezed,
+    Object? answered = null,
+  }) {
+    return _then(_$_UserProgress(
+      topicId: freezed == topicId
+          ? _value.topicId
+          : topicId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      answered: null == answered
+          ? _value.answered
+          : answered // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_UserProgress implements _UserProgress {
+  const _$_UserProgress({required this.topicId, this.answered = 0});
+
+  factory _$_UserProgress.fromJson(Map<String, dynamic> json) =>
+      _$$_UserProgressFromJson(json);
+
+  @override
+  final String? topicId;
+  @override
+  @JsonKey()
+  final int answered;
+
+  @override
+  String toString() {
+    return 'UserProgress(topicId: $topicId, answered: $answered)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserProgress &&
+            (identical(other.topicId, topicId) || other.topicId == topicId) &&
+            (identical(other.answered, answered) ||
+                other.answered == answered));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, topicId, answered);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UserProgressCopyWith<_$_UserProgress> get copyWith =>
+      __$$_UserProgressCopyWithImpl<_$_UserProgress>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_UserProgressToJson(
+      this,
+    );
+  }
+}
+
+abstract class _UserProgress implements UserProgress {
+  const factory _UserProgress(
+      {required final String? topicId, final int answered}) = _$_UserProgress;
+
+  factory _UserProgress.fromJson(Map<String, dynamic> json) =
+      _$_UserProgress.fromJson;
+
+  @override
+  String? get topicId;
+  @override
+  int get answered;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UserProgressCopyWith<_$_UserProgress> get copyWith =>
+      throw _privateConstructorUsedError;
+}

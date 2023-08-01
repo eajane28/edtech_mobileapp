@@ -33,9 +33,10 @@ Map<String, dynamic> _$$_CourseTopicsToJson(_$_CourseTopics instance) =>
 _$_CourseTopicQuestions _$$_CourseTopicQuestionsFromJson(
         Map<String, dynamic> json) =>
     _$_CourseTopicQuestions(
-      id: json['id'] as String,
-      image: json['image'] as String,
-      question: json['question'] as String,
+      id: json['id'] as String?,
+      image: json['image'] as String?,
+      question: json['question'] as String?,
+      answer: json['answer'] as String?,
       choices: (json['choices'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -48,5 +49,6 @@ Map<String, dynamic> _$$_CourseTopicQuestionsToJson(
       'id': instance.id,
       'image': instance.image,
       'question': instance.question,
+      'answer': instance.answer,
       'choices': instance.choices,
     };

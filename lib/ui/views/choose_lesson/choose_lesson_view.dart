@@ -107,7 +107,12 @@ class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
                       ListView.separated(
                           shrinkWrap: true,
                           primary: false,
-                          itemBuilder: (context, index) => LessonItem(topic: viewModel.lessonList[index]),
+                          itemBuilder: (context, index) {
+                            return LessonItem(
+                              topic: viewModel.lessonList[index],
+                              course: course,
+                            );
+                          },
                           separatorBuilder: (context, index) => const SizedBox.shrink(),
                           itemCount: viewModel.lessonList.length)
                     ],

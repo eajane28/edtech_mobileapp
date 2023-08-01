@@ -15,3 +15,13 @@ class User with _$User {
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 }
+
+@freezed
+class UserProgress with _$UserProgress {
+  const factory UserProgress({
+    required String? topicId,
+    @Default(0) int answered,
+  }) = _UserProgress;
+
+  factory UserProgress.fromJson(Map<String, dynamic> json) => _$UserProgressFromJson(json);
+}

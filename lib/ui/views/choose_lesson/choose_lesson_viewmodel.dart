@@ -16,7 +16,7 @@ class ChooseLessonViewModel extends BaseViewModel {
 
   void init(Course course) async {
     setBusy(true);
-    getTopics(course.id);
+    await getTopics(course.id);
     setBusyForObject('video', true);
     if (course.video != null) {
       youtubePlayerController = YoutubePlayerController(
@@ -53,9 +53,9 @@ class ChooseLessonViewModel extends BaseViewModel {
     rebuildUi();
   }
 
-  void getTopics(String courseId) async {
+  Future<void> getTopics(String courseId) async {
     final response = await _courseRepository.getMyCourseTopics(courseId: courseId);
-    response.fold((l) => _snackBarService.showSnackbar(message: l.message, duration: AppConstants.defDuration), (
-        r) => lessonList = r);
+    response.fold((l) => _snackBarService.showSnackbar(message: l.message, duration: AppConstants.defDuration),
+        (r) => lessonList = r);
   }
 }
