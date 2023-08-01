@@ -14,35 +14,41 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-QuizData _$QuizDataFromJson(Map<String, dynamic> json) {
-  return _QuizData.fromJson(json);
+Questions _$QuestionsFromJson(Map<String, dynamic> json) {
+  return _Questions.fromJson(json);
 }
 
 /// @nodoc
-mixin _$QuizData {
+mixin _$Questions {
   String get image => throw _privateConstructorUsedError;
-  String get quizNo => throw _privateConstructorUsedError;
-  String get quizTitle => throw _privateConstructorUsedError;
-  String get subtitle => throw _privateConstructorUsedError;
+  String get answer => throw _privateConstructorUsedError;
+  String get question => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  List<String> get choices => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $QuizDataCopyWith<QuizData> get copyWith =>
+  $QuestionsCopyWith<Questions> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $QuizDataCopyWith<$Res> {
-  factory $QuizDataCopyWith(QuizData value, $Res Function(QuizData) then) =
-      _$QuizDataCopyWithImpl<$Res, QuizData>;
+abstract class $QuestionsCopyWith<$Res> {
+  factory $QuestionsCopyWith(Questions value, $Res Function(Questions) then) =
+      _$QuestionsCopyWithImpl<$Res, Questions>;
   @useResult
-  $Res call({String image, String quizNo, String quizTitle, String subtitle});
+  $Res call(
+      {String image,
+      String answer,
+      String question,
+      String id,
+      List<String> choices});
 }
 
 /// @nodoc
-class _$QuizDataCopyWithImpl<$Res, $Val extends QuizData>
-    implements $QuizDataCopyWith<$Res> {
-  _$QuizDataCopyWithImpl(this._value, this._then);
+class _$QuestionsCopyWithImpl<$Res, $Val extends Questions>
+    implements $QuestionsCopyWith<$Res> {
+  _$QuestionsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -53,155 +59,183 @@ class _$QuizDataCopyWithImpl<$Res, $Val extends QuizData>
   @override
   $Res call({
     Object? image = null,
-    Object? quizNo = null,
-    Object? quizTitle = null,
-    Object? subtitle = null,
+    Object? answer = null,
+    Object? question = null,
+    Object? id = null,
+    Object? choices = null,
   }) {
     return _then(_value.copyWith(
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      quizNo: null == quizNo
-          ? _value.quizNo
-          : quizNo // ignore: cast_nullable_to_non_nullable
+      answer: null == answer
+          ? _value.answer
+          : answer // ignore: cast_nullable_to_non_nullable
               as String,
-      quizTitle: null == quizTitle
-          ? _value.quizTitle
-          : quizTitle // ignore: cast_nullable_to_non_nullable
+      question: null == question
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
               as String,
-      subtitle: null == subtitle
-          ? _value.subtitle
-          : subtitle // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
+      choices: null == choices
+          ? _value.choices
+          : choices // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_QuizDataCopyWith<$Res> implements $QuizDataCopyWith<$Res> {
-  factory _$$_QuizDataCopyWith(
-          _$_QuizData value, $Res Function(_$_QuizData) then) =
-      __$$_QuizDataCopyWithImpl<$Res>;
+abstract class _$$_QuestionsCopyWith<$Res> implements $QuestionsCopyWith<$Res> {
+  factory _$$_QuestionsCopyWith(
+          _$_Questions value, $Res Function(_$_Questions) then) =
+      __$$_QuestionsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String image, String quizNo, String quizTitle, String subtitle});
+  $Res call(
+      {String image,
+      String answer,
+      String question,
+      String id,
+      List<String> choices});
 }
 
 /// @nodoc
-class __$$_QuizDataCopyWithImpl<$Res>
-    extends _$QuizDataCopyWithImpl<$Res, _$_QuizData>
-    implements _$$_QuizDataCopyWith<$Res> {
-  __$$_QuizDataCopyWithImpl(
-      _$_QuizData _value, $Res Function(_$_QuizData) _then)
+class __$$_QuestionsCopyWithImpl<$Res>
+    extends _$QuestionsCopyWithImpl<$Res, _$_Questions>
+    implements _$$_QuestionsCopyWith<$Res> {
+  __$$_QuestionsCopyWithImpl(
+      _$_Questions _value, $Res Function(_$_Questions) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? image = null,
-    Object? quizNo = null,
-    Object? quizTitle = null,
-    Object? subtitle = null,
+    Object? answer = null,
+    Object? question = null,
+    Object? id = null,
+    Object? choices = null,
   }) {
-    return _then(_$_QuizData(
+    return _then(_$_Questions(
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      quizNo: null == quizNo
-          ? _value.quizNo
-          : quizNo // ignore: cast_nullable_to_non_nullable
+      answer: null == answer
+          ? _value.answer
+          : answer // ignore: cast_nullable_to_non_nullable
               as String,
-      quizTitle: null == quizTitle
-          ? _value.quizTitle
-          : quizTitle // ignore: cast_nullable_to_non_nullable
+      question: null == question
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
               as String,
-      subtitle: null == subtitle
-          ? _value.subtitle
-          : subtitle // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
+      choices: null == choices
+          ? _value._choices
+          : choices // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_QuizData implements _QuizData {
-  const _$_QuizData(
+class _$_Questions implements _Questions {
+  const _$_Questions(
       {required this.image,
-      required this.quizNo,
-      required this.quizTitle,
-      required this.subtitle});
+      required this.answer,
+      required this.question,
+      required this.id,
+      required final List<String> choices})
+      : _choices = choices;
 
-  factory _$_QuizData.fromJson(Map<String, dynamic> json) =>
-      _$$_QuizDataFromJson(json);
+  factory _$_Questions.fromJson(Map<String, dynamic> json) =>
+      _$$_QuestionsFromJson(json);
 
   @override
   final String image;
   @override
-  final String quizNo;
+  final String answer;
   @override
-  final String quizTitle;
+  final String question;
   @override
-  final String subtitle;
+  final String id;
+  final List<String> _choices;
+  @override
+  List<String> get choices {
+    if (_choices is EqualUnmodifiableListView) return _choices;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_choices);
+  }
 
   @override
   String toString() {
-    return 'QuizData(image: $image, quizNo: $quizNo, quizTitle: $quizTitle, subtitle: $subtitle)';
+    return 'Questions(image: $image, answer: $answer, question: $question, id: $id, choices: $choices)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_QuizData &&
+            other is _$_Questions &&
             (identical(other.image, image) || other.image == image) &&
-            (identical(other.quizNo, quizNo) || other.quizNo == quizNo) &&
-            (identical(other.quizTitle, quizTitle) ||
-                other.quizTitle == quizTitle) &&
-            (identical(other.subtitle, subtitle) ||
-                other.subtitle == subtitle));
+            (identical(other.answer, answer) || other.answer == answer) &&
+            (identical(other.question, question) ||
+                other.question == question) &&
+            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other._choices, _choices));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, image, quizNo, quizTitle, subtitle);
+  int get hashCode => Object.hash(runtimeType, image, answer, question, id,
+      const DeepCollectionEquality().hash(_choices));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_QuizDataCopyWith<_$_QuizData> get copyWith =>
-      __$$_QuizDataCopyWithImpl<_$_QuizData>(this, _$identity);
+  _$$_QuestionsCopyWith<_$_Questions> get copyWith =>
+      __$$_QuestionsCopyWithImpl<_$_Questions>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_QuizDataToJson(
+    return _$$_QuestionsToJson(
       this,
     );
   }
 }
 
-abstract class _QuizData implements QuizData {
-  const factory _QuizData(
+abstract class _Questions implements Questions {
+  const factory _Questions(
       {required final String image,
-      required final String quizNo,
-      required final String quizTitle,
-      required final String subtitle}) = _$_QuizData;
+      required final String answer,
+      required final String question,
+      required final String id,
+      required final List<String> choices}) = _$_Questions;
 
-  factory _QuizData.fromJson(Map<String, dynamic> json) = _$_QuizData.fromJson;
+  factory _Questions.fromJson(Map<String, dynamic> json) =
+      _$_Questions.fromJson;
 
   @override
   String get image;
   @override
-  String get quizNo;
+  String get answer;
   @override
-  String get quizTitle;
+  String get question;
   @override
-  String get subtitle;
+  String get id;
+  @override
+  List<String> get choices;
   @override
   @JsonKey(ignore: true)
-  _$$_QuizDataCopyWith<_$_QuizData> get copyWith =>
+  _$$_QuestionsCopyWith<_$_Questions> get copyWith =>
       throw _privateConstructorUsedError;
 }

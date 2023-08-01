@@ -5,14 +5,15 @@ part 'quiz_data.freezed.dart';
 part 'quiz_data.g.dart';
 
 @freezed
-class QuizData with _$QuizData {
-  const factory QuizData({
+class Questions with _$Questions {
+  const factory Questions({
     required String image,
-    required String quizNo,
-    required String quizTitle,
-    required String subtitle,
-  }) = _QuizData;
+    required String answer,
+    required String question,
+    required String id,
+    required List<String> choices,
+  }) = _Questions;
 
-  factory QuizData.fromJson(Map<String, dynamic> json) =>
-      _$QuizDataFromJson(json);
+  factory Questions.fromJson(Map<String, dynamic> json) =>
+      _$QuestionsFromJson(json);
 }

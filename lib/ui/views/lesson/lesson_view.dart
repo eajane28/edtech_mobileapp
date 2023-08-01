@@ -1,3 +1,4 @@
+import 'package:edtech_mobile/ui/views/course_test/course_test_view.dart';
 import 'package:edtech_mobile/ui/views/topic_introduction/topic_introduction_view.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/courses_header.dart';
@@ -37,7 +38,7 @@ class LessonView extends StackedView<LessonViewModel> {
                         // onPageChanged: viewModel.onPageChanged,
                         children: [
                           TopicIntroductionView(topic),
-                          Placeholder(),
+                          CourseTestView(topic)
                         ]),
                   ),
                 ],

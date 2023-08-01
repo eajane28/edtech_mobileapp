@@ -6,17 +6,20 @@ part of 'quiz_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_QuizData _$$_QuizDataFromJson(Map<String, dynamic> json) => _$_QuizData(
+_$_Questions _$$_QuestionsFromJson(Map<String, dynamic> json) => _$_Questions(
       image: json['image'] as String,
-      quizNo: json['quizNo'] as String,
-      quizTitle: json['quizTitle'] as String,
-      subtitle: json['subtitle'] as String,
+      answer: json['answer'] as String,
+      question: json['question'] as String,
+      id: json['id'] as String,
+      choices:
+          (json['choices'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$$_QuizDataToJson(_$_QuizData instance) =>
+Map<String, dynamic> _$$_QuestionsToJson(_$_Questions instance) =>
     <String, dynamic>{
       'image': instance.image,
-      'quizNo': instance.quizNo,
-      'quizTitle': instance.quizTitle,
-      'subtitle': instance.subtitle,
+      'answer': instance.answer,
+      'question': instance.question,
+      'id': instance.id,
+      'choices': instance.choices,
     };

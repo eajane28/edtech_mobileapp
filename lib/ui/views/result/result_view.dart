@@ -22,7 +22,7 @@ class ResultView extends StackedView<ResultViewModel> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-              MyAppBar(title: 'Results', onTap: null),
+              MyAppBar(title: 'Results', onTap: viewModel.back),
               const Expanded(
                 child: Display(
                     image: 'assets/Cool Kids Xmas Morning.png',

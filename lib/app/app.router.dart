@@ -287,8 +287,9 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i13.TestQuestionView: (data) {
+      final args = data.getArgs<TestQuestionViewArguments>(nullOk: false);
       return _i24.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i13.TestQuestionView(),
+        builder: (context) => _i13.TestQuestionView(args.topic, key: args.key),
         settings: data,
       );
     },
@@ -524,6 +525,33 @@ class CourseTestViewArguments {
 
   @override
   bool operator ==(covariant CourseTestViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.topic == topic && other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return topic.hashCode ^ key.hashCode;
+  }
+}
+
+class TestQuestionViewArguments {
+  const TestQuestionViewArguments({
+    required this.topic,
+    this.key,
+  });
+
+  final _i26.Topics topic;
+
+  final _i24.Key? key;
+
+  @override
+  String toString() {
+    return '{"topic": "$topic", "key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant TestQuestionViewArguments other) {
     if (identical(this, other)) return true;
     return other.topic == topic && other.key == key;
   }
@@ -900,14 +928,17 @@ extension NavigatorStateExtension on _i28.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToTestQuestionView([
+  Future<dynamic> navigateToTestQuestionView({
+    required _i26.Topics topic,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.testQuestionView,
+        arguments: TestQuestionViewArguments(topic: topic, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1251,14 +1282,17 @@ extension NavigatorStateExtension on _i28.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithTestQuestionView([
+  Future<dynamic> replaceWithTestQuestionView({
+    required _i26.Topics topic,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.testQuestionView,
+        arguments: TestQuestionViewArguments(topic: topic, key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
