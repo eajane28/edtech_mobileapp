@@ -33,8 +33,10 @@ class CourseCard extends StatelessWidget {
                     height: 194,
                     child: CachedNetworkImage(
                       imageUrl: card.image,
-                      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                      placeholder: (context, url) =>
+                          const Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) =>
+                          const Center(child: Icon(Icons.error)),
                       fadeInDuration: const Duration(milliseconds: 800),
                     ),
                   ),

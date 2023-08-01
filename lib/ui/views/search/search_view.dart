@@ -46,7 +46,8 @@ class SearchView extends StackedView<SearchViewModel> {
                 alignment: Alignment.topLeft,
                 child: Text(
                   '${viewModel.searchList.length} Results',
-                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+                  style: const TextStyle(
+                      fontSize: 24, fontWeight: FontWeight.w500),
                 ),
               ),
             ),
@@ -58,31 +59,31 @@ class SearchView extends StackedView<SearchViewModel> {
                       ),
                     ),
                   )
-                : viewModel.searchList.isEmpty?
-                const Expanded(
-                  child: Center(
-                    child: Display(
-                      image: 'assets/Cool Kids Standing.png',
-                      title: ' Course not found',
-                      subtitle: 'Try searching the course with a different keyword'),
-                  ),
-                )
-                  :
-                Expanded(
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: viewModel.searchList.length,
-                      itemBuilder: (context, index) {
-                        var cardItem = viewModel.searchList[index];
-                        return CourseCard(
-                            card: cardItem,
-                            onTap: (Course course) {
-                              viewModel.onTap(course);
-                            });
-                      },
-                    ),
-                  ),
+                : viewModel.searchList.isEmpty
+                    ? const Expanded(
+                        child: Center(
+                          child: Display(
+                              image: 'assets/Cool Kids Standing.png',
+                              title: ' Course not found',
+                              subtitle:
+                                  'Try searching the course with a different keyword'),
+                        ),
+                      )
+                    : Expanded(
+                        child: ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: viewModel.searchList.length,
+                          itemBuilder: (context, index) {
+                            var cardItem = viewModel.searchList[index];
+                            return CourseCard(
+                                card: cardItem,
+                                onTap: (Course course) {
+                                  viewModel.onTap(course);
+                                });
+                          },
+                        ),
+                      ),
           ],
         ),
       )),

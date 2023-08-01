@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:flutter/material.dart';
+
 typedef OnTap = Function(Course card);
 
 class YourCourseCard extends StatelessWidget {
@@ -30,8 +31,10 @@ class YourCourseCard extends StatelessWidget {
                     height: 194,
                     child: CachedNetworkImage(
                       imageUrl: card.image,
-                      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                      placeholder: (context, url) =>
+                          const Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) =>
+                          const Center(child: Icon(Icons.error)),
                       fadeInDuration: const Duration(milliseconds: 800),
                     ),
                   ),
@@ -91,7 +94,6 @@ class YourCourseCard extends StatelessWidget {
                   )
                 ],
               ),
-
             ),
           ],
         ),
@@ -99,8 +101,6 @@ class YourCourseCard extends StatelessWidget {
     );
   }
 }
-
-
 
 // import 'package:flutter/material.dart';
 

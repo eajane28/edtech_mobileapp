@@ -5,8 +5,8 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../../app/app.locator.dart';
 import '../../../model/chosen_course_data.dart';
 
-class LessonViewModel extends BaseViewModel {
-  LessonViewModel({required this.topic});
+class TopicIntroductionViewModel extends BaseViewModel {
+  TopicIntroductionViewModel({required this.topic});
   final _navigationService = locator<NavigationService>();
   late YoutubePlayerController youtubePlayerController =
       YoutubePlayerController(initialVideoId: "");

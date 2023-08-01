@@ -48,24 +48,18 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
               const SizedBox(height: 32),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                child: viewModel.isBusy
-                    ? const MyCircularProgressBar(
-                        indicatorColor: Colors.orange,
-                      )
-                    : Column(
-                        children: [
-                          for (var card in viewModel.paymentMethods!)
-                            PaymentItem(
-                              card: card,
-                              index: viewModel.paymentMethods!.indexOf(card),
-                              groupValue: viewModel.groupValue,
-                              onPressed: viewModel.selectedCard,
-                            ),
-                          GestureDetector(
-                            onTap: () {
-                              viewModel.addNewCreditCard(selectedCourse);
-                            },
-                            child: Card(
+                child: Column(
+                  children: [
+                    for (var card in viewModel.paymentMethods!)
+                      PaymentItem(
+                        card: card,
+                        index: viewModel.paymentMethods!.indexOf(card),
+                        groupValue: viewModel.groupValue,
+                        onPressed: viewModel.selectedCard,
+                      ),
+                      GestureDetector(
+                              onTap: () {viewModel.addNewCreditCard(selectedCourse);},
+                              child: Card(
                                 margin: const EdgeInsets.symmetric(vertical: 8.0),
                                 child: Padding(
                                   padding: const EdgeInsets.all(16.0),

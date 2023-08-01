@@ -44,13 +44,15 @@ class LoginView extends StackedView<LoginViewModel> with InputValidationMixin {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      for (var icon in viewModel.iconList) BuildIcon(iconsData: icon),
+                      for (var icon in viewModel.iconList)
+                        BuildIcon(iconsData: icon),
                     ],
                   ),
                   MyTextField(
                     hintText: 'Email',
                     controller: viewModel.emailController,
-                    validator: (value) => isEmailValid(value ?? '') ? null : 'Invalid Email',
+                    validator: (value) =>
+                        isEmailValid(value ?? '') ? null : 'Invalid Email',
                     keyboardType: TextInputType.emailAddress,
                   ),
                   Password(

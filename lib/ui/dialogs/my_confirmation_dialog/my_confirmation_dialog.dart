@@ -6,8 +6,9 @@ import 'package:stacked_services/stacked_services.dart';
 
 const double _graphicSize = 60;
 
-class MyConfirmationDialog extends StatelessWidget{
-  const MyConfirmationDialog({super.key, required this.request, required this.completer});
+class MyConfirmationDialog extends StatelessWidget {
+  const MyConfirmationDialog(
+      {super.key, required this.request, required this.completer});
 
   final DialogRequest request;
   final Function(DialogResponse) completer;
@@ -33,14 +34,16 @@ class MyConfirmationDialog extends StatelessWidget{
                   children: [
                     Text(
                       request.title!,
-                      style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w900),
+                      overflow: TextOverflow.clip,
+                      style: const TextStyle(
+                          fontSize: 25, fontWeight: FontWeight.w900),
                     ),
                     verticalSpaceTiny
                   ],
                 ),
                 Container(
-                    width: _graphicSize * 1.5,
-                    height: _graphicSize * 1.5,
+                    width: _graphicSize * 0.8,
+                    height: _graphicSize * 0.8,
                     decoration: const BoxDecoration(
                       color: Color(0xffF6E7B0),
                       borderRadius: BorderRadius.all(
@@ -55,22 +58,24 @@ class MyConfirmationDialog extends StatelessWidget{
                     ))
               ],
             ),
-            verticalSpaceSmall,
+            const Expanded(child: verticalSpaceSmall),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   width: _graphicSize * 2,
                   height: _graphicSize,
-                  decoration:
-                      BoxDecoration(border: Border.all(color: Colors.black), borderRadius: BorderRadius.circular(16)),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(16)),
                   child: MyWidgetButton(
                     onTap: () => completer(DialogResponse(confirmed: false)),
                     title: const Center(
                         child: Text(
                       'Cancel',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                     )),
                     color: Colors.white,
                   ),
@@ -79,14 +84,18 @@ class MyConfirmationDialog extends StatelessWidget{
                 Container(
                   width: _graphicSize * 2,
                   height: _graphicSize,
-                  decoration:
-                      BoxDecoration(border: Border.all(color: Colors.black), borderRadius: BorderRadius.circular(16)),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(16)),
                   child: MyWidgetButton(
                       onTap: () => completer(DialogResponse(confirmed: true)),
                       title: const Center(
                           child: Text(
                         'Proceed',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                            color: Colors.white),
                       )),
                       color: Colors.black),
                 ),

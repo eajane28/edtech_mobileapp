@@ -36,7 +36,12 @@ class MyWidgetButton extends StatelessWidget {
   final Widget title;
   final Function()? onTap;
 
-  const MyWidgetButton({super.key, required this.onTap, required this.title, this.color, this.width});
+  const MyWidgetButton(
+      {super.key,
+      required this.onTap,
+      required this.title,
+      this.color,
+      this.width});
 
   final Color? color;
   final double? width;
@@ -51,7 +56,8 @@ class MyWidgetButton extends StatelessWidget {
           color: color ?? const Color(0xFFE3562A),
           borderRadius: BorderRadius.circular(16),
         ),
-        child: Padding(padding: const EdgeInsets.symmetric(vertical: 16.0), child: title),
+        child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0), child: title),
       ),
     );
   }

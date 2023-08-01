@@ -67,7 +67,8 @@ class SettingsInfo extends StatelessWidget {
                     info.dateTime == null
                         ? const SizedBox.shrink()
                         : Text(
-                            RelativeTime(context, numeric: true).format(info.dateTime!),
+                            RelativeTime(context, numeric: true)
+                                .format(info.dateTime!),
                             style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
@@ -82,7 +83,8 @@ class SettingsInfo extends StatelessWidget {
           Expanded(
               flex: 1,
               child: IconButton(
-                  onPressed: info.onPressed, icon: const Icon(Icons.chevron_right)))
+                  onPressed: info.onPressed,
+                  icon: const Icon(Icons.chevron_right)))
         ],
       ),
     );

@@ -11,14 +11,18 @@ import 'package:stacked/stacked.dart';
 import 'checkout_viewmodel.dart';
 
 class CheckoutView extends StackedView<CheckoutViewModel> {
-  const CheckoutView({Key? key, required this.selectedCourse, required this.selectedPayment}) : super(key: key);
+  const CheckoutView(
+      {Key? key, required this.selectedCourse, required this.selectedPayment})
+      : super(key: key);
   final Course selectedCourse;
   final PaymentData selectedPayment;
 
   @override
-  Widget builder(BuildContext context,
-      CheckoutViewModel viewModel,
-      Widget? child,) {
+  Widget builder(
+    BuildContext context,
+    CheckoutViewModel viewModel,
+    Widget? child,
+  ) {
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -36,8 +40,10 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                     CachedNetworkImage(
                         imageUrl: selectedCourse.image,
                         fit: BoxFit.cover,
-                        placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                        placeholder: (context, url) =>
+                            const Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) =>
+                            const Center(child: Icon(Icons.error)),
                         fadeInDuration: const Duration(milliseconds: 800),
                         width: 169,
                         height: 122),
@@ -116,8 +122,9 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                                 color: Color(0xFFFFFFFF),
                               ),
                             ),
-                      onTap: viewModel.isBusy ? null : () => viewModel.confirm(selectedCourse)),
-
+                      onTap: viewModel.isBusy
+                          ? null
+                          : () => viewModel.confirm(selectedCourse)),
                 ),
               )
             ],
@@ -128,6 +135,8 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
   }
 
   @override
-  CheckoutViewModel viewModelBuilder(BuildContext context,) =>
+  CheckoutViewModel viewModelBuilder(
+    BuildContext context,
+  ) =>
       CheckoutViewModel();
 }

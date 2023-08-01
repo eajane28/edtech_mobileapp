@@ -14,7 +14,8 @@ abstract interface class AuthService {
 
   Future<Either<AppException, None>> forgetPassword({required String email});
 
-  Future<Either<AppException, None>> updatePassword(String currentPassword,String password);
+  Future<Either<AppException, None>> updatePassword(
+      String currentPassword, String password);
 
   Future<Either<AppException, Timestamp?>> getLastUpdatedPassword(String uid);
 

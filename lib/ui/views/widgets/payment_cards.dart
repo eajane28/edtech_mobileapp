@@ -7,7 +7,12 @@ import 'package:flutter/material.dart';
 typedef OnTap = Function(PaymentData card);
 
 class PaymentItem extends StatelessWidget {
-  const PaymentItem({super.key, required this.card, this.index, this.groupValue, this.onPressed});
+  const PaymentItem(
+      {super.key,
+      required this.card,
+      this.index,
+      this.groupValue,
+      this.onPressed});
 
   final int? index;
   final PaymentData card;
@@ -31,7 +36,10 @@ class PaymentItem extends StatelessWidget {
                       size: 40.0,
                       color: Colors.grey[600],
                     )
-                  : Image.asset('${CardTypeImage.rootPath}${card.paymentMethod}.png', width: 78, height: 72),
+                  : Image.asset(
+                      '${CardTypeImage.rootPath}${card.paymentMethod}.png',
+                      width: 78,
+                      height: 72),
               horizontalSpaceMedium,
               Expanded(
                 child: Column(
@@ -45,7 +53,7 @@ class PaymentItem extends StatelessWidget {
                         color: Color(0xFF3C3A36),
                       ),
                     ),
-                   verticalSpaceMedium,
+                    verticalSpaceMedium,
                     Text(
                       "Expires ${card.expiryDate}",
                       style: const TextStyle(

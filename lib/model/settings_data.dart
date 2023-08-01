@@ -5,5 +5,10 @@ class SettingsData {
   final DateTime? dateTime;
   void Function()? onPressed;
 
-  SettingsData({required this.iconPath, required this.title, this.user, this.onPressed, this.dateTime});
+  SettingsData(
+      {required this.iconPath,
+      required this.title,
+      this.user,
+      this.onPressed,
+      this.dateTime});
 }

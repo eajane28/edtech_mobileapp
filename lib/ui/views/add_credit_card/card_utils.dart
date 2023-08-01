@@ -62,7 +62,6 @@ class CardUtils {
     return widget;
   }
 
-
   static CardType getCardTypeFrmNumber(String input) {
     CardType cardType;
     if (input.startsWith(RegExp(

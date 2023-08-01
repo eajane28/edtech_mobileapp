@@ -23,14 +23,16 @@ class PaymentRepositoryImpl implements PaymentRepository {
           .collection(FirebaseConstants.paymentCollection)
           .orderBy('createdAt', descending: true)
           .get()
-          .then((value) => value.docs.map((e) => PaymentData.fromJson(e.data())).toList()));
+          .then((value) =>
+              value.docs.map((e) => PaymentData.fromJson(e.data())).toList()));
     } on FirebaseException catch (e) {
       return Left(AppException(e.message!));
     }
   }
 
   @override
-  Future<Either<AppException, None>> addPaymentMethod(PaymentData paymentData) async {
+  Future<Either<AppException, None>> addPaymentMethod(
+      PaymentData paymentData) async {
     try {
       var doc = db
           .collection(FirebaseConstants.userCollection)
@@ -65,12 +67,14 @@ class PaymentRepositoryImpl implements PaymentRepository {
         }
         currentPurchasedCourse.addAll(r.purchaseCourses);
         currentPurchasedCourse.add(course.id);
-        await db
-            .collection(FirebaseConstants.userCollection)
-            .doc(r.id)
-            .set({'purchaseCourses': currentPurchasedCourse}, SetOptions(mergeFields: ['purchaseCourses']));
-        await _localStorage
-            .saveUser(r.copyWith(id: r.id, name: r.name, email: r.email, purchaseCourses: currentPurchasedCourse));
+        await db.collection(FirebaseConstants.userCollection).doc(r.id).set(
+            {'purchaseCourses': currentPurchasedCourse},
+            SetOptions(mergeFields: ['purchaseCourses']));
+        await _localStorage.saveUser(r.copyWith(
+            id: r.id,
+            name: r.name,
+            email: r.email,
+            purchaseCourses: currentPurchasedCourse));
         return const Right(None());
       });
     } on FirebaseException catch (e) {

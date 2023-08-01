@@ -12,7 +12,8 @@ import 'package:stacked/stacked.dart';
 import 'courses_viewmodel.dart';
 
 class CoursesView extends StackedView<CoursesViewModel> {
-  CoursesView({Key? key, required this.onBackPressed, required this.user}) : super(key: key);
+  CoursesView({Key? key, required this.onBackPressed, required this.user})
+      : super(key: key);
 
   final void Function() onBackPressed;
   final User user;
@@ -26,122 +27,128 @@ class CoursesView extends StackedView<CoursesViewModel> {
   ) {
     return viewModel.isBusy
         ? const Center(
-      child: CircularProgressIndicator(),
-    )
+            child: CircularProgressIndicator(),
+          )
         : Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Hello,',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                  ),
-                  Text(
-                    user.name,
-                    style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
-                  ),
-                ],
-              ),
-              Expanded(
-                child: SizedBox(
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                        height: 48,
-                        width: 48,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: const Color(0xFFBEBAB3),
-                          ),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Hello,',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w400),
                         ),
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: Image.asset('assets/Notification.png'),
-                        )),
-                  ),
+                        Text(
+                          user.name,
+                          style: const TextStyle(
+                              fontSize: 32, fontWeight: FontWeight.w700),
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                      child: SizedBox(
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: Container(
+                              height: 48,
+                              width: 48,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: const Color(0xFFBEBAB3),
+                                ),
+                              ),
+                              child: GestureDetector(
+                                onTap: () {},
+                                child: Image.asset('assets/Notification.png'),
+                              )),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-          InkWell(
-            onTap: viewModel.navigateToSearchView,
-            child: AbsorbPointer(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: SearchBox(controller: viewModel.searchController),
-              ),
-            ),
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: 32,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
-              child: Row(
-                children: [
-                  const Text(
-                    'Category:',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-                  ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    primary: false,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: viewModel.coursesList.length,
-                    itemBuilder: (context, index) {
-                      var courseItem = viewModel.coursesList[index];
-                      return CustomChip(
-                        chip: courseItem,
-                        onSelected: (isChecked, item) { //this can be transfered to the viewmodel
-                          if (!viewModel.selectedItems.contains(item)) {
-                            viewModel.selectedItems.add(item);
-                          } else if (viewModel.selectedItems.contains(item)) {
-                            viewModel.selectedItems.remove(item);
-                          }
-                          viewModel.init();
-                          //  print('Selected Items: ${viewModel.selectedItems}');
-                        },
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-          verticalSpaceSmall,
-          viewModel.busy('courses')
-              ? const Expanded(
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.orange,
+                InkWell(
+                  onTap: viewModel.navigateToSearchView,
+                  child: AbsorbPointer(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: SearchBox(controller: viewModel.searchController),
                     ),
                   ),
-                )
-              : Expanded(
-                  child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: viewModel.cardList.length,
-                      itemBuilder: (context, index) {
-                        var cardItem = viewModel.cardList[index];
-                        return CourseCard(
-                            card: cardItem,
-                            onTap: (Course course) {
-                              viewModel.onTap(course);
-                            });
-                      }),
-                )
-        ],
-      ),
-    );
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 32,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
+                    child: Row(
+                      children: [
+                        const Text(
+                          'Category:',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w400),
+                        ),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          primary: false,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: viewModel.coursesList.length,
+                          itemBuilder: (context, index) {
+                            var courseItem = viewModel.coursesList[index];
+                            return CustomChip(
+                              chip: courseItem,
+                              onSelected: (isChecked, item) {
+                                //this can be transfered to the viewmodel
+                                if (!viewModel.selectedItems.contains(item)) {
+                                  viewModel.selectedItems.add(item);
+                                } else if (viewModel.selectedItems
+                                    .contains(item)) {
+                                  viewModel.selectedItems.remove(item);
+                                }
+                                viewModel.init();
+                                //  print('Selected Items: ${viewModel.selectedItems}');
+                              },
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                verticalSpaceSmall,
+                viewModel.busy('courses')
+                    ? const Expanded(
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.orange,
+                          ),
+                        ),
+                      )
+                    : Expanded(
+                        child: ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: viewModel.cardList.length,
+                            itemBuilder: (context, index) {
+                              var cardItem = viewModel.cardList[index];
+                              return CourseCard(
+                                  card: cardItem,
+                                  onTap: (Course course) {
+                                    viewModel.onTap(course);
+                                  });
+                            }),
+                      )
+              ],
+            ),
+          );
   }
 
   @override

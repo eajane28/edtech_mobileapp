@@ -4,10 +4,10 @@ extension TimestampExtension on int {
   DateTime toDate() => DateTime.fromMillisecondsSinceEpoch(this);
 }
 
-extension DateTimeTimestamp on DateTime{
-  Timestamp toTimestamp()=> Timestamp.fromDate(this);
+extension DateTimeTimestamp on DateTime {
+  Timestamp toTimestamp() => Timestamp.fromDate(this);
 }
 
-extension StringDateTime on String{
+extension StringDateTime on String {
   DateTime toDateTime() => DateTime.parse(this);
 }

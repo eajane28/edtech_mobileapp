@@ -10,7 +10,6 @@ class NoPaymentView extends StackedView<NoPaymentViewModel> {
   const NoPaymentView({Key? key, required this.course}) : super(key: key);
   final Course course;
 
-
   @override
   Widget builder(
     BuildContext context,
@@ -34,8 +33,10 @@ class NoPaymentView extends StackedView<NoPaymentViewModel> {
                 padding: const EdgeInsets.only(bottom: 146.0),
                 child: Container(
                     margin: const EdgeInsets.all(16.0),
-                    child: MyButton(title: 'Continue', onTap: () => viewModel.continueToAddCreditCard(course))),
-
+                    child: MyButton(
+                        title: 'Continue',
+                        onTap: () =>
+                            viewModel.continueToAddCreditCard(course))),
               )
             ],
           ),

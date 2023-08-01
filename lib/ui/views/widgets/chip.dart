@@ -33,7 +33,7 @@ class _CustomChipState extends State<CustomChip> {
               color: Color(0xFFF2F2F2),
             ),
           ),
-          backgroundColor: isSelected? const Color(0xFF65AAEA): Colors.grey,
+          backgroundColor: isSelected ? const Color(0xFF65AAEA) : Colors.grey,
         ),
       ),
     );

@@ -26,16 +26,28 @@ class SettingsViewModel extends BaseViewModel {
     response.fold((l) => _snackbarService.showSnackbar(message: l.message),
         (r) => user = r);
 
-    final getLastUpdatedPasswordResponse = await _authService.getLastUpdatedPassword(user!.id!);
-    getLastUpdatedPasswordResponse.fold((l) => _snackbarService.showSnackbar(message: l.message), (r) => lastUpdatedPasswod =  r?.toDate());
+    final getLastUpdatedPasswordResponse =
+        await _authService.getLastUpdatedPassword(user!.id!);
+    getLastUpdatedPasswordResponse.fold(
+        (l) => _snackbarService.showSnackbar(message: l.message),
+        (r) => lastUpdatedPasswod = r?.toDate());
 
     settingsInfoList = [
-      SettingsData(iconPath: SvgIcons.profile, title: 'Name', user: user!.name, onPressed: null),
-      SettingsData(iconPath: SvgIcons.email, title: 'Email', user: user!.email, onPressed: null),
+      SettingsData(
+          iconPath: SvgIcons.profile,
+          title: 'Name',
+          user: user!.name,
+          onPressed: null),
+      SettingsData(
+          iconPath: SvgIcons.email,
+          title: 'Email',
+          user: user!.email,
+          onPressed: null),
       SettingsData(
           iconPath: SvgIcons.password,
           title: 'Password',
-          dateTime: lastUpdatedPasswod, onPressed: showUpdatePasswordPopup)
+          dateTime: lastUpdatedPasswod,
+          onPressed: showUpdatePasswordPopup)
     ];
 
     setBusy(false);
@@ -56,7 +68,7 @@ class SettingsViewModel extends BaseViewModel {
     _navigationService.navigateToHomeView();
   }
 
-  void showUpdatePasswordPopup()async{
+  void showUpdatePasswordPopup() async {
     await _dialogService.showCustomDialog(
       title: "Change Password",
       variant: DialogType.updatePasswordDialogUi,

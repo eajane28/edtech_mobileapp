@@ -11,14 +11,14 @@ class ForgotPasswordViewModel extends BaseViewModel {
   final AuthService authService = locator<AuthService>();
   final SnackbarService _snackbarService = locator<SnackbarService>();
 
-
   void backToLogInView() {
     _navigationService.navigateToLoginView();
   }
 
   void changePassword() async {
     setBusy(true);
-    final response = await authService.forgetPassword(email: emailController.text);
+    final response =
+        await authService.forgetPassword(email: emailController.text);
     response.fold((l) => _snackbarService.showSnackbar(message: l.message),
         (r) => _navigationService.navigateToLoginView());
     setBusy(false);
