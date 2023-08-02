@@ -12,5 +12,5 @@ abstract interface class CourseRepository {
 
   Future<Either<AppException, List<Topics>>> getTopics(String courseId);
 
-  Future<Either<AppException, List<Questions>>> getCards(String topicId);
+  Future<Either<AppException, List<Questions>>> getCards(String courseId, String topicId);
 }

@@ -38,7 +38,7 @@ class LessonView extends StackedView<LessonViewModel> {
                         // onPageChanged: viewModel.onPageChanged,
                         children: [
                           TopicIntroductionView(topic),
-                          CourseTestView(topic)
+                          CourseTestView(topic, course)
                         ]),
                   ),
                 ],

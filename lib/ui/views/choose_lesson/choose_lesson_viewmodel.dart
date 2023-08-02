@@ -47,7 +47,7 @@ class ChooseLessonViewModel extends BaseViewModel {
         (r) => topics = r);
     setBusy(false);
   }
-
+// , index: topics!.indexOf(topic)
   void onTap(Topics topic) {
     _navigationService.navigateToLessonView(topic: topic, course: course);
   }

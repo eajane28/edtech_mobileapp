@@ -7,7 +7,7 @@ import 'package:stacked_services/stacked_services.dart';
 class CourseTestViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
 
-  void begin(topic) {
-    _navigationService.navigateToTestQuestionView(topic: topic);
+  void begin(course, topic) {
+    _navigationService.navigateToTestQuestionView(topic: topic, course: course);
   }
 }

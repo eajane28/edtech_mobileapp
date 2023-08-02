@@ -2,13 +2,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../model/card_data.dart';
 import '../../../model/chosen_course_data.dart';
 import 'course_test_viewmodel.dart';
 
 class CourseTestView extends StackedView<CourseTestViewModel> {
-  const CourseTestView(this.topic, {Key? key}) : super(key: key);
+  const CourseTestView(this.topic, this.course, {Key? key}) : super(key: key);
 
   final Topics topic;
+  final Course course;
 
   @override
   Widget builder(
@@ -74,7 +76,7 @@ class CourseTestView extends StackedView<CourseTestViewModel> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {viewModel.begin(topic);},
+                      onTap: () {viewModel.begin(course, topic);},
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(

@@ -19,7 +19,7 @@ class YourCourseView extends StackedView<YourCourseViewModel> {
   ) {
     return SafeArea(
       child: Scaffold(
-        appBar: MyAppBar(title: 'Your Courses', onTap: viewModel.back),
+        appBar: MyAppBar(title: 'Your Courses', onTap: viewModel.back), //put padding
         body: Container(
             height: screenHeight(context),
             width: screenWidth(context),

@@ -30,9 +30,7 @@ class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
                 ),
                 builder: (context, player) => Column(
                       children: [
-                        MyAppBar(
-                            title: course.title,
-                            onTap: viewModel.backToYourCourses),
+                        MyAppBar(title: course.title, onTap: viewModel.backToYourCourses),
                         Expanded(
                           child: SingleChildScrollView(
                             physics: const BouncingScrollPhysics(),
@@ -55,64 +53,46 @@ class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
                                                 children: [
                                                   course.video == null
                                                       ? CachedNetworkImage(
-                                                          imageUrl:
-                                                              course.image,
-                                                          placeholder: (context,
-                                                                  url) =>
-                                                              const Center(
-                                                                  child:
-                                                                      CircularProgressIndicator()),
-                                                          errorWidget: (context,
-                                                                  url, error) =>
-                                                              const Center(
-                                                                  child: Icon(Icons
-                                                                      .error)),
-                                                          fadeInDuration:
-                                                              const Duration(
-                                                                  milliseconds:
-                                                                      800),
+                                                          imageUrl: course.image,
+                                                          placeholder: (context, url) =>
+                                                              const Center(child: CircularProgressIndicator()),
+                                                          errorWidget: (context, url, error) =>
+                                                              const Center(child: Icon(Icons.error)),
+                                                          fadeInDuration: const Duration(milliseconds: 800),
                                                         )
                                                       : SizedBox(
                                                           width: 512,
                                                           height: 360,
                                                           child: AspectRatio(
-                                                            aspectRatio:
-                                                                16 / 19,
+                                                            aspectRatio: 16 / 19,
                                                             child: player,
                                                           )),
                                                 ],
                                               ),
                                             ),
                                             Padding(
-                                              padding:
-                                                  const EdgeInsets.all(16.0),
+                                              padding: const EdgeInsets.all(16.0),
                                               child: Column(
                                                 children: [
                                                   Align(
-                                                    alignment:
-                                                        Alignment.topLeft,
+                                                    alignment: Alignment.topLeft,
                                                     child: Text(
                                                       course.title,
                                                       style: const TextStyle(
                                                         fontSize: 24,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        color:
-                                                            Color(0xFF3C3A36),
+                                                        fontWeight: FontWeight.w500,
+                                                        color: Color(0xFF3C3A36),
                                                       ),
                                                     ),
                                                   ),
                                                   Align(
-                                                    alignment:
-                                                        Alignment.topLeft,
+                                                    alignment: Alignment.topLeft,
                                                     child: Text(
                                                       course.subtitle,
                                                       style: const TextStyle(
                                                         fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        color:
-                                                            Color(0xFF78746D),
+                                                        fontWeight: FontWeight.w500,
+                                                        color: Color(0xFF78746D),
                                                       ),
                                                     ),
                                                   ),

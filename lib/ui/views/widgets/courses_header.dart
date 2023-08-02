@@ -40,11 +40,8 @@ class Header extends StatelessWidget {
                 child: Container(
                   decoration: const BoxDecoration(
                       color: Color(0xFFF8F2EE),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16),
-                          bottomLeft: Radius.circular(16))),
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 22.0),
+                      borderRadius: BorderRadius.only(topLeft: Radius.circular(16), bottomLeft: Radius.circular(16))),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 22.0),
                   child: const Align(
                     alignment: Alignment.center,
                     child: Text(
@@ -61,8 +58,7 @@ class Header extends StatelessWidget {
               const SizedBox(width: 4),
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 22.0),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 22.0),
                   color: const Color(0xFFF8F2EE),
                   child: const Align(
                     alignment: Alignment.center,
@@ -82,11 +78,8 @@ class Header extends StatelessWidget {
                 child: Container(
                   decoration: const BoxDecoration(
                       color: Color(0xFFF8F2EE),
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(16),
-                          bottomRight: Radius.circular(16))),
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 8.0, horizontal: 22.0),
+                      borderRadius: BorderRadius.only(topRight: Radius.circular(16), bottomRight: Radius.circular(16))),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 22.0),
                   child: const Align(
                     alignment: Alignment.center,
                     child: Text(

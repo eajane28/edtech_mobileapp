@@ -58,11 +58,11 @@ class CourseRepositoryImpl implements CourseRepository {
   }
 
   @override
-  Future<Either<AppException, List<Questions>>> getCards(String topicId) async {
+  Future<Either<AppException, List<Questions>>> getCards(String courseId, String topicId) async {
     try {
       return Right(await db
           .collection(FirebaseConstants.listOfCourses)
-          .doc()
+          .doc(courseId)
           .collection(FirebaseConstants.topics)
           .doc(topicId)
           .collection(FirebaseConstants.questions)
