@@ -2,6 +2,7 @@ import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:edtech_mobile/app/app.router.dart';
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/course_topics.dart';
+import 'package:edtech_mobile/model/user.dart';
 import 'package:edtech_mobile/repository/course_repository.dart';
 import 'package:edtech_mobile/ui/common/constants.dart';
 import 'package:stacked/stacked.dart';
@@ -14,8 +15,9 @@ class CourseTestViewModel extends BaseViewModel {
 
   List<CourseTopicQuestions> quizList = [];
 
-  void begin(Course course, CourseTopics topic) async {
-    await _navigationService.navigateToTestQuestionView(questions: quizList, topic: topic);
+  void begin(Course course, CourseTopics topic, UserProgress progress) async {
+    await _navigationService.navigateToTestQuestionView(
+        questions: quizList, topic: topic, course: course, progress: progress);
   }
 
   Future<void> getQuestions(Course course, CourseTopics topic) async {

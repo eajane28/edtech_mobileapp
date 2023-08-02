@@ -1,19 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/course_topics.dart';
+import 'package:edtech_mobile/model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import 'course_test_viewmodel.dart';
 
 class CourseTestView extends StackedView<CourseTestViewModel> {
-  const CourseTestView({
-    Key? key,
-    required this.topic,
-    required this.course,
-  }) : super(key: key);
+  const CourseTestView({Key? key, required this.topic, required this.course, required this.progress}) : super(key: key);
   final CourseTopics topic;
   final Course course;
+  final UserProgress progress;
 
   @override
   Widget builder(
@@ -64,7 +62,7 @@ class CourseTestView extends StackedView<CourseTestViewModel> {
               ),
             ),
             GestureDetector(
-              onTap: () => viewModel.begin(course, topic),
+              onTap: () => viewModel.begin(course, topic, progress),
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(

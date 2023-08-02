@@ -1,7 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/course_topics.dart';
+import 'package:edtech_mobile/model/user.dart';
 import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
@@ -12,9 +14,13 @@ import 'package:stacked/stacked.dart';
 import 'test_question_viewmodel.dart';
 
 class TestQuestionView extends StackedView<TestQuestionViewModel> {
-  const TestQuestionView({Key? key, required this.questions, required this.topic}) : super(key: key);
+  const TestQuestionView(
+      {Key? key, required this.questions, required this.topic, required this.course, required this.progress})
+      : super(key: key);
   final List<CourseTopicQuestions> questions;
   final CourseTopics topic;
+  final Course course;
+  final UserProgress progress;
 
   @override
   Widget builder(
@@ -85,9 +91,26 @@ class TestQuestionView extends StackedView<TestQuestionViewModel> {
                     ),
                   ),
                   verticalSpaceMedium,
-                  for (var choice in question.choices) Options(choice: choice),
+                  for (var choice in question.choices)
+                    viewModel.selectedIndex != null
+                        ? Options(
+                            choice: choice,
+                            correct:
+                                viewModel.selectedIndex! == question.choices.indexOf(choice) ? viewModel.correct : null)
+                        : GestureDetector(
+                            onTap: viewModel.selectedIndex != null
+                                ? null
+                                : () => viewModel.check(question.answer!, choice, question.choices.indexOf(choice)),
+                            child: Options(
+                              choice: choice,
+                              correct: null,
+                            )),
                   Expanded(child: Container()),
-                  MyButton(title: 'Continue', onTap: () => viewModel.proceed(index)),
+                  MyButton(
+                      title: 'Continue',
+                      onTap: viewModel.correct == null
+                          ? null
+                          : () => viewModel.proceed(index, questions.length, course, topic.id, progress)),
                   verticalSpaceSmall
                 ],
               ),

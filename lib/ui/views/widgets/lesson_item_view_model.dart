@@ -38,6 +38,10 @@ class LessonItemViewModel extends BaseViewModel {
 
   void navigateToTopic(CourseTopics topic, Course course) async {
     await _navigationService.navigateToLessonView(
-        topic: topic, topicIndex: topics.indexOf(topic) + 1, course: course, numberOfLessons: topics.length);
+        topic: topic,
+        topicIndex: topics.indexOf(topic) + 1,
+        course: course,
+        numberOfLessons: topics.length,
+        progress: progress);
   }
 }

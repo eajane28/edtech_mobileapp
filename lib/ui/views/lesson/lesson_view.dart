@@ -1,4 +1,5 @@
 import 'package:edtech_mobile/model/course_topics.dart';
+import 'package:edtech_mobile/model/user.dart';
 import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/course_test/course_test_view.dart';
 import 'package:edtech_mobile/ui/views/topic_introduction/topic_introduction_view.dart';
@@ -12,13 +13,19 @@ import 'lesson_viewmodel.dart';
 
 class LessonView extends StackedView<LessonViewModel> {
   const LessonView(
-      {Key? key, required this.numberOfLessons, required this.topicIndex, required this.course, required this.topic})
+      {Key? key,
+      required this.numberOfLessons,
+      required this.topicIndex,
+      required this.course,
+      required this.topic,
+      required this.progress})
       : super(key: key);
 
   final CourseTopics topic;
   final Course course;
   final int topicIndex;
   final int numberOfLessons;
+  final UserProgress progress;
 
   @override
   Widget builder(
@@ -55,6 +62,7 @@ class LessonView extends StackedView<LessonViewModel> {
                       CourseTestView(
                         topic: topic,
                         course: course,
+                        progress: progress,
                       ),
                     ]),
               ),
