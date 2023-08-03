@@ -1,8 +1,9 @@
+import 'package:edtech_mobile/model/quiz_data.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'chosen_course_data.freezed.dart';
+part 'lesson_topics.freezed.dart';
 
-part 'chosen_course_data.g.dart';
+part 'lesson_topics.g.dart';
 
 @freezed
 class Topics with _$Topics {
@@ -12,6 +13,7 @@ class Topics with _$Topics {
     required String topic,
     final String? video,
     required String id,
+    @Default([]) List<Questions> questions,
   }) = _Topics;
 
   factory Topics.fromJson(Map<String, dynamic> json) => _$TopicsFromJson(json);

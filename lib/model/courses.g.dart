@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'card_data.dart';
+part of 'courses.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

@@ -1,4 +1,4 @@
-import 'package:edtech_mobile/model/card_data.dart';
+import 'package:edtech_mobile/model/courses.dart';
 import 'package:edtech_mobile/model/payment_data.dart';
 import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';

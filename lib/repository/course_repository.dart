@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:edtech_mobile/exceptions/app_exception.dart';
-import 'package:edtech_mobile/model/card_data.dart';
+import 'package:edtech_mobile/model/courses.dart';
 
-import '../model/chosen_course_data.dart';
+import '../model/lesson_topics.dart';
 import '../model/quiz_data.dart';
 
 abstract interface class CourseRepository {

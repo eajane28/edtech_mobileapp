@@ -5,8 +5,8 @@ import 'package:edtech_mobile/ui/views/widgets/courses_header.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../model/card_data.dart';
-import '../../../model/chosen_course_data.dart';
+import '../../../model/courses.dart';
+import '../../../model/lesson_topics.dart';
 import 'lesson_viewmodel.dart';
 
 class LessonView extends StackedView<LessonViewModel> {

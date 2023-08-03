@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:edtech_mobile/model/chosen_course_data.dart';
+import 'package:edtech_mobile/model/lesson_topics.dart';
 import 'package:flutter/material.dart';
 
 typedef OnTap = Function(Topics topic);

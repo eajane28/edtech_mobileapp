@@ -1,16 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'title_data.dart';
+part of 'courses_chipdata.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TitleData _$$_TitleDataFromJson(Map<String, dynamic> json) => _$_TitleData(
-      title: json['title'] as String,
+_$_CoursesData _$$_CoursesDataFromJson(Map<String, dynamic> json) =>
+    _$_CoursesData(
+      name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$_TitleDataToJson(_$_TitleData instance) =>
+Map<String, dynamic> _$$_CoursesDataToJson(_$_CoursesData instance) =>
     <String, dynamic>{
-      'title': instance.title,
+      'name': instance.name,
     };

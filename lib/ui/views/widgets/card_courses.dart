@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:edtech_mobile/model/card_data.dart';
+import 'package:edtech_mobile/model/courses.dart';
 import 'package:flutter/material.dart';
 
 typedef OnTap = Function(Course card);

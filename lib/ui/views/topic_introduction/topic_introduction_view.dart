@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../../model/chosen_course_data.dart';
+import '../../../model/lesson_topics.dart';
 import 'topic_introduction_viewmodel.dart';
 
 class TopicIntroductionView extends StackedView<TopicIntroductionViewModel> {

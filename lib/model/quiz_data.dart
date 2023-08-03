@@ -11,7 +11,7 @@ class Questions with _$Questions {
     required String answer,
     required String question,
     required String id,
-    required List<String> choices,
+    @Default([]) List<String> choices,
   }) = _Questions;
 
   factory Questions.fromJson(Map<String, dynamic> json) =>

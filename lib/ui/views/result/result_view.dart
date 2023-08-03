@@ -1,14 +1,15 @@
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/container_icons.dart';
-import 'package:edtech_mobile/ui/views/widgets/display.dart';
-// import 'package:edtech_mobile/ui/views/widgets/single_container.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import 'result_viewmodel.dart';
 
 class ResultView extends StackedView<ResultViewModel> {
-  const ResultView({Key? key}) : super(key: key);
+  const ResultView(this.answerList, this.correctAnswerList, {Key? key}) : super(key: key);
+
+  final List answerList;
+  final List correctAnswerList;
 
   @override
   Widget builder(
@@ -23,20 +24,45 @@ class ResultView extends StackedView<ResultViewModel> {
           child: Column(
             children: [
               MyAppBar(title: 'Results', onTap: viewModel.back),
-              const Expanded(
-                child: Display(
-                    image: 'assets/Cool Kids Xmas Morning.png',
-                    title: 'Congratulations',
-                    subtitle:
-                        'Congratulations for getting all the answers correct!'),
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Image.asset(
+                      'assets/Cool Kids Xmas Morning.png',
+                      width: double.infinity,
+                    ),
+                    const SizedBox(
+                      height: 16.0,
+                    ),
+                    const Text(
+                      'Congratulations',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    Text(
+                      'Congratulations for getting ${viewModel.score} the correct answers!',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xFF78746D),
+                      ),
+                    ),
+                  ]),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 40.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (var icon in viewModel.iconList)
-                      BuildIcon(iconsData: icon),
+                    for (var icon in viewModel.iconList) BuildIcon(iconsData: icon),
                   ],
                 ),
               ),
@@ -51,5 +77,5 @@ class ResultView extends StackedView<ResultViewModel> {
   ResultViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      ResultViewModel();
+      ResultViewModel(answerList: answerList, correctAnswer: correctAnswerList);
 }

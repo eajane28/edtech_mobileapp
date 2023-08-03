@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'chosen_course_data.dart';
+part of 'lesson_topics.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -25,6 +25,7 @@ mixin _$Topics {
   String get topic => throw _privateConstructorUsedError;
   String? get video => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
+  List<Questions> get questions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,12 @@ abstract class $TopicsCopyWith<$Res> {
       _$TopicsCopyWithImpl<$Res, Topics>;
   @useResult
   $Res call(
-      {String image, String intro, String topic, String? video, String id});
+      {String image,
+      String intro,
+      String topic,
+      String? video,
+      String id,
+      List<Questions> questions});
 }
 
 /// @nodoc
@@ -58,6 +64,7 @@ class _$TopicsCopyWithImpl<$Res, $Val extends Topics>
     Object? topic = null,
     Object? video = freezed,
     Object? id = null,
+    Object? questions = null,
   }) {
     return _then(_value.copyWith(
       image: null == image
@@ -80,6 +87,10 @@ class _$TopicsCopyWithImpl<$Res, $Val extends Topics>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      questions: null == questions
+          ? _value.questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<Questions>,
     ) as $Val);
   }
 }
@@ -91,7 +102,12 @@ abstract class _$$_TopicsCopyWith<$Res> implements $TopicsCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String image, String intro, String topic, String? video, String id});
+      {String image,
+      String intro,
+      String topic,
+      String? video,
+      String id,
+      List<Questions> questions});
 }
 
 /// @nodoc
@@ -109,6 +125,7 @@ class __$$_TopicsCopyWithImpl<$Res>
     Object? topic = null,
     Object? video = freezed,
     Object? id = null,
+    Object? questions = null,
   }) {
     return _then(_$_Topics(
       image: null == image
@@ -131,6 +148,10 @@ class __$$_TopicsCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      questions: null == questions
+          ? _value._questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<Questions>,
     ));
   }
 }
@@ -143,7 +164,9 @@ class _$_Topics implements _Topics {
       required this.intro,
       required this.topic,
       this.video,
-      required this.id});
+      required this.id,
+      final List<Questions> questions = const []})
+      : _questions = questions;
 
   factory _$_Topics.fromJson(Map<String, dynamic> json) =>
       _$$_TopicsFromJson(json);
@@ -158,10 +181,18 @@ class _$_Topics implements _Topics {
   final String? video;
   @override
   final String id;
+  final List<Questions> _questions;
+  @override
+  @JsonKey()
+  List<Questions> get questions {
+    if (_questions is EqualUnmodifiableListView) return _questions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_questions);
+  }
 
   @override
   String toString() {
-    return 'Topics(image: $image, intro: $intro, topic: $topic, video: $video, id: $id)';
+    return 'Topics(image: $image, intro: $intro, topic: $topic, video: $video, id: $id, questions: $questions)';
   }
 
   @override
@@ -173,12 +204,15 @@ class _$_Topics implements _Topics {
             (identical(other.intro, intro) || other.intro == intro) &&
             (identical(other.topic, topic) || other.topic == topic) &&
             (identical(other.video, video) || other.video == video) &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality()
+                .equals(other._questions, _questions));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, image, intro, topic, video, id);
+  int get hashCode => Object.hash(runtimeType, image, intro, topic, video, id,
+      const DeepCollectionEquality().hash(_questions));
 
   @JsonKey(ignore: true)
   @override
@@ -200,7 +234,8 @@ abstract class _Topics implements Topics {
       required final String intro,
       required final String topic,
       final String? video,
-      required final String id}) = _$_Topics;
+      required final String id,
+      final List<Questions> questions}) = _$_Topics;
 
   factory _Topics.fromJson(Map<String, dynamic> json) = _$_Topics.fromJson;
 
@@ -214,6 +249,8 @@ abstract class _Topics implements Topics {
   String? get video;
   @override
   String get id;
+  @override
+  List<Questions> get questions;
   @override
   @JsonKey(ignore: true)
   _$$_TopicsCopyWith<_$_Topics> get copyWith =>

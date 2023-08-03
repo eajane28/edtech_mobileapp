@@ -1,7 +1,7 @@
 import 'package:edtech_mobile/app/app.dialogs.dart';
 import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:edtech_mobile/app/app.router.dart';
-import 'package:edtech_mobile/model/card_data.dart';
+import 'package:edtech_mobile/model/courses.dart';
 import 'package:edtech_mobile/repository/payment_repository.dart';
 import 'package:edtech_mobile/ui/common/constants.dart';
 import 'package:stacked/stacked.dart';

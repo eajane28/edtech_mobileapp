@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import '../../../model/card_data.dart';
-import '../../../model/chosen_course_data.dart';
+import '../../../model/courses.dart';
+import '../../../model/lesson_topics.dart';
 // import '../../../model/quiz_data.dart';
 import '../../../model/quiz_data.dart';
 import '../../../repository/course_repository.dart';
@@ -24,6 +24,7 @@ class TestQuestionViewModel extends BaseViewModel {
   final Course course;
   final answerList = [];
   int expectedAnswer = 1;
+  final correctAnswer = [];
 
   void init() {
     getQuiz();
@@ -42,8 +43,17 @@ class TestQuestionViewModel extends BaseViewModel {
       selectedPosition++;
       expectedAnswer++;
     } else if (selectedPosition == 9 && answerList.length == expectedAnswer) {
-      _navigationService.navigateToResultView();
+      
+      _navigationService.navigateToResultView(answerList: answerList, correctAnswerList: correctAnswer);
     }
+     
+     isSelected = false;
+      notifyListeners();
+  }
+
+  void change(){
+     isSelected = true;
+      notifyListeners();
   }
 
   void back() {

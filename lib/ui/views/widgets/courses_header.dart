@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../../model/chosen_course_data.dart';
+import '../../../model/lesson_topics.dart';
 import '../lesson/lesson_viewmodel.dart';
 
 class Header extends ViewModelWidget<LessonViewModel> {

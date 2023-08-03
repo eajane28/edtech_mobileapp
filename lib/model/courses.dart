@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'card_data.freezed.dart';
+part 'courses.freezed.dart';
 
-part 'card_data.g.dart';
+part 'courses.g.dart';
 
 @freezed
 class Course with _$Course {

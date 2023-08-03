@@ -1,6 +1,6 @@
 import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:edtech_mobile/app/app.router.dart';
-import 'package:edtech_mobile/model/card_data.dart';
+import 'package:edtech_mobile/model/courses.dart';
 import 'package:edtech_mobile/repository/course_repository.dart';
 import 'package:edtech_mobile/services/local_storage.dart';
 import 'package:edtech_mobile/ui/common/constants.dart';

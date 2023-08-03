@@ -1,4 +1,4 @@
-import 'package:edtech_mobile/model/card_data.dart';
+import 'package:edtech_mobile/model/courses.dart';
 import 'package:edtech_mobile/ui/views/widgets/back_button.dart';
 import 'package:edtech_mobile/ui/views/widgets/card_courses.dart';
 import 'package:edtech_mobile/ui/views/widgets/display.dart';

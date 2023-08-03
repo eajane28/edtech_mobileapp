@@ -5,8 +5,8 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:edtech_mobile/model/card_data.dart' as _i25;
-import 'package:edtech_mobile/model/chosen_course_data.dart' as _i26;
+import 'package:edtech_mobile/model/courses.dart' as _i25;
+import 'package:edtech_mobile/model/lesson_topics.dart' as _i26;
 import 'package:edtech_mobile/model/payment_data.dart' as _i27;
 import 'package:edtech_mobile/ui/views/add_credit_card/add_credit_card_view.dart'
     as _i21;
@@ -297,8 +297,11 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i14.ResultView: (data) {
+      final args = data.getArgs<ResultViewArguments>(nullOk: false);
       return _i24.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i14.ResultView(),
+        builder: (context) => _i14.ResultView(
+            args.answerList, args.correctAnswerList,
+            key: args.key),
         settings: data,
       );
     },
@@ -574,6 +577,38 @@ class TestQuestionViewArguments {
   @override
   int get hashCode {
     return topic.hashCode ^ course.hashCode ^ key.hashCode;
+  }
+}
+
+class ResultViewArguments {
+  const ResultViewArguments({
+    required this.answerList,
+    required this.correctAnswerList,
+    this.key,
+  });
+
+  final List<dynamic> answerList;
+
+  final List<dynamic> correctAnswerList;
+
+  final _i24.Key? key;
+
+  @override
+  String toString() {
+    return '{"answerList": "$answerList", "correctAnswerList": "$correctAnswerList", "key": "$key"}';
+  }
+
+  @override
+  bool operator ==(covariant ResultViewArguments other) {
+    if (identical(this, other)) return true;
+    return other.answerList == answerList &&
+        other.correctAnswerList == correctAnswerList &&
+        other.key == key;
+  }
+
+  @override
+  int get hashCode {
+    return answerList.hashCode ^ correctAnswerList.hashCode ^ key.hashCode;
   }
 }
 
@@ -966,14 +1001,21 @@ extension NavigatorStateExtension on _i28.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToResultView([
+  Future<dynamic> navigateToResultView({
+    required List<dynamic> answerList,
+    required List<dynamic> correctAnswerList,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return navigateTo<dynamic>(Routes.resultView,
+        arguments: ResultViewArguments(
+            answerList: answerList,
+            correctAnswerList: correctAnswerList,
+            key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -1326,14 +1368,21 @@ extension NavigatorStateExtension on _i28.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithResultView([
+  Future<dynamic> replaceWithResultView({
+    required List<dynamic> answerList,
+    required List<dynamic> correctAnswerList,
+    _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
-  ]) async {
+  }) async {
     return replaceWith<dynamic>(Routes.resultView,
+        arguments: ResultViewArguments(
+            answerList: answerList,
+            correctAnswerList: correctAnswerList,
+            key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

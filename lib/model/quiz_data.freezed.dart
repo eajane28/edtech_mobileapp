@@ -154,7 +154,7 @@ class _$_Questions implements _Questions {
       required this.answer,
       required this.question,
       required this.id,
-      required final List<String> choices})
+      final List<String> choices = const []})
       : _choices = choices;
 
   factory _$_Questions.fromJson(Map<String, dynamic> json) =>
@@ -170,6 +170,7 @@ class _$_Questions implements _Questions {
   final String id;
   final List<String> _choices;
   @override
+  @JsonKey()
   List<String> get choices {
     if (_choices is EqualUnmodifiableListView) return _choices;
     // ignore: implicit_dynamic_type
@@ -219,7 +220,7 @@ abstract class _Questions implements Questions {
       required final String answer,
       required final String question,
       required final String id,
-      required final List<String> choices}) = _$_Questions;
+      final List<String> choices}) = _$_Questions;
 
   factory _Questions.fromJson(Map<String, dynamic> json) =
       _$_Questions.fromJson;

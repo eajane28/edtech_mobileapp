@@ -69,10 +69,15 @@ class TestQuestions extends ViewModelWidget<TestQuestionViewModel> {
             itemCount: questions.choices.length,
             itemBuilder: (context, index) {
               return Options(
-                choices: questions,
+                choice: questions.choices[index],
                 index: index,
+                isPressed: viewModel.isSelected,
                 onTap: (index) {
                   viewModel.answerList.add(questions.choices[index]);
+                  viewModel.correctAnswer.add(questions.answer);
+                  print(viewModel.answerList);
+                  print(viewModel.correctAnswer);
+                  viewModel.change();
                 },
               );
             }),

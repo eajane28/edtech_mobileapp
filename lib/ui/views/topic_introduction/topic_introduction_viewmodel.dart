@@ -3,7 +3,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../app/app.locator.dart';
-import '../../../model/chosen_course_data.dart';
+import '../../../model/lesson_topics.dart';
 
 class TopicIntroductionViewModel extends BaseViewModel {
   TopicIntroductionViewModel({required this.topic});

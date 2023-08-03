@@ -1,4 +1,4 @@
-import 'package:edtech_mobile/model/courses_data.dart';
+import 'package:edtech_mobile/model/courses_chipdata.dart';
 import 'package:flutter/material.dart';
 
 class CustomChip extends StatefulWidget {
