@@ -14,13 +14,15 @@ class TestQuestionViewModel extends BaseViewModel {
   int corrected = 0;
 
   void proceed(int index, int length, Course course, String topicId, UserProgress progress) {
-    if (length == index + 1) {
-      _navigationService.navigateToResultView(
-          correct: corrected, length: length, course: course, topicId: topicId, progress: progress);
-    }
-    pageController.animateToPage(index + 1, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
-    selectedIndex = null;
-    correct = null;
+    Future.delayed(const Duration(milliseconds: 600), () {
+      if (length == index + 1) {
+        _navigationService.navigateToResultView(
+            correct: corrected, length: length, course: course, topicId: topicId, progress: progress);
+      }
+      pageController.animateToPage(index + 1, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+      selectedIndex = null;
+      correct = null;
+    });
     rebuildUi();
   }
 

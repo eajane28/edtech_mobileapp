@@ -6,7 +6,6 @@ import 'package:edtech_mobile/model/course_topics.dart';
 import 'package:edtech_mobile/model/user.dart';
 import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
-import 'package:edtech_mobile/ui/views/widgets/button.dart';
 import 'package:edtech_mobile/ui/views/widgets/options.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -100,18 +99,21 @@ class TestQuestionView extends StackedView<TestQuestionViewModel> {
                         : GestureDetector(
                             onTap: viewModel.selectedIndex != null
                                 ? null
-                                : () => viewModel.check(question.answer!, choice, question.choices.indexOf(choice)),
+                                : () {
+                                  viewModel.check(question.answer!, choice, question.choices.indexOf(choice));
+                                  viewModel.proceed(index, questions.length, course, topic.id, progress);
+                                },
                             child: Options(
                               choice: choice,
                               correct: null,
                             )),
                   Expanded(child: Container()),
-                  MyButton(
-                      title: 'Continue',
-                      onTap: viewModel.correct == null
-                          ? null
-                          : () => viewModel.proceed(index, questions.length, course, topic.id, progress)),
-                  verticalSpaceSmall
+                  // MyButton(
+                  //     title: 'Continue',
+                  //     onTap: viewModel.correct == null
+                  //         ? null
+                  //         : () => viewModel.proceed(index, questions.length, course, topic.id, progress)),
+                  // verticalSpaceSmall
                 ],
               ),
             );

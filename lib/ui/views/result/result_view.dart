@@ -29,32 +29,37 @@ class ResultView extends StackedView<ResultViewModel> {
     ResultViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            children: [
-              MyAppBar(title: 'Results', onTap: () => viewModel.popUntil(course)),
-              Expanded(
-                child: Display(
-                    image: 'assets/Cool Kids Xmas Morning.png',
-                    title: 'Congratulations',
-                    subtitle: correct == length
-                        ? 'Congratulations for getting all the answers correct!'
-                        : 'You got $correct out of $length'),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 40.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    for (var icon in viewModel.iconList)
-                      BuildIcon(iconsData: icon),
-                  ],
+    return WillPopScope(
+      onWillPop: () async {
+        viewModel.popUntil(course);
+        return true;
+      },
+      child: Scaffold(
+        appBar: MyAppBar(title: 'Results', onTap: () => viewModel.popUntil(course)),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Display(
+                      image: 'assets/Cool Kids Xmas Morning.png',
+                      title: 'Congratulations',
+                      subtitle: correct == length
+                          ? 'Congratulations for getting all the answers correct!'
+                          : 'You got $correct out of $length'),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 40.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      for (var icon in viewModel.iconList) BuildIcon(iconsData: icon),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
