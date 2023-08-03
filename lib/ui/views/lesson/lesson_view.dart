@@ -10,10 +10,11 @@ import '../../../model/chosen_course_data.dart';
 import 'lesson_viewmodel.dart';
 
 class LessonView extends StackedView<LessonViewModel> {
-  const LessonView(this.topic, this.course, {Key? key}) : super(key: key);
+  const LessonView(this.topic, this.course, this.topics, {Key? key}) : super(key: key);
 
   final Topics topic;
   final Course course;
+  final List <Topics> topics;
 
   @override
   Widget builder(
@@ -23,27 +24,23 @@ class LessonView extends StackedView<LessonViewModel> {
   ) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-             child: Column(
-                children: [
-                  MyAppBar(
-                      title: course.title, onTap: viewModel.backToChooseLesson),
-                  Header(topic: topic),
-                  const SizedBox(height: 16),
-                  Expanded(
-                    child: PageView(
-                        physics: const BouncingScrollPhysics(),
-                        controller: PageController(),
-                        // onPageChanged: viewModel.onPageChanged,
-                        children: [
-                          TopicIntroductionView(topic),
-                          CourseTestView(topic, course)
-                        ]),
-                  ),
-                ],
-              ),
-            )),
+          child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          children: [
+            MyAppBar(title: course.title, onTap: viewModel.backToChooseLesson),
+            Header(topic: topic, topics: topics),
+            const SizedBox(height: 16),
+            Expanded(
+              child: PageView(
+                  physics: const BouncingScrollPhysics(),
+                  controller: viewModel.pageController,
+                  onPageChanged: viewModel.onPageChanged,
+                  children: [TopicIntroductionView(topic), CourseTestView(topic, course)]),
+            ),
+          ],
+        ),
+      )),
     );
   }
 

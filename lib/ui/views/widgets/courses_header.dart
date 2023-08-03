@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
 import '../../../model/chosen_course_data.dart';
+import '../lesson/lesson_viewmodel.dart';
 
-class Header extends StatelessWidget {
-  const Header({super.key, required this.topic});
+class Header extends ViewModelWidget<LessonViewModel> {
+  const Header({super.key, required this.topics, required this.topic});
 
   final Topics topic;
+  final List<Topics> topics;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, LessonViewModel viewModel) {
+    int index = 0;
+    int selectedTopicIndex = topics.indexWhere((element) => element.id == topic.id);
+    selectedTopicIndex++;
+
     return Column(
       children: [
         const SizedBox(height: 32),
@@ -20,11 +27,11 @@ class Header extends StatelessWidget {
             color: Color(0xFF3C3A36),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Text(
-            '3 of 11 lessons',
-            style: TextStyle(
+            '$selectedTopicIndex of ${topics.length} lessons',
+            style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,
               color: Color(0xFF78746D),
@@ -37,37 +44,47 @@ class Header extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: Container(
-                  decoration: const BoxDecoration(
-                      color: Color(0xFFF8F2EE),
-                      borderRadius: BorderRadius.only(topLeft: Radius.circular(16), bottomLeft: Radius.circular(16))),
-                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 22.0),
-                  child: const Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Lessons',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF3C3A36),
+                child: GestureDetector(
+                  onTap: () {
+                    viewModel.onItemTapped(index);
+                  },
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        color: Color(0xFFF8F2EE),
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(16), bottomLeft: Radius.circular(16))),
+                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 22.0),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Lessons',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: viewModel.selectedIndex == index ? Colors.orange : const Color(0xFF3C3A36),
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
               const SizedBox(width: 4),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 22.0),
-                  color: const Color(0xFFF8F2EE),
-                  child: const Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Tests',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF3C3A36),
+              GestureDetector(
+                onTap: () {
+                  viewModel.onItemTapped(index + 1);
+                },
+                child: Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 22.0),
+                    color: const Color(0xFFF8F2EE),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Tests',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          color: viewModel.selectedIndex == index + 1 ? Colors.orange :const Color(0xFF3C3A36),
+                        ),
                       ),
                     ),
                   ),

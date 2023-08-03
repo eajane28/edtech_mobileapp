@@ -70,7 +70,10 @@ class TestQuestions extends ViewModelWidget<TestQuestionViewModel> {
             itemBuilder: (context, index) {
               return Options(
                 choices: questions,
-                index: index, onTap: () {viewModel.answerList.add(questions.choices[index]);},
+                index: index,
+                onTap: (index) {
+                  viewModel.answerList.add(questions.choices[index]);
+                },
               );
             }),
         MyButton(title: 'Continue', onTap: viewModel.proceed),

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class Options extends StatefulWidget {
-  Options({super.key, required this.choices, required this.index, required this.onTap});
+  const Options({super.key, required this.choices, required this.index, required this.onTap});
 
   final Questions choices;
   final int index;
-  void Function()? onTap;
+  final Function(int) onTap;
 
   @override
   State<Options> createState() => _OptionsState();
@@ -18,11 +18,12 @@ class _OptionsState extends State<Options> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          isSelected = !isSelected;
-          widget.onTap!();
-        });
+      onTap: () {          
+          widget.onTap(widget.index);
+          setState(() {
+            isSelected = !isSelected;
+          });
+          print(widget.index);
       },
       child: Container(
         decoration:

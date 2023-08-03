@@ -17,6 +17,7 @@ class TestQuestionViewModel extends BaseViewModel {
   final _snackBarService = locator<SnackbarService>();
   var pageController = PageController();
   int selectedPosition = 0;
+  bool isSelected = false;
 
   List<Questions>? questions;
   final Topics topic;
@@ -48,4 +49,6 @@ class TestQuestionViewModel extends BaseViewModel {
   void back() {
     _navigationService.back();
   }
+
+  
 }
