@@ -45,7 +45,15 @@ class LoginView extends StackedView<LoginViewModel> with InputValidationMixin {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       for (var icon in viewModel.iconList)
-                        BuildIcon(iconsData: icon),
+                        BuildIcon(
+                            iconsData: icon,
+                            action: viewModel.iconList.indexOf(icon) == 0
+                                ? null
+                                : viewModel.iconList.indexOf(icon) == 1
+                                    ? null
+                                    : viewModel.iconList.indexOf(icon) == 2
+                                        ? viewModel.googleSignIn
+                                        : null),
                     ],
                   ),
                   MyTextField(

@@ -14,6 +14,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
               ?.map((e) => e as String)
               .toList() ??
           const [],
+      profile: json['profile'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
@@ -21,6 +22,7 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'name': instance.name,
       'email': instance.email,
       'purchaseCourses': instance.purchaseCourses,
+      'profile': instance.profile,
     };
 
 _$_UserProgress _$$_UserProgressFromJson(Map<String, dynamic> json) =>

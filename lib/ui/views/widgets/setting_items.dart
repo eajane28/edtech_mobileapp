@@ -1,5 +1,6 @@
 import 'package:edtech_mobile/model/settings_data.dart';
 import 'package:edtech_mobile/model/user.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:relative_time/relative_time.dart';
@@ -12,29 +13,29 @@ class SettingsInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-      decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xFFBEBAB3)),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: Container(
-              height: 32,
-              padding: const EdgeInsets.all(8),
-              decoration: const BoxDecoration(
-                  color: Color(0xFF65AAEA), shape: BoxShape.circle),
-              child: SvgPicture.asset(
-                info.iconPath,
-                colorFilter:
-                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-              ),
+    return info.provider != null && info.provider == FirebaseAuth.instance.currentUser!.providerData.first.providerId
+        ? Container()
+        : Container(
+            height: 100,
+            margin: const EdgeInsets.symmetric(vertical: 8),
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+            decoration: BoxDecoration(
+              border: Border.all(color: const Color(0xFFBEBAB3)),
+              borderRadius: BorderRadius.circular(16),
             ),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: 32,
+                    padding: const EdgeInsets.all(8),
+                    decoration: const BoxDecoration(color: Color(0xFF65AAEA), shape: BoxShape.circle),
+                    child: SvgPicture.asset(
+                      info.iconPath,
+                      colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+                    ),
+                  ),
           ),
           Expanded(
             flex: 5,

@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:edtech_mobile/app/app.dialogs.dart';
 import 'package:edtech_mobile/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,7 +12,6 @@ import 'package:stacked_services/stacked_services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

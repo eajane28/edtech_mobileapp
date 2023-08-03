@@ -6,6 +6,7 @@ import 'package:edtech_mobile/model/user.dart';
 import 'package:edtech_mobile/services/auth_service.dart';
 import 'package:edtech_mobile/services/local_storage.dart';
 import 'package:edtech_mobile/ui/common/svg_icons_constants.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -47,6 +48,7 @@ class SettingsViewModel extends BaseViewModel {
           iconPath: SvgIcons.password,
           title: 'Password',
           dateTime: lastUpdatedPasswod,
+          provider: FirebaseAuth.instance.currentUser!.providerData.first.providerId,
           onPressed: showUpdatePasswordPopup)
     ];
 

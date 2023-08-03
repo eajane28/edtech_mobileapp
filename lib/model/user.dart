@@ -11,6 +11,7 @@ class User with _$User {
     required String name,
     required String email,
     @Default([]) List<String> purchaseCourses,
+    @Default('') String profile,
   }) = _User;
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
