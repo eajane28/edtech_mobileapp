@@ -25,5 +25,6 @@ abstract interface class AuthService {
 
   Stream<String> getUserImage();
 
-  Future<Either<AppException, User>> googleSignIn();
+  Future<Either<None, User>> googleSignIn();
+  Future<Either<None, User>> facebookSignIn();
 }

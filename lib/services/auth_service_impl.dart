@@ -13,6 +13,7 @@ import 'package:edtech_mobile/ui/common/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthServiceImpl implements AuthService {
@@ -181,10 +182,10 @@ class AuthServiceImpl implements AuthService {
   }
 
   @override
-  Future<Either<AppException, User>> googleSignIn() async {
+  Future<Either<None, User>> googleSignIn() async {
     try {
       await _googleSignIn.signOut();
-      final GoogleSignInAccount? result = await _googleSignIn.signIn();
+      final GoogleSignInAccount? result = await _googleSignIn.signIn().catchError((googlesignin) => googlesignin);
       if (result != null) {
         GoogleSignInAuthentication googleSignInAuthentication = await result.authentication;
         final AuthCredential authCredential = GoogleAuthProvider.credential(
@@ -201,14 +202,42 @@ class AuthServiceImpl implements AuthService {
         return Right(user);
       } else {
         //do something
-        return Left(AppException(AppConstants.myErrorMessage));
+        return const Left(None());
       }
     } catch (e) {
       if (e is PlatformException) {
-        return Left(AppException(AppConstants.myErrorMessage));
+        return const Left(None());
       } else {
-        return Left(AppException(AppConstants.myErrorMessage));
+        return const Left(None());
       }
+    }
+  }
+
+  @override
+  Future<Either<None, User>> facebookSignIn() async {
+    final fb = FacebookLogin();
+    try {
+      // Log in
+      await fb.logOut();
+      final result = await fb.expressLogin();
+
+      if (result.status == FacebookLoginStatus.success) {
+        final FacebookAccessToken? accessToken = result.accessToken;
+        final AuthCredential authCredential = FacebookAuthProvider.credential(accessToken!.token);
+        UserCredential userCredential = await _auth.signInWithCredential(authCredential);
+        final user = User(
+            id: userCredential.user!.uid,
+            email: await fb.getUserEmail() ?? '',
+            name: userCredential.additionalUserInfo!.profile!['name'],
+            profile: await fb.getProfileImageUrl(width: 128) ?? '');
+        await db.collection(FirebaseConstants.userCollection).doc(userCredential.user!.uid).set(user.toJson());
+        await _localStorage.saveUser(user);
+        return Right(user);
+      } else {
+        return const Left(None());
+      }
+    } catch (e) {
+      return const Left(None());
     }
   }
 }

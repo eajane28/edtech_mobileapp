@@ -899,14 +899,14 @@ class MockAuthService extends _i1.Mock implements _i7.AuthService {
         returnValueForMissingStub: _i5.Stream<String>.empty(),
       ) as _i5.Stream<String>);
   @override
-  _i5.Future<_i2.Either<_i8.AppException, _i9.User>> googleSignIn() =>
+  _i5.Future<_i2.Either<_i2.None<dynamic>, _i9.User>> googleSignIn() =>
       (super.noSuchMethod(
         Invocation.method(
           #googleSignIn,
           [],
         ),
-        returnValue: _i5.Future<_i2.Either<_i8.AppException, _i9.User>>.value(
-            _FakeEither_0<_i8.AppException, _i9.User>(
+        returnValue: _i5.Future<_i2.Either<_i2.None<dynamic>, _i9.User>>.value(
+            _FakeEither_0<_i2.None<dynamic>, _i9.User>(
           this,
           Invocation.method(
             #googleSignIn,
@@ -914,15 +914,15 @@ class MockAuthService extends _i1.Mock implements _i7.AuthService {
           ),
         )),
         returnValueForMissingStub:
-            _i5.Future<_i2.Either<_i8.AppException, _i9.User>>.value(
-                _FakeEither_0<_i8.AppException, _i9.User>(
+            _i5.Future<_i2.Either<_i2.None<dynamic>, _i9.User>>.value(
+                _FakeEither_0<_i2.None<dynamic>, _i9.User>(
           this,
           Invocation.method(
             #googleSignIn,
             [],
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i8.AppException, _i9.User>>);
+      ) as _i5.Future<_i2.Either<_i2.None<dynamic>, _i9.User>>);
 }
 
 /// A class which mocks [LocalStorage].
