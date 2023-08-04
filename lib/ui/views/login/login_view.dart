@@ -48,7 +48,7 @@ class LoginView extends StackedView<LoginViewModel> with InputValidationMixin {
                         BuildIcon(
                             iconsData: icon,
                             action: viewModel.iconList.indexOf(icon) == 0
-                                ? null
+                                ? viewModel.facebookLogin
                                 : viewModel.iconList.indexOf(icon) == 1
                                     ? null
                                     : viewModel.iconList.indexOf(icon) == 2

@@ -4,6 +4,7 @@ import 'package:edtech_mobile/model/icons_data.dart';
 import 'package:edtech_mobile/services/auth_service.dart';
 import 'package:edtech_mobile/ui/common/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -47,5 +48,25 @@ class LoginViewModel extends BaseViewModel {
     final response = await authService.googleSignIn();
     response.fold((l) => _snackbarService.showSnackbar(message: l.message, duration: AppConstants.defDuration),
         (r) => _navigationService.replaceWithHomeView());
+  }
+
+  void facebookLogin() async {
+    final fb = FacebookLogin();
+    try {
+      // Log in
+      final result = await fb.expressLogin();
+
+      if (result.status == FacebookLoginStatus.success) {
+        final FacebookAccessToken? accessToken = result.accessToken;
+        final body = {
+          'provider': 'facebook',
+          'access_token': accessToken?.token,
+        };
+      } else {
+        throw 'Facebook activity canceled';
+      }
+    } catch (e) {
+      rethrow;
+    }
   }
 }
