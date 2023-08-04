@@ -300,7 +300,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<ResultViewArguments>(nullOk: false);
       return _i24.MaterialPageRoute<dynamic>(
         builder: (context) => _i14.ResultView(
-            args.answerList, args.correctAnswerList,
+            args.answerList, args.correctAnswerList, args.course,
             key: args.key),
         settings: data,
       );
@@ -584,6 +584,7 @@ class ResultViewArguments {
   const ResultViewArguments({
     required this.answerList,
     required this.correctAnswerList,
+    required this.course,
     this.key,
   });
 
@@ -591,11 +592,13 @@ class ResultViewArguments {
 
   final List<dynamic> correctAnswerList;
 
+  final _i25.Course course;
+
   final _i24.Key? key;
 
   @override
   String toString() {
-    return '{"answerList": "$answerList", "correctAnswerList": "$correctAnswerList", "key": "$key"}';
+    return '{"answerList": "$answerList", "correctAnswerList": "$correctAnswerList", "course": "$course", "key": "$key"}';
   }
 
   @override
@@ -603,12 +606,16 @@ class ResultViewArguments {
     if (identical(this, other)) return true;
     return other.answerList == answerList &&
         other.correctAnswerList == correctAnswerList &&
+        other.course == course &&
         other.key == key;
   }
 
   @override
   int get hashCode {
-    return answerList.hashCode ^ correctAnswerList.hashCode ^ key.hashCode;
+    return answerList.hashCode ^
+        correctAnswerList.hashCode ^
+        course.hashCode ^
+        key.hashCode;
   }
 }
 
@@ -1004,6 +1011,7 @@ extension NavigatorStateExtension on _i28.NavigationService {
   Future<dynamic> navigateToResultView({
     required List<dynamic> answerList,
     required List<dynamic> correctAnswerList,
+    required _i25.Course course,
     _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
@@ -1015,6 +1023,7 @@ extension NavigatorStateExtension on _i28.NavigationService {
         arguments: ResultViewArguments(
             answerList: answerList,
             correctAnswerList: correctAnswerList,
+            course: course,
             key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,
@@ -1371,6 +1380,7 @@ extension NavigatorStateExtension on _i28.NavigationService {
   Future<dynamic> replaceWithResultView({
     required List<dynamic> answerList,
     required List<dynamic> correctAnswerList,
+    required _i25.Course course,
     _i24.Key? key,
     int? routerId,
     bool preventDuplicates = true,
@@ -1382,6 +1392,7 @@ extension NavigatorStateExtension on _i28.NavigationService {
         arguments: ResultViewArguments(
             answerList: answerList,
             correctAnswerList: correctAnswerList,
+            course: course,
             key: key),
         id: routerId,
         preventDuplicates: preventDuplicates,

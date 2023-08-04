@@ -75,8 +75,6 @@ class TestQuestions extends ViewModelWidget<TestQuestionViewModel> {
                 onTap: (index) {
                   viewModel.answerList.add(questions.choices[index]);
                   viewModel.correctAnswer.add(questions.answer);
-                  print(viewModel.answerList);
-                  print(viewModel.correctAnswer);
                   viewModel.change();
                 },
               );

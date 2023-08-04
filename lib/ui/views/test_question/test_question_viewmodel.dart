@@ -44,7 +44,7 @@ class TestQuestionViewModel extends BaseViewModel {
       expectedAnswer++;
     } else if (selectedPosition == 9 && answerList.length == expectedAnswer) {
       
-      _navigationService.navigateToResultView(answerList: answerList, correctAnswerList: correctAnswer);
+      _navigationService.navigateToResultView(course: course, answerList: answerList, correctAnswerList: correctAnswer);
     }
      
      isSelected = false;

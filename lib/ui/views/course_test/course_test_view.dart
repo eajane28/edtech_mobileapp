@@ -18,12 +18,12 @@ class CourseTestView extends StackedView<CourseTestViewModel> {
     CourseTestViewModel viewModel,
     Widget? child,
   ) {
-    return Expanded(
-      child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            Card(
+    return Column(
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Card(
               margin: const EdgeInsets.symmetric(vertical: 8),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
@@ -76,7 +76,9 @@ class CourseTestView extends StackedView<CourseTestViewModel> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {viewModel.begin(course, topic);},
+                      onTap: () {
+                        viewModel.begin(course, topic);
+                      },
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
@@ -98,9 +100,9 @@ class CourseTestView extends StackedView<CourseTestViewModel> {
                 ),
               ),
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 

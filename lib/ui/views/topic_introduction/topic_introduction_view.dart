@@ -17,66 +17,70 @@ class TopicIntroductionView extends StackedView<TopicIntroductionViewModel> {
     TopicIntroductionViewModel viewModel,
     Widget? child,
   ) {
-    return Expanded(
-      child: YoutubePlayerBuilder(
-        player: YoutubePlayer(
-          controller: viewModel.youtubePlayerController,
-          showVideoProgressIndicator: true,
-        ),
-        builder: (context, player) => SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(children: [
-            Column(
-              children: [
-                topic.video == null
-                    ? CachedNetworkImage(
-                        imageUrl: topic.image,
-                        placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
-                        fadeInDuration: const Duration(milliseconds: 800),
-                      )
-                    : SizedBox(
-                        width: 512,
-                        height: 360,
-                        child: AspectRatio(
-                          aspectRatio: 16 / 19,
-                          child: player,
-                        )),
-              ],
+    return Column(
+      children: [
+        Expanded(
+          child: YoutubePlayerBuilder(
+            player: YoutubePlayer(
+              controller: viewModel.youtubePlayerController,
+              showVideoProgressIndicator: true,
             ),
-            const SizedBox(height: 24),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Column(
+            builder: (context, player) => SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(children: [
+                Column(
                   children: [
-                    const Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        'Introduction',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xFF3C3A36),
-                        ),
-                      ),
-                    ),
-                    Text(
-                      topic.intro,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xFF78746D),
-                      ),
-                    )
+                    topic.video == null
+                        ? CachedNetworkImage(
+                            imageUrl: topic.image,
+                            placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                            fadeInDuration: const Duration(milliseconds: 800),
+                          )
+                        : SizedBox(
+                            width: 512,
+                            height: 360,
+                            child: AspectRatio(
+                              aspectRatio: 16 / 19,
+                              child: player,
+                            )),
                   ],
                 ),
-              ),
-            )
-          ]),
+                const SizedBox(height: 24),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      children: [
+                        const Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            'Introduction',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFF3C3A36),
+                            ),
+                          ),
+                        ),
+                        Text(
+                          topic.intro,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xFF78746D),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ]),
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 

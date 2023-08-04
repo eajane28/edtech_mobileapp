@@ -3,13 +3,15 @@ import 'package:edtech_mobile/ui/views/widgets/container_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../model/courses.dart';
 import 'result_viewmodel.dart';
 
 class ResultView extends StackedView<ResultViewModel> {
-  const ResultView(this.answerList, this.correctAnswerList, {Key? key}) : super(key: key);
+  const ResultView(this.answerList, this.correctAnswerList, this.course, {Key? key}) : super(key: key);
 
   final List answerList;
   final List correctAnswerList;
+  final Course course;
 
   @override
   Widget builder(
@@ -46,7 +48,7 @@ class ResultView extends StackedView<ResultViewModel> {
                       height: 8.0,
                     ),
                     Text(
-                      'Congratulations for getting ${viewModel.score} the correct answers!',
+                      'Congratulations for getting ${viewModel.score()} correct answers!',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 14,
@@ -77,5 +79,5 @@ class ResultView extends StackedView<ResultViewModel> {
   ResultViewModel viewModelBuilder(
     BuildContext context,
   ) =>
-      ResultViewModel(answerList: answerList, correctAnswer: correctAnswerList);
+      ResultViewModel(course: course, answerList: answerList, correctAnswer: correctAnswerList);
 }
