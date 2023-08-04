@@ -51,6 +51,6 @@ class ChooseLessonViewModel extends BaseViewModel {
   }
 
   void backToYourCourses() {
-    _navigationService.back();
+    _navigationService.navigateToYourCourseView();
   }
 }
