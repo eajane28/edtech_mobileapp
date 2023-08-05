@@ -42,6 +42,7 @@ dev_dependencies:
   stacked_generator: ^1.4.0
   freezed: ^2.4.1
   json_serializable: ^6.7.1
+  flutter_launcher_icons: ^0.13.1
 
 flutter:
   uses-material-design: true
@@ -52,3 +53,9 @@ flutter:
     - family: Rubik
       fonts: 
       - asset: assets/fonts/Rubik-Regular.ttf
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/Cool Kids Bust.png"
+  min_sdk_android: 21
