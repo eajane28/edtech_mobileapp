@@ -43,5 +43,6 @@ class LessonItemViewModel extends BaseViewModel {
         course: course,
         numberOfLessons: topics.length,
         progress: progress);
+    await getProgress(course, topic);
   }
 }

@@ -4,6 +4,7 @@ import 'package:edtech_mobile/ui/views/widgets/button.dart';
 import 'package:edtech_mobile/ui/views/widgets/display.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+
 import 'payment_added_viewmodel.dart';
 
 class PaymentAddedView extends StackedView<PaymentAddedViewModel> {
@@ -19,19 +20,18 @@ class PaymentAddedView extends StackedView<PaymentAddedViewModel> {
     PaymentAddedViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
+    return SafeArea(
+      child: Scaffold(
+        appBar: MyAppBar(title: 'Payment', onTap: viewModel.back),
+        body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-              MyAppBar(title: 'Payment', onTap: viewModel.back),
               const Expanded(
                 child: Display(
                     image: 'assets/Cool Kids Sitting.png',
                     title: 'Payment Method added',
-                    subtitle:
-                        'You can buy the course now. Continue to payment.'),
+                    subtitle: 'You can buy the course now. Continue to payment.'),
               ),
               const SizedBox(height: 32),
               Padding(

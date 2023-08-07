@@ -33,7 +33,7 @@ class ProductDetailViewModel extends BaseViewModel {
     paymentMethods.isEmpty
         ? _navigationService.navigateToNoPaymentView(course: course)
         : _navigationService.navigateToPaymentMethodView(cards: paymentMethods, selectedCourse: course);
-    setBusyForObject("purchase", true);
+    setBusyForObject("purchase", false);
   }
 
   void backToHomeView() {

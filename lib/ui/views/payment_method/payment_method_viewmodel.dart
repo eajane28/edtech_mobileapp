@@ -28,14 +28,17 @@ class PaymentMethodViewModel extends BaseViewModel {
   Future<void> getPaymentMethods() async {
     final response = await _paymentRepository.getPaymentMethods();
     response.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => paymentMethods = r);
+    rebuildUi();
   }
 
   void proceed(Course course) {
     _navigationService.navigateToCheckoutView(selectedCourse: course, selectedPayment: selectedPaymentData);
   }
 
-  void addNewCreditCard(Course course) {
-    _navigationService.navigateToAddCreditCardView(course: course);
+  void addNewCreditCard(Course course) async{
+    await _navigationService.navigateToAddCreditCardView(course: course);
+    await getPaymentMethods();
+    rebuildUi();
   }
 
   void back() {

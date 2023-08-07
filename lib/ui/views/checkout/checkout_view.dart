@@ -8,6 +8,7 @@ import 'package:edtech_mobile/ui/views/widgets/my_circular_progress_bar.dart';
 import 'package:edtech_mobile/ui/views/widgets/payment_cards.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
+
 import 'checkout_viewmodel.dart';
 
 class CheckoutView extends StackedView<CheckoutViewModel> {
@@ -23,15 +24,15 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
     CheckoutViewModel viewModel,
     Widget? child,
   ) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
+    return SafeArea(
+      child: Scaffold(
+        appBar: MyAppBar(title: 'Checkout', onTap: viewModel.back),
+        body: Container(
           height: screenHeight(context),
           width: screenWidth(context),
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-              MyAppBar(title: 'Checkout', onTap: viewModel.back),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: Row(
@@ -40,10 +41,8 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                     CachedNetworkImage(
                         imageUrl: selectedCourse.image,
                         fit: BoxFit.cover,
-                        placeholder: (context, url) =>
-                            const Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) =>
-                            const Center(child: Icon(Icons.error)),
+                        placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
                         fadeInDuration: const Duration(milliseconds: 800),
                         width: 169,
                         height: 122),
@@ -122,9 +121,7 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                                 color: Color(0xFFFFFFFF),
                               ),
                             ),
-                      onTap: viewModel.isBusy
-                          ? null
-                          : () => viewModel.confirm(selectedCourse)),
+                      onTap: viewModel.isBusy ? null : () => viewModel.confirm(selectedCourse)),
                 ),
               )
             ],
