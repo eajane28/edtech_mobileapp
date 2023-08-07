@@ -7,6 +7,7 @@
 // import 'package:edtech_mobile/ui/views/settings/settings_view.dart';
 import 'package:edtech_mobile/app/app.locator.dart';
 import 'package:edtech_mobile/model/user.dart';
+import 'package:edtech_mobile/services/auth_service.dart';
 import 'package:edtech_mobile/services/local_storage.dart';
 import 'package:flutter/material.dart';
 // import 'package:edtech_mobile/ui/views/your_course/your_course_view.dart';
@@ -19,16 +20,20 @@ import 'package:stacked_services/stacked_services.dart';
 class HomeViewModel extends BaseViewModel {
   final PageController pageController = PageController(initialPage: 0);
   final _localStorage = locator<LocalStorage>();
+  final authService = locator<AuthService>();
   final _snackbarService = locator<SnackbarService>();
   int selectedIndex = 0;
   List<int> indeces = [];
 
   User? user;
+
   void init() async {
     setBusy(true);
-    final response = await _localStorage.getCurrentUser();
-    response.fold((l) => _snackbarService.showSnackbar(message: l.message),
-        (r) => user = r);
+    final response = await authService.getCurrentUserData();
+    response.fold((l) => _snackbarService.showSnackbar(message: l.message), (r) {
+      user = r;
+      _localStorage.saveUser(user!);
+    });
     setBusy(false);
   }
 
