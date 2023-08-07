@@ -71,10 +71,10 @@ class LessonItem extends StackedView<LessonItemViewModel> {
   }
 
   @override
-  void onViewModelReady(LessonItemViewModel viewModel) {
-    viewModel.init(course, topic, topics);
-    super.onViewModelReady(viewModel);
-  }
+  bool get createNewViewModelOnInsert => true;
+
+  @override
+  void onViewModelReady(LessonItemViewModel viewModel) => viewModel.init(course, topic, topics);
 
   @override
   LessonItemViewModel viewModelBuilder(BuildContext context) => LessonItemViewModel();

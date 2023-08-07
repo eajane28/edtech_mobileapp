@@ -125,10 +125,10 @@ class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
   }
 
   @override
-  void onViewModelReady(ChooseLessonViewModel viewModel) {
-    viewModel.init(course);
-    super.onViewModelReady(viewModel);
-  }
+  bool get createNewViewModelOnInsert => true;
+
+  @override
+  void onViewModelReady(ChooseLessonViewModel viewModel) => viewModel.init(course);
 
   @override
   ChooseLessonViewModel viewModelBuilder(

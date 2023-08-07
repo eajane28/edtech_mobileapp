@@ -1,4 +1,5 @@
 import 'package:edtech_mobile/app/app.locator.dart';
+import 'package:edtech_mobile/app/app.router.dart';
 import 'package:edtech_mobile/model/card_data.dart';
 import 'package:edtech_mobile/model/icons_data.dart';
 import 'package:edtech_mobile/model/user.dart';
@@ -26,7 +27,8 @@ class ResultViewModel extends BaseViewModel {
         courseId: courseId, topicId: topicId, userProgress: UserProgress(topicId: topicId, answered: correct));
   }
 
-  void popUntil(Course course) {
-    _navigationService.popRepeated(3);
+  void popUntil(Course course) async {
+    _navigationService.pushNamedAndRemoveUntil(Routes.homeView);
+    await _navigationService.navigateToChooseLessonView(course: course);
   }
 }
