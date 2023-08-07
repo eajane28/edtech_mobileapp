@@ -4,13 +4,15 @@ import 'package:stacked/stacked.dart';
 
 import '../../../model/courses.dart';
 import '../../../model/lesson_topics.dart';
+import '../../../model/user.dart';
 import 'course_test_viewmodel.dart';
 
 class CourseTestView extends StackedView<CourseTestViewModel> {
-  const CourseTestView(this.topic, this.course, {Key? key}) : super(key: key);
+  const CourseTestView(this.topic, this.course, this.progress, {Key? key}) : super(key: key);
 
   final Topics topic;
   final Course course;
+  final UserProgress progress;
 
   @override
   Widget builder(
@@ -77,7 +79,7 @@ class CourseTestView extends StackedView<CourseTestViewModel> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        viewModel.begin(course, topic);
+                        viewModel.begin(course, topic, progress);
                       },
                       child: Container(
                         width: double.infinity,

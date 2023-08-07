@@ -7,14 +7,16 @@ import 'package:stacked/stacked.dart';
 
 import '../../../model/courses.dart';
 import '../../../model/lesson_topics.dart';
+import '../../../model/user.dart';
 import 'lesson_viewmodel.dart';
 
 class LessonView extends StackedView<LessonViewModel> {
-  const LessonView(this.topic, this.course, this.topics, {Key? key}) : super(key: key);
+  const LessonView(this.topic, this.course, this.topics, this.progress, {Key? key}) : super(key: key);
 
   final Topics topic;
   final Course course;
   final List <Topics> topics;
+  final UserProgress progress;
 
   @override
   Widget builder(
@@ -36,7 +38,7 @@ class LessonView extends StackedView<LessonViewModel> {
                   physics: const BouncingScrollPhysics(),
                   controller: viewModel.pageController,
                   onPageChanged: viewModel.onPageChanged,
-                  children: [TopicIntroductionView(topic), CourseTestView(topic, course)]),
+                  children: [TopicIntroductionView(topic), CourseTestView(topic, course, progress)]),
             ),
           ],
         ),

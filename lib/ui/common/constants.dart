@@ -6,6 +6,7 @@ class FirebaseConstants {
   static const paymentCollection = 'creditCardDetails';
   static const topics = 'topics';
   static const questions = 'questions';
+  static const progress = 'progress';
 }
 
 class AppConstants {

@@ -4,12 +4,16 @@ import 'package:edtech_mobile/ui/views/test_question/test_question_viewmodel.dar
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../model/lesson_topics.dart';
+import '../../../model/user.dart';
 import 'button.dart';
 import 'options.dart';
 
 class TestQuestions extends ViewModelWidget<TestQuestionViewModel> {
-  const TestQuestions({super.key, required this.questions});
+  const TestQuestions({super.key, required this.questions, required this.progress, required this.topic});
   final Questions questions;
+  final UserProgress progress;
+  final Topics topic;
   @override
   Widget build(BuildContext context, TestQuestionViewModel viewModel) {
     int index = viewModel.selectedPosition;
@@ -79,7 +83,7 @@ class TestQuestions extends ViewModelWidget<TestQuestionViewModel> {
                 },
               );
             }),
-        MyButton(title: 'Continue', onTap: viewModel.proceed),
+        MyButton(title: 'Continue', onTap: () => viewModel.proceed(topic.id, progress)),
       ],
     );
   }

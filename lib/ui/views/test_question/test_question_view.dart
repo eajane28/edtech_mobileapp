@@ -11,15 +11,16 @@ import '../../../model/lesson_topics.dart';
 // import '../../../model/quiz_data.dart';
 // import '../widgets/options.dart';
 // import '../widgets/button.dart';
+import '../../../model/user.dart';
 import 'test_question_viewmodel.dart';
 
 // ignore: must_be_immutable
 class TestQuestionView extends StackedView<TestQuestionViewModel> {
-  const TestQuestionView(this.topic, this.course, {Key? key}) : super(key: key);
+  const TestQuestionView(this.topic, this.course, {Key? key, required this.progress}) : super(key: key);
 
-  // Questions? questions;
   final Topics topic;
   final Course course;
+  final UserProgress progress;
 
   @override
   Widget builder(
@@ -31,7 +32,6 @@ class TestQuestionView extends StackedView<TestQuestionViewModel> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          //TO DO: create another widget for the questions that will be using rebuildUI
           child: Column(
             children: [
               MyAppBar(title: '', onTap: viewModel.back),
@@ -50,6 +50,8 @@ class TestQuestionView extends StackedView<TestQuestionViewModel> {
                                   height: MediaQuery.of(context).size.height,
                                   child: TestQuestions(
                                     questions: questions,
+                                    progress: progress,
+                                    topic: topic,
                                   ),
                                 ),
                               ),

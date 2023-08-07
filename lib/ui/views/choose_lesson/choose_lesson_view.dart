@@ -6,7 +6,7 @@ import 'package:stacked/stacked.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../model/courses.dart';
-import '../../../model/lesson_topics.dart';
+// import '../../../model/lesson_topics.dart';
 import 'choose_lesson_viewmodel.dart';
 
 class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
@@ -105,9 +105,10 @@ class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
                                       for (var card in viewModel.topics!)
                                         LessonItem(
                                           topic: card,
-                                          onTap: (Topics topic) {
-                                            viewModel.onTap(topic);
-                                          },
+                                          course: course,
+                                          // onTap: (Topics topic) {
+                                          //   viewModel.onTap(topic);
+                                          // },
                                         ),
                                     ],
                                   ),

@@ -8,7 +8,10 @@ import '../../../model/courses.dart';
 import '../../../model/lesson_topics.dart';
 // import '../../../model/quiz_data.dart';
 import '../../../model/quiz_data.dart';
+// import '../../../model/user.dart';
+import '../../../model/user.dart';
 import '../../../repository/course_repository.dart';
+import '../../common/constants.dart';
 
 class TestQuestionViewModel extends BaseViewModel {
   TestQuestionViewModel({required this.course, required this.topic});
@@ -18,6 +21,7 @@ class TestQuestionViewModel extends BaseViewModel {
   var pageController = PageController();
   int selectedPosition = 0;
   bool isSelected = false;
+  // final UserProgress progress;
 
   List<Questions>? questions;
   final Topics topic;
@@ -26,39 +30,38 @@ class TestQuestionViewModel extends BaseViewModel {
   int expectedAnswer = 1;
   final correctAnswer = [];
 
-  void init() {
-    getQuiz();
-  }
-
-  Future<void> getQuiz() async {
+  void init() async {
     setBusy(true);
-    final result = await _courseRepository.getCards(course.id, topic.id);
-    result.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => questions = r);
+    await getQuestions(course.id, topic.id);
     setBusy(false);
   }
 
-  void proceed() {
+  Future<void> getQuestions(String courseId, String topicId) async {
+    final response = await _courseRepository.getCards(courseId: courseId, topicId: topicId);
+    response.fold((l) => _snackBarService.showSnackbar(message: l.message, duration: AppConstants.defDuration),
+        (r) => questions = r);
+  }
+
+  void proceed(String topicId, UserProgress progress) {
     if (selectedPosition < 9 && answerList.length == expectedAnswer) {
       pageController.nextPage(curve: Curves.linear, duration: const Duration(milliseconds: 300));
       selectedPosition++;
       expectedAnswer++;
     } else if (selectedPosition == 9 && answerList.length == expectedAnswer) {
-      
-      _navigationService.navigateToResultView(course: course, answerList: answerList, correctAnswerList: correctAnswer);
+      _navigationService.navigateToResultView(
+          course: course, answerList: answerList, correctAnswerList: correctAnswer, progress: progress, topicId: topicId);
     }
-     
-     isSelected = false;
-      notifyListeners();
+
+    isSelected = false;
+    notifyListeners();
   }
 
-  void change(){
-     isSelected = true;
-      notifyListeners();
+  void change() {
+    isSelected = true;
+    notifyListeners();
   }
 
   void back() {
     _navigationService.back();
   }
-
-  
 }

@@ -1,19 +1,24 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edtech_mobile/model/lesson_topics.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
-typedef OnTap = Function(Topics topic);
+import '../../../model/courses.dart';
+import 'lesson_item_viewmodel.dart';
 
-class LessonItem extends StatelessWidget {
-  const LessonItem({super.key, required this.topic, required this.onTap});
+// typedef OnTap = Function(Topics topic);
+
+class LessonItem extends StackedView<LessonItemViewModel> {
+  const LessonItem({super.key, required this.course, required this.topic});
 
   final Topics topic;
-  final OnTap onTap;
+  // final OnTap onTap;
+  final Course course;
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => onTap(topic),
+  Widget builder(BuildContext context, LessonItemViewModel viewModel, Widget? child) {
+    return viewModel.isBusy? Container(): GestureDetector(
+      onTap: viewModel.navigateToTopic,
       child: Card(
           margin: const EdgeInsets.symmetric(vertical: 8.0),
           child: Padding(
@@ -25,10 +30,8 @@ class LessonItem extends StatelessWidget {
                   width: 78,
                   child: CachedNetworkImage(
                     imageUrl: topic.image,
-                    placeholder: (context, url) =>
-                        const Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) =>
-                        const Center(child: Icon(Icons.error)),
+                    placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
                     fadeInDuration: const Duration(milliseconds: 800),
                   ),
                 ),
@@ -49,12 +52,13 @@ class LessonItem extends StatelessWidget {
                         height: 8,
                       ),
                       Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12)),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
                         width: double.infinity,
-                        child: const LinearProgressIndicator(
+                        child: LinearProgressIndicator(
                           color: Colors.blue,
-                          value: .6,
+                          value: viewModel.progress.answered == 0
+                                ? 0
+                                : viewModel.progress.answered / viewModel.questions.length,
                           minHeight: 8,
                           // borderRadius: BorderRadius.circular(12),
                         ),
@@ -67,4 +71,12 @@ class LessonItem extends StatelessWidget {
           )),
     );
   }
+  @override
+  void onViewModelReady(LessonItemViewModel viewModel) {
+    viewModel.init(course, topic);
+    super.onViewModelReady(viewModel);
+  }
+
+  @override
+  LessonItemViewModel viewModelBuilder(BuildContext context) => LessonItemViewModel(course: course, topic: topic);
 }
