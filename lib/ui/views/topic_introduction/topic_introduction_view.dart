@@ -28,24 +28,20 @@ class TopicIntroductionView extends StackedView<TopicIntroductionViewModel> {
             builder: (context, player) => SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Column(children: [
-                Column(
-                  children: [
-                    topic.video == null
-                        ? CachedNetworkImage(
-                            imageUrl: topic.image,
-                            placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                            errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
-                            fadeInDuration: const Duration(milliseconds: 800),
-                          )
-                        : SizedBox(
-                            width: 512,
-                            height: 360,
-                            child: AspectRatio(
-                              aspectRatio: 16 / 19,
-                              child: player,
-                            )),
-                  ],
-                ),
+                topic.video == null
+                    ? CachedNetworkImage(
+                        imageUrl: topic.image,
+                        placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                        fadeInDuration: const Duration(milliseconds: 800),
+                      )
+                    : SizedBox(
+                        width: 512,
+                        height: 360,
+                        child: AspectRatio(
+                          aspectRatio: 16 / 19,
+                          child: player,
+                        )),
                 const SizedBox(height: 24),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
