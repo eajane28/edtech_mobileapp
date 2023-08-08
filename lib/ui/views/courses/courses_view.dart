@@ -106,7 +106,6 @@ class CoursesView extends StackedView<CoursesViewModel> {
                             return CustomChip(
                               chip: courseItem,
                               onSelected: (isChecked, item) {
-                                //this can be transfered to the viewmodel
                                 if (!viewModel.selectedItems.contains(item)) {
                                   viewModel.selectedItems.add(item);
                                 } else if (viewModel.selectedItems
@@ -114,7 +113,6 @@ class CoursesView extends StackedView<CoursesViewModel> {
                                   viewModel.selectedItems.remove(item);
                                 }
                                 viewModel.init();
-                                //  print('Selected Items: ${viewModel.selectedItems}');
                               },
                             );
                           },

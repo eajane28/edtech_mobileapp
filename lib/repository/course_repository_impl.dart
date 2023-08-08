@@ -49,12 +49,13 @@ class CourseRepositoryImpl implements CourseRepository {
   @override
   Future<Either<AppException, List<Topics>>> getTopics(String courseId) async {
     try {
-      return Right(await db
+      final topicLists = await db
           .collection(FirebaseConstants.listOfCourses)
           .doc(courseId)
-          .collection(FirebaseConstants.topics)
+          .collection('topics')
           .get()
-          .then((value) => value.docs.map((e) => Topics.fromJson(e.data())).toList()));
+          .then((value) => value.docs.map((e) => Topics.fromJson(e.data())).toList());
+      return Right(topicLists);
     } on FirebaseException catch (e) {
       return Left(AppException(e.message!));
     }

@@ -37,7 +37,7 @@ class TestQuestions extends ViewModelWidget<TestQuestionViewModel> {
                   width: double.infinity,
                   height: 200,
                   child: Text(
-                    questions.question,
+                    questions.question!,
                     textAlign: TextAlign.center, //to replace with the right list thus for UI purposes only for now
                     style: const TextStyle(
                       fontSize: 24,
@@ -59,7 +59,7 @@ class TestQuestions extends ViewModelWidget<TestQuestionViewModel> {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: CachedNetworkImage(
-                imageUrl: questions.image,
+                imageUrl: questions.image!,
                 placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
                 fadeInDuration: const Duration(milliseconds: 800),

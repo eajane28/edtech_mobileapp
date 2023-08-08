@@ -49,12 +49,9 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                               //     ?
                               CachedNetworkImage(
                                 imageUrl: course.image,
-                                placeholder: (context, url) => const Center(
-                                    child: CircularProgressIndicator()),
-                                errorWidget: (context, url, error) =>
-                                    const Center(child: Icon(Icons.error)),
-                                fadeInDuration:
-                                    const Duration(milliseconds: 800),
+                                placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                                errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+                                fadeInDuration: const Duration(milliseconds: 800),
                               ),
                               // : SizedBox(
                               //     width: 512,

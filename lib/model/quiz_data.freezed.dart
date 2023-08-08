@@ -20,10 +20,10 @@ Questions _$QuestionsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Questions {
-  String get image => throw _privateConstructorUsedError;
-  String get answer => throw _privateConstructorUsedError;
-  String get question => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
+  String? get answer => throw _privateConstructorUsedError;
+  String? get question => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
   List<String> get choices => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,10 +38,10 @@ abstract class $QuestionsCopyWith<$Res> {
       _$QuestionsCopyWithImpl<$Res, Questions>;
   @useResult
   $Res call(
-      {String image,
-      String answer,
-      String question,
-      String id,
+      {String? image,
+      String? answer,
+      String? question,
+      String? id,
       List<String> choices});
 }
 
@@ -58,29 +58,29 @@ class _$QuestionsCopyWithImpl<$Res, $Val extends Questions>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? image = null,
-    Object? answer = null,
-    Object? question = null,
-    Object? id = null,
+    Object? image = freezed,
+    Object? answer = freezed,
+    Object? question = freezed,
+    Object? id = freezed,
     Object? choices = null,
   }) {
     return _then(_value.copyWith(
-      image: null == image
+      image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      answer: null == answer
+              as String?,
+      answer: freezed == answer
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
-              as String,
-      question: null == question
+              as String?,
+      question: freezed == question
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
+              as String?,
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       choices: null == choices
           ? _value.choices
           : choices // ignore: cast_nullable_to_non_nullable
@@ -97,10 +97,10 @@ abstract class _$$_QuestionsCopyWith<$Res> implements $QuestionsCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String image,
-      String answer,
-      String question,
-      String id,
+      {String? image,
+      String? answer,
+      String? question,
+      String? id,
       List<String> choices});
 }
 
@@ -115,29 +115,29 @@ class __$$_QuestionsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? image = null,
-    Object? answer = null,
-    Object? question = null,
-    Object? id = null,
+    Object? image = freezed,
+    Object? answer = freezed,
+    Object? question = freezed,
+    Object? id = freezed,
     Object? choices = null,
   }) {
     return _then(_$_Questions(
-      image: null == image
+      image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      answer: null == answer
+              as String?,
+      answer: freezed == answer
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
-              as String,
-      question: null == question
+              as String?,
+      question: freezed == question
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
+              as String?,
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       choices: null == choices
           ? _value._choices
           : choices // ignore: cast_nullable_to_non_nullable
@@ -161,13 +161,13 @@ class _$_Questions implements _Questions {
       _$$_QuestionsFromJson(json);
 
   @override
-  final String image;
+  final String? image;
   @override
-  final String answer;
+  final String? answer;
   @override
-  final String question;
+  final String? question;
   @override
-  final String id;
+  final String? id;
   final List<String> _choices;
   @override
   @JsonKey()
@@ -216,23 +216,23 @@ class _$_Questions implements _Questions {
 
 abstract class _Questions implements Questions {
   const factory _Questions(
-      {required final String image,
-      required final String answer,
-      required final String question,
-      required final String id,
+      {required final String? image,
+      required final String? answer,
+      required final String? question,
+      required final String? id,
       final List<String> choices}) = _$_Questions;
 
   factory _Questions.fromJson(Map<String, dynamic> json) =
       _$_Questions.fromJson;
 
   @override
-  String get image;
+  String? get image;
   @override
-  String get answer;
+  String? get answer;
   @override
-  String get question;
+  String? get question;
   @override
-  String get id;
+  String? get id;
   @override
   List<String> get choices;
   @override

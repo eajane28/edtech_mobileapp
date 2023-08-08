@@ -7,6 +7,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../model/courses.dart';
 // import '../../../model/lesson_topics.dart';
+import '../widgets/my_circular_progress_bar.dart';
 import 'choose_lesson_viewmodel.dart';
 
 class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
@@ -35,11 +36,7 @@ class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
                           child: SingleChildScrollView(
                             physics: const BouncingScrollPhysics(),
                             child: viewModel.isBusy
-                                ? const Expanded(
-                                    child: Center(
-                                      child: CircularProgressIndicator(),
-                                    ),
-                                  )
+                                ?  const MyCircularProgressBar()
                                 : Column(
                                     children: [
                                       Card(

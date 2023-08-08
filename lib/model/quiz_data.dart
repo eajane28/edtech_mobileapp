@@ -7,10 +7,10 @@ part 'quiz_data.g.dart';
 @freezed
 class Questions with _$Questions {
   const factory Questions({
-    required String image,
-    required String answer,
-    required String question,
-    required String id,
+    required final String? image,
+    required final String? answer,
+    required final String? question,
+    required final String? id,
     @Default([]) List<String> choices,
   }) = _Questions;
 

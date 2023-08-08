@@ -7,10 +7,10 @@ part of 'quiz_data.dart';
 // **************************************************************************
 
 _$_Questions _$$_QuestionsFromJson(Map<String, dynamic> json) => _$_Questions(
-      image: json['image'] as String,
-      answer: json['answer'] as String,
-      question: json['question'] as String,
-      id: json['id'] as String,
+      image: json['image'] as String?,
+      answer: json['answer'] as String?,
+      question: json['question'] as String?,
+      id: json['id'] as String?,
       choices: (json['choices'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
