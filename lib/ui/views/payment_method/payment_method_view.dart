@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import '../widgets/button.dart';
+import '../widgets/my_circular_progress_bar.dart';
 import 'payment_method_viewmodel.dart';
 
 class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
-  const PaymentMethodView({Key? key, this.cards, required this.selectedCourse})
-      : super(key: key);
+  const PaymentMethodView({Key? key, this.cards, required this.selectedCourse}) : super(key: key);
   final List<PaymentData>? cards;
   final Course selectedCourse;
 
@@ -48,10 +48,8 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
               ),
               const SizedBox(height: 32),
               viewModel.isBusy
-                  ? const Expanded(
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
+                  ? const MyCircularProgressBar(
+                      indicatorColor: Colors.orange,
                     )
                   : Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 6.0),
@@ -74,8 +72,7 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
                                 padding: const EdgeInsets.all(16.0),
                                 child: Row(
                                   children: [
-                                    Icon(Icons.add,
-                                        size: 40.0, color: Colors.grey[600]),
+                                    Icon(Icons.add, size: 40.0, color: Colors.grey[600]),
                                     const SizedBox(width: 16),
                                     const Expanded(
                                       child: Text(
@@ -101,9 +98,7 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
                 alignment: Alignment.bottomCenter,
                 child: Container(
                     margin: const EdgeInsets.all(16.0),
-                    child: MyButton(
-                        title: 'Continue',
-                        onTap: () => viewModel.proceed(selectedCourse))),
+                    child: MyButton(title: 'Continue', onTap: () => viewModel.proceed(selectedCourse))),
               )
             ],
           ),

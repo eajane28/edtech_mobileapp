@@ -12,6 +12,7 @@ import '../../../model/lesson_topics.dart';
 // import '../widgets/options.dart';
 // import '../widgets/button.dart';
 import '../../../model/user.dart';
+import '../widgets/my_circular_progress_bar.dart';
 import 'test_question_viewmodel.dart';
 
 // ignore: must_be_immutable
@@ -36,7 +37,9 @@ class TestQuestionView extends StackedView<TestQuestionViewModel> {
             children: [
               MyAppBar(title: '', onTap: viewModel.back),
               viewModel.isBusy
-                  ? const Expanded(child: Center(child: CircularProgressIndicator()))
+                  ? const MyCircularProgressBar(
+                      indicatorColor: Colors.orange,
+                    )
                   : Expanded(
                       child: PageView(
                         controller: viewModel.pageController,

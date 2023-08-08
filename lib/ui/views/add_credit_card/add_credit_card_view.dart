@@ -169,7 +169,9 @@ class AddCreditCardView extends StackedView<AddCreditCardViewModel>
                         margin: const EdgeInsets.all(16.0),
                         child: MyWidgetButton(
                             title: viewModel.isBusy
-                                ? const MyCircularProgressBar()
+                                ? const MyCircularProgressBar(
+                                    indicatorColor: Colors.orange,
+                                )
                                 : const Text(
                                     'Save',
                                     textAlign: TextAlign.center,

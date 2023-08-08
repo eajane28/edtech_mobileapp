@@ -9,11 +9,11 @@ import 'package:edtech_mobile/ui/views/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../widgets/my_circular_progress_bar.dart';
 import 'courses_viewmodel.dart';
 
 class CoursesView extends StackedView<CoursesViewModel> {
-  CoursesView({Key? key, required this.onBackPressed, required this.user})
-      : super(key: key);
+  CoursesView({Key? key, required this.onBackPressed, required this.user}) : super(key: key);
 
   final void Function() onBackPressed;
   final User user;
@@ -26,12 +26,11 @@ class CoursesView extends StackedView<CoursesViewModel> {
     Widget? child,
   ) {
     return viewModel.isBusy
-        ? const Center(
-            child: CircularProgressIndicator(),
+        ? const MyCircularProgressBar(
+            indicatorColor: Colors.orange,
           )
         : Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Column(
               children: [
                 Row(
@@ -42,13 +41,11 @@ class CoursesView extends StackedView<CoursesViewModel> {
                       children: [
                         const Text(
                           'Hello,',
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w400),
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                         ),
                         Text(
                           user.name,
-                          style: const TextStyle(
-                              fontSize: 32, fontWeight: FontWeight.w700),
+                          style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
                         ),
                       ],
                     ),
@@ -93,8 +90,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
                       children: [
                         const Text(
                           'Category:',
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w400),
+                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                         ),
                         ListView.builder(
                           shrinkWrap: true,
@@ -108,8 +104,7 @@ class CoursesView extends StackedView<CoursesViewModel> {
                               onSelected: (isChecked, item) {
                                 if (!viewModel.selectedItems.contains(item)) {
                                   viewModel.selectedItems.add(item);
-                                } else if (viewModel.selectedItems
-                                    .contains(item)) {
+                                } else if (viewModel.selectedItems.contains(item)) {
                                   viewModel.selectedItems.remove(item);
                                 }
                                 viewModel.init();

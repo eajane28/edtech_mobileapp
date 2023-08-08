@@ -19,26 +19,34 @@ class YourCourseView extends StackedView<YourCourseViewModel> {
   ) {
     return SafeArea(
       child: Scaffold(
-        appBar: MyAppBar(title: 'Your Courses', onTap: viewModel.back), //put padding
-        body: Container(
-            height: screenHeight(context),
-            width: screenWidth(context),
+          body: Column(
+        children: [
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: viewModel.isBusy
-                ? const MyCircularProgressBar(
-                    indicatorColor: Colors.orange,
-                  )
-                : ListView.separated(
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) => YourCourseCard(
-                          card: viewModel.yourCourseList[index],
-                          onTap: (Course card) {
-                            viewModel.onTapToChooseLessonView(card);
-                          },
-                        ),
-                    separatorBuilder: (_, index) => verticalSpaceSmall,
-                    itemCount: viewModel.yourCourseList.length)),
-      ),
+            child: MyAppBar(title: 'Your Courses', onTap: viewModel.back),
+          ), //put padding
+          Expanded(
+            child: Container(
+                height: screenHeight(context),
+                width: screenWidth(context),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: viewModel.isBusy
+                    ? const MyCircularProgressBar(
+                        indicatorColor: Colors.orange,
+                      )
+                    : ListView.separated(
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, index) => YourCourseCard(
+                              card: viewModel.yourCourseList[index],
+                              onTap: (Course card) {
+                                viewModel.onTapToChooseLessonView(card);
+                              },
+                            ),
+                        separatorBuilder: (_, index) => verticalSpaceSmall,
+                        itemCount: viewModel.yourCourseList.length)),
+          ),
+        ],
+      )),
     );
   }
 

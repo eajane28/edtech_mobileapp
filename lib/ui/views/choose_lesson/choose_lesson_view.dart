@@ -36,7 +36,9 @@ class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
                           child: SingleChildScrollView(
                             physics: const BouncingScrollPhysics(),
                             child: viewModel.isBusy
-                                ?  const MyCircularProgressBar()
+                                ? const MyCircularProgressBar(
+                                    indicatorColor: Colors.orange,
+                                  )
                                 : Column(
                                     children: [
                                       Card(

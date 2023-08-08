@@ -6,6 +6,7 @@ import 'package:edtech_mobile/ui/views/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../widgets/my_circular_progress_bar.dart';
 import 'search_viewmodel.dart';
 
 class SearchView extends StackedView<SearchViewModel> {
@@ -32,9 +33,7 @@ class SearchView extends StackedView<SearchViewModel> {
                     children: [
                       MyBackButton(onTap: viewModel.backToHomeView),
                       const SizedBox(width: 8),
-                      Expanded(
-                          child: SearchBox(
-                              controller: viewModel.searchController)),
+                      Expanded(child: SearchBox(controller: viewModel.searchController)),
                     ],
                   ),
                 ],
@@ -46,18 +45,13 @@ class SearchView extends StackedView<SearchViewModel> {
                 alignment: Alignment.topLeft,
                 child: Text(
                   '${viewModel.searchList.length} Results',
-                  style: const TextStyle(
-                      fontSize: 24, fontWeight: FontWeight.w500),
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
                 ),
               ),
             ),
             viewModel.isBusy
-                ? const Expanded(
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        color: Colors.orange,
-                      ),
-                    ),
+                ? const MyCircularProgressBar(
+                    indicatorColor: Colors.orange,
                   )
                 : viewModel.searchList.isEmpty
                     ? const Expanded(
@@ -65,8 +59,7 @@ class SearchView extends StackedView<SearchViewModel> {
                           child: Display(
                               image: 'assets/Cool Kids Standing.png',
                               title: ' Course not found',
-                              subtitle:
-                                  'Try searching the course with a different keyword'),
+                              subtitle: 'Try searching the course with a different keyword'),
                         ),
                       )
                     : Expanded(

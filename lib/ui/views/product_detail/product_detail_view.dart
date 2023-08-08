@@ -154,7 +154,9 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                   Expanded(
                       child: MyWidgetButton(
                     title: viewModel.isBusy
-                        ? const MyCircularProgressBar()
+                        ? const MyCircularProgressBar(
+                            indicatorColor: Colors.orange,
+                          )
                         : const Text(
                             'Purchase',
                             textAlign: TextAlign.center,

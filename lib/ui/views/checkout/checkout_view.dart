@@ -12,9 +12,7 @@ import 'package:stacked/stacked.dart';
 import 'checkout_viewmodel.dart';
 
 class CheckoutView extends StackedView<CheckoutViewModel> {
-  const CheckoutView(
-      {Key? key, required this.selectedCourse, required this.selectedPayment})
-      : super(key: key);
+  const CheckoutView({Key? key, required this.selectedCourse, required this.selectedPayment}) : super(key: key);
   final Course selectedCourse;
   final PaymentData selectedPayment;
 
@@ -41,10 +39,8 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                     CachedNetworkImage(
                         imageUrl: selectedCourse.image,
                         fit: BoxFit.cover,
-                        placeholder: (context, url) =>
-                            const Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) =>
-                            const Center(child: Icon(Icons.error)),
+                        placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
                         fadeInDuration: const Duration(milliseconds: 800),
                         width: 169,
                         height: 122),
@@ -113,7 +109,9 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                   margin: const EdgeInsets.all(16.0),
                   child: MyWidgetButton(
                       title: viewModel.isBusy
-                          ? const MyCircularProgressBar()
+                          ? const MyCircularProgressBar(
+                              indicatorColor: Colors.orange,
+                            )
                           : Text(
                               'Confirm Payment \$${selectedCourse.price}',
                               textAlign: TextAlign.center,
@@ -123,9 +121,7 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                                 color: Color(0xFFFFFFFF),
                               ),
                             ),
-                      onTap: viewModel.isBusy
-                          ? null
-                          : () => viewModel.confirm(selectedCourse)),
+                      onTap: viewModel.isBusy ? null : () => viewModel.confirm(selectedCourse)),
                 ),
               )
             ],

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
 
+import '../widgets/my_circular_progress_bar.dart';
 import 'home_viewmodel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
@@ -20,10 +21,8 @@ class HomeView extends StackedView<HomeViewModel> {
     return Scaffold(
       body: SafeArea(
         child: viewModel.isBusy
-            ? const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.orange,
-                ),
+            ? const MyCircularProgressBar(
+                indicatorColor: Colors.orange,
               )
             : PageView(
                 physics: const BouncingScrollPhysics(),
@@ -56,25 +55,22 @@ class HomeView extends StackedView<HomeViewModel> {
             BottomNavigationBarItem(
               label: "Courses",
               icon: SvgPicture.asset(SvgIcons.courses,
-                  colorFilter: ColorFilter.mode(
-                      viewModel.selectedIndex == 0 ? Colors.red : Colors.grey,
-                      BlendMode.srcIn),
+                  colorFilter:
+                      ColorFilter.mode(viewModel.selectedIndex == 0 ? Colors.red : Colors.grey, BlendMode.srcIn),
                   width: 20),
             ),
             BottomNavigationBarItem(
               label: "Profile",
               icon: SvgPicture.asset(SvgIcons.profile,
-                  colorFilter: ColorFilter.mode(
-                      viewModel.selectedIndex == 1 ? Colors.red : Colors.grey,
-                      BlendMode.srcIn),
+                  colorFilter:
+                      ColorFilter.mode(viewModel.selectedIndex == 1 ? Colors.red : Colors.grey, BlendMode.srcIn),
                   width: 20),
             ),
             BottomNavigationBarItem(
               label: "Settings",
               icon: SvgPicture.asset(SvgIcons.wheel,
-                  colorFilter: ColorFilter.mode(
-                      viewModel.selectedIndex == 2 ? Colors.red : Colors.grey,
-                      BlendMode.srcIn),
+                  colorFilter:
+                      ColorFilter.mode(viewModel.selectedIndex == 2 ? Colors.red : Colors.grey, BlendMode.srcIn),
                   width: 20),
             ),
           ],
