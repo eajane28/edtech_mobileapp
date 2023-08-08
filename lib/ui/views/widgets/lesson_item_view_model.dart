@@ -19,14 +19,14 @@ class LessonItemViewModel extends BaseViewModel {
   void init(Course course, CourseTopics topic, List<CourseTopics> topics) async {
     setBusy(true);
     this.topics = topics;
-    await getQuestions(course.id, topic.id);
+    await getQuestions(course.id, topic.id!);
     await getProgress(course, topic);
     rebuildUi();
     setBusy(false);
   }
 
   Future<void> getProgress(Course course, CourseTopics topic) async {
-    final response = await _courseRepository.getProgress(courseId: course.id, topicId: topic.id);
+    final response = await _courseRepository.getProgress(courseId: course.id, topicId: topic.id!);
     response.fold((l) => progress = UserProgress(topicId: topic.id), (r) => progress = r);
   }
 

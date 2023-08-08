@@ -24,7 +24,7 @@ class LessonItem extends StackedView<LessonItemViewModel> {
         child: Row(
           children: [
             CachedNetworkImage(
-                imageUrl: topic.image,
+                imageUrl: topic.image!,
                 placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
                 fit: BoxFit.cover,
@@ -37,7 +37,7 @@ class LessonItem extends StackedView<LessonItemViewModel> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    topic.topic,
+                    topic.topic!,
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,

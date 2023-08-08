@@ -923,6 +923,31 @@ class MockAuthService extends _i1.Mock implements _i7.AuthService {
           ),
         )),
       ) as _i5.Future<_i2.Either<_i2.None<dynamic>, _i9.User>>);
+  @override
+  _i5.Future<_i2.Either<_i2.None<dynamic>, _i9.User>> facebookSignIn() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #facebookSignIn,
+          [],
+        ),
+        returnValue: _i5.Future<_i2.Either<_i2.None<dynamic>, _i9.User>>.value(
+            _FakeEither_0<_i2.None<dynamic>, _i9.User>(
+          this,
+          Invocation.method(
+            #facebookSignIn,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<_i2.Either<_i2.None<dynamic>, _i9.User>>.value(
+                _FakeEither_0<_i2.None<dynamic>, _i9.User>(
+          this,
+          Invocation.method(
+            #facebookSignIn,
+            [],
+          ),
+        )),
+      ) as _i5.Future<_i2.Either<_i2.None<dynamic>, _i9.User>>);
 }
 
 /// A class which mocks [LocalStorage].

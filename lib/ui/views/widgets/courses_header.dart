@@ -16,7 +16,7 @@ class Header extends ViewModelWidget<LessonViewModel> {
       children: [
         const SizedBox(height: 32),
         Text(
-          topic.topic,
+          topic.topic!,
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w600,

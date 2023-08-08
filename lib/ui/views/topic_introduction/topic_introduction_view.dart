@@ -34,7 +34,7 @@ class TopicIntroductionView extends StackedView<TopicIntroductionViewModel> {
             children: [
               viewModel.play == false
                   ? CachedNetworkImage(
-                      imageUrl: topic.image,
+                      imageUrl: topic.image!,
                       placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
                       errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
                       fadeInDuration: const Duration(milliseconds: 800),
@@ -82,7 +82,7 @@ class TopicIntroductionView extends StackedView<TopicIntroductionViewModel> {
                   ),
                   verticalSpaceSmall,
                   Text(
-                    topic.intro,
+                    topic.intro!,
                     textAlign: TextAlign.justify,
                     style: const TextStyle(
                       fontSize: 14,

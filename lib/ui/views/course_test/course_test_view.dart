@@ -26,7 +26,7 @@ class CourseTestView extends StackedView<CourseTestViewModel> {
         child: Column(
           children: [
             CachedNetworkImage(
-              imageUrl: topic.image,
+              imageUrl: topic.image!,
               placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
               errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
               fadeInDuration: const Duration(milliseconds: 800),
@@ -39,7 +39,7 @@ class CourseTestView extends StackedView<CourseTestViewModel> {
                   Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      topic.topic,
+                      topic.topic!,
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,

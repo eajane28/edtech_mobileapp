@@ -8,11 +8,11 @@ part of 'course_topics.dart';
 
 _$_CourseTopics _$$_CourseTopicsFromJson(Map<String, dynamic> json) =>
     _$_CourseTopics(
-      id: json['id'] as String,
-      image: json['image'] as String,
-      video: json['video'] as String,
-      intro: json['intro'] as String,
-      topic: json['topic'] as String,
+      id: json['id'] as String?,
+      image: json['image'] as String?,
+      video: json['video'] as String?,
+      intro: json['intro'] as String?,
+      topic: json['topic'] as String?,
       questions: (json['questions'] as List<dynamic>?)
               ?.map((e) =>
                   CourseTopicQuestions.fromJson(e as Map<String, dynamic>))

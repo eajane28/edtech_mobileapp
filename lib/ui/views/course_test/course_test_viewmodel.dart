@@ -21,7 +21,7 @@ class CourseTestViewModel extends BaseViewModel {
   }
 
   Future<void> getQuestions(Course course, CourseTopics topic) async {
-    final response = await _courseRepository.getMyCourseTopicQuestions(courseId: course.id, topicId: topic.id);
+    final response = await _courseRepository.getMyCourseTopicQuestions(courseId: course.id, topicId: topic.id!);
     response.fold((l) => _snackBarService.showSnackbar(message: l.message, duration: AppConstants.defDuration),
         (r) => quizList = r);
   }

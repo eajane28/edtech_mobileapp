@@ -29,7 +29,7 @@ class TestQuestionView extends StackedView<TestQuestionViewModel> {
   ) {
     return SafeArea(
       child: Scaffold(
-        appBar: MyAppBar(title: topic.topic, onTap: viewModel.back),
+        appBar: MyAppBar(title: topic.topic!, onTap: viewModel.back),
         body: PageView.builder(
           physics: const NeverScrollableScrollPhysics(),
           controller: viewModel.pageController,
@@ -101,7 +101,7 @@ class TestQuestionView extends StackedView<TestQuestionViewModel> {
                                 ? null
                                 : () {
                                   viewModel.check(question.answer!, choice, question.choices.indexOf(choice));
-                                  viewModel.proceed(index, questions.length, course, topic.id, progress);
+                                  viewModel.proceed(index, questions.length, course, topic.id!, progress);
                                 },
                             child: Options(
                               choice: choice,

@@ -20,11 +20,11 @@ CourseTopics _$CourseTopicsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CourseTopics {
-  String get id => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
-  String get video => throw _privateConstructorUsedError;
-  String get intro => throw _privateConstructorUsedError;
-  String get topic => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
+  String? get video => throw _privateConstructorUsedError;
+  String? get intro => throw _privateConstructorUsedError;
+  String? get topic => throw _privateConstructorUsedError;
   List<CourseTopicQuestions> get questions =>
       throw _privateConstructorUsedError;
 
@@ -41,11 +41,11 @@ abstract class $CourseTopicsCopyWith<$Res> {
       _$CourseTopicsCopyWithImpl<$Res, CourseTopics>;
   @useResult
   $Res call(
-      {String id,
-      String image,
-      String video,
-      String intro,
-      String topic,
+      {String? id,
+      String? image,
+      String? video,
+      String? intro,
+      String? topic,
       List<CourseTopicQuestions> questions});
 }
 
@@ -62,34 +62,34 @@ class _$CourseTopicsCopyWithImpl<$Res, $Val extends CourseTopics>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? image = null,
-    Object? video = null,
-    Object? intro = null,
-    Object? topic = null,
+    Object? id = freezed,
+    Object? image = freezed,
+    Object? video = freezed,
+    Object? intro = freezed,
+    Object? topic = freezed,
     Object? questions = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
+              as String?,
+      image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      video: null == video
+              as String?,
+      video: freezed == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
-              as String,
-      intro: null == intro
+              as String?,
+      intro: freezed == intro
           ? _value.intro
           : intro // ignore: cast_nullable_to_non_nullable
-              as String,
-      topic: null == topic
+              as String?,
+      topic: freezed == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       questions: null == questions
           ? _value.questions
           : questions // ignore: cast_nullable_to_non_nullable
@@ -107,11 +107,11 @@ abstract class _$$_CourseTopicsCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String image,
-      String video,
-      String intro,
-      String topic,
+      {String? id,
+      String? image,
+      String? video,
+      String? intro,
+      String? topic,
       List<CourseTopicQuestions> questions});
 }
 
@@ -126,34 +126,34 @@ class __$$_CourseTopicsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? image = null,
-    Object? video = null,
-    Object? intro = null,
-    Object? topic = null,
+    Object? id = freezed,
+    Object? image = freezed,
+    Object? video = freezed,
+    Object? intro = freezed,
+    Object? topic = freezed,
     Object? questions = null,
   }) {
     return _then(_$_CourseTopics(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
+              as String?,
+      image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      video: null == video
+              as String?,
+      video: freezed == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
-              as String,
-      intro: null == intro
+              as String?,
+      intro: freezed == intro
           ? _value.intro
           : intro // ignore: cast_nullable_to_non_nullable
-              as String,
-      topic: null == topic
+              as String?,
+      topic: freezed == topic
           ? _value.topic
           : topic // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       questions: null == questions
           ? _value._questions
           : questions // ignore: cast_nullable_to_non_nullable
@@ -178,15 +178,15 @@ class _$_CourseTopics implements _CourseTopics {
       _$$_CourseTopicsFromJson(json);
 
   @override
-  final String id;
+  final String? id;
   @override
-  final String image;
+  final String? image;
   @override
-  final String video;
+  final String? video;
   @override
-  final String intro;
+  final String? intro;
   @override
-  final String topic;
+  final String? topic;
   final List<CourseTopicQuestions> _questions;
   @override
   @JsonKey()
@@ -236,26 +236,26 @@ class _$_CourseTopics implements _CourseTopics {
 
 abstract class _CourseTopics implements CourseTopics {
   const factory _CourseTopics(
-      {required final String id,
-      required final String image,
-      required final String video,
-      required final String intro,
-      required final String topic,
+      {required final String? id,
+      required final String? image,
+      required final String? video,
+      required final String? intro,
+      required final String? topic,
       final List<CourseTopicQuestions> questions}) = _$_CourseTopics;
 
   factory _CourseTopics.fromJson(Map<String, dynamic> json) =
       _$_CourseTopics.fromJson;
 
   @override
-  String get id;
+  String? get id;
   @override
-  String get image;
+  String? get image;
   @override
-  String get video;
+  String? get video;
   @override
-  String get intro;
+  String? get intro;
   @override
-  String get topic;
+  String? get topic;
   @override
   List<CourseTopicQuestions> get questions;
   @override

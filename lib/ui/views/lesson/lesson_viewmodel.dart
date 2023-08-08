@@ -27,7 +27,7 @@ class LessonViewModel extends BaseViewModel {
   void loadingVideo() {
     setBusyForObject('video', true);
       youtubePlayerController = YoutubePlayerController(
-        initialVideoId: YoutubePlayer.convertUrlToId(topic.video)!,
+        initialVideoId: YoutubePlayer.convertUrlToId(topic.video!)!,
         flags: const YoutubePlayerFlags(
           controlsVisibleAtStart: false,
           autoPlay: false,
