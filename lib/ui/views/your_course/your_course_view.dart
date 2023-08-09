@@ -37,13 +37,13 @@ class YourCourseView extends StackedView<YourCourseViewModel> {
                     : ListView.separated(
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (context, index) => YourCourseCard(
-                              card: viewModel.yourCourseList[index],
+                              card: viewModel.yourCourseList![index],
                               onTap: (Course card) {
                                 viewModel.onTapToChooseLessonView(card);
                               },
                             ),
                         separatorBuilder: (_, index) => verticalSpaceSmall,
-                        itemCount: viewModel.yourCourseList.length)),
+                        itemCount: viewModel.yourCourseList!.length)),
           ),
         ],
       )),

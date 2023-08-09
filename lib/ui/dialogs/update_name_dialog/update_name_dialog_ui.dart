@@ -69,7 +69,7 @@ class UpdateNameDialogUi extends StackedView<UpdateNameDialogModel> with InputVa
                 controller: viewModel.currentNameField,
                 validator: (value) => notEmpty(value!) ? null : "Textfield should not be Empty!",
               ),
-              verticalSpaceMedium,
+              verticalSpaceSmall,
               MyTextField(
                 hintText: "Enter New Name",
                 controller: viewModel.updateNameField,
@@ -79,23 +79,23 @@ class UpdateNameDialogUi extends StackedView<UpdateNameDialogModel> with InputVa
               MyTextField(
                 hintText: "Enter Password",
                 controller: viewModel.currentPasswordField,
-                validator: (value) => notEmpty(value!) ? null : "Please Enter a Valid Password!!",
+                validator: (value) => notEmpty(value!) ? null : "Please Enter your Current Password!!",
               ),
-              verticalSpaceMedium,
-              MyTextField(
-                hintText: "Match Password",
-                controller: viewModel.matchPasswordField,
-                validator: (value) {
-                  if (notEmpty(value!)) {
-                    return passwordMatch(value, viewModel.currentPasswordField.text)
-                        ? null
-                        : "Please Enter the Correct Password!!";
-                  } else {
-                    return "Please Enter your Current Password!!";
-                  }
-                },
-              ),
-              verticalSpaceMedium,
+              // verticalSpaceMedium,
+              // MyTextField(
+              //   hintText: "Match Password",
+              //   controller: viewModel.matchPasswordField,
+              //   validator: (value) {
+              //     if (notEmpty(value!)) {
+              //       return passwordMatch(value, viewModel.currentPasswordField.text)
+              //           ? null
+              //           : "Please Enter the Correct Password!!";
+              //     } else {
+              //       return "Please Enter your Current Password!!";
+              //     }
+              //   },
+              // ),
+              verticalSpaceSmall,
               GestureDetector(
                 onTap: () {
                   if (_formKey.currentState!.validate()) {

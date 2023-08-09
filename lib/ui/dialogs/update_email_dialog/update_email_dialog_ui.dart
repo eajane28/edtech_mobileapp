@@ -29,107 +29,109 @@ class UpdateEmailDialogUi extends StackedView<UpdateEmailDialogModel> with Input
         child: Form(
           key: _formKey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        request.title!,
-                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
-                      ),
-                      verticalSpaceTiny
-                    ],
-                  ),
-                  Container(
-                    width: _graphicSize,
-                    height: _graphicSize,
-                    decoration: const BoxDecoration(
-                      color: Color(0xffF6E7B0),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(_graphicSize / 2),
-                      ),
-                    ),
-                    alignment: Alignment.center,
-                    child: const Text(
-                      '📧',
-                      style: TextStyle(fontSize: 30),
-                    ),
-                  )
-                ],
-              ),
-              verticalSpaceSmall,
-              MyTextField(
-                hintText: "Current Email",
-                controller: viewModel.currentEmailField,
-                validator: (value) => isEmailValid(value!) ? null : "Invalid Email",
-              ),
-              verticalSpaceMedium,
-              MyTextField(
-                hintText: "Enter New Email",
-                controller: viewModel.updateEmailField,
-                validator: (value) => isEmailValid(value!) ? null : "Invalid Email",
-              ),
-              verticalSpaceSmall,
-              MyTextField(
-                hintText: "Enter Password",
-                controller: viewModel.currentPasswordField,
-                validator: (value) => notEmpty(value!) ? null : "Please Enter a Valid Password!!",
-              ),
-              verticalSpaceMedium,
-              MyTextField(
-                hintText: "Match Password",
-                controller: viewModel.matchPasswordField,
-                validator: (value) {
-                  if (notEmpty(value!)) {
-                    return passwordMatch(value, viewModel.currentPasswordField.text)
-                        ? null
-                        : "Please Enter the Correct Password!!";
-                  } else {
-                    return "Please Enter your Current Password!!";
-                  }
-                },
-              ),
-              verticalSpaceMedium,
-              GestureDetector(
-                onTap: () {
-                  if (_formKey.currentState!.validate()) {
-                    viewModel.updateEmail();
-                  } else {
-                    viewModel.snackbarService
-                        .showSnackbar(message: "Make sure your passwords matched nor neither of the page is empty.");
-                  }
-                },
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: viewModel.isBusy
-                      ? const Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                          ),
-                        )
-                      : const Text(
-                          'Change',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
+          child: Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          request.title!,
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
                         ),
+                        verticalSpaceTiny
+                      ],
+                    ),
+                    Container(
+                      width: _graphicSize,
+                      height: _graphicSize,
+                      decoration: const BoxDecoration(
+                        color: Color(0xffF6E7B0),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(_graphicSize / 2),
+                        ),
+                      ),
+                      alignment: Alignment.center,
+                      child: const Text(
+                        '📧',
+                        style: TextStyle(fontSize: 30),
+                      ),
+                    )
+                  ],
                 ),
-              )
-            ],
+                verticalSpaceSmall,
+                MyTextField(
+                  hintText: "Current Email",
+                  controller: viewModel.currentEmailField,
+                  validator: (value) => isEmailValid(value!) ? null : "Invalid Email",
+                ),
+                verticalSpaceSmall,
+                MyTextField(
+                  hintText: "Enter New Email",
+                  controller: viewModel.updateEmailField,
+                  validator: (value) => isEmailValid(value!) ? null : "Invalid Email",
+                ),
+                verticalSpaceSmall,
+                MyTextField(
+                  hintText: "Enter Password",
+                  controller: viewModel.currentPasswordField,
+                  validator: (value) => notEmpty(value!) ? null : "Please Enter a Valid Password!!",
+                ),
+                // verticalSpaceSmall,
+                // MyTextField(
+                //   hintText: "Match Password",
+                //   controller: viewModel.matchPasswordField,
+                //   validator: (value) {
+                //     if (notEmpty(value!)) {
+                //       return passwordMatch(value, viewModel.currentPasswordField.text)
+                //           ? null
+                //           : "Please Enter the Correct Password!!";
+                //     } else {
+                //       return "Please Enter your Current Password!!";
+                //     }
+                //   },
+                // ),
+                verticalSpaceSmall,
+                GestureDetector(
+                  onTap: () {
+                    if (_formKey.currentState!.validate()) {
+                      viewModel.updateEmail();
+                    } else {
+                      viewModel.snackbarService
+                          .showSnackbar(message: "Make sure your passwords matched nor neither of the page is empty.");
+                    }
+                  },
+                  child: Container(
+                    height: 50,
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: viewModel.isBusy
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
+                          )
+                        : const Text(
+                            'Change',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

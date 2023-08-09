@@ -21,5 +21,5 @@ abstract interface class AuthService {
 
   Future<Either<AppException, None>> updateEmail(String currentPassword, String currentEmail, String email);
 
-  Future<Either<AppException, User?>> getLastUpdatedEmail(String uid);
+  // Future<Either<AppException, User?>> getLastUpdatedEmail(String uid);
 }

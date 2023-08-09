@@ -11,7 +11,6 @@ import '../../../model/user.dart';
 import '../../../services/local_storage.dart';
 import '../../common/constants.dart';
 
-// import '../../../model/card_data.dart';
 
 class ProductDetailViewModel extends BaseViewModel {
   ProductDetailViewModel({required this.course});
@@ -30,28 +29,12 @@ class ProductDetailViewModel extends BaseViewModel {
     final response = await _paymentRepository.getPaymentMethods();
     response.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => paymentMethods = r);
     setBusy(false);
-    // setBusyForObject('video', true);
-    // if (course.video != null) {
-    //   youtubePlayerController = YoutubePlayerController(
-    //     initialVideoId: YoutubePlayer.convertUrlToId(course.video!)!,
-    //     flags: const YoutubePlayerFlags(
-    //       controlsVisibleAtStart: false,
-    //       autoPlay: false,
-    //       mute: false,
-    //     ),
-    //   );
-    // }
-    // setBusyForObject('video', false);
   }
 
   Future<void> getUser() async {
     final response = await _localStorage.getCurrentUser();
     response.fold(
         (l) => _snackBarService.showSnackbar(message: l.message, duration: AppConstants.defDuration), (r) => user = r!);
-  }
-
-  void addToCart(course) {
-    _navigationService.navigateToNoPaymentView(course: course);
   }
 
   void purchaseCourse(course) async {

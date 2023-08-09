@@ -5,9 +5,7 @@ import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 import 'package:edtech_mobile/ui/views/widgets/button.dart';
 import 'package:edtech_mobile/ui/views/widgets/my_circular_progress_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:stacked/stacked.dart';
-// import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import 'product_detail_viewmodel.dart';
 
@@ -26,11 +24,6 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          // child: YoutubePlayerBuilder(
-          //   player: YoutubePlayer(
-          //     controller: viewModel.youtubePlayerController,
-          //     showVideoProgressIndicator: true,
-          //   ),
           child: Column(
             children: [
               MyAppBar(title: course.title, onTap: viewModel.backToHomeView),
@@ -44,22 +37,12 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                           child: Column(
                             children: [
-                              // Image.network(course.image),
-                              // course.video == null
-                              //     ?
                               CachedNetworkImage(
                                 imageUrl: course.image,
                                 placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
                                 errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
                                 fadeInDuration: const Duration(milliseconds: 800),
                               ),
-                              // : SizedBox(
-                              //     width: 512,
-                              //     height: 360,
-                              //     child: AspectRatio(
-                              //       aspectRatio: 16 / 19,
-                              //       child: player,
-                              //     )),
                               const SizedBox(height: 16),
                               Align(
                                 alignment: Alignment.bottomRight,
@@ -132,50 +115,37 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                             ],
                           ),
                         ),
-                        // Expanded(child: Container()),
                       ],
                     ),
                   ),
                 ),
               ),
-              Row(
-                children: [
-                  MyWidgetButton(
-                    onTap: () => viewModel.addToCart(course),
-                    color: Colors.transparent,
-                    title: const Icon(
-                      MaterialCommunityIcons.cart_outline,
-                      size: 40,
-                      color: Colors.orange,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: MyWidgetButton(
+                    title: const Text(
+                      'Purchase',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xFFFFFFFF),
+                      ),
                     ),
-                    width: 40,
-                  ),
-                  horizontalSpaceMedium,
-                  Expanded(
-                      child: MyWidgetButton(
-                    title: viewModel.isBusy
+                    onTap: () {
+                      viewModel.purchaseCourse(course);
+                      viewModel.isBusy
                         ? const MyCircularProgressBar(
                             indicatorColor: Colors.orange,
                           )
-                        : const Text(
-                            'Purchase',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFFFFFFFF),
-                            ),
-                          ),
-                    onTap: () => viewModel.purchaseCourse(course),
-                  )),
-                ],
+                        : null;
+                    }),
               ),
             ],
           ),
         ),
       ),
     );
-    // );
   }
 
   @override

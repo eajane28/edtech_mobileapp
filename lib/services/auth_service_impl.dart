@@ -164,7 +164,7 @@ class AuthServiceImpl implements AuthService {
           // await Future.wait([
           await _auth.currentUser!.updateEmail(newEmail);
           await db.collection(FirebaseConstants.userCollection).doc(r.id).set(
-              {"lastUpdatedEmail": newEmail},
+              {"email": newEmail},
               SetOptions(merge: true));
           await logout();
           // ]);
@@ -178,17 +178,17 @@ class AuthServiceImpl implements AuthService {
     }
   }
 
-  @override
-  Future<Either<AppException, User?>> getLastUpdatedEmail(
-      String uid) async {
-    try {
-      return await db
-          .collection(FirebaseConstants.userCollection)
-          .doc(uid)
-          .get()
-          .then((value) => Right(value.data()!['lastUpdatedEmail']));
-    } on FirebaseException catch (e) {
-      return Left(AppException(e.message!));
-    }
-  }
+  // @override
+  // Future<Either<AppException, User?>> getLastUpdatedEmail(
+  //     String uid) async {
+  //   try {
+  //     return await db
+  //         .collection(FirebaseConstants.userCollection)
+  //         .doc(uid)
+  //         .get()
+  //         .then((value) => Right(value.data()!['lastUpdatedEmail']));
+  //   } on FirebaseException catch (e) {
+  //     return Left(AppException(e.message!));
+  //   }
+  // }
 }

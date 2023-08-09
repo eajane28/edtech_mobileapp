@@ -36,6 +36,9 @@ class CourseRepositoryImpl implements CourseRepository {
   @override
   Future<Either<AppException, List<Course>>> getMyCourses(List<String> coursesList) async {
     try {
+      if(coursesList.isEmpty){
+        return const Right([]);
+      }
       return Right(await db
           .collection(FirebaseConstants.listOfCourses)
           .where('id', whereIn: coursesList)

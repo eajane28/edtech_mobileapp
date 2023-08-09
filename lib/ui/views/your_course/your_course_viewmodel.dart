@@ -13,7 +13,7 @@ class YourCourseViewModel extends BaseViewModel {
   final _courseRepository = locator<CourseRepository>();
   final _snackBarService = locator<SnackbarService>();
   List<String> purchasedCoursesIds = [];
-  List<Course> yourCourseList = [];
+  List<Course>? yourCourseList = [];
 
   void init() async {
     setBusy(true);

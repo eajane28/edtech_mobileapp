@@ -24,7 +24,7 @@ class UpdateNameDialogModel extends BaseViewModel {
     response.fold((l) => snackbarService.showSnackbar(message: l.message), (r) {
       _navigatorService.replaceWithLoginView();
       snackbarService.showSnackbar(
-          message: "Name Successfully Change!/nTry to login",
+          message: "Name Successfully Change!\nTry to login",
           duration: const Duration(seconds: 2));
     });
     setBusy(false);
