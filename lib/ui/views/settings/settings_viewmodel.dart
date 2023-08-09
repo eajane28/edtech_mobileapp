@@ -19,6 +19,7 @@ class SettingsViewModel extends BaseViewModel {
   final _snackbarService = locator<SnackbarService>();
   List settingsInfoList = [];
   DateTime? lastUpdatedPasswod;
+  String? lastUpdatedEmail;
   User? user;
   void init() async {
     setBusy(true);
@@ -32,17 +33,23 @@ class SettingsViewModel extends BaseViewModel {
         (l) => _snackbarService.showSnackbar(message: l.message),
         (r) => lastUpdatedPasswod = r?.toDate());
 
+        final getLastUpdatedEmailResponse =
+        await _authService.getLastUpdatedEmail(user!.id!);
+    getLastUpdatedEmailResponse.fold(
+        (l) => _snackbarService.showSnackbar(message: l.message),
+        (r) => lastUpdatedEmail = r?.toString());
+
     settingsInfoList = [
       SettingsData(
           iconPath: SvgIcons.profile,
           title: 'Name',
           user: user!.name,
-          onPressed: null),
+          onPressed: showUpdateNamePopup),
       SettingsData(
           iconPath: SvgIcons.email,
           title: 'Email',
           user: user!.email,
-          onPressed: null),
+          onPressed: showUpdateEmailPopup),
       SettingsData(
           iconPath: SvgIcons.password,
           title: 'Password',
@@ -72,6 +79,22 @@ class SettingsViewModel extends BaseViewModel {
     await _dialogService.showCustomDialog(
       title: "Change Password",
       variant: DialogType.updatePasswordDialogUi,
+      description: "",
+    );
+  }
+
+  void showUpdateEmailPopup() async {
+    await _dialogService.showCustomDialog(
+      title: "Change Email",
+      variant: DialogType.updateEmailDialogUi,
+      description: "",
+    );
+  }
+
+  void showUpdateNamePopup() async {
+    await _dialogService.showCustomDialog(
+      title: "Change Name",
+      variant: DialogType.updateNameDialogUi,
       description: "",
     );
   }

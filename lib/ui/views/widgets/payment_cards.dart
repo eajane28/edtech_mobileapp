@@ -25,7 +25,7 @@ class PaymentItem extends StatelessWidget {
       onTap: index == null ? null : () => onPressed!(card),
       child: Card(
         color: Colors.white,
-        margin: const EdgeInsets.symmetric(vertical: 8.0),
+        margin: const EdgeInsets.all(8.0),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Row(

@@ -7,17 +7,19 @@ abstract interface class AuthService {
   Future<Either<AppException, None>> signUpWithEmail(
       {required String name, required String email, required String password});
 
-  Future<Either<AppException, User>> login(
-      {required String email, required String password});
+  Future<Either<AppException, User>> login({required String email, required String password});
 
   Future<void> logout();
 
   Future<Either<AppException, None>> forgetPassword({required String email});
 
-  Future<Either<AppException, None>> updatePassword(
-      String currentPassword, String password);
+  Future<Either<AppException, None>> updatePassword(String currentPassword, String password);
 
   Future<Either<AppException, Timestamp?>> getLastUpdatedPassword(String uid);
 
   Future<Either<AppException, User>> getCurrentUserData();
+
+  Future<Either<AppException, None>> updateEmail(String currentPassword, String currentEmail, String email);
+
+  Future<Either<AppException, User?>> getLastUpdatedEmail(String uid);
 }

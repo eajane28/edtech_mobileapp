@@ -31,7 +31,7 @@ class ChooseLessonView extends StackedView<ChooseLessonViewModel> {
                 ),
                 builder: (context, player) => Column(
                       children: [
-                        MyAppBar(title: course.title, onTap: viewModel.backToYourCourses),
+                        MyAppBar(title: course.title, onTap: viewModel.back),
                         Expanded(
                           child: SingleChildScrollView(
                             physics: const BouncingScrollPhysics(),

@@ -153,4 +153,42 @@ class AuthServiceImpl implements AuthService {
       return Left(AppException(AppConstants.myErrorMessage));
     }
   }
+
+  @override
+  Future<Either<AppException, None>> updateEmail(String currentPassword, String currentEmail, String newEmail)async {
+    try {
+      var response = await login(
+          email: currentEmail, password: currentPassword);
+      return response.fold((l) => Left(AppException(l.message)), (r) async {
+        try {
+          // await Future.wait([
+          await _auth.currentUser!.updateEmail(newEmail);
+          await db.collection(FirebaseConstants.userCollection).doc(r.id).set(
+              {"lastUpdatedEmail": newEmail},
+              SetOptions(merge: true));
+          await logout();
+          // ]);
+          return const Right(None());
+        } catch (e) {
+          return Left(AppException(e.toString()));
+        }
+      });
+    } catch (e) {
+      return Left(AppException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<AppException, User?>> getLastUpdatedEmail(
+      String uid) async {
+    try {
+      return await db
+          .collection(FirebaseConstants.userCollection)
+          .doc(uid)
+          .get()
+          .then((value) => Right(value.data()!['lastUpdatedEmail']));
+    } on FirebaseException catch (e) {
+      return Left(AppException(e.message!));
+    }
+  }
 }

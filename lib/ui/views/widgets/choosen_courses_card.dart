@@ -56,9 +56,7 @@ class LessonItem extends StackedView<LessonItemViewModel> {
                         width: double.infinity,
                         child: LinearProgressIndicator(
                           color: Colors.blue,
-                          value: viewModel.progress.answered == 0
-                                ? 0
-                                : viewModel.progress.answered / viewModel.questions.length,
+                          value: viewModel.getTopicProgress(),
                           minHeight: 8,
                           // borderRadius: BorderRadius.circular(12),
                         ),

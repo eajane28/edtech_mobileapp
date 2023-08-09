@@ -35,14 +35,15 @@ class CoursesViewModel extends BaseViewModel {
   void getCourses() async {
     setBusyForObject('courses', true);
     await _repository.getCourses(searchController.text, selectedItems).then((value) {
-      if (selectedItems.isEmpty) {
-        cardList = value;
-      } else if (selectedItems.isNotEmpty) {
-        cardList = value;
-      } else {
-        cardList = [];
-      }
-    });
+    //   if (selectedItems.isEmpty) {
+    //     cardList = value;
+    //   } else if (selectedItems.isNotEmpty) {
+    //     cardList = value;
+    //   } else {
+    //     cardList = [];
+    //   }
+    cardList = value;
+  });
     setBusyForObject('courses', false);
   }
 

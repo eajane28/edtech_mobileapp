@@ -30,13 +30,11 @@ class _OptionsState extends State<Options> {
         margin: const EdgeInsets.symmetric(vertical: 8.0),
         child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-            child: Row(
-              children: [
-                Text(
-                  widget.choice,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Color(0xFF3C3A36)),
-                ),
-              ],
+            child: Expanded(
+              child: Text(
+                widget.choice,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Color(0xFF3C3A36)),
+              ),
             )),
       ),
     );

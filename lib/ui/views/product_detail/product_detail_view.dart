@@ -166,7 +166,7 @@ class ProductDetailView extends StackedView<ProductDetailViewModel> {
                               color: Color(0xFFFFFFFF),
                             ),
                           ),
-                    onTap: () => viewModel.purchaseCourse(context, course),
+                    onTap: () => viewModel.purchaseCourse(course),
                   )),
                 ],
               ),

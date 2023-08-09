@@ -54,7 +54,7 @@ class ProductDetailViewModel extends BaseViewModel {
     _navigationService.navigateToNoPaymentView(course: course);
   }
 
-  void purchaseCourse(context, course) async {
+  void purchaseCourse(course) async {
     setBusyForObject("purchase", true);
     paymentMethods.isEmpty
         ? _navigationService.navigateToNoPaymentView(course: course)

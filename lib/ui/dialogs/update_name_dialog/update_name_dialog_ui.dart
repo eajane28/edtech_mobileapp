@@ -1,6 +1,6 @@
 import 'package:edtech_mobile/ui/common/input_validation_mixin.dart';
 import 'package:edtech_mobile/ui/common/ui_helpers.dart';
-import 'package:edtech_mobile/ui/dialogs/update_password_dialog/update_password_dialog_view_model.dart';
+import 'package:edtech_mobile/ui/dialogs/update_name_dialog/update_name_dialog_view_model.dart';
 import 'package:edtech_mobile/ui/views/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -8,9 +8,8 @@ import 'package:stacked_services/stacked_services.dart';
 
 const double _graphicSize = 60;
 
-class UpdatePasswordDialogUi extends StackedView<UpdatePasswordDialogModel>
-    with InputValidationMixin {
-  UpdatePasswordDialogUi({
+class UpdateNameDialogUi extends StackedView<UpdateNameDialogModel> with InputValidationMixin {
+  UpdateNameDialogUi({
     super.key,
     required this.request,
     required this.completer,
@@ -21,8 +20,7 @@ class UpdatePasswordDialogUi extends StackedView<UpdatePasswordDialogModel>
   final _formKey = GlobalKey<FormState>();
 
   @override
-  Widget builder(BuildContext context, UpdatePasswordDialogModel viewModel,
-      Widget? child) {
+  Widget builder(BuildContext context, UpdateNameDialogModel viewModel, Widget? child) {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       backgroundColor: Colors.white,
@@ -43,8 +41,7 @@ class UpdatePasswordDialogUi extends StackedView<UpdatePasswordDialogModel>
                     children: [
                       Text(
                         request.title!,
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w900),
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
                       ),
                       verticalSpaceTiny
                     ],
@@ -60,7 +57,7 @@ class UpdatePasswordDialogUi extends StackedView<UpdatePasswordDialogModel>
                     ),
                     alignment: Alignment.center,
                     child: const Text(
-                      '🔐',
+                      '🧑',
                       style: TextStyle(fontSize: 30),
                     ),
                   )
@@ -68,38 +65,33 @@ class UpdatePasswordDialogUi extends StackedView<UpdatePasswordDialogModel>
               ),
               verticalSpaceSmall,
               MyTextField(
-                hintText: "Current Password",
-                controller: viewModel.currentPasswordField,
-                validator: (value) =>
-                    notEmpty(value!) ? null : "Walay sud. Di sabot ui!!",
+                hintText: "Current Name",
+                controller: viewModel.currentNameField,
+                validator: (value) => notEmpty(value!) ? null : "Textfield should not be Empty!",
               ),
               verticalSpaceMedium,
               MyTextField(
-                hintText: "Enter New Password",
-                controller: viewModel.updatePasswordField,
-                validator: (value) {
-                  if (notEmpty(value!)) {
-                    return passwordMatch(
-                            value, viewModel.matchPasswordField.text)
-                        ? null
-                        : "Di mao. Taka lamnang ka!!";
-                  } else {
-                    return "Walay sud. Di sabot ui!!";
-                  }
-                },
+                hintText: "Enter New Name",
+                controller: viewModel.updateNameField,
+                validator: (value) => isEmailValid(value!) ? null : "Textfield should not be Empty!",
               ),
               verticalSpaceSmall,
+              MyTextField(
+                hintText: "Enter Password",
+                controller: viewModel.currentPasswordField,
+                validator: (value) => notEmpty(value!) ? null : "Please Enter a Valid Password!!",
+              ),
+              verticalSpaceMedium,
               MyTextField(
                 hintText: "Match Password",
                 controller: viewModel.matchPasswordField,
                 validator: (value) {
                   if (notEmpty(value!)) {
-                    return passwordMatch(
-                            value, viewModel.updatePasswordField.text)
+                    return passwordMatch(value, viewModel.currentPasswordField.text)
                         ? null
-                        : "Di mao. Taka lamnang ka!!";
+                        : "Please Enter the Correct Password!!";
                   } else {
-                    return "Walay sud. Di sabot ui!!";
+                    return "Please Enter your Current Password!!";
                   }
                 },
               ),
@@ -107,11 +99,10 @@ class UpdatePasswordDialogUi extends StackedView<UpdatePasswordDialogModel>
               GestureDetector(
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
-                    viewModel.updatePassword();
+                    viewModel.updateName();
                   } else {
-                    viewModel.snackbarService.showSnackbar(
-                        message:
-                            "Make sure your passwords matched nor neither of the page is empty.");
+                    viewModel.snackbarService
+                        .showSnackbar(message: "Make sure your passwords matched nor neither of the page is empty.");
                   }
                 },
                 child: Container(
@@ -146,8 +137,8 @@ class UpdatePasswordDialogUi extends StackedView<UpdatePasswordDialogModel>
   }
 
   @override
-  UpdatePasswordDialogModel viewModelBuilder(BuildContext context) {
-    return UpdatePasswordDialogModel();
+  UpdateNameDialogModel viewModelBuilder(BuildContext context) {
+    return UpdateNameDialogModel();
   }
 
   @override

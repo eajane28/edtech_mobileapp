@@ -12,6 +12,7 @@ import '../../../model/quiz_data.dart';
 
 class LessonItemViewModel extends BaseViewModel {
   LessonItemViewModel({required this.course, required this.topic});
+
   final _courseRepository = locator<CourseRepository>();
   final _snackBarService = locator<SnackbarService>();
   final _navigationService = locator<NavigationService>();
@@ -31,24 +32,35 @@ class LessonItemViewModel extends BaseViewModel {
   }
 
   Future<void> getProgress(Course course, Topics topic) async {
-    final response = await _courseRepository.getProgress(courseId: course.id, topicId: topic.id);
-    response.fold((l) => progress = UserProgress(topicId: topic.id), (r) => progress = r);
+    final response = await _courseRepository.getProgress(
+        courseId: course.id, topicId: topic.id);
+    response.fold(
+        (l) => progress = UserProgress(topicId: topic.id), (r) => progress = r);
   }
 
   Future<void> getQuestions(String courseId, String topicId) async {
-    final response = await _courseRepository.getCards(courseId: courseId, topicId: topicId);
-    response.fold((l) => _snackBarService.showSnackbar(message: l.message, duration: AppConstants.defDuration),
+    final response =
+        await _courseRepository.getCards(courseId: courseId, topicId: topicId);
+    response.fold(
+        (l) => _snackBarService.showSnackbar(
+            message: l.message, duration: AppConstants.defDuration),
         (r) => questions = r);
   }
 
   Future<void> getTopics() async {
     setBusy(true);
     final result = await _courseRepository.getTopics(course.id);
-    result.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => topics = r);
+    result.fold((l) => _snackBarService.showSnackbar(message: l.message),
+        (r) => topics = r);
     setBusy(false);
   }
 
   void navigateToTopic() async {
-    await _navigationService.navigateToLessonView(course: course, topic: topic, progress: progress, topics: topics!);
+    await _navigationService.navigateToLessonView(
+        course: course, topic: topic, progress: progress, topics: topics!);
+  }
+
+  double getTopicProgress() {
+    return progress.answered == 0 ? 0 : progress.answered / questions.length;
   }
 }

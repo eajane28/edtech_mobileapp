@@ -1,5 +1,3 @@
-// import 'package:edtech_mobile/model/chosen_course_data.dart';
-import 'package:edtech_mobile/app/app.router.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -50,7 +48,7 @@ class ChooseLessonViewModel extends BaseViewModel {
   //   _navigationService.navigateToLessonView(topic: topic, course: course, topics: topics!, progress: progress);
   // }
 
-  void backToYourCourses() {
-    _navigationService.navigateToYourCourseView();
+  void back() {
+    _navigationService.back();
   }
 }

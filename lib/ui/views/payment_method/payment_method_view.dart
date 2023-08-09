@@ -1,6 +1,6 @@
 import 'package:edtech_mobile/model/courses.dart';
 import 'package:edtech_mobile/model/payment_data.dart';
-import 'package:edtech_mobile/ui/common/ui_helpers.dart';
+// import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/views/widgets/appbar.dart';
 // import 'package:edtech_mobile/ui/views/widgets/button.dart';
 import 'package:edtech_mobile/ui/views/widgets/payment_cards.dart';
@@ -22,38 +22,37 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
     PaymentMethodViewModel viewModel,
     Widget? child,
   ) {
-    return SafeArea(
-      bottom: false,
-      child: Scaffold(
-        appBar: CustomAppBar(
-          title: 'Payment',
-          onTap: viewModel.back,
-        ),
-        body: Container(
-          height: screenHeight(context),
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            children: [
-              const SizedBox(height: 24),
-              const Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'Choose your payment method',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xFF000000),
-                  ),
+    return Scaffold(
+        body: SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            CustomAppBar(
+              title: 'Payment',
+              onTap: viewModel.back,
+            ),
+            const SizedBox(height: 24),
+            const Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                'Choose your payment method',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF000000),
                 ),
               ),
-              const SizedBox(height: 32),
-              viewModel.isBusy
-                  ? const MyCircularProgressBar(
-                      indicatorColor: Colors.orange,
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                      child: Column(
+            ),
+            const SizedBox(height: 15),
+            Expanded(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: viewModel.isBusy
+                    ? const MyCircularProgressBar(
+                        indicatorColor: Colors.orange,
+                      )
+                    : Column(
                         children: [
                           for (var card in viewModel.paymentMethods!)
                             PaymentItem(
@@ -67,7 +66,7 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
                               viewModel.addNewCreditCard(selectedCourse);
                             },
                             child: Card(
-                              margin: const EdgeInsets.symmetric(vertical: 8.0),
+                              margin: const EdgeInsets.all(8.0),
                               child: Padding(
                                 padding: const EdgeInsets.all(16.0),
                                 child: Row(
@@ -89,22 +88,22 @@ class PaymentMethodView extends StackedView<PaymentMethodViewModel> {
                                 ),
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
-                    ),
-              Expanded(child: Container()),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                    margin: const EdgeInsets.all(16.0),
-                    child: MyButton(title: 'Continue', onTap: () => viewModel.proceed(selectedCourse))),
-              )
-            ],
-          ),
+              ),
+            ),
+            // Expanded(child: Container()),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                  margin: const EdgeInsets.all(16.0),
+                  child: MyButton(title: 'Continue', onTap: () => viewModel.proceed(selectedCourse))),
+            )
+          ],
         ),
       ),
-    );
+    ));
   }
 
   @override
