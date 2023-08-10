@@ -861,6 +861,115 @@ class MockAuthService extends _i1.Mock implements _i7.AuthService {
           ),
         )),
       ) as _i5.Future<_i2.Either<_i8.AppException, _i9.User>>);
+  @override
+  _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>> updateEmail(
+    String? currentPassword,
+    String? currentEmail,
+    String? email,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateEmail,
+          [
+            currentPassword,
+            currentEmail,
+            email,
+          ],
+        ),
+        returnValue:
+            _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>>.value(
+                _FakeEither_0<_i8.AppException, _i2.None<dynamic>>(
+          this,
+          Invocation.method(
+            #updateEmail,
+            [
+              currentPassword,
+              currentEmail,
+              email,
+            ],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>>.value(
+                _FakeEither_0<_i8.AppException, _i2.None<dynamic>>(
+          this,
+          Invocation.method(
+            #updateEmail,
+            [
+              currentPassword,
+              currentEmail,
+              email,
+            ],
+          ),
+        )),
+      ) as _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>>);
+  @override
+  _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>> updateName(
+    String? currentPassword,
+    String? currentName,
+    String? newName,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateName,
+          [
+            currentPassword,
+            currentName,
+            newName,
+          ],
+        ),
+        returnValue:
+            _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>>.value(
+                _FakeEither_0<_i8.AppException, _i2.None<dynamic>>(
+          this,
+          Invocation.method(
+            #updateName,
+            [
+              currentPassword,
+              currentName,
+              newName,
+            ],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>>.value(
+                _FakeEither_0<_i8.AppException, _i2.None<dynamic>>(
+          this,
+          Invocation.method(
+            #updateName,
+            [
+              currentPassword,
+              currentName,
+              newName,
+            ],
+          ),
+        )),
+      ) as _i5.Future<_i2.Either<_i8.AppException, _i2.None<dynamic>>>);
+  @override
+  _i5.Future<_i2.Either<_i2.None<dynamic>, _i9.User>> facebookSignIn() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #facebookSignIn,
+          [],
+        ),
+        returnValue: _i5.Future<_i2.Either<_i2.None<dynamic>, _i9.User>>.value(
+            _FakeEither_0<_i2.None<dynamic>, _i9.User>(
+          this,
+          Invocation.method(
+            #facebookSignIn,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<_i2.Either<_i2.None<dynamic>, _i9.User>>.value(
+                _FakeEither_0<_i2.None<dynamic>, _i9.User>(
+          this,
+          Invocation.method(
+            #facebookSignIn,
+            [],
+          ),
+        )),
+      ) as _i5.Future<_i2.Either<_i2.None<dynamic>, _i9.User>>);
 }
 
 /// A class which mocks [LocalStorage].

@@ -24,8 +24,4 @@ class ProfileViewModel extends BaseViewModel {
         .logout()
         .then((value) => _navigationService.replaceWith(Routes.loginView));
   }
-
-  // void navigateToAddCreditCard(){
-  //   _navigationService.navigateTo(Routes.addCreditCardView);
-  // }
 }

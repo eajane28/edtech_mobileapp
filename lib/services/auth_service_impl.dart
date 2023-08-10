@@ -9,6 +9,7 @@ import 'package:edtech_mobile/services/local_storage.dart';
 import 'package:edtech_mobile/ui/common/app_extension.dart';
 import 'package:edtech_mobile/ui/common/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 
 class AuthServiceImpl implements AuthService {
   final _auth = FirebaseAuth.instance;
@@ -201,6 +202,32 @@ class AuthServiceImpl implements AuthService {
     });
   }
 
-  
+  @override
+  Future<Either<None, User>> facebookSignIn() async {
+    final fb = FacebookLogin();
+    try {
+      // Log in
+      await fb.logOut();
+      final result = await fb.expressLogin();
 
+      if (result.status == FacebookLoginStatus.success) {
+        final FacebookAccessToken? accessToken = result.accessToken;
+        final AuthCredential authCredential = FacebookAuthProvider.credential(accessToken!.token);
+        UserCredential userCredential = await _auth.signInWithCredential(authCredential);
+        final user = User(
+            id: userCredential.user!.uid,
+            email: await fb.getUserEmail() ?? '',
+            name: userCredential.additionalUserInfo!.profile!['name'],
+            profileImageUrl: await fb.getProfileImageUrl(width: 128) ?? '');
+        await db.collection(FirebaseConstants.userCollection).doc(userCredential.user!.uid).set(user.toJson());
+        await _localStorage.saveUser(user);
+        return Right(user);
+      } else {
+        return const Left(None());
+      }
+    } catch (e) {
+      return const Left(None());
+    }
+  }
 }
+

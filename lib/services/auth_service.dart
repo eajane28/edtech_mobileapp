@@ -22,4 +22,6 @@ abstract interface class AuthService {
   Future<Either<AppException, None>> updateEmail(String currentPassword, String currentEmail, String email);
 
   Future<Either<AppException, None>> updateName(String currentPassword, String currentName, String newName);
+
+  Future<Either<None, User>> facebookSignIn();
 }
