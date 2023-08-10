@@ -73,7 +73,7 @@ class UpdateNameDialogUi extends StackedView<UpdateNameDialogModel> with InputVa
               MyTextField(
                 hintText: "Enter New Name",
                 controller: viewModel.updateNameField,
-                validator: (value) => isEmailValid(value!) ? null : "Textfield should not be Empty!",
+                validator: (value) => notEmpty(value!) ? null : "Textfield should not be Empty!",
               ),
               verticalSpaceSmall,
               MyTextField(
@@ -81,20 +81,6 @@ class UpdateNameDialogUi extends StackedView<UpdateNameDialogModel> with InputVa
                 controller: viewModel.currentPasswordField,
                 validator: (value) => notEmpty(value!) ? null : "Please Enter your Current Password!!",
               ),
-              // verticalSpaceMedium,
-              // MyTextField(
-              //   hintText: "Match Password",
-              //   controller: viewModel.matchPasswordField,
-              //   validator: (value) {
-              //     if (notEmpty(value!)) {
-              //       return passwordMatch(value, viewModel.currentPasswordField.text)
-              //           ? null
-              //           : "Please Enter the Correct Password!!";
-              //     } else {
-              //       return "Please Enter your Current Password!!";
-              //     }
-              //   },
-              // ),
               verticalSpaceSmall,
               GestureDetector(
                 onTap: () {

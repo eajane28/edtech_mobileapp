@@ -33,12 +33,6 @@ class SettingsViewModel extends BaseViewModel {
         (l) => _snackbarService.showSnackbar(message: l.message),
         (r) => lastUpdatedPasswod = r?.toDate());
 
-    //     final getLastUpdatedEmailResponse =
-    //     await _authService.getLastUpdatedEmail(user!.id!);
-    // getLastUpdatedEmailResponse.fold(
-    //     (l) => _snackbarService.showSnackbar(message: l.message),
-    //     (r) => lastUpdatedEmail = r?.toString());
-
     settingsInfoList = [
       SettingsData(
           iconPath: SvgIcons.profile,

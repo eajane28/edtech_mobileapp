@@ -177,18 +177,30 @@ class AuthServiceImpl implements AuthService {
       return Left(AppException(e.toString()));
     }
   }
+  
+  @override
+  Future<Either<AppException, None>> updateName(String currentPassword, String currentName, String newName) async {
+    final user = await getCurrentUserData();
 
-  // @override
-  // Future<Either<AppException, User?>> getLastUpdatedEmail(
-  //     String uid) async {
-  //   try {
-  //     return await db
-  //         .collection(FirebaseConstants.userCollection)
-  //         .doc(uid)
-  //         .get()
-  //         .then((value) => Right(value.data()!['lastUpdatedEmail']));
-  //   } on FirebaseException catch (e) {
-  //     return Left(AppException(e.message!));
-  //   }
-  // }
+    return user.fold((error) {
+      return Left(error);
+    }, (user) async {
+      try {
+        if (currentName != user.name) {
+          return Left("current name not match!" as AppException);
+        }
+        await db
+            .collection(FirebaseConstants.userCollection)
+            .doc(_auth.currentUser!.uid)
+            .update({"name": newName});
+        await logout();
+      } on FirebaseAuthException catch (error) {
+        return Left(AppException(error.message.toString()));
+      }
+      return const Right(None());
+    });
+  }
+
+  
+
 }

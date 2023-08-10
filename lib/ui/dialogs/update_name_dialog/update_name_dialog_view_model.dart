@@ -19,8 +19,8 @@ class UpdateNameDialogModel extends BaseViewModel {
 
   void updateName() async {
     setBusy(true);
-    var response = await _authService.updateEmail(
-        currentPasswordField.text, matchPasswordField.text, updateNameField.text);
+    var response = await _authService.updateName(
+        currentPasswordField.text, currentNameField.text, updateNameField.text);
     response.fold((l) => snackbarService.showSnackbar(message: l.message), (r) {
       _navigatorService.replaceWithLoginView();
       snackbarService.showSnackbar(
