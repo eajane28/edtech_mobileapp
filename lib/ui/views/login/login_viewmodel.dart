@@ -42,4 +42,9 @@ class LoginViewModel extends BaseViewModel {
   void forgotPassword() {
     _navigationService.navigateToForgotPasswordView();
   }
+  
+  void facebookLogin() async {
+    final response = await authService.facebookSignIn();
+    response.fold((l) => null, (r) => _navigationService.replaceWithHomeView());
+}
 }
