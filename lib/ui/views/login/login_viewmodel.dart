@@ -32,19 +32,18 @@ class LoginViewModel extends BaseViewModel {
 
   void login() async {
     setBusy(true);
-    var result = await authService.login(
-        email: emailController.text, password: passwordController.text);
-    result.fold((l) => _snackbarService.showSnackbar(message: l.message),
-        (r) => _navigationService.navigateToHomeView());
+    var result = await authService.login(email: emailController.text, password: passwordController.text);
+    result.fold(
+        (l) => _snackbarService.showSnackbar(message: l.message), (r) => _navigationService.navigateToHomeView());
     setBusy(false);
   }
 
   void forgotPassword() {
     _navigationService.navigateToForgotPasswordView();
   }
-  
+
   void facebookLogin() async {
     final response = await authService.facebookSignIn();
     response.fold((l) => print("dsjjidjsj"), (r) => _navigationService.replaceWithHomeView());
-}
+  }
 }
