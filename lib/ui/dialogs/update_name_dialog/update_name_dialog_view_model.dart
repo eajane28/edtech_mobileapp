@@ -21,7 +21,7 @@ class UpdateNameDialogModel extends BaseViewModel {
     setBusy(true);
     var response = await _authService.updateName(
         currentPasswordField.text, currentNameField.text, updateNameField.text);
-    response.fold((l) => snackbarService.showSnackbar(message: l.message), (r) {
+    response.fold((l) => snackbarService.showSnackbar(message: l.message, duration: const Duration(seconds: 2)), (r) {
       _navigatorService.replaceWithLoginView();
       snackbarService.showSnackbar(
           message: "Name Successfully Change!\nTry to login",

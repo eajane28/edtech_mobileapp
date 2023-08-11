@@ -76,7 +76,7 @@ class UpdateNameDialogUi extends StackedView<UpdateNameDialogModel> with InputVa
                         viewModel.updateName();
                       } else {
                         viewModel.snackbarService
-                            .showSnackbar(message: "Make sure your passwords matched nor neither of the page is empty.");
+                            .showSnackbar(message: "Make sure your passwords matched nor neither of the page is empty.", duration: const Duration(seconds: 2));
                       }
                     },
                     child: Container(

@@ -39,7 +39,7 @@ class AddCreditCardViewModel extends BaseViewModel {
     final response = await _paymentRepository.addPaymentMethod(paymentData!);
     response.fold(
         (l) =>
-            _snackBarService.showSnackbar(message: AppConstants.myErrorMessage),
+            _snackBarService.showSnackbar(message: AppConstants.myErrorMessage, duration: const Duration(seconds: 2)),
         (r) => _navigationService.navigateToPaymentAddedView(course: course));
     setBusy(false);
   }

@@ -19,7 +19,7 @@ class ForgotPasswordViewModel extends BaseViewModel {
     setBusy(true);
     final response =
         await authService.forgetPassword(email: emailController.text);
-    response.fold((l) => _snackbarService.showSnackbar(message: l.message),
+    response.fold((l) => _snackbarService.showSnackbar(message: l.message, duration: const Duration(seconds: 2)),
         (r) => _navigationService.navigateToLoginView());
     setBusy(false);
   }

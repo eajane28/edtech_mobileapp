@@ -34,7 +34,7 @@ class LoginViewModel extends BaseViewModel {
     setBusy(true);
     var result = await authService.login(email: emailController.text, password: passwordController.text);
     result.fold(
-        (l) => _snackbarService.showSnackbar(message: l.message), (r) => _navigationService.navigateToHomeView());
+        (l) => _snackbarService.showSnackbar(message: l.message, duration: const Duration(seconds: 2)), (r) => _navigationService.navigateToHomeView());
     setBusy(false);
   }
 

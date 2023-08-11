@@ -15,17 +15,21 @@ class UpdatePasswordDialogModel extends BaseViewModel {
   final _navigatorService = locator<NavigationService>();
 
   late User user;
+  bool isObscure = true;
 
   void updatePassword() async {
     setBusy(true);
-    var response = await _authService.updatePassword(
-        currentPasswordField.text, matchPasswordField.text);
-    response.fold((l) => snackbarService.showSnackbar(message: l.message), (r) {
+    var response = await _authService.updatePassword(currentPasswordField.text, matchPasswordField.text);
+    response.fold((l) => snackbarService.showSnackbar(message: l.message, duration: const Duration(seconds: 2)), (r) {
       _navigatorService.replaceWithLoginView();
       snackbarService.showSnackbar(
-          message: "Password Successfully Change!/nTry to login",
-          duration: const Duration(seconds: 2));
+          message: "Password Successfully Change!/nTry to login", duration: const Duration(seconds: 2));
     });
     setBusy(false);
+  }
+
+  void changeIcon() {
+    isObscure = !isObscure;
+    rebuildUi();
   }
 }

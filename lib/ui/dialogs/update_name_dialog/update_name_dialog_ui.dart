@@ -1,6 +1,7 @@
 import 'package:edtech_mobile/ui/common/input_validation_mixin.dart';
 import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/dialogs/update_name_dialog/update_name_dialog_view_model.dart';
+import 'package:edtech_mobile/ui/views/widgets/password.dart';
 import 'package:edtech_mobile/ui/views/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -76,10 +77,9 @@ class UpdateNameDialogUi extends StackedView<UpdateNameDialogModel> with InputVa
                 validator: (value) => notEmpty(value!) ? null : "Textfield should not be Empty!",
               ),
               verticalSpaceSmall,
-              MyTextField(
-                hintText: "Enter Password",
+              Password(
                 controller: viewModel.currentPasswordField,
-                validator: (value) => notEmpty(value!) ? null : "Please Enter your Current Password!!",
+                hintText: 'Enter Password',
               ),
               verticalSpaceSmall,
               GestureDetector(
@@ -87,8 +87,9 @@ class UpdateNameDialogUi extends StackedView<UpdateNameDialogModel> with InputVa
                   if (_formKey.currentState!.validate()) {
                     viewModel.updateName();
                   } else {
-                    viewModel.snackbarService
-                        .showSnackbar(message: "Make sure your passwords matched nor neither of the page is empty.");
+                    viewModel.snackbarService.showSnackbar(
+                        message: "Make sure your passwords matched nor neither of the page is empty.",
+                        duration: const Duration(seconds: 2));
                   }
                 },
                 child: Container(

@@ -50,7 +50,7 @@ class LessonItemViewModel extends BaseViewModel {
   Future<void> getTopics() async {
     setBusy(true);
     final result = await _courseRepository.getTopics(course.id);
-    result.fold((l) => _snackBarService.showSnackbar(message: l.message),
+    result.fold((l) => _snackBarService.showSnackbar(message: l.message, duration: AppConstants.defDuration),
         (r) => topics = r);
     setBusy(false);
   }

@@ -27,7 +27,7 @@ class HomeViewModel extends BaseViewModel {
   void init() async {
     setBusy(true);
     final response = await _localStorage.getCurrentUser();
-    response.fold((l) => _snackbarService.showSnackbar(message: l.message),
+    response.fold((l) => _snackbarService.showSnackbar(message: l.message, duration: const Duration(seconds: 2)),
         (r) => user = r);
     setBusy(false);
   }

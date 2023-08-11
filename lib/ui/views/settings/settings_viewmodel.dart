@@ -24,13 +24,13 @@ class SettingsViewModel extends BaseViewModel {
   void init() async {
     setBusy(true);
     final response = await _localStorage.getCurrentUser();
-    response.fold((l) => _snackbarService.showSnackbar(message: l.message),
+    response.fold((l) => _snackbarService.showSnackbar(message: l.message, duration: const Duration(seconds: 2)),
         (r) => user = r);
 
     final getLastUpdatedPasswordResponse =
         await _authService.getLastUpdatedPassword(user!.id!);
     getLastUpdatedPasswordResponse.fold(
-        (l) => _snackbarService.showSnackbar(message: l.message),
+        (l) => _snackbarService.showSnackbar(message: l.message, duration: const Duration(seconds: 2)),
         (r) => lastUpdatedPasswod = r?.toDate());
 
     settingsInfoList = [

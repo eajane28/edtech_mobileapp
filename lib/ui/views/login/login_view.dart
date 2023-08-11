@@ -65,7 +65,7 @@ class LoginView extends StackedView<LoginViewModel> with InputValidationMixin {
                     keyboardType: TextInputType.emailAddress,
                   ),
                   Password(
-                    controller: viewModel.passwordController,
+                    controller: viewModel.passwordController, hintText: 'Password',
                   ),
                   const SizedBox(height: 16.0),
                   GestureDetector(

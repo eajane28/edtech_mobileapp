@@ -40,7 +40,7 @@ class ChooseLessonViewModel extends BaseViewModel {
   Future<void> getTopics() async {
     setBusy(true);
     final result = await _courseRepository.getTopics(course.id);
-    result.fold((l) => _snackBarService.showSnackbar(message: l.message), (r) => topics = r);
+    result.fold((l) => _snackBarService.showSnackbar(message: l.message, duration: const Duration(seconds: 2)), (r) => topics = r);
     setBusy(false);
   }
 

@@ -1,6 +1,7 @@
 import 'package:edtech_mobile/ui/common/input_validation_mixin.dart';
 import 'package:edtech_mobile/ui/common/ui_helpers.dart';
 import 'package:edtech_mobile/ui/dialogs/update_email_dialog/update_email_dialog_view_model.dart';
+import 'package:edtech_mobile/ui/views/widgets/password.dart';
 import 'package:edtech_mobile/ui/views/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -77,25 +78,9 @@ class UpdateEmailDialogUi extends StackedView<UpdateEmailDialogModel> with Input
                   validator: (value) => isEmailValid(value!) ? null : "Invalid Email",
                 ),
                 verticalSpaceSmall,
-                MyTextField(
-                  hintText: "Enter Password",
-                  controller: viewModel.currentPasswordField,
-                  validator: (value) => notEmpty(value!) ? null : "Please Enter a Valid Password!!",
+                Password(
+                  controller: viewModel.currentPasswordField, hintText: 'Enter Password',
                 ),
-                // verticalSpaceSmall,
-                // MyTextField(
-                //   hintText: "Match Password",
-                //   controller: viewModel.matchPasswordField,
-                //   validator: (value) {
-                //     if (notEmpty(value!)) {
-                //       return passwordMatch(value, viewModel.currentPasswordField.text)
-                //           ? null
-                //           : "Please Enter the Correct Password!!";
-                //     } else {
-                //       return "Please Enter your Current Password!!";
-                //     }
-                //   },
-                // ),
                 verticalSpaceSmall,
                 GestureDetector(
                   onTap: () {
@@ -103,7 +88,7 @@ class UpdateEmailDialogUi extends StackedView<UpdateEmailDialogModel> with Input
                       viewModel.updateEmail();
                     } else {
                       viewModel.snackbarService
-                          .showSnackbar(message: "Make sure your passwords matched nor neither of the page is empty.");
+                          .showSnackbar(message: "Make sure your passwords matched nor neither of the page is empty.", duration: const Duration(seconds: 2));
                     }
                   },
                   child: Container(

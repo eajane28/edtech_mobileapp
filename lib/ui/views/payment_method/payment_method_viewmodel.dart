@@ -27,7 +27,7 @@ class PaymentMethodViewModel extends BaseViewModel {
 
   Future<void> getPaymentMethods() async {
     final response = await _paymentRepository.getPaymentMethods();
-    response.fold((l) => _snackBarService.showSnackbar(message: l.message),
+    response.fold((l) => _snackBarService.showSnackbar(message: l.message, duration: const Duration(seconds: 2)),
         (r) => paymentMethods = r);
   }
 

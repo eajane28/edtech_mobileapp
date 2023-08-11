@@ -23,7 +23,7 @@ class SignupViewModel extends BaseViewModel {
         name: nameController.text,
         email: emailController.text,
         password: passwordController.text);
-    response.fold((l) => _snackbarService.showSnackbar(message: l.message),
+    response.fold((l) => _snackbarService.showSnackbar(message: l.message, duration: const Duration(seconds: 2)),
         (r) => navigationService.navigateToLoginView());
     setBusy(false);
   }

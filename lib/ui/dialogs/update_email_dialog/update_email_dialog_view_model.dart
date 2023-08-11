@@ -21,7 +21,7 @@ class UpdateEmailDialogModel extends BaseViewModel {
     setBusy(true);
     var response = await _authService.updateEmail(
         currentPasswordField.text, currentEmailField.text, updateEmailField.text);
-    response.fold((l) => snackbarService.showSnackbar(message: l.message), (r) {
+    response.fold((l) => snackbarService.showSnackbar(message: l.message, duration: const Duration(seconds: 2)), (r) {
       _navigatorService.replaceWithLoginView();
       snackbarService.showSnackbar(
           message: "Email Successfully Change!\nTry to login",

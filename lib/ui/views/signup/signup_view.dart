@@ -58,7 +58,7 @@ class SignupView extends StackedView<SignupViewModel>
                             keyboardType: TextInputType.emailAddress,
                           ),
                           Password(
-                            controller: viewModel.passwordController,
+                            controller: viewModel.passwordController, hintText: 'Password',
                           ),
                           const SizedBox(height: 8.0),
                           MyWidgetButton(

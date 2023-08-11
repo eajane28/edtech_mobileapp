@@ -2,9 +2,10 @@ import 'package:edtech_mobile/ui/common/input_validation_mixin.dart';
 import 'package:flutter/material.dart';
 
 class Password extends StatefulWidget {
-  const Password({super.key, required this.controller});
+  const Password({super.key, required this.controller, required this.hintText});
 
   final TextEditingController controller;
+  final String hintText;
 
   @override
   PasswordState createState() => PasswordState();
@@ -22,18 +23,13 @@ class PasswordState extends State<Password> with InputValidationMixin {
         obscureText: isObscure,
         decoration: InputDecoration(
           suffixIcon: IconButton(
-              onPressed: changeIcon,
-              icon: Icon(isObscure == true
-                  ? Icons.remove_red_eye
-                  : Icons.visibility_off)),
+              onPressed: changeIcon, icon: Icon(isObscure == true ? Icons.remove_red_eye : Icons.visibility_off)),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
           ),
           hintText: 'Password',
         ),
-        validator: (value) => isPasswordValid(value ?? '')
-            ? null
-            : 'Password must be at least 6 characters',
+        validator: (value) => isPasswordValid(value ?? '') ? null : 'Password must be at least 6 characters',
       ),
     );
   }
