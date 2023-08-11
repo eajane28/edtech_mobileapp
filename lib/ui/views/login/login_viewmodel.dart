@@ -45,6 +45,6 @@ class LoginViewModel extends BaseViewModel {
   
   void facebookLogin() async {
     final response = await authService.facebookSignIn();
-    response.fold((l) => null, (r) => _navigationService.replaceWithHomeView());
+    response.fold((l) => print("dsjjidjsj"), (r) => _navigationService.replaceWithHomeView());
 }
 }

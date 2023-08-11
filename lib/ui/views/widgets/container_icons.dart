@@ -1,11 +1,13 @@
 import 'package:edtech_mobile/model/icons_data.dart';
 import 'package:flutter/material.dart';
 
+typedef OnPressed = void Function();
+
 class BuildIcon extends StatelessWidget {
-  const BuildIcon({super.key, required this.iconsData});
+  BuildIcon({super.key, required this.iconsData, this.action});
 
   final IconsData iconsData;
-
+  final OnPressed? action;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,12 +19,17 @@ class BuildIcon extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           color: const Color(0xFF65AAEA),
         ),
-        child: Stack(
-          children: <Widget>[
-            Center(
-              child: Image.asset(iconsData.iconsPage),
+        child: InkWell(
+          onTap: action,
+          child: AbsorbPointer(
+            child: Stack(
+              children: <Widget>[
+                Center(
+                  child: Image.asset(iconsData.iconsPage),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
