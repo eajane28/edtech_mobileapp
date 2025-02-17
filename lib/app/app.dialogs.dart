@@ -14,7 +14,7 @@ import '../ui/dialogs/update_password_dialog/update_password_dialog_ui.dart';
 enum DialogType {
   infoAlert,
   updatePasswordDialogUi,
-  myConfirmation,
+  myConfirmation, updateEmailDialogUi, updateNameDialogUi,
 }
 
 void setupDialogUi() {

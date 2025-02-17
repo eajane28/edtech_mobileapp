@@ -33,7 +33,7 @@ class TestQuestionView extends StackedView<TestQuestionViewModel> {
         body: PageView.builder(
           physics: const NeverScrollableScrollPhysics(),
           controller: viewModel.pageController,
-          scrollBehavior: const ScrollBehavior(androidOverscrollIndicator: AndroidOverscrollIndicator.stretch),
+          // scrollBehavior: const ScrollBehavior(androidOverscrollIndicator: AndroidOverscrollIndicator.stretch),
           itemCount: questions.length,
           itemBuilder: (context, index) {
             final CourseTopicQuestions question = questions[index];
